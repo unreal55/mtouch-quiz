@@ -32,7 +32,7 @@ function newAnswer() {
 	var para = document.createElement("p");
 	var Clabel = document.createElement("label");
 	Clabel.setAttribute("for", "correct_answer_" + answer_count);
-	Clabel.appendChild(document.createTextNode("<?php e("Correct"); ?>"));
+	Clabel.appendChild(document.createTextNode("<?php _e("Correct"); ?>"));
 	para.appendChild(Clabel);
 	var Cinput = document.createElement("input");
 	Cinput.setAttribute("type", "checkbox");
@@ -41,7 +41,7 @@ function newAnswer() {
 	Cinput.setAttribute("value", answer_count);
 	Cinput.setAttribute("id", "correct_answer_" + answer_count);
 	para.appendChild(Cinput);
-	para.appendChild(document.createTextNode("<?php e("Delimit"); ?>"));
+	para.appendChild(document.createTextNode("<?php _e("Delimit"); ?>"));
 	var Linput = document.createElement("input");
 	Linput.setAttribute("type", "checkbox");
 	Linput.setAttribute("name", "enclose_latex");
@@ -49,13 +49,13 @@ function newAnswer() {
 	Linput.setAttribute("value", answer_count);
 	Linput.setAttribute("id", "enclose_latex_" + answer_count);
 	para.appendChild(Linput);
-	//para.appendChild(document.createTextNode("<?php e("Answer:"); ?>"));
+	//para.appendChild(document.createTextNode("<?php _e("Answer:"); ?>"));
 	var Atextarea = document.createElement("textarea");
 	Atextarea.setAttribute("name", "answer[]");
 	Atextarea.setAttribute("rows", "3");
 	Atextarea.setAttribute("cols", "50");
 	para.appendChild(Atextarea);
-	para.appendChild(document.createTextNode("<?php e("Hint:"); ?>"));
+	para.appendChild(document.createTextNode("<?php _e("Hint:"); ?>"));
 	var Htextarea = document.createElement("textarea");
 	Htextarea.setAttribute("name", "hint[]");
 	Htextarea.setAttribute("rows", "3");
@@ -81,7 +81,7 @@ function init() {
 		}
 		
 		if(!contents) {
-			alert("<?php e("Please enter the question"); ?>");
+			alert("<?php _e("Please enter the question"); ?>");
 			e.preventDefault();
 			e.stopPropagation();
 			return true;
@@ -93,7 +93,7 @@ function init() {
 			if(this.value) answer_count++;
 		});
 		//if(answer_count < 2) {
-		//	alert("<?php //e("Please enter atleast two answers"); ?>");
+		//	alert("<?php //_e("Please enter atleast two answers"); ?>");
 		//	e.preventDefault();
 		//	e.stopPropagation();
 		//	return true;
@@ -108,7 +108,7 @@ function init() {
 			}
 		});
 		if(!correct_answer_selected) {
-			alert("<?php e("Please select a correct answer"); ?>");
+			alert("<?php _e("Please select a correct answer"); ?>");
 			e.preventDefault();
 			e.stopPropagation();
 		}
@@ -121,7 +121,7 @@ jQuery(document).ready(init);
       <div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea">
         <div class="postbox">
           <h3 class="hndle">
-            <?php e('Question') ?>
+            <?php _e('Question') ?>
             </span></h3>
           <div class="inside">
             <?php the_editor(stripslashes($question->question)); ?>
@@ -129,7 +129,7 @@ jQuery(document).ready(init);
         </div>
         <div class="postbox">
           <h3 class="hndle"><span>
-            <?php e('Answers and Hints') ?>
+            <?php _e('Answers and Hints') ?>
             </span></h3>
           <div class="inside">
             <?php
@@ -141,13 +141,13 @@ for($i=1; $i<=$answer_count; $i++) { ?>
                     <tr>
                       <td><input type="checkbox" class="correct_answer" id="correct_answer_<?php echo $i?>" <?php if($all_answers[$i-1]->correct == 1 && $action != 'new') echo 'checked="checked"';?> name="correct_answer[]" value="<?php echo $i?>" />
                         <label for="correct_answer_<?php echo $i?>">
-                          <?php e("Correct"); ?>
+                          <?php _e("Correct"); ?>
                         </label></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" id="enclose_latex_<?php echo $i?>" name="enclose_latex[]" value="<?php echo $i?>" />
                         <label for="enclose_latex_<?php echo $i?>">
-                          <?php e("Delimit"); ?>
+                          <?php _e("Delimit"); ?>
                         </label></td>
                     </tr>
                   </table></td>
@@ -163,24 +163,24 @@ for($i=1; $i<=$answer_count; $i++) { ?>
             
             <div id="extra-answers"></div>
             <a href="javascript:newAnswer();">
-            <?php e("Add New Answer"); ?>
+            <?php _e("Add New Answer"); ?>
             </a> </div>
         </div>
         <div class="postbox">
           <h3 class="hndle"><span>
-            <?php e('Explanation') ?>
+            <?php _e('Explanation') ?>
             </span></h3>
           <div class="inside">
             <textarea name="explanation" rows="5" cols="50"><?php echo stripslashes($question->explanation)?></textarea>
             <br />
             <p>
-              <?php e('You can use this field to explain the correct answer. This will be shown whenever correct answers are revealed.') ?>
+              <?php _e('You can use this field to explain the correct answer. This will be shown whenever correct answers are revealed.') ?>
             </p>
           </div>
         </div>
         <div class="postbox">
           <h3 class="hndle"><span>
-            <?php e('Point Value') ?>
+            <?php _e('Point Value') ?>
             </span></h3>
           <div class="inside">
             <textarea name="point_value" rows="1" cols="3"><?php if ($action == 'new') { echo '100';} else { echo stripslashes($question->point_value);} ?>
@@ -194,10 +194,10 @@ for($i=1; $i<=$answer_count; $i++) { ?>
         <input type="hidden" id="user-id" name="user_ID" value="<?php echo (int) $user_ID ?>" />
         <input type="hidden" name="action" value="<?php echo $action ?>" />
         <span id="autosave"></span>
-        <input type="submit" name="submit" value="<?php e('Save') ?>" style="font-weight: bold;" />
+        <input type="submit" name="submit" value="<?php _e('Save') ?>" style="font-weight: bold;" />
       </p>
       <a href="edit.php?page=mtouch-quiz/question.php&amp;quiz=<?php echo $_REQUEST['quiz']?>">
-      <?php e("Go to Questions Page") ?>
+      <?php _e("Go to Questions Page") ?>
       </a> </div>
   </form>
 </div>
