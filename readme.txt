@@ -1,0 +1,93 @@
+=== mTouch Quiz ===
+Contributors: gmichaelguy
+Donate link: http://gmichaelguy.com/quizplugin/
+Tags: quiz,question,answer,test,touch,education,learning,elearning
+Requires at least: 2.8
+Tested up to: 3.01
+Stable tag: 1.0
+
+mTouch Quiz lets you add quizzes to your blog. This plugin was designed with learning,  touch friendliness and versatility in mind.
+
+
+== Description ==
+
+With mTouch Quiz, you can create a multiple choice quiz (or exam). This plugin was written with learning and mobility at the forefront of design decisions.  The quiz interface is very finger friendly and allows for easy touch screen use. You can specify feedback (hints) based on answer selection, as well as give a detailed explanation of the problem. You can choose multiple correct answers and specify when the correct answers are displayed. You can specify if a question may be attempted only once or many times and specify point values for each question. You can include customized start and finish screens. You can randomly order questions and/or answers. All this, and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
+
+== Installation ==
+
+1. Download the zipped file.
+1. Extract and upload the contents of the folder to /wp-contents/plugins/ folder
+1. Go to the Plugin management page of WordPress admin section and enable the 'mTouch Quiz' plugin
+1. Go to the mTouch Quiz Management page (in a new group) to create or edit the quiz.
+1. Add the shortcode (and any options) [mtouchquiz #] to a post to display to your quiz!
+
+== Frequently Asked Questions ==
+
+= Can a question have more than one correct answer? =
+Yes. Each question can have as many correct answers as you like.
+
+= How does scoring work? =
+If the correct answer is selected on the first attempt, full credit is assigned for the problem. However, if you allow multiple chances to answer each question, partial credit is calculated based on the number of attempts as well as the number of correct answers to the question.
+
+= Can I give Hints based on the answer selected? =
+Yes. This was one of the main reasons I wrote this plugin. Learning often requires more feedback than just right or wrong.
+
+= Can questions be assigned point values/weights? =
+Yes. It is at the bottom of each question, right above the Save button. The default value is 100.
+
+= How do I get the quiz to show up on my page? =
+You simply include the shortcode mtouchquiz id# options inside square brackets anywhere on your page. The id# is listed in the leftmost column on the Manage Quiz page and also at the top of the Manage Questions page.
+
+= Once I set the quiz options such a single page and randomization, can I use different options on different versions of the same quiz? =
+Yes! Just set the options on the shortcode when you embed the quiz in your page.
+
+= Where can I find out about the configurable options for the shortcode? =
+Next to each option on the Edit Quiz page, there is a column to the right, which indicates what to add to the shortcode to set the options. I think they are pretty clear, but ask if you are unsure.
+
+= What arguments can I use on the shortcode? =
+Each argument must be followed by an equals sign and the selection in quotations. Here they are : questions (number of questions to display–if you don’t choose random questions, it will be the first ones in order), singlepage, multiplechances, hints, startscreen, finalscreen, randomq, randoma, showanswers.
+
+= What does Delimit mean next to the answer choice when I’m adding them? =
+If you want to enclose all your answers in some kind of delimiter (for example, to modify style or formatting or enclose them in some LaTeX code (like the default!), click this to save time.)
+
+= Can I change the default delimiters I see in the answers? =
+Yes. You can change that in the options page. You will have to manually make any changes to answers already in the database, however.
+
+= Does this work with multi-site? =
+Yes, as far as I can test it does! Any user with Author role or higher should have access to this plugin. This site is a 3.0+ multi-site enabled site.
+
+= Who can access to this plugin within my WordPress site? =
+Any user with Author role or higher has access to this plugin. This can be changed to require higher role, if desired.
+
+= Does this work in a sidebar? =
+It worked in mine when I tried it. Just make sure you sidebar executes and shortcodes contained inside it.
+
+= Can I keep track of statistics of which answers are selected? =
+Look for this in the future!
+
+= Can I have the results of the quiz emailed to me? =
+Look for this in the future if enough people want it!
+
+= Can I do this or that? =
+I don't know.  Ask me. Perhaps if it seems useful to a large number of people, I can find a way to make it do this or that.
+
+= Where can I get more help or get a question answered? =
+Go to the plugin website and contact me using the methods listed there.
+
+
+
+== Screenshots ==
+
+1. A Typical Question on a Desktop Browser
+2. A Typical Question After a Selection on a Desktop Browser
+3. A Typical Question on a Mobile Browser (Landscape) (using WPTouch plugin on iPhone 4)
+4. A Typical Question on a Mobile Browser (Portrait) (using WPTouch plugin on iPhone 4)
+
+== Changelog ==
+
+= 1.0 =
+* Initial release
+
+== Upgrade Notice ==
+= 1.0 =
+* Initial release
