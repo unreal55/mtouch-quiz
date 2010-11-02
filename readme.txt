@@ -45,7 +45,7 @@ Yes! Just set the options on the shortcode when you embed the quiz in your page.
 Next to each option on the Edit Quiz page, there is a column to the right, which indicates what to add to the shortcode to set the options. I think they are pretty clear, but ask if you are unsure.
 
 = What arguments can I use on the shortcode? =
-Each argument must be followed by an equals sign and the selection in quotations. Here they are : questions (number of questions to display–if you don’t choose random questions, it will be the first ones in order), singlepage, multiplechances, hints, startscreen, finalscreen, randomq, randoma, showanswers.
+Each argument must be followed by an equals sign and the selection in quotations. Here they are: questions (number of questions to display if you don't choose random questions, it will be the first ones in order), singlepage, multiplechances, hints, startscreen, finalscreen, randomq, randoma, showanswers.
 
 = What does Delimit mean next to the answer choice when I’m adding them? =
 If you want to enclose all your answers in some kind of delimiter (for example, to modify style or formatting or enclose them in some LaTeX code (like the default!), click this to save time.)
@@ -72,7 +72,7 @@ Look for this in the future if enough people want it!
 I don't know.  Ask me. Perhaps if it seems useful to a large number of people, I can find a way to make it do this or that.
 
 = Where can I get more help or get a question answered? =
-Go to the plugin website and contact me using the methods listed there.
+Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me using the methods listed there.
 
 
 
