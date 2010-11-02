@@ -39,7 +39,7 @@ if(isset($_REQUEST['submit'])) {
 			if ($correct_answers[$i] == $counter) $correct = 1;	
 		}
 		
-		if($answer_text || is_numeric($answer_text)) {
+		if($answer_text || isnumeric($answer_text)) {
 			$hint_text = $_REQUEST['hint'][$counter-1];
 			$show_hint=0;
 			for ($i=0; $i< $num_latex; $i++)

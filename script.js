@@ -19,6 +19,11 @@ var	multiple_chances = 1;
 var quiz_finished = false;
 var exit_warning = false;
 
+var	have_completed_string = "";
+var	question_string = "";
+var	questions_string = "";
+var	your_score_is_string = "";
+
 window.onbeforeunload = function() {
   if (exit_warning && ! quiz_finished) {
     return 'You have not finished your quiz. \nIf you leave this page, your progress will be lost.';
@@ -243,25 +248,6 @@ function mtouchquizShowAllMarkers(){
 }
 
 
-//function mtouchquizMarkSelectedRows(){
-//	problems_attempted = 0;
-//	for (q = 1; q <= total_questions; q++)
-//	{
-//		var number_answers =parseInt(jQuery("#num_ans-"+q).val());
-//		var N = parseInt(number_answers);
-//		var attempted_this_one = 0;
-//		var a=1;
-//		for (a =1; a<= N; a++){
-//			if ( parseInt(jQuery("#was_ever_selected-"+q+"-"+a).val()) || parseInt(jQuery("#was_selected-"+q+"-"+a).val())   )	{
-//				jQuery("#row-"+q+"-"+a).addClass("mtouchquiz-selected-row");
-//				attempted_this_one = 1;
-//			}
-//		}
-//		problems_attempted+=attempted_this_one;
-//	}		
-//}
-
-
 
 function mtouchquizUpdateStatus(){
 	
@@ -309,10 +295,15 @@ function mtouchquizUpdateStatus(){
 	if( max_score > 0) {
 		score_percent = current_score / max_score*100;
 	}
-	var status_msg= "You have completed "+ questions_answered + "/"+ total_questions +" questions." ;
+	
+	
+	var status_msg= have_completed_string + " " + questions_answered + "/"+ total_questions + " " + questions_string + "." ;
+	if ( total_questions == 1 ) {
+		status_msg= have_completed_string + " " + questions_answered + "/"+ total_questions + " " + question_string + "." ;
+	}
 	
 	if ( answer_display == 2 ){
-		status_msg+="<br>"+ "Your score is " +score_percent.toFixed(0)+"%.";	
+		status_msg+="<br>"+ your_score_is_string + " " +score_percent.toFixed(0)+"%.";	
 	}
 	
 	if ( questions_answered == total_questions && ! show_final) {
@@ -336,11 +327,11 @@ function mtouchquizInit() {
 	if ( show_final || answer_display != 2 ) {
 		extra_page = 1;
 	}
-	if (total_questions == 1) {
-		jQuery("#QuizStatus").html("There is "+total_questions + " question to complete.");
-	} else if ( total_questions > 1) {
-		jQuery("#QuizStatus").html("There are "+total_questions + " questions to complete.");	
-	}
+	//if (total_questions == 1) {
+	//	jQuery("#QuizStatus").html("There is "+ total_questions + " question to complete.");
+	//} else if ( total_questions > 1) {
+	//	jQuery("#QuizStatus").html("There are "+ total_questions + " questions to complete.");	
+	//}
 	//if(total_questions == 1) { //Don't need this
 		//jQuery("#next_button").hide();
 	//} 
@@ -354,6 +345,11 @@ function mtouchquizInit() {
 		jQuery("#mtouchquiz-instructions").show();
 		jQuery("#start_button").show();	
 	}
+	
+	have_completed_string = jQuery("#have_completed_string").html();
+	question_string = jQuery("#question_string").html();
+	questions_string = jQuery("#questions_string").html();
+	your_score_is_string = jQuery("#your_score_is_string").html();
 	
 }
 

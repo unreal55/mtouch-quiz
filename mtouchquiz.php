@@ -41,7 +41,7 @@ function mtouchquiz_add_menu_links() {
 	//$page = 'edit.php';
 	//if($wp_version >= '2.7') $page = 'tools.php';
 	
-	add_menu_page('mTouch Quiz', 'mTouch Quiz', $view_level, 'mtouch_menu','mtouchquiz_plugin_options' , plugins_url('mtouch-quiz/images/menu-icon.png'));
+	add_menu_page(__('mTouch Quiz', 'mtouchquiz'), __('mTouch Quiz', 'mtouchquiz'), $view_level, 'mtouch_menu','mtouchquiz_plugin_options' , plugins_url('mtouch-quiz/images/menu-icon.png'));
 
 	add_submenu_page('mtouch_menu', __('Manage mTouch Quizzes', 'mtouchquiz'), __('Manage Quizzes', 'mtouchquiz'), $view_level, 'mtouch-quiz/quiz.php');
 	$code_pages = array('quiz_form.php','quiz_action.php', 'question_form.php', 'question.php');
@@ -54,7 +54,7 @@ function mtouchquiz_add_menu_links() {
 /// Initialize this plugin. Called by 'init' hook.
 add_action('init', 'mtouchquiz_init');
 function mtouchquiz_init() {
-	load_plugin_textdomain('mtouchquiz', 'wp-content/plugins' );
+	load_plugin_textdomain('mtouchquiz', 'wp-content/plugins/mtouch-quiz/lang/' );
 	add_action('admin_menu', 'mtouchquiz_menu');
 }
 
@@ -82,7 +82,7 @@ function mtouchquiz_options()
 {
 require('wpframe.php');
 function mtouchquiz_menu() {
-    add_options_page('mTouch Quiz Plugin Options', 'mTouch Quiz Plugin', 'manage_options', 'mtouchquiz', 'mtouchquiz_plugin_options');
+    add_options_page(__('mTouch Quiz Plugin Options', 'mtouchquiz'), __('mTouch Quiz Plugin', 'mtouchquiz'), 'manage_options', 'mtouchquiz', 'mtouchquiz_plugin_options');
   }
   
  function mtouchquiz_plugin_options() {
@@ -111,19 +111,19 @@ echo '<div class="wrap" id="mtouchquiz-options">
   <input type="hidden" name="mtouchquiz_hidden" value="Y">
   <table class="form-table">
     <tr valign="middle">
-      <th scope="row">Left Delimiter<br/>
-        <font size="-2">Left delimiter used when box is checked next to answer input.</font></th>
+      <th scope="row"><?php _e("Left Delimiter"); ?><br/>
+        <font size="-2"><?php _e("Left delimiter used when box is checked next to answer input."); ?></font></th>
       <td><input type="textbox" name="left_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_leftdelimit')) ?>"/></td>
     </tr>
     <tr valign="middle">
-      <th scope="row">Right Delimiter<br/>
-        <font size="-2">Right delimiter used when box is checked next to answer input.</font></th>
+      <th scope="row"><?php _e("Right Delimiter"); ?><br/>
+        <font size="-2"<?php _e(">Right delimiter used when box is checked next to answer input."); ?></font></th>
       <td><input type="textbox" name="right_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_rightdelimit')) ?>" /></td>
     </tr>
     
        <tr valign="middle">
-      <th scope="row">Show Alerts if Quiz unfinished?<br/>
-        <font size="-2">Since results to the quiz are stored locally, leaving the quiz page will lose all progress.</font></th>
+      <th scope="row"><?php _e("Show Alerts if Quiz unfinished?"); ?><br/>
+        <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress."); ?></font></th>
       <td><?php showOption('showalerts', 'Display a warning before a user leaves an unfinished quiz.'); ?></td>
     </tr>
   </table>

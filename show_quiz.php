@@ -140,7 +140,7 @@
 							<h2>
 							  <div id="mtouchquiz-quiztitle" class="mtouchquiz-quiztitle"><?php echo stripslashes($quiz_options->name)?></div>
 							</h2>
-							<div id="javawarning">Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.</div>
+							<div id="javawarning"><?php e('Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.'); ?></div>
 							<div id="mtouchquiz-instructions" class="mtouchquiz-instructions"><?php echo stripslashes($quiz_options->description)?></div>
 							<div id="start_button" class='mtouchquiz-start-button mtouchquiz-action-button' onclick='mtouchquizStartQuiz()'></div>
 							<input type='hidden' id='answer_display' value='<?php echo $answer_display;?>'/>
@@ -152,7 +152,7 @@
 							<input type='hidden' id='multiple_chances' value='<?php echo $multiple_chances;?>'/>
 							<div id="QuizResults-bubble" class="QuizResults-bubble">
 								<div id="QuizResults" class="QuizResults"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br></div>
-									<div id="QuizResultsHighlight">Your answers are highlighed below.</div>
+									<div id="QuizResultsHighlight"><?php e('Your answers are highlighed below.'); ?></div>
 							</div>
 							<?php
 								$question_count = 1;
@@ -234,9 +234,10 @@
 									echo "<input type='hidden' id='num_correct-$question_count' value='$num_correct' />";
 									$question_count++;
 								}
+								$question_count--;
 							?>
 							<div id="mtouchquiz-results-request" class="mtouchquiz-results-request">
-								<text>Once you are finished, click the button below. Any items you have not completed will be marked incorrect.</text>
+								<text><?php e('Once you are finished, click the button below. Any items you have not completed will be marked incorrect.'); ?></text>
 								<div id="results_button" class='mtouchquiz-results-button mtouchquiz-action-button' onclick='mtouchquizGetResults()'> </div>
 							</div>
 							<table id="mtouchquiz-status">
@@ -245,7 +246,7 @@
 										<div id="back_button" class='mtouchquiz-back-button' onclick='mtouchquizPreviousQuestion()'></div>
 									</td>
 									<td>
-										<div id="QuizStatus">Just starting...</div>
+										<div id="QuizStatus"><?php if ($question_count == 1 ){ e('There is 1 question to complete.');} else { printf(__("There are %d questions to complete."), $question_count); } ?></div>
 									</td>
 									<td width="86px">
 										<div id="next_button" class='mtouchquiz-next-button' onclick='mtouchquizNextQuestion()'></div>
@@ -253,8 +254,13 @@
 								</tr>
 							</table>
 							<!-- <input type="hidden" id="plugin_dir" value="<?php //echo $GLOBALS['wpframe_plugin_folder'] ?>"/>-->
+                            
+                           	<div id="have_completed_string" class="preload"><?php e('You have completed') ?> </div>
+                            <div id="questions_string" class="preload"><?php e('questions') ?></div>
+                            <div id="question_string" class="preload"><?php e('question') ?></div>
+                            <div id="your_score_is_string"  class="preload"><?php e('Your score is')?></div>
 							<input type="hidden" id="quiz_id" value="<?php echo  $quiz_id ?>" />
-							<input type="hidden" id="total_questions" value="<?php echo  $question_count-1; ?>" />
+							<input type="hidden" id="total_questions" value="<?php echo  $question_count; ?>" />
 							<input type="hidden" id="current_score" value="0" />
 							<input type="hidden" id="max_score" value="0" />
 							<input type="hidden" id="questions_attempted" value="0" />
@@ -269,22 +275,22 @@
 							?>
                             <input type="hidden" id="num_ratings" value="5"/>
                             <input type="hidden" id="ratingval-1" value="0"/>
-                            <div id="rating-1" class="preload">Need more practice!</div>
+                            <div id="rating-1" class="preload"><?php e('Need more practice!'); ?></div>
                             <input type="hidden" id="ratingval-2" value="40"/>
-                            <div id="rating-2" class="preload">Keep trying!</div>
+                            <div id="rating-2" class="preload"><?php e('Keep trying!'); ?></div>
                             <input type="hidden" id="ratingval-3" value="60"/>
-                            <div id="rating-3" class="preload">Not bad!</div>
+                            <div id="rating-3" class="preload"><?php e('Not bad!'); ?></div>
                             <input type="hidden" id="ratingval-4" value="80"/>
-                            <div id="rating-4" class="preload">Good work!</div>
+                            <div id="rating-4" class="preload"><?php e('Good work!'); ?></div>
                             <input type="hidden" id="ratingval-5" value="100"/>
-                            <div id="rating-5" class="preload">Perfect!</div>
+                            <div id="rating-5" class="preload"><?php e('Perfect!'); ?></div>
                             <?php
 								} else
 								{
 									$how_many = $num_ratings + 1;
 									echo "<input type='hidden' id='num_ratings' value='". $how_many ."'/>";
 									echo "<input type='hidden' id='ratingval-1' value='-1'/>";
-                            		echo "<div id='rating-1' class='preload'>A finisher.</div>";
+                            		echo "<div id='rating-1' class='preload'><?php e('All done.'); ?></div>";
 									$counter = 2;
 									foreach ($all_ratings as $quiz_rating) 
 									{
