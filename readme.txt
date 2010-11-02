@@ -54,7 +54,7 @@ If you want to enclose all your answers in some kind of delimiter (for example, 
 Yes. You can change that in the options page. You will have to manually make any changes to answers already in the database, however.
 
 = Does this work with multi-site? =
-Yes, as far as I can test it does! Any user with Author role or higher should have access to this plugin. This site is a 3.0+ multi-site enabled site.
+Yes, as far as I can test it does! Any user with Author role or higher should have access to this plugin. My site is a 3.0+ multi-site enabled site, and it works fine.
 
 = Who can access to this plugin within my WordPress site? =
 Any user with Author role or higher has access to this plugin. This can be changed to require higher role, if desired.
