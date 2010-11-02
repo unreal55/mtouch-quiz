@@ -1,286 +1,423 @@
+# Translation of the WordPress plugin   by .
+# Copyright (C) 2010
+# This file is distributed under the same license as the  package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Quizzin 1.01.0\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-04-15 19:49+0530\n"
-"Last-Translator: Binny V A <binnyva@gmail.com>\n"
-"Language-Team: Binny V A <binnyva@gamail.com>\n"
+"Project-Id-Version: mTouch Quiz v 1.01\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/mtouch-quiz\n"
+"POT-Creation-Date: 2010-11-02 19:20+0000\n"
+"PO-Revision-Date: 2010-11-02 15:27-0500\n"
+"Last-Translator: G. Michael Guy <michael@gmichaelguy.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: English\n"
 "X-Poedit-Country: UNITED STATES\n"
-"X-Poedit-KeywordsList: e;t\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin\n"
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:24
-msgid "All the questions in the quiz along with their answers are shown below. Your answers are bolded. The correct answers have a green background while the incorrect ones have a red background."
+#: mtouchquiz.php:45
+msgid "mTouch Quiz"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:42
-msgid "Question was not answered"
+#: mtouchquiz.php:47
+#: quiz.php:18
+msgid "Manage mTouch Quizzes"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:52
-msgid "Failed"
+#: mtouchquiz.php:47
+msgid "Manage Quizzes"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:52
-msgid "Just Passed"
+#: mtouchquiz.php:72
+msgid "Settings"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:54
-msgid "Satisfactory"
+#: mtouchquiz.php:86
+msgid "mTouch Quiz Plugin Options"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:54
-msgid "Competent"
+#: mtouchquiz.php:86
+msgid "mTouch Quiz Plugin"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:54
-msgid "Good"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:54
-msgid "Very Good"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:54
-msgid "Excellent"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:54
-msgid "Unbeatable"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:54
-msgid "Cheater"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:95
-msgid "Next"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/show_quiz.php:97
-msgid "Show Results"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:53
-msgid "Manage Questions in "
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:60
-msgid "To add this quiz to your blog, insert the code "
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:60
-msgid "into any post."
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:66
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:107
-msgid "Question"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:67
-msgid "Number Of Answers"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:68
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:30
-msgid "Action"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:90
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:51
-msgid "Edit"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:91
-msgid "You are about to delete this question. This will delete the answers to this question. Press 'OK' to delete and 'Cancel' to stop."
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:91
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:52
-msgid "Delete"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:98
-msgid "No questiones found."
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question.php:106
-msgid "Create New Question"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:16
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quizzin.php:22
-msgid "Manage Quiz"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:26
-msgid "ID"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:27
-msgid "Title"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:28
-msgid "Number Of Questions"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:29
-msgid "Created on"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:50
-msgid "Manage Questions"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:52
-msgid "You are about to delete this quiz? This will delete all the questions and answers within this quiz. Press 'OK' to delete and 'Cancel' to stop."
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:59
-msgid "No Quizes found."
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz.php:67
-msgid "Create New Quiz"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quizzin.php:34
-msgid "Quizzin Settings"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quizzin.php:37
-msgid "Cheatin&#8217; uh?"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quizzin.php:38
+#: mtouchquiz.php:92
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/options.php:24
-msgid "Save Options"
+#: mtouchquiz.php:115
+msgid "Left Delimiter"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:17
-msgid " Question"
+#: mtouchquiz.php:116
+msgid "Left delimiter used when box is checked next to answer input."
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:43
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:119
-msgid "Correct Answer"
+#: mtouchquiz.php:120
+msgid "Right Delimiter"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:67
+#: mtouchquiz.php:121
+msgid "Right delimiter used when box is checked next to answer input."
+msgstr ""
+
+#: mtouchquiz.php:126
+msgid "Show Alerts if Quiz unfinished?"
+msgstr ""
+
+#: mtouchquiz.php:127
+msgid "Since results to the quiz are stored locally, leaving the quiz page will lose all progress."
+msgstr ""
+
+#: mtouchquiz.php:132
+msgid "Save Changes"
+msgstr ""
+
+#: question.php:17
+msgid "Question updated."
+msgstr ""
+
+#: question.php:21
+msgid "Question added."
+msgstr ""
+
+#: question.php:74
+msgid "New quiz added"
+msgstr ""
+
+#: question.php:80
+msgid "Question Deleted"
+msgstr ""
+
+#: question.php:86
+msgid "Manage Questions in "
+msgstr ""
+
+#: question.php:92
+msgid "To add this quiz to your blog, insert the code "
+msgstr ""
+
+#: question.php:94
+msgid "into any post."
+msgstr ""
+
+#: question.php:100
+#: question_form.php:124
+msgid "Question"
+msgstr ""
+
+#: question.php:102
+msgid "Number Answers"
+msgstr ""
+
+#: question.php:104
+msgid "Number Correct Answers"
+msgstr ""
+
+#: question.php:105
+#: question_form.php:183
+msgid "Point Value"
+msgstr ""
+
+#: question.php:107
+#: quiz.php:33
+msgid "Action"
+msgstr ""
+
+#: question.php:133
+msgid "Edit"
+msgstr ""
+
+#: question.php:136
+#: quiz.php:59
+msgid "Delete"
+msgstr ""
+
+#: question.php:144
+msgid "No questions found."
+msgstr ""
+
+#: question.php:153
+msgid "Create New Question"
+msgstr ""
+
+#: question_form.php:35
+#: question_form.php:144
+msgid "Correct"
+msgstr ""
+
+#: question_form.php:44
+#: question_form.php:150
+msgid "Delimit"
+msgstr ""
+
+#: question_form.php:52
+msgid "Answer:"
+msgstr ""
+
+#: question_form.php:58
+msgid "Hint:"
+msgstr ""
+
+#: question_form.php:84
 msgid "Please enter the question"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:79
-msgid "Please enter atleast two answers"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:94
+#: question_form.php:111
 msgid "Please select a correct answer"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:113
-msgid "Answers"
+#: question_form.php:132
+msgid "Answers and Hints"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:124
+#: question_form.php:166
 msgid "Add New Answer"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:131
+#: question_form.php:171
 msgid "Explanation"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:136
-msgid "You can use this field to explain the correct answer. This will be shown only at the end of the quiz when the correct answers will be made available."
+#: question_form.php:177
+msgid "You can use this field to explain the correct answer. This will be shown whenever correct answers are revealed."
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:149
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:84
+#: question_form.php:197
+#: quiz_form.php:259
 msgid "Save"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/question_form.php:151
+#: question_form.php:200
 msgid "Go to Questions Page"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:13
-#, php-format
-msgid ""
-"Congratulations - you have completed %%QUIZ_NAME%%.\n"
-"\n"
-"You scored %%SCORE%% out of %%TOTAL%%.\n"
-"\n"
-"Your performance have been rated as '%%RATING%%'"
+#: quiz.php:28
+msgid "ID"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:19
+#: quiz.php:30
+msgid "Title"
+msgstr ""
+
+#: quiz.php:31
+msgid "Number Of Questions"
+msgstr ""
+
+#: quiz.php:32
+msgid "Created on"
+msgstr ""
+
+#: quiz.php:53
+msgid "Manage Questions"
+msgstr ""
+
+#: quiz.php:56
+msgid "Edit Quiz Options"
+msgstr ""
+
+#: quiz.php:67
+msgid "No Quizzes found."
+msgstr ""
+
+#: quiz.php:76
+msgid "Create New Quiz"
+msgstr ""
+
+#: quiz_form.php:28
 msgid " Quiz"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:39
+#: quiz_form.php:37
 msgid "Quiz Name"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:46
-msgid "Description"
+#: quiz_form.php:45
+msgid "Quiz Start Screen"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:53
+#: quiz_form.php:47
+msgid "Visual"
+msgstr ""
+
+#: quiz_form.php:47
+msgid "HTML"
+msgstr ""
+
+#: quiz_form.php:54
 msgid "Final Screen"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:57
+#: quiz_form.php:59
 msgid "Usable Variables..."
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:59
+#: quiz_form.php:63
 msgid "Variable"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:59
+#: quiz_form.php:64
 msgid "Value"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:60
+#: quiz_form.php:68
 msgid "The number of correct answers"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:61
+#: quiz_form.php:72
 msgid "Total number of questions"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:62
+#: quiz_form.php:76
 msgid "Correct answer percentage"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:63
-#, php-format
-msgid "1-10 value. 1 is 10% or less, 2 is 20% or less, and so on"
-msgstr ""
-
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:64
+#: quiz_form.php:80
 msgid "Number of answers you got wrong"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:65
-msgid "A rating of your performance - it could be 'Failed'(0-39%), 'Just Passed'(40%-50%), 'Satisfactory', 'Competent', 'Good', 'Excellent' and 'Unbeatable'(100%)"
+#: quiz_form.php:84
+msgid "A rating of your performance. (Customize below.)"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:66
+#: quiz_form.php:88
 msgid "The name of the quiz"
 msgstr ""
 
-#: /var/www/html/Others/Wordpress/wordpress/wp-content/plugins/quizzin/quiz_form.php:67
-msgid "The text entered in the description field."
+#: quiz_form.php:120
+#, php-format
+msgid "%%RATING%% Customization for Final Screen above"
+msgstr ""
+
+#: quiz_form.php:123
+#, php-format
+msgid "Enter the percent (whole numbers only) and the message you would like the user to receive in place of the %%RATING%% variable. One of these messages will be displayed if their score is greater than or equal to the listed score."
+msgstr ""
+
+#: quiz_form.php:130
+#: show_quiz.php:278
+msgid "Need more practice!"
+msgstr ""
+
+#: quiz_form.php:130
+#: show_quiz.php:280
+msgid "Keep trying!"
+msgstr ""
+
+#: quiz_form.php:130
+#: show_quiz.php:282
+msgid "Not bad!"
+msgstr ""
+
+#: quiz_form.php:130
+#: show_quiz.php:284
+msgid "Good work!"
+msgstr ""
+
+#: quiz_form.php:130
+#: show_quiz.php:286
+msgid "Perfect!"
+msgstr ""
+
+#: quiz_form.php:176
+msgid "Add New Rating"
+msgstr ""
+
+#: quiz_form.php:180
+msgid "Quiz Options"
+msgstr ""
+
+#: quiz_form.php:185
+msgid "Options"
+msgstr ""
+
+#: quiz_form.php:187
+msgid "Shortcode arguments"
+msgstr ""
+
+#: quiz_form.php:192
+msgid "Show all questions on a single page."
+msgstr ""
+
+#: quiz_form.php:197
+msgid "Allow multiple opportunites to answer questions.*"
+msgstr ""
+
+#: quiz_form.php:202
+msgid "Show the hints, when available."
+msgstr ""
+
+#: quiz_form.php:207
+msgid "Display Quiz Start Screen before quiz."
+msgstr ""
+
+#: quiz_form.php:212
+msgid "Display Quiz Final Screen after quiz."
+msgstr ""
+
+#: quiz_form.php:217
+msgid "Randomly arrange questions."
+msgstr ""
+
+#: quiz_form.php:222
+msgid "Randomly arrange answers."
+msgstr ""
+
+#: quiz_form.php:227
+msgid "Never indicate the correct answers.**"
+msgstr ""
+
+#: quiz_form.php:232
+msgid "Indicate the correct answers only at the end of the quiz."
+msgstr ""
+
+#: quiz_form.php:237
+msgid "Indicate the correct answers at the end of each question."
+msgstr ""
+
+#: quiz_form.php:242
+msgid "* Must also select Indicate the correct answers at the end of each question."
+msgstr ""
+
+#: quiz_form.php:247
+msgid "** It will still indicate which problems were marked correct/wrong at the end of the quiz."
+msgstr ""
+
+#: show_quiz.php:143
+msgid "Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled."
+msgstr ""
+
+#: show_quiz.php:155
+msgid "Your answers are highlighed below."
+msgstr ""
+
+#: show_quiz.php:240
+msgid "Once you are finished, click the button below. Any items you have not completed will be marked incorrect."
+msgstr ""
+
+#: show_quiz.php:249
+msgid "There is 1 question to complete."
+msgstr ""
+
+#: show_quiz.php:249
+#, php-format
+msgid "There are %d questions to complete."
+msgstr ""
+
+#: show_quiz.php:258
+msgid "You have completed"
+msgstr ""
+
+#: show_quiz.php:259
+msgid "questions"
+msgstr ""
+
+#: show_quiz.php:260
+msgid "question"
+msgstr ""
+
+#: show_quiz.php:261
+msgid "Your score is"
 msgstr ""
 
