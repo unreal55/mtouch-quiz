@@ -117,7 +117,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
     </tr>
     <tr valign="middle">
       <th scope="row"><?php _e("Right Delimiter"); ?><br/>
-        <font size="-2"<?php _e(">Right delimiter used when box is checked next to answer input."); ?></font></th>
+        <font size="-2"><?php _e("Right delimiter used when box is checked next to answer input."); ?></font></th>
       <td><input type="textbox" name="right_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_rightdelimit')) ?>" /></td>
     </tr>
     
