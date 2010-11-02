@@ -1,0 +1,344 @@
+.quiz-area {
+	text-align:left;
+}
+.mtouchquiz-question, #action-button {
+	display:none;
+}
+.mtouchquiz-hint {
+	display:none;
+	margin-left:3em;
+	margin-top: 1em;
+	padding: 1em;
+	background: #d0dafd;
+	border: thin solid;
+	border-color:#66F;
+	-o-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+}
+.mtouchquiz-hint-label {
+	font-size: 125%;
+	color: #339;
+}
+.mtouchquiz-hint-text {
+	color: #339;
+}
+.mtouchquiz-marker {
+	display:none;
+}
+/*.single-page-quiz .mtouchquiz-question, .single-page-quiz #action-button {
+	display:block;
+}*/
+.question-content {
+/*margin-top:1.5em*/
+}
+.show-question {
+	border-bottom:.1em solid #000;
+}
+.mtouchquiz-instructions {
+	display:none;
+	margin-bottom:1em;
+}
+#javawarning {
+	text-align:center;
+	font-weight:bold;
+}
+.mtouchquiz-quiztitle {
+	text-align:center;
+}
+.mtouchquiz-results-request {
+	display:none;
+	text-align:center;
+	margin-top:.5em;
+}
+.mtouchquiz-results-request text {
+	text-align:left;
+	margin-bottom:1em;
+	margin-top:1em;
+}
+.mtouchquiz-question-heading-table {
+	padding:0;
+	margin:0;
+	width:100%;
+	/*border-collapse:collapse;
+	border-bottom: 0.10em solid #0066FF;*/
+	padding-bottom:0.10em;
+	margin-bottom: 0.5em;
+	margin-top:0.5em;
+}
+#mtouchquiz-status-table {
+	margin: 3em;
+	text-align: center;
+	border-color:transparent;
+	border:none;
+}
+.mtouchquiz-question-divider {
+	width:100%;
+	height:0.10em;
+	color:#0066FF;
+	background-color:#0066FF;
+	display:block;
+}
+/*#mtouchquiz-question-item {
+	text-align: left;
+	border-color:transparent;
+}*/
+.mtouchquiz-answer-table {
+	width:100%;
+	margin-top: 1em;
+	text-align: left;
+	border-collapse: collapse;
+	cursor: auto;
+}
+.mtouchquiz-answer-table td {
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+.oce-first {
+	background: #d0dafd;
+	border-right: 1em solid transparent;
+	border-left: 1em solid transparent;
+	vertical-align:middle;
+	text-align:center;
+}
+.mtouchquiz-answer-table tr:hover td {
+	color: #000;
+	font-weight: bold;
+	background: #eff2ff;
+}
+.mtouch-answer-td {
+	margin-left:.25em;
+}
+.mtouchquiz-explanation {
+	display:none;
+	margin-left:3em;
+	margin-top: 1em;
+	margin-bottom:3em;
+	padding: 0.5em;
+	background: #ADE0C1;
+	border: thin solid;
+	border-color:#003300;
+	-o-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	color: #003300;
+}
+.mtouchquiz-explanation:hover {
+	font-weight:bold;
+}
+.mtouchquiz-explanation-label {
+	display:block;
+	padding-bottom:0.25em;
+	font-weight:bold;
+}
+.touchquiz-explanation-text {
+	
+}
+.mtouchquiz-action-button {
+	display:none;
+	width: 100px;
+	height: 80px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.mtouchquiz-action-button:hover {
+	background-position: 0 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+.mtouchquiz-start-button {
+	background: url("images/start.png") no-repeat 0 -80px;
+}
+.mtouchquiz-results-button {
+	background: url("images/results.png") no-repeat 0 -80px;
+}
+.mtouchquiz-back-button {
+	display: none;
+	width: 86px;
+	height: 48px;
+	background: url("images/back.png") no-repeat 0 -48px;
+}
+.mtouchquiz-back-button:hover {
+	background-position: 0 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+.mtouchquiz-next-button {
+	display: none;
+	width: 86px;
+	height: 48px;
+	background: url("images/next.png") no-repeat 0 -48px;
+}
+.mtouchquiz-next-button:hover {
+	background-position: 0 0px;
+	cursor: pointer;
+	cursor: hand;
+}
+#mtouchquiz-status {
+	display:none;
+	width: 100%;
+	float: left;
+	padding: 0;
+	text-align:center;
+	border:none;
+}
+#QuizResults-bubble {
+	display:none;
+	padding: 0.5em;
+	background: #d0dafd;
+	border: thin solid;
+	border-color:#66F;
+	-o-border-radius: 1em;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	color: #339;
+	margin-top:1em;
+	margin-bottom:1em;
+	border:none;
+}
+#QuizResultsHighlight {
+	display:none;
+	margin-top:1em;
+	font-size:75%;
+	font-weight:bold;
+	text-align:center;
+}
+
+#QuizResults {
+	display:none;
+}
+.mtouchquiz-wrong-marker {
+	width: 40px;
+	height: 40px;
+	background: url("images/wrong.png") no-repeat 0 0px;
+}
+.mtouchquiz-wrong-stamp {
+	background: url("images/wrong-stamp.png") no-repeat 0 -27px;
+}
+.mtouchquiz-correct-stamp {
+	background: url("images/correct-stamp.png") no-repeat 0 -27px;
+}
+.mtouchquiz-partial-stamp {
+	background: url("images/partial-stamp.png") no-repeat 0 -27px;
+}
+.mtouchquiz-question-label {
+	font-weight:bold;
+	float:left;
+}
+.mtouchquiz-stamp {
+	float:left;
+	margin-left:1em;
+	width: 100px;
+	height: 25px;
+}
+.mtouchquiz-stamp:hover {
+	background-position: 0 0px;
+}
+.mtouchquiz-correct-marker {
+	width: 40px;
+	height: 40px;
+	background: url("images/correct.png") no-repeat 0 0px;
+}
+.mtouchquiz-selected-row {
+	background:#CCC;
+	font-weight:bold;
+}
+.mtouchquiz-letter-button {
+	width: 40px;
+	height: 40px;
+}
+.mtouchquiz-letter-button:hover {
+	background-position: 0 -80px;
+	cursor: pointer;
+	cursor: hand;
+}
+.mtouchquiz-letter-button-0 {
+	background: url("images/0.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-1 {
+	background: url("images/1.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-2 {
+	background: url("images/2.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-3 {
+	background: url("images/3.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-4 {
+	background: url("images/4.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-5 {
+	background: url("images/5.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-6 {
+	background: url("images/6.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-7 {
+	background: url("images/7.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-8 {
+	background: url("images/8.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-9 {
+	background: url("images/9.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-10 {
+	background: url("images/10.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-11 {
+	background: url("images/11.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-12 {
+	background: url("images/12.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-13 {
+	background: url("images/13.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-14 {
+	background: url("images/14.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-15 {
+	background: url("images/15.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-16 {
+	background: url("images/16.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-17 {
+	background: url("images/17.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-18 {
+	background: url("images/18.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-19 {
+	background: url("images/19.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-20 {
+	background: url("images/20.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-21 {
+	background: url("images/21.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-22 {
+	background: url("images/22.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-23 {
+	background: url("images/23.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-24 {
+	background: url("images/24.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-button-25 {
+	background: url("images/25.png") no-repeat 0 -120px;
+}
+.mtouchquiz-letter-selected {
+	background-position: 0 -40px;
+}
+.mtouchquiz-letter-selected:hover {
+	background-position: 0 0px;
+}
+.preload {
+	display:none;
+}
