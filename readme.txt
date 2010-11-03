@@ -89,7 +89,7 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 == Changelog ==
 
 = 1.02 =
-* Fixed the international support. Thanks to Tomáš Hubka for the assistance. He has also kindly sent a partial Czech translation.
+* Fixed the international support. Thanks to Tomas Hubka for the assistance. He has also kindly sent a partial Czech translation.
 * Fixed an IE formatting issue.
 
 = 1.01 =
@@ -101,7 +101,7 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 == Upgrade Notice ==
 
 = 1.02 =
-* Fixed the international support. Thanks to Tomáš Hubka for the assistance. He has also kindly sent a partial Czech translation.
+* Fixed the international support. Thanks to Tomas Hubka for the assistance. He has also kindly sent a partial Czech translation.
 * Fixed an IE formatting issue.
 
 = 1.01 =
