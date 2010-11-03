@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility at the forefront of design decisions.  The quiz interface is very finger friendly and allows for easy touch screen use. You can specify feedback (hints) based on answer selection, as well as give a detailed explanation of the problem. You can choose multiple correct answers and specify when the correct answers are displayed. You can specify if a question may be attempted only once or many times and specify point values for each question. You can include customized start and finish screens. You can randomly order questions and/or answers. All this, and more.  Built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 1.01
+Version: 1.02
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtouchquiz_VERSION', '1.01' );
+define( 'mtouchquiz_VERSION', '1.02' );
 define( 'mtouchquiz_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtouchquiz_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtouchquiz_add_menu_links' );
@@ -104,7 +104,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 		{
 			update_option('mtouchquiz_showalerts', 0);
 		}
-		wpframe_message('Options updated');   
+		wpframe_message(__('Options updated'));   
     }
 ?>
 
@@ -125,7 +125,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
        <tr valign="middle">
       <th scope="row"><?php _e("Show Alerts if Quiz unfinished?"); ?><br/>
         <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress."); ?></font></th>
-      <td><?php showOption('showalerts', 'Display a warning before a user leaves an unfinished quiz.'); ?></td>
+      <td><?php showOption('showalerts', t('Display a warning before a user leaves an unfinished quiz.')); ?></td>
     </tr>
   </table>
   <p class="submit">

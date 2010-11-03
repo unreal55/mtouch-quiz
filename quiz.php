@@ -2,14 +2,14 @@
 require('wpframe.php');
 wpframe_stop_direct_call(__FILE__);
 
-if($_REQUEST['message'] == 'updated') wpframe_message('Quiz Updated');
+if($_REQUEST['message'] == 'updated') wpframe_message(__('Quiz Updated'));
 
 if($_REQUEST['action'] == 'delete') {
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID='$_REQUEST[quiz]'");
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=(SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id='$_REQUEST[quiz]')");
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id='$_REQUEST[quiz]'");
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id='$_REQUEST[quiz]'");
-	wpframe_message("Quiz Deleted");
+	wpframe_message(__("Quiz Deleted"));
 }
 ?>
 

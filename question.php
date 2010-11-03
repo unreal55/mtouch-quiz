@@ -14,11 +14,11 @@ if(isset($_REQUEST['submit'])) {
 		$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}mtouchquiz_question SET question=%s, explanation=%s, number_correct=%d, point_value=%d WHERE ID=%d", $_REQUEST['content'], $_REQUEST['explanation'], $num_correct,$point_value,$_REQUEST['question'] ));
 		$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=%d", $_REQUEST['question']));
 		
-		wpframe_message(_e('Question updated.'));
+		wpframe_message(__('Question updated.'));
 		
 	} else {
 		$wpdb->query($wpdb->prepare("INSERT INTO {$wpdb->prefix}mtouchquiz_question(quiz_id, question, explanation,number_correct, point_value) VALUES(%d, %s, %s, %d, %d)", $_REQUEST['quiz'], $_REQUEST['content'], $_REQUEST['explanation'],  $num_correct, $point_value));//Inserting the questions
-		wpframe_message(_e('Question added.'));
+		wpframe_message(__('Question added.'));
 		$_REQUEST['question'] = $wpdb->insert_id;
 		$action='edit';
 	}
@@ -71,13 +71,13 @@ if(isset($_REQUEST['submit'])) {
 
 
 if($_REQUEST['message'] == 'new_quiz') {
-	wpframe_message(_e('New quiz added'));
+	wpframe_message(__('New quiz added'));
 }
 
 if($_REQUEST['action'] == 'delete') {
 	$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=%d", $_REQUEST['question']));
 	$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}mtouchquiz_question WHERE ID=%d", $_REQUEST['question']));
-	wpframe_message(_e('Question Deleted'));
+	wpframe_message(__('Question Deleted'));
 }
 $quiz_name = stripslashes($wpdb->get_var($wpdb->prepare("SELECT name FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz'])));
 ?>

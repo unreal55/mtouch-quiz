@@ -1,7 +1,7 @@
 <?php
 	require_once('wpframe.php');
 	if(!is_single() and isset($GLOBALS['mtouchquiz_client_includes_loaded'])) { #If this is in the listing page - and a quiz is already shown, don't show another.
-		printf(t("Please go to <a href='%s'>%s</a> to view the quiz"), get_permalink(), get_the_title());
+		printf(__("Please go to <a href='%s'>%s</a> to view the quiz"), get_permalink(), get_the_title());
 	} else 
 	{
 
@@ -159,10 +159,13 @@
 								foreach ($all_question as $ques) {
 									echo "<div class='mtouchquiz-question' id='question-$question_count'>"; 
 										echo "<div id='mtouchquiz-question-item'>";
-											echo "<div class='mtouchquiz-question-heading-table'>";
-												echo "<div class='mtouchquiz-question-label'>Question Number " . $question_count."</div>";
+											echo "<table class='mtouchquiz-question-heading-table'><tr><td>";
+												echo "<div class='mtouchquiz-question-label'>";
+													printf(__('Question Number %d'), $question_count);
+												echo "</div>";
 												echo "<div id='mtouchquiz_stamp-$question_count' class='mtouchquiz-stamp'></div>";
-											echo "<br><hr class='mtouchquiz-question-divider'/>";
+												echo "</td></tr></table>";
+											//echo "<hr class='mtouchquiz-question-divider' noshade='noshade'/>";
 											echo stripslashes($ques->question) ;
 											echo "<input type='hidden' name='question_id[]' value='{$ques->ID}'/>";
 											echo "<input type='hidden' id='is_answered-{$question_count}' value='0'/>";
@@ -170,7 +173,7 @@
 											echo "<input type='hidden' id='is_worth-{$question_count}' value='{$ques->point_value}'/>";
 											echo "<input type='hidden' id='num_attempts-{$question_count}' value='0'/>";
 											echo "<input type='hidden' id='points_awarded-{$question_count}' value='0'/>";
-											echo "</div>";
+											//echo "</div>";
 											echo "<table class='mtouchquiz-answer-table'>";
 												echo "<colgroup>";
 													echo "<col class='oce-first'/>";
@@ -208,7 +211,7 @@
 															echo "<input type='hidden' id='was_selected-{$question_count}-{$answer_count}' value='0'/>";
 															echo "<input type='hidden' id='was_ever_selected-{$question_count}-{$answer_count}' value='0'/>";
 															echo "<div id='hint-$question_count-$answer_count' class='mtouchquiz-hint'>";					
-																echo "<div class='mtouchquiz-hint-label'>Hint:</div>";
+																echo "<div class='mtouchquiz-hint-label'>".t('Hint').":</div>";
 																echo "<div class='mtouchquiz-hint-text'>".stripslashes($ans->hint)."</div>";
 															echo "</div>";
 														echo "</td>";
@@ -220,14 +223,16 @@
 
 											if ($ques->explanation) //Need to format this better 
 											{
-											echo "<div id='question_explanation-{$question_count}' class='mtouchquiz-explanation'>";
-													echo "<div class='mtouchquiz-explanation-label'>Question {$question_count} Explanation:</div>";
-													echo "<div class='mtouchquiz-explanation-text'>".stripslashes($ques->explanation."</div>");
-											echo "</div>";
-											echo "<input type='hidden' id='has_explanation-$question_count' value='1' />";
-										} else {
-											echo "<input type='hidden' id='has_explanation-$question_count' value='0' />";
-										}
+												echo "<div id='question_explanation-{$question_count}' class='mtouchquiz-explanation'>";
+														echo "<div class='mtouchquiz-explanation-label'>";
+															printf(__('Question %d Explanation:'), $question_count);
+														echo "</div>";
+														echo "<div class='mtouchquiz-explanation-text'>".stripslashes($ques->explanation."</div>");
+												echo "</div>";
+												echo "<input type='hidden' id='has_explanation-$question_count' value='1' />";
+											} else {
+												echo "<input type='hidden' id='has_explanation-$question_count' value='0' />";
+											}
 										echo "</div>";
 									echo "</div>";
 									echo "<input type='hidden' id='num_ans-$question_count' value='$answer_count' />";
@@ -290,7 +295,7 @@
 									$how_many = $num_ratings + 1;
 									echo "<input type='hidden' id='num_ratings' value='". $how_many ."'/>";
 									echo "<input type='hidden' id='ratingval-1' value='-1'/>";
-                            		echo "<div id='rating-1' class='preload'><?php _e('All done.'); ?></div>";
+                            		echo "<div id='rating-1' class='preload'>".__('All done')."</div>";
 									$counter = 2;
 									foreach ($all_ratings as $quiz_rating) 
 									{

@@ -14,7 +14,7 @@ if($action == 'edit' and $answer_count < count($all_answers)) $answer_count = co
 ?>
 
 <div class="wrap">
-  <h2><?php echo t(ucfirst($action) . " Question"); ?></h2>
+  <h2><?php echo __(ucfirst($action) . _e(" Question")); ?></h2>
   <div id="titlediv">
     <input type="hidden" id="title" name="ignore_me" value="This is here for a workaround for a editor bug" />
   </div>

@@ -61,8 +61,8 @@
 	padding:0;
 	margin:0;
 	width:100%;
-	/*border-collapse:collapse;
-	border-bottom: 0.10em solid #0066FF;*/
+	border-collapse:collapse;
+	border-bottom: 0.10em solid #0066FF;
 	padding-bottom:0.10em;
 	margin-bottom: 0.5em;
 	margin-top:0.5em;

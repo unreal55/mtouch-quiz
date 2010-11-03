@@ -30,7 +30,7 @@ function wpframe_add_editor_js() {
 
 /// Make sure that the user don't call this file directly - forces the use of the WP interface
 function wpframe_stop_direct_call($file) {
-	if(preg_match('#' . basename($file) . '#', $_SERVER['PHP_SELF'])) die('Don\'t call this page directly.'); // Stop direct call
+	if(preg_match('#' . basename($file) . '#', $_SERVER['PHP_SELF'])) die(t('Don\'t call this page directly.')); // Stop direct call
 }
 
 /// Shows a message in the admin interface of Wordpress
@@ -39,17 +39,17 @@ function wpframe_message($message, $type='updated') {
 	elseif($type == 'error') $class = 'updated error';
 	else $class = $type;
 	
-	print '<div id="message" class="'.$class.'"><p>' . __($message, $GLOBALS['wpframe_plugin_name']) . '</p></div>';
+	print '<div id="message" class="'.$class.'"><p>' . __($message, 'mtouchquiz') . '</p></div>';
 }
 
-/// Globalization function - Returns the transilated string
+/// Globalization function - Returns the translated string
 function t($message) {
-	return __($message, $GLOBALS['wpframe_plugin_name']);
+	return __($message, 'mtouchquiz');
 }
 
-/// Globalization function - prints the transilated string
+/// Globalization function - prints the translated string
 function e($message) {
-	_e($message, $GLOBALS['wpframe_plugin_name']);
+	_e($message, 'mtouchquiz');
 }
 
 }

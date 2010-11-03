@@ -25,7 +25,7 @@ if($action == 'edit') {
 
 <div class="wrap">
   <h2>
-    <?php _e(ucfirst($action) . " Quiz"); ?>
+    <?php t(ucfirst($action) . " Quiz"); ?>
   </h2>
   <?php
 	wpframe_add_editor_js();
@@ -127,7 +127,7 @@ if($action == 'edit') {
 				$all_ratings = $wpdb->get_results($wpdb->prepare("SELECT score_rating, min_points FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id=%d ORDER BY min_points", $_REQUEST['quiz']));
 			}
 			$default_ratings = array(0,40,60,80,100);
-			$default_messages = array(_e("Need more practice!"),_e("Keep trying!"),_e("Not bad!"),_e("Good work!"),_e("Perfect!"));
+			$default_messages = array(__("Need more practice!"),__("Keep trying!"),__("Not bad!"),__("Good work!"),__("Perfect!"));
 			$num_ratings = 5;
 			if ($action == 'edit' and $num_ratings < count($all_ratings)) $num_ratings = count($all_ratings) ;
 			for($i=1; $i<=$num_ratings; $i++) 
