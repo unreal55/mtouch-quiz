@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz,question,answer,test,touch,education,learning,elearning
 Requires at least: 2.8
 Tested up to: 3.01
-Stable tag: 1.01
+Stable tag: 1.03
 
 mTouch Quiz lets you add quizzes to your blog. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -69,7 +69,7 @@ Look for this in the future!
 Look for this in the future if enough people want it!
 
 = Does this plugin support international translation? =
-I think so. I've not tested this. I uploaded the pot and po files in the lang subdirectory. Hopefully those who know what to do with these files will know what to do with them. Let me know if I screwed something up. Note that there are some words written on some graphics. If you want the original photoshop files I used to make them, let me know and I can send them over.
+I hope so. I've tested this some. I uploaded the pot and po files in the lang subdirectory. Put your file named mtouchquiz-language.po/mo in the lang subdirectory. Note that there are some words written on some graphics. If you want the original photoshop files I used to make them, let me know and I can send them over.
 
 = Can I do this or that? =
 I don't know.  Ask me. Perhaps if it seems useful to a large number of people, I can find a way to make it do this or that.
@@ -88,6 +88,10 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 
 == Changelog ==
 
+= 1.02 =
+* Fixed the international support. Thanks to Tomáš Hubka for the assistance. He has also kindly sent a partial Czech translation.
+* Fixed an IE formatting issue.
+
 = 1.01 =
 * Hopefully added international support for translators.
 
@@ -95,6 +99,10 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.02 =
+* Fixed the international support. Thanks to Tomáš Hubka for the assistance. He has also kindly sent a partial Czech translation.
+* Fixed an IE formatting issue.
 
 = 1.01 =
 * Hopefully added international support for translators.

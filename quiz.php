@@ -2,20 +2,20 @@
 require('wpframe.php');
 wpframe_stop_direct_call(__FILE__);
 
-if($_REQUEST['message'] == 'updated') wpframe_message(__('Quiz Updated'));
+if($_REQUEST['message'] == 'updated') wpframe_message(t('Quiz Updated'));
 
 if($_REQUEST['action'] == 'delete') {
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID='$_REQUEST[quiz]'");
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=(SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id='$_REQUEST[quiz]')");
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id='$_REQUEST[quiz]'");
 	$wpdb->get_results("DELETE FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id='$_REQUEST[quiz]'");
-	wpframe_message(__("Quiz Deleted"));
+	wpframe_message(t("Quiz Deleted"));
 }
 ?>
 
 <div class="wrap">
   <h2>
-    <?php _e("Manage mTouch Quizzes"); ?>
+    <?php e("Manage mTouch Quizzes"); ?>
   </h2>
   <?php
 wp_enqueue_script( 'listman' );
@@ -25,12 +25,12 @@ wp_print_scripts();
     <thead>
       <tr>
         <th scope="col"><div style="text-align: center;">
-            <?php _e('ID') ?>
+            <?php e('ID') ?>
           </div></th>
-        <th scope="col"><?php _e('Title') ?></th>
-        <th scope="col"><?php _e('Number Of Questions') ?></th>
-        <th scope="col"><?php _e('Created on') ?></th>
-        <th scope="col" colspan="3"><?php _e('Action') ?></th>
+        <th scope="col"><?php e('Title') ?></th>
+        <th scope="col"><?php e('Number Of Questions') ?></th>
+        <th scope="col"><?php e('Created on') ?></th>
+        <th scope="col" colspan="3"><?php e('Action') ?></th>
       </tr>
     </thead>
     <tbody id="the-list">
@@ -50,13 +50,13 @@ if (count($all_quiz)) {
       <td><?php echo $quiz->question_count ?></td>
       <td><?php echo date(get_option('date_format') . ' ' . get_option('time_format'), strtotime($quiz->added_on)) ?></td>
       <td><a href='edit.php?page=mtouch-quiz/question.php&amp;quiz=<?php echo $quiz->ID?>' class='edit'>
-        <?php _e('Manage Questions')?>
+        <?php e('Manage Questions')?>
         </a></td>
       <td><a href='edit.php?page=mtouch-quiz/quiz_form.php&amp;quiz=<?php echo $quiz->ID?>&amp;action=edit' class='edit'>
-        <?php _e('Edit Quiz Options'); ?>
+        <?php e('Edit Quiz Options'); ?>
         </a></td>
       <td><a href='edit.php?page=mtouch-quiz/quiz.php&amp;action=delete&amp;quiz=<?php echo $quiz->ID?>' class='delete' onclick="return confirm('<?php echo  addslashes(t("You are about to delete this quiz? This will delete all the questions and answers within this quiz. Press 'OK' to delete and 'Cancel' to stop."))?>');">
-        <?php _e('Delete')?>
+        <?php e('Delete')?>
         </a></td>
     </tr>
     <?php
@@ -64,7 +64,7 @@ if (count($all_quiz)) {
 	} else {
 ?>
     <tr>
-      <td colspan="5"><?php _e('No Quizzes found.') ?></td>
+      <td colspan="5"><?php e('No Quizzes found.') ?></td>
     </tr>
     <?php
 }
@@ -73,5 +73,5 @@ if (count($all_quiz)) {
     
   </table>
   <a href="edit.php?page=mtouch-quiz/quiz_form.php&amp;action=new">
-  <?php _e("Create New Quiz")?>
+  <?php e("Create New Quiz")?>
   </a> </div>

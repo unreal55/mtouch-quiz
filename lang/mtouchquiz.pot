@@ -1,28 +1,26 @@
 # Translation of the WordPress plugin   by .
-# Copyright (C) 2010
+# Copyright (C) 2010 
 # This file is distributed under the same license as the  package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: mTouch Quiz plugin v. 1.03\n"
+"Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/mtouch-quiz\n"
 "POT-Creation-Date: 2010-11-03 00:34+0000\n"
-"PO-Revision-Date: 2010-11-02 20:47-0500\n"
-"Last-Translator: G. Michael Guy <michael@gmichaelguy.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-Country: UNITED STATES\n"
 
 #: mtouchquiz.php:45
 msgid "mTouch Quiz"
 msgstr ""
 
-#: mtouchquiz.php:47
-#: quiz.php:18
+#: mtouchquiz.php:47 quiz.php:18
 msgid "Manage mTouch Quizzes"
 msgstr ""
 
@@ -71,7 +69,9 @@ msgid "Show Alerts if Quiz unfinished?"
 msgstr ""
 
 #: mtouchquiz.php:127
-msgid "Since results to the quiz are stored locally, leaving the quiz page will lose all progress."
+msgid ""
+"Since results to the quiz are stored locally, leaving the quiz page will "
+"lose all progress."
 msgstr ""
 
 #: mtouchquiz.php:132
@@ -106,8 +106,7 @@ msgstr ""
 msgid "into any post."
 msgstr ""
 
-#: question.php:100
-#: question_form.php:124
+#: question.php:100 question_form.php:124
 msgid "Question"
 msgstr ""
 
@@ -119,13 +118,11 @@ msgstr ""
 msgid "Number Correct Answers"
 msgstr ""
 
-#: question.php:105
-#: question_form.php:183
+#: question.php:105 question_form.php:183
 msgid "Point Value"
 msgstr ""
 
-#: question.php:107
-#: quiz.php:33
+#: question.php:107 quiz.php:33
 msgid "Action"
 msgstr ""
 
@@ -133,8 +130,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: question.php:136
-#: quiz.php:59
+#: question.php:136 quiz.php:59
 msgid "Delete"
 msgstr ""
 
@@ -150,13 +146,11 @@ msgstr ""
 msgid " Question"
 msgstr ""
 
-#: question_form.php:35
-#: question_form.php:144
+#: question_form.php:35 question_form.php:144
 msgid "Correct"
 msgstr ""
 
-#: question_form.php:44
-#: question_form.php:150
+#: question_form.php:44 question_form.php:150
 msgid "Delimit"
 msgstr ""
 
@@ -189,11 +183,12 @@ msgid "Explanation"
 msgstr ""
 
 #: question_form.php:177
-msgid "You can use this field to explain the correct answer. This will be shown whenever correct answers are revealed."
+msgid ""
+"You can use this field to explain the correct answer. This will be shown "
+"whenever correct answers are revealed."
 msgstr ""
 
-#: question_form.php:197
-#: quiz_form.php:259
+#: question_form.php:197 quiz_form.php:259
 msgid "Save"
 msgstr ""
 
@@ -304,31 +299,30 @@ msgstr ""
 
 #: quiz_form.php:123
 #, php-format
-msgid "Enter the percent (whole numbers only) and the message you would like the user to receive in place of the %%RATING%% variable. One of these messages will be displayed if their score is greater than or equal to the listed score."
+msgid ""
+"Enter the percent (whole numbers only) and the message you would like the "
+"user to receive in place of the %%RATING%% variable. One of these messages "
+"will be displayed if their score is greater than or equal to the listed "
+"score."
 msgstr ""
 
-#: quiz_form.php:130
-#: show_quiz.php:283
+#: quiz_form.php:130 show_quiz.php:283
 msgid "Need more practice!"
 msgstr ""
 
-#: quiz_form.php:130
-#: show_quiz.php:285
+#: quiz_form.php:130 show_quiz.php:285
 msgid "Keep trying!"
 msgstr ""
 
-#: quiz_form.php:130
-#: show_quiz.php:287
+#: quiz_form.php:130 show_quiz.php:287
 msgid "Not bad!"
 msgstr ""
 
-#: quiz_form.php:130
-#: show_quiz.php:289
+#: quiz_form.php:130 show_quiz.php:289
 msgid "Good work!"
 msgstr ""
 
-#: quiz_form.php:130
-#: show_quiz.php:291
+#: quiz_form.php:130 show_quiz.php:291
 msgid "Perfect!"
 msgstr ""
 
@@ -389,11 +383,14 @@ msgid "Indicate the correct answers at the end of each question."
 msgstr ""
 
 #: quiz_form.php:242
-msgid "* Must also select Indicate the correct answers at the end of each question."
+msgid ""
+"* Must also select Indicate the correct answers at the end of each question."
 msgstr ""
 
 #: quiz_form.php:247
-msgid "** It will still indicate which problems were marked correct/wrong at the end of the quiz."
+msgid ""
+"** It will still indicate which problems were marked correct/wrong at the "
+"end of the quiz."
 msgstr ""
 
 #: show_quiz.php:4
@@ -402,7 +399,10 @@ msgid "Please go to <a href='%s'>%s</a> to view the quiz"
 msgstr ""
 
 #: show_quiz.php:143
-msgid "Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled."
+msgid ""
+"Please wait while the activity loads. If this activity does not load, try "
+"refreshing your browser. Also, this page requires javascript. Please visit "
+"using a browser with javascript enabled."
 msgstr ""
 
 #: show_quiz.php:155
@@ -420,7 +420,9 @@ msgid "Question %d Explanation:"
 msgstr ""
 
 #: show_quiz.php:245
-msgid "Once you are finished, click the button below. Any items you have not completed will be marked incorrect."
+msgid ""
+"Once you are finished, click the button below. Any items you have not "
+"completed will be marked incorrect."
 msgstr ""
 
 #: show_quiz.php:254
@@ -451,4 +453,3 @@ msgstr ""
 #: show_quiz.php:298
 msgid "All done"
 msgstr ""
-

@@ -89,7 +89,7 @@ function mtouchquiz_menu() {
  function mtouchquiz_plugin_options() {
       //if (!current_user_can('manage_options'))  {
       if (!current_user_can('upload_files'))  {
-	    wp_die( __('You do not have sufficient permissions to access this page.') );
+	    wp_die( __('You do not have sufficient permissions to access this page.','mtouchquiz') );
       }
 echo '<div class="wrap" id="mtouchquiz-options">
 <h2>mTouch Quiz Plugin Options</h2>
@@ -104,7 +104,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 		{
 			update_option('mtouchquiz_showalerts', 0);
 		}
-		wpframe_message(__('Options updated'));   
+		wpframe_message(t('Options updated'));   
     }
 ?>
 
@@ -112,24 +112,24 @@ echo '<div class="wrap" id="mtouchquiz-options">
   <input type="hidden" name="mtouchquiz_hidden" value="Y">
   <table class="form-table">
     <tr valign="middle">
-      <th scope="row"><?php _e("Left Delimiter"); ?><br/>
-        <font size="-2"><?php _e("Left delimiter used when box is checked next to answer input."); ?></font></th>
+      <th scope="row"><?php e("Left Delimiter"); ?><br/>
+        <font size="-2"><?php e("Left delimiter used when box is checked next to answer input."); ?></font></th>
       <td><input type="textbox" name="left_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_leftdelimit')) ?>"/></td>
     </tr>
     <tr valign="middle">
-      <th scope="row"><?php _e("Right Delimiter"); ?><br/>
-        <font size="-2"><?php _e("Right delimiter used when box is checked next to answer input."); ?></font></th>
+      <th scope="row"><?php e("Right Delimiter"); ?><br/>
+        <font size="-2"><?php e("Right delimiter used when box is checked next to answer input."); ?></font></th>
       <td><input type="textbox" name="right_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_rightdelimit')) ?>" /></td>
     </tr>
     
        <tr valign="middle">
-      <th scope="row"><?php _e("Show Alerts if Quiz unfinished?"); ?><br/>
-        <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress."); ?></font></th>
+      <th scope="row"><?php e("Show Alerts if Quiz unfinished?"); ?><br/>
+        <font size="-2"><?php e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress."); ?></font></th>
       <td><?php showOption('showalerts', t('Display a warning before a user leaves an unfinished quiz.')); ?></td>
     </tr>
   </table>
   <p class="submit">
-    <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+    <input type="submit" class="button-primary" value="<?php e('Save Changes') ?>" />
   </p>
 </form>
 </div>
