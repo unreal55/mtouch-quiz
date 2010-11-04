@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz,question,answer,test,touch,education,learning,elearning
 Requires at least: 2.8
 Tested up to: 3.01
-Stable tag: 1.02
+Stable tag: 1.04
 
 mTouch Quiz lets you add quizzes to your blog. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -88,6 +88,13 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 
 == Changelog ==
 
+= 1.04 =
+* Fixed a typo causing a fatal error when calling the isnumeric function. Should have been is_numeric. My apologies.
+* Includes a complete text Czech Translation by Tomas Hubka
+
+= 1.03 =
+* Skipped this number
+
 = 1.02 =
 * Fixed the international support. Thanks to Tomas Hubka for the assistance. He has also kindly sent a partial Czech translation.
 * Fixed an IE formatting issue.
@@ -100,8 +107,15 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 
 == Upgrade Notice ==
 
+= 1.04 =
+* Fixed a typo causing a fatal error when calling the isnumeric function. Should have been is_numeric. My apologies.
+* Includes a complete text Czech Translation by Tomas Hubka
+
+= 1.03 =
+* Skipped this number
+
 = 1.02 =
-* Fixed the international support. Thanks to Tomas Hubka for the assistance. He has also kindly sent a partial Czech translation.
+* Fixed the international support. Thanks to Tomáš Hubka for the assistance. He has also kindly sent a partial Czech translation.
 * Fixed an IE formatting issue.
 
 = 1.01 =
