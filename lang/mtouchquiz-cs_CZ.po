@@ -1,4 +1,4 @@
-# Translation of the WordPress plugin   by .
+# Translation of the WordPress plugin mTouch Quiz by Tomas Hubka.
 # Copyright (C) 2010
 # This file is distributed under the same license as the  package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
