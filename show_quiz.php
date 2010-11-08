@@ -1,7 +1,7 @@
 <?php
 	require_once('wpframe.php');
 	if(!is_single() and isset($GLOBALS['mtouchquiz_client_includes_loaded'])) { #If this is in the listing page - and a quiz is already shown, do not show another.
-		printf(__("Please go to <a href='%s'>%s</a> to view the quiz"), get_permalink(), get_the_title());
+		printf(__("Please go to <a href='%s'>%s</a> to view the quiz", 'mtouchquiz'), get_permalink(), get_the_title());
 	} else 
 	{
 
@@ -144,9 +144,9 @@
 							<h2>
 							  <div id="mtouchquiz-quiztitle" class="mtouchquiz-quiztitle"><?php echo stripslashes($quiz_options->name)?></div>
 							</h2>
-							<div id="javawarning"><?php _e('Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.'); ?></div>
+							<div id="javawarning"><?php _e('Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.', 'mtouchquiz'); ?></div>
 							<div id="mtouchquiz-instructions" class="mtouchquiz-instructions"><?php echo stripslashes($quiz_options->description)?></div>
-							<div id="start_button" class='mtouchquiz-start-button mtouchquiz-action-button' onclick='mtouchquizStartQuiz()'><?php _e("Start"); ?></div>
+							<div id="start_button" class='mtouchquiz-start-button mtouchquiz-action-button' onclick='mtouchquizStartQuiz()'><?php _e("Start", 'mtouchquiz'); ?></div>
 							<input type='hidden' id='answer_display' value='<?php echo $answer_display;?>'/>
 							<input type='hidden' id='single_page' value='<?php echo $single_page;?>'/>
 							<input type='hidden' id='show_hints' value='<?php echo $show_hints;?>'/>
@@ -156,7 +156,7 @@
 							<input type='hidden' id='multiple_chances' value='<?php echo $multiple_chances;?>'/>
 							<div id="QuizResults-bubble" class="QuizResults-bubble">
 								<div id="QuizResults" class="QuizResults"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br></div>
-									<div id="QuizResultsHighlight"><?php _e('Your answers are highlighed below.'); ?></div>
+									<div id="QuizResultsHighlight"><?php _e('Your answers are highlighed below.', 'mtouchquiz'); ?></div>
 							</div>
 							<?php
 								$question_count = 1;
@@ -165,7 +165,7 @@
 										echo "<div id='mtouchquiz-question-item'>";
 											echo "<table class='mtouchquiz-question-heading-table'><tr><td>";
 												echo "<div class='mtouchquiz-question-label'>";
-													printf(__('Question Number %d'), $question_count);
+													printf(__('Question Number %d', 'mtouchquiz'), $question_count);
 												echo "</div>";
 												echo "<div id='mtouchquiz_stamp-$question_count' class='mtouchquiz-stamp'></div>";
 												echo "</td></tr></table>";
@@ -215,7 +215,7 @@
 															echo "<input type='hidden' id='was_selected-{$question_count}-{$answer_count}' value='0'/>";
 															echo "<input type='hidden' id='was_ever_selected-{$question_count}-{$answer_count}' value='0'/>";
 															echo "<div id='hint-$question_count-$answer_count' class='mtouchquiz-hint'>";					
-																echo "<div class='mtouchquiz-hint-label'>".__('Hint').":</div>";
+																echo "<div class='mtouchquiz-hint-label'>".__('Hint', 'mtouchquiz').":</div>";
 																echo "<div class='mtouchquiz-hint-text'>".stripslashes($ans->hint)."</div>";
 															echo "</div>";
 														echo "</td>";
@@ -229,7 +229,7 @@
 											{
 												echo "<div id='question_explanation-{$question_count}' class='mtouchquiz-explanation'>";
 														echo "<div class='mtouchquiz-explanation-label'>";
-															printf(__('Question %d Explanation:'), $question_count);
+															printf(__('Question %d Explanation:', 'mtouchquiz'), $question_count);
 														echo "</div>";
 														echo "<div class='mtouchquiz-explanation-text'>".stripslashes($ques->explanation."</div>");
 												echo "</div>";
@@ -246,11 +246,11 @@
 								$question_count--;
 							?>
 							<div id="mtouchquiz-results-request" class="mtouchquiz-results-request">
-								<text><?php _e('Once you are finished, click the button below. Any items you have not completed will be marked incorrect.'); ?></text>
-								<div id="results_button" class='mtouchquiz-results-button mtouchquiz-action-button' onclick='mtouchquizGetResults()'><?php _e("Get Results"); ?> </div>
+								<text><?php _e('Once you are finished, click the button below. Any items you have not completed will be marked incorrect.', 'mtouchquiz'); ?></text>
+								<div id="results_button" class='mtouchquiz-results-button mtouchquiz-action-button' onclick='mtouchquizGetResults()'><?php _e("Get Results", 'mtouchquiz'); ?> </div>
 							</div>
                             <!--mtouchquiz-status-->
-                            <div id="QuizStatus"><?php if ($question_count == 1 ){ _e('There is 1 question to complete.');} else { printf(__("There are %d questions to complete."), $question_count); } ?></div>
+                            <div id="QuizStatus"><?php if ($question_count == 1 ){ _e('There is 1 question to complete.', 'mtouchquiz');} else { printf(__("There are %d questions to complete.", 'mtouchquiz'), $question_count); } ?></div>
                             
 							<table id="mtouchquiznavrow">
 								<tr>
@@ -265,7 +265,7 @@
 										echo "<div id='mtouchquiz_nav_item-$i' class='mtouchquiz-nav-item' onclick='mtouchquizNavClick($i)'>$i</div>";	
 									}
 									if ( $show_final ) {
-										echo "<div id='mtouchquiz_nav_item-end' class='mtouchquiz-nav-item' onclick='mtouchquizNavClick($i)'>".__('End')."</div>";
+										echo "<div id='mtouchquiz_nav_item-end' class='mtouchquiz-nav-item' onclick='mtouchquizNavClick($i)'>".__('End', 'mtouchquiz')."</div>";
 									}
 								}
 								?>
@@ -292,13 +292,13 @@
                            
 							<!-- <input type="hidden" id="plugin_dir" value="<?php //echo $GLOBALS['wpframe_plugin_folder'] ?>"/>-->
                             
-                           	<div id="have_completed_string" class="preload"><?php _e('You have completed') ?> </div>
-                            <div id="questions_string" class="preload"><?php _e('questions') ?></div>
-                            <div id="question_string" class="preload"><?php _e('question') ?></div>
-                            <div id="your_score_is_string"  class="preload"><?php _e('Your score is')?></div>
-                            <div id="correct_string"  class="preload"><?php _e('Correct')?></div>
-                            <div id="wrong_string"  class="preload"><?php _e('Wrong')?></div>
-                            <div id="partial_string"  class="preload"><?php _e('Partial-Credit')?></div>
+                           	<div id="have_completed_string" class="preload"><?php _e('You have completed', 'mtouchquiz') ?> </div>
+                            <div id="questions_string" class="preload"><?php _e('questions', 'mtouchquiz') ?></div>
+                            <div id="question_string" class="preload"><?php _e('question', 'mtouchquiz') ?></div>
+                            <div id="your_score_is_string"  class="preload"><?php _e('Your score is', 'mtouchquiz')?></div>
+                            <div id="correct_string"  class="preload"><?php _e('Correct', 'mtouchquiz')?></div>
+                            <div id="wrong_string"  class="preload"><?php _e('Wrong', 'mtouchquiz')?></div>
+                            <div id="partial_string"  class="preload"><?php _e('Partial-Credit', 'mtouchquiz')?></div>
 							<input type="hidden" id="quiz_id" value="<?php echo  $quiz_id ?>" />
 							<input type="hidden" id="total_questions" value="<?php echo  $question_count; ?>" />
 							<input type="hidden" id="current_score" value="0" />
@@ -316,22 +316,22 @@
 							?>
                             <input type="hidden" id="num_ratings" value="5"/>
                             <input type="hidden" id="ratingval-1" value="0"/>
-                            <div id="rating-1" class="preload"><?php _e('Need more practice!'); ?></div>
+                            <div id="rating-1" class="preload"><?php _e('Need more practice!', 'mtouchquiz'); ?></div>
                             <input type="hidden" id="ratingval-2" value="40"/>
-                            <div id="rating-2" class="preload"><?php _e('Keep trying!'); ?></div>
+                            <div id="rating-2" class="preload"><?php _e('Keep trying!', 'mtouchquiz'); ?></div>
                             <input type="hidden" id="ratingval-3" value="60"/>
-                            <div id="rating-3" class="preload"><?php _e('Not bad!'); ?></div>
+                            <div id="rating-3" class="preload"><?php _e('Not bad!', 'mtouchquiz'); ?></div>
                             <input type="hidden" id="ratingval-4" value="80"/>
-                            <div id="rating-4" class="preload"><?php _e('Good work!'); ?></div>
+                            <div id="rating-4" class="preload"><?php _e('Good work!', 'mtouchquiz'); ?></div>
                             <input type="hidden" id="ratingval-5" value="100"/>
-                            <div id="rating-5" class="preload"><?php _e('Perfect!'); ?></div>
+                            <div id="rating-5" class="preload"><?php _e('Perfect!', 'mtouchquiz'); ?></div>
                             <?php
 								} else
 								{
 									$how_many = $num_ratings + 1;
 									echo "<input type='hidden' id='num_ratings' value='". $how_many ."'/>";
 									echo "<input type='hidden' id='ratingval-1' value='-1'/>";
-                            		echo "<div id='rating-1' class='preload'>".__('All done')."</div>";
+                            		echo "<div id='rating-1' class='preload'>".__('All done', 'mtouchquiz')."</div>";
 									$counter = 2;
 									foreach ($all_ratings as $quiz_rating) 
 									{

@@ -104,7 +104,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 		{
 			update_option('mtouchquiz_showalerts', 0);
 		}
-		wpframe_message(__('Options updated'));   
+		wpframe_message(__('Options updated', 'mtouchquiz'));   
     }
 ?>
 
@@ -112,24 +112,24 @@ echo '<div class="wrap" id="mtouchquiz-options">
   <input type="hidden" name="mtouchquiz_hidden" value="Y">
   <table class="form-table">
     <tr valign="middle">
-      <th scope="row"><?php _e("Left Delimiter"); ?><br/>
-        <font size="-2"><?php _e("Left delimiter used when box is checked next to answer input."); ?></font></th>
+      <th scope="row"><?php _e("Left Delimiter", 'mtouchquiz'); ?><br/>
+        <font size="-2"><?php _e("Left delimiter used when box is checked next to answer input.", 'mtouchquiz'); ?></font></th>
       <td><input type="textbox" name="left_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_leftdelimit')) ?>"/></td>
     </tr>
     <tr valign="middle">
-      <th scope="row"><?php _e("Right Delimiter"); ?><br/>
-        <font size="-2"><?php _e("Right delimiter used when box is checked next to answer input."); ?></font></th>
+      <th scope="row"><?php _e("Right Delimiter", 'mtouchquiz'); ?><br/>
+        <font size="-2"><?php _e("Right delimiter used when box is checked next to answer input.", 'mtouchquiz'); ?></font></th>
       <td><input type="textbox" name="right_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_rightdelimit')) ?>" /></td>
     </tr>
     
        <tr valign="middle">
-      <th scope="row"><?php _e("Show Alerts if Quiz unfinished?"); ?><br/>
-        <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress."); ?></font></th>
-      <td><?php showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.')); ?></td>
+      <th scope="row"><?php _e("Show Alerts if Quiz unfinished?", 'mtouchquiz'); ?><br/>
+        <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress.", 'mtouchquiz'); ?></font></th>
+      <td><?php showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td>
     </tr>
   </table>
   <p class="submit">
-    <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+    <input type="submit" class="button-primary" value="<?php _e('Save Changes', 'mtouchquiz') ?>" />
   </p>
 </form>
 </div>
@@ -140,7 +140,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 function showOption($option, $title) {
 ?>
 <input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtouchquiz_'.$option)) print " checked='checked'"; ?> />
-<label for="<?php echo $option?>"><?php _e($title) ?></label><br />
+<label for="<?php echo $option?>"><?php _e($title, 'mtouchquiz') ?></label><br />
 <?php
 }
 

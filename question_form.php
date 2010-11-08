@@ -14,7 +14,7 @@ if($action == 'edit' and $answer_count < count($all_answers)) $answer_count = co
 ?>
 
 <div class="wrap">
-  <h2><?php echo __(ucfirst($action) . _e(" Question ")); ?></h2>
+  <h2><?php echo __(ucfirst($action) . _e(" Question ", 'mtouchquiz')); ?></h2>
   <div id="titlediv">
     <input type="hidden" id="title" name="ignore_me" value="This is here for a workaround for a editor bug" />
   </div>
@@ -32,7 +32,7 @@ function newAnswer() {
 	var para = document.createElement("p");
 	var Clabel = document.createElement("label");
 	Clabel.setAttribute("for", "correct_answer_" + answer_count);
-	Clabel.appendChild(document.createTextNode("<?php _e("Correct"); ?>"));
+	Clabel.appendChild(document.createTextNode("<?php _e("Correct", 'mtouchquiz'); ?>"));
 	para.appendChild(Clabel);
 	var Cinput = document.createElement("input");
 	Cinput.setAttribute("type", "checkbox");
@@ -41,7 +41,7 @@ function newAnswer() {
 	Cinput.setAttribute("value", answer_count);
 	Cinput.setAttribute("id", "correct_answer_" + answer_count);
 	para.appendChild(Cinput);
-	para.appendChild(document.createTextNode("<?php _e("Delimit"); ?>"));
+	para.appendChild(document.createTextNode("<?php _e("Delimit", 'mtouchquiz'); ?>"));
 	var Linput = document.createElement("input");
 	Linput.setAttribute("type", "checkbox");
 	Linput.setAttribute("name", "enclose_latex");
@@ -49,13 +49,13 @@ function newAnswer() {
 	Linput.setAttribute("value", answer_count);
 	Linput.setAttribute("id", "enclose_latex_" + answer_count);
 	para.appendChild(Linput);
-	//para.appendChild(document.createTextNode("<?php _e("Answer:"); ?>"));
+	//para.appendChild(document.createTextNode("<?php _e("Answer:", 'mtouchquiz'); ?>"));
 	var Atextarea = document.createElement("textarea");
 	Atextarea.setAttribute("name", "answer[]");
 	Atextarea.setAttribute("rows", "3");
 	Atextarea.setAttribute("cols", "50");
 	para.appendChild(Atextarea);
-	para.appendChild(document.createTextNode("<?php _e("Hint:"); ?>"));
+	para.appendChild(document.createTextNode("<?php _e("Hint:", 'mtouchquiz'); ?>"));
 	var Htextarea = document.createElement("textarea");
 	Htextarea.setAttribute("name", "hint[]");
 	Htextarea.setAttribute("rows", "3");
@@ -81,7 +81,7 @@ function init() {
 		}
 		
 		if(!contents) {
-			alert("<?php _e("Please enter the question"); ?>");
+			alert("<?php _e("Please enter the question", 'mtouchquiz'); ?>");
 			_e.preventDefault();
 			_e.stopPropagation();
 			return true;
@@ -108,7 +108,7 @@ function init() {
 			}
 		});
 		if(!correct_answer_selected) {
-			alert("<?php _e("Please select a correct answer"); ?>");
+			alert("<?php _e("Please select a correct answer", 'mtouchquiz'); ?>");
 			_e.preventDefault();
 			_e.stopPropagation();
 		}
@@ -121,7 +121,7 @@ jQuery(document).ready(init);
       <div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea">
         <div class="postbox">
           <h3 class="hndle">
-            <?php _e('Question') ?>
+            <?php _e('Question', 'mtouchquiz') ?>
             </span></h3>
           <div class="inside">
             <?php the_editor(stripslashes($question->question)); ?>
@@ -129,7 +129,7 @@ jQuery(document).ready(init);
         </div>
         <div class="postbox">
           <h3 class="hndle"><span>
-            <?php _e('Answers and Hints') ?>
+            <?php _e('Answers and Hints', 'mtouchquiz') ?>
             </span></h3>
           <div class="inside">
             <?php
@@ -141,13 +141,13 @@ for($i=1; $i<=$answer_count; $i++) { ?>
                     <tr>
                       <td><input type="checkbox" class="correct_answer" id="correct_answer_<?php echo $i?>" <?php if($all_answers[$i-1]->correct == 1 && $action != 'new') echo 'checked="checked"';?> name="correct_answer[]" value="<?php echo $i?>" />
                         <label for="correct_answer_<?php echo $i?>">
-                          <?php _e("Correct"); ?>
+                          <?php _e("Correct", 'mtouchquiz'); ?>
                         </label></td>
                     </tr>
                     <tr>
                       <td><input type="checkbox" id="enclose_latex_<?php echo $i?>" name="enclose_latex[]" value="<?php echo $i?>" />
                         <label for="enclose_latex_<?php echo $i?>">
-                          <?php _e("Delimit"); ?>
+                          <?php _e("Delimit", 'mtouchquiz'); ?>
                         </label></td>
                     </tr>
                   </table></td>
@@ -163,24 +163,24 @@ for($i=1; $i<=$answer_count; $i++) { ?>
             
             <div id="extra-answers"></div>
             <a href="javascript:newAnswer();">
-            <?php _e("Add New Answer"); ?>
+            <?php _e("Add New Answer", 'mtouchquiz'); ?>
             </a> </div>
         </div>
         <div class="postbox">
           <h3 class="hndle"><span>
-            <?php _e('Explanation') ?>
+            <?php _e('Explanation', 'mtouchquiz') ?>
             </span></h3>
           <div class="inside">
             <textarea name="explanation" rows="5" cols="50"><?php echo stripslashes($question->explanation)?></textarea>
             <br />
             <p>
-              <?php _e('You can use this field to explain the correct answer. This will be shown whenever correct answers are revealed.') ?>
+              <?php _e('You can use this field to explain the correct answer. This will be shown whenever correct answers are revealed.', 'mtouchquiz') ?>
             </p>
           </div>
         </div>
         <div class="postbox">
           <h3 class="hndle"><span>
-            <?php _e('Point Value') ?>
+            <?php _e('Point Value', 'mtouchquiz') ?>
             </span></h3>
           <div class="inside">
             <textarea name="point_value" rows="1" cols="3"><?php if ($action == 'new') { echo '100';} else { echo stripslashes($question->point_value);} ?>
@@ -194,10 +194,10 @@ for($i=1; $i<=$answer_count; $i++) { ?>
         <input type="hidden" id="user-id" name="user_ID" value="<?php echo (int) $user_ID ?>" />
         <input type="hidden" name="action" value="<?php echo $action ?>" />
         <span id="autosave"></span>
-        <input type="submit" name="submit" value="<?php _e('Save') ?>" style="font-weight: bold;" />
+        <input type="submit" name="submit" value="<?php _e('Save', 'mtouchquiz') ?>" style="font-weight: bold;" />
       </p>
       <a href="edit.php?page=mtouch-quiz/question.php&amp;quiz=<?php echo $_REQUEST['quiz']?>">
-      <?php _e("Go to Questions Page") ?>
+      <?php _e("Go to Questions Page", 'mtouchquiz') ?>
       </a> </div>
   </form>
 </div>
