@@ -30,7 +30,7 @@ function wpframe_add_editor_js() {
 
 /// Make sure that the user do not call this file directly - forces the use of the WP interface
 function wpframe_stop_direct_call($file) {
-	if(preg_match('#' . basename($file) . '#', $_SERVER['PHP_SELF'])) die(__('Don\'__ call this page directly.', 'mtouchquiz')); // Stop direct call
+	if(preg_match('#' . basename($file) . '#', $_SERVER['PHP_SELF'])) die(__('Don\'t call this page directly.', 'mtouchquiz')); // Stop direct call
 }
 
 /// Shows a message in the admin interface of Wordpress

@@ -18,6 +18,7 @@ var extra_page = 1;
 var	multiple_chances = 1;
 var quiz_finished = false;
 var exit_warning = false;
+var quiz_started = false;
 var display_number = 1;
 var	have_completed_string = "";
 var	question_string = "";
@@ -26,10 +27,11 @@ var	your_score_is_string = "";
 var correct_string = "Correct";
 var wrong_string = "Wrong";
 var partial_string = "Partial-Credit";
+var exit_warning_string ="You have not finished your quiz. If you leave this page, your progress will be lost.";
 
 window.onbeforeunload = function() {
-  if (exit_warning && ! quiz_finished) {
-    return 'You have not finished your quiz. \nIf you leave this page, your progress will be lost.';
+  if (exit_warning && quiz_started && ! quiz_finished) {
+    return exit_warning_string;
   }
 }
 
@@ -76,7 +78,7 @@ function mtouchquizShowBatch() {
 	}
 
 	if ( total_questions <= current_question ){
-		if ( extra_page ) {
+		if ( extra_page && current_question + display_number - 1 > total_questions ) {
 			jQuery("#mtouchquiz-results-request").show();
 			jQuery("#results_button").show();
 		}
@@ -96,13 +98,15 @@ function mtouchquizShowBatch() {
 	} else {
 		jQuery("#back_button").show();
 	}
-	if ( current_question <=total_questions ){
+	
+	if ( current_question <= total_questions ){
 		jQuery("#mtouchquiz_nav_item-" + current_question).addClass('mtouchquiz-nav-item-selected');
 		jQuery("#mtouchquiz_nav_item-end").removeClass('mtouchquiz-nav-item-selected');
 		
 	} else {
 		jQuery("#mtouchquiz_nav_item-end").addClass('mtouchquiz-nav-item-selected');
 	}
+	
 	document.location.href="#mtouchquiz-view-anchor";
 }
 
@@ -113,7 +117,9 @@ function mtouchquizHideCurrent() {
 			jQuery("#question-" + j).hide();
 			jQuery("#mtouchquiz_nav_item-" + j).removeClass('mtouchquiz-nav-item-selected');
 		}
-	}	
+	}
+	jQuery("#mtouchquiz-results-request").hide();
+	jQuery("#results_button").hide();	
 }
 
 function mtouchquizPreviousQuestion() {
@@ -157,6 +163,7 @@ function mtouchquizStartQuiz(){
 		jQuery("#start_button").hide();
 		jQuery("#QuizStatus").show();
 		jQuery("#mtouchquiznavrow").show();
+		quiz_started = true;
 		//jQuery("#next_button").show();
 		mtouchquizShowBatch();
 		//jQuery("#mtouchquiz_nav_item-"+current_question).addClass('mtouchquiz-nav-item-selected');
@@ -350,16 +357,22 @@ function mtouchquizStamp(q) {
 		jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-wrong-stamp');
 		jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-partial-stamp');
 		jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-correct-stamp');
+		jQuery("#mtouchquiz_nav_item-"+q).removeClass('mtouchquiz-nav-item-wrong');
+		jQuery("#mtouchquiz_nav_item-"+q).removeClass('mtouchquiz-nav-item-correct');
+		
 		jQuery("#mtouchquiz_stamp-"+q).html('');
 		if ( points_awarded > 0 && points_awarded < points_possible ){
 			jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-partial-stamp');
-			jQuery("#mtouchquiz_stamp-"+q).html(partial_string);	
+			jQuery("#mtouchquiz_stamp-"+q).html(partial_string);
+			jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-correct');	
 		} else if ( points_awarded == points_possible ) {
 			jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-correct-stamp');
 			jQuery("#mtouchquiz_stamp-"+q).html(correct_string);
+			jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-correct');
 		} else {
 			jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-wrong-stamp');
 			jQuery("#mtouchquiz_stamp-"+q).html(wrong_string);
+			jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-wrong');
 		}
 	}
 }
@@ -389,6 +402,17 @@ function mtouchquizInit() {
 		//jQuery("#next_button").hide();
 	//} 
 	
+
+	
+	have_completed_string = jQuery("#have_completed_string").html();
+	question_string = jQuery("#question_string").html();
+	questions_string = jQuery("#questions_string").html();
+	your_score_is_string = jQuery("#your_score_is_string").html();
+	correct_string = jQuery("#correct_string").html();
+	wrong_string = jQuery("#wrong_string").html();
+	partial_string = jQuery("#partial_string").html();
+	exit_warning_string = jQuery("#exit_warning_string").html();
+	
 	if (single_page){
 		mtouchquizSinglePage();	
 	} else if (! show_start){
@@ -399,13 +423,6 @@ function mtouchquizInit() {
 		jQuery("#start_button").show();	
 	}
 	
-	have_completed_string = jQuery("#have_completed_string").html();
-	question_string = jQuery("#question_string").html();
-	questions_string = jQuery("#questions_string").html();
-	your_score_is_string = jQuery("#your_score_is_string").html();
-	correct_string = jQuery("#correct_string").html();
-	wrong_string = jQuery("#wrong_string").html();
-	partial_string = jQuery("#partial_string").html();
 	
 }
 
@@ -428,6 +445,8 @@ function mtouchquizSinglePage()
 		
 		jQuery("#question-" + j).show();
 	}
+	
+	quiz_started = true;
 }
 
 function mtouchquizRevealAnswer(q) {

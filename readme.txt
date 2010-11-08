@@ -1,17 +1,17 @@
 === mTouch Quiz ===
 Contributors: gmichaelguy
 Donate link: http://gmichaelguy.com/quizplugin/
-Tags: quiz,question,answer,test,touch,education,learning,elearning
+Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 2.8
 Tested up to: 3.01
-Stable tag: 1.04
+Stable tag: 1.05
 
 mTouch Quiz lets you add quizzes to your blog. This plugin was designed with learning, touch friendliness and versatility in mind.
 
 
 == Description ==
 
-With mTouch Quiz, you can create a multiple choice quiz (or exam). This plugin was written with learning and mobility at the forefront of design decisions.  The quiz interface is very finger friendly and allows for easy touch screen use. You can specify feedback (hints) based on answer selection, as well as give a detailed explanation of the problem. You can choose multiple correct answers and specify when the correct answers are displayed. You can specify if a question may be attempted only once or many times and specify point values for each question. You can include customized start and finish screens. You can randomly order questions and/or answers. All this, and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
+Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch screen friendly. You can specify hints based on answer selection, as well as give a detailed explanation of the solution. You can choose multiple correct answers, and specify when the correct answers are displayed. You can specify if a question may be attempted only once or many times and specify point values for each question. You can include customized start and finish screens. You can randomly order questions and/or answers.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
 
 == Installation ==
 
@@ -36,22 +36,22 @@ Yes. This was one of the main reasons I wrote this plugin. Learning often requir
 Yes. It is at the bottom of each question, right above the Save button. The default value is 100.
 
 = How do I get the quiz to show up on my page? =
-You simply include the shortcode mtouchquiz id# options inside square brackets anywhere on your page. The id# is listed in the leftmost column on the Manage Quiz page and also at the top of the Manage Questions page.
+You simply include the shortcode mtouchquiz id# options inside square brackets anywhere on your page. The id# is listed in the leftmost column on the Manage Quiz page and at the top of the Manage Questions page.
 
 = Once I set the quiz options such a single page and randomization, can I use different options on different versions of the same quiz? =
 Yes! Just set the options on the shortcode when you embed the quiz in your page.
 
 = Where can I find out about the configurable options for the shortcode? =
-Next to each option on the Edit Quiz page, there is a column to the right, which indicates what to add to the shortcode to set the options. I think they are pretty clear, but ask if you are unsure.
+Next to each option on the Edit Quiz page, there is a column to the right, which indicates what to add to the shortcode to set the options. I think they are clear, but ask if you are unsure.
 
 = What arguments can I use on the shortcode? =
-Each argument must be followed by an equals sign and the selection in quotations. Here they are: questions (number of questions to display if you don't choose random questions, it will be the first ones in order), singlepage, multiplechances, hints, startscreen, finalscreen, randomq, randoma, showanswers.
+Each argument must be followed by an equals sign and the selection in quotations. Here they are: questions (number of questions to display if you do not choose random questions, it will be the first ones in order), singlepage, multiplechances, hints, startscreen, finalscreen, randomq, randoma, showanswers.
 
-= What does Delimit mean next to the answer choice when I’m adding them? =
-If you want to enclose all your answers in some kind of delimiter (for example, to modify style or formatting or enclose them in some LaTeX code (like the default!), click this to save time.)
+= What does Delimit mean next to the answer choices in the question editor? =
+If you want to enclose all your answers in some kind of delimiter, select this option to save time. For example, you may want to modify the style or formatting or enclose the answer choice in some LaTeX code, as the default is set.
 
 = Can I change the default delimiters I see in the answers? =
-Yes. You can change that in the options page. You will have to manually make any changes to answers already in the database, however.
+Yes. You can change that in the options page. You will have to make any changes manually to answers already in the database, however.
 
 = Does this work with multi-site? =
 Yes, as far as I can test it does! Any user with Author role or higher should have access to this plugin. My site is a 3.0+ multi-site enabled site, and it works fine.
@@ -69,7 +69,7 @@ Look for this in the future!
 Look for this in the future if enough people want it!
 
 = Does this plugin support international translation? =
-I hope so. I've tested this some. I uploaded the pot and po files in the lang subdirectory. Put your file named mtouchquiz-language.po/mo in the lang subdirectory. Note that there are some words written on some graphics. If you want the original photoshop files I used to make them, let me know and I can send them over.
+I hope so. I've tested this some. I uploaded the pot and po files in the lang subdirectory. Put your file named mtouchquiz-language.po/mo in the lang subdirectory. No graphics have words on them as of v 1.05.
 
 = Can I do this or that? =
 I don't know.  Ask me. Perhaps if it seems useful to a large number of people, I can find a way to make it do this or that.
@@ -87,6 +87,11 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 4. A Typical Question on a Mobile Browser (Portrait) (using WPTouch plugin on iPhone 4)
 
 == Changelog ==
+
+= 1.05 =
+* Bugfixes
+* Enhanced international support by removing all words from images. Now translating the pot file creates a complete translation.
+* Added a Portuguese for Brazil translation by Daniel Oliveira.
 
 = 1.04 =
 * Fixed a typo causing a fatal error when calling the isnumeric function. Should have been is_numeric. My apologies.
@@ -107,6 +112,11 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 
 == Upgrade Notice ==
 
+= 1.05 =
+* Bugfixes
+* Enhanced international support by removing all words from images. Now translating the pot file creates a complete translation.
+* Added a Portuguese for Brazil translation by Daniel Oliveira.
+
 = 1.04 =
 * Fixed a typo causing a fatal error when calling the isnumeric function. Should have been is_numeric. My apologies.
 * Includes a complete text Czech Translation by Tomas Hubka
@@ -115,7 +125,7 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 * Skipped this number
 
 = 1.02 =
-* Fixed the international support. Thanks to Tomáš Hubka for the assistance. He has also kindly sent a partial Czech translation.
+* Fixed the international support. Thanks to Tomas Hubka for the assistance. He has also kindly sent a partial Czech translation.
 * Fixed an IE formatting issue.
 
 = 1.01 =

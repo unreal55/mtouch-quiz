@@ -55,7 +55,7 @@ if (count($all_quiz)) {
       <td><a href='edit.php?page=mtouch-quiz/quiz_form.php&amp;quiz=<?php echo $quiz->ID?>&amp;action=edit' class='edit'>
         <?php _e('Edit Quiz Options', 'mtouchquiz'); ?>
         </a></td>
-      <td><a href='edit.php?page=mtouch-quiz/quiz.php&amp;action=delete&amp;quiz=<?php echo $quiz->ID?>' class='delete' onclick="return confirm('<?php echo  addslashes(__("You are about to delete this quiz? This will delete all the questions and answers within this quiz. Press 'OK' to delete and 'Cancel' to stop.", 'mtouchquiz'))?>');">
+      <td><a href='admin.php?page=mtouch-quiz/quiz.php&amp;action=delete&amp;quiz=<?php echo $quiz->ID?>' class='delete' onclick="return confirm('<?php echo  addslashes(__("You are about to delete this quiz? This will delete all the questions and answers within this quiz. Press 'OK' to delete and 'Cancel' to stop.", 'mtouchquiz'))?>');">
         <?php _e('Delete', 'mtouchquiz')?>
         </a></td>
     </tr>

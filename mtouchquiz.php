@@ -2,8 +2,8 @@
 /*
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
-Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility at the forefront of design decisions.  The quiz interface is very finger friendly and allows for easy touch screen use. You can specify feedback (hints) based on answer selection, as well as give a detailed explanation of the problem. You can choose multiple correct answers and specify when the correct answers are displayed. You can specify if a question may be attempted only once or many times and specify point values for each question. You can include customized start and finish screens. You can randomly order questions and/or answers. All this, and more.  Built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 1.04
+Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch screen friendly. You can specify hints based on answer selection, as well as give a detailed explanation of the solution. You can choose multiple correct answers, and specify when the correct answers are displayed. You can specify if a question may be attempted only once or many times and specify point values for each question. You can include customized start and finish screens. You can randomly order questions and/or answers.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
+Version: 1.05
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtouchquiz_VERSION', '1.04' );
+define( 'mtouchquiz_VERSION', '1.05' );
 define( 'mtouchquiz_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtouchquiz_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtouchquiz_add_menu_links' );
@@ -176,7 +176,7 @@ function mtouchquiz_shortcode( $atts ) {
 	$input_finalscreen = -1;
 	$input_showanswers = -1;
 	$display_number = 1;
-	$show_nav = 1;
+	$show_nav = 0;
 	
 	if  (! isset($atts['id'])){
 		$quiz_id = $atts[0];
@@ -224,8 +224,8 @@ function mtouchquiz_shortcode( $atts ) {
 	if ( isset( $atts['display']) && is_numeric($atts['display']) && $atts['display'] > 1 ){
 		$display_number = $atts['display'];
 	}
-	if ( isset( $atts['nav']) && $atts['nav']== 'off' ){
-		$show_nav = 0;
+	if ( isset( $atts['nav']) && $atts['nav']== 'on' ){
+		$show_nav = 1;
 	}
 
 	wp_enqueue_script("jquery");

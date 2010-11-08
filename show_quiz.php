@@ -165,7 +165,7 @@
 										echo "<div id='mtouchquiz-question-item'>";
 											echo "<table class='mtouchquiz-question-heading-table'><tr><td>";
 												echo "<div class='mtouchquiz-question-label'>";
-													printf(__('Question Number %d', 'mtouchquiz'), $question_count);
+													printf(__('Question %d', 'mtouchquiz'), $question_count);
 												echo "</div>";
 												echo "<div id='mtouchquiz_stamp-$question_count' class='mtouchquiz-stamp'></div>";
 												echo "</td></tr></table>";
@@ -258,11 +258,12 @@
 										<div id="back_button" class='mtouchquiz-back-button' onclick='mtouchquizPreviousQuestion()'></div>
 									</td>
 									<td>
-										
+                                    <div id=mtouchquiz-nav-row-container">
+									
                                 <?php
 								if ( $show_nav ) { 
 									for ($i=1; $i<=$question_count; $i++) {
-										echo "<div id='mtouchquiz_nav_item-$i' class='mtouchquiz-nav-item' onclick='mtouchquizNavClick($i)'>$i</div>";	
+										echo "<div id='mtouchquiz_nav_item-$i' class='mtouchquiz-nav-item' onclick='mtouchquizNavClick($i)'>$i</div>";
 									}
 									if ( $show_final ) {
 										echo "<div id='mtouchquiz_nav_item-end' class='mtouchquiz-nav-item' onclick='mtouchquizNavClick($i)'>".__('End', 'mtouchquiz')."</div>";
@@ -270,6 +271,7 @@
 								}
 								?>
                                
+                               </div>
 									</td>
 									<td width="86px">
 										<div id="next_button" class='mtouchquiz-next-button' onclick='mtouchquizNextQuestion()'></div>
@@ -299,6 +301,8 @@
                             <div id="correct_string"  class="preload"><?php _e('Correct', 'mtouchquiz')?></div>
                             <div id="wrong_string"  class="preload"><?php _e('Wrong', 'mtouchquiz')?></div>
                             <div id="partial_string"  class="preload"><?php _e('Partial-Credit', 'mtouchquiz')?></div>
+                            <div id="exit_warning_string"  class="preload"><?php _e('You have not finished your quiz. If you leave this page, your progress will be lost.', 'mtouchquiz')?></div>
+                            
 							<input type="hidden" id="quiz_id" value="<?php echo  $quiz_id ?>" />
 							<input type="hidden" id="total_questions" value="<?php echo  $question_count; ?>" />
 							<input type="hidden" id="current_score" value="0" />
@@ -343,7 +347,7 @@
 								}
 							?>
 						</form>
-						<?php $preload_classes = array("mtouchquiz-wrong-stamp", "mtouchquiz-correct-stamp", "mtouchquiz-partial-stamp","mtouchquiz-start-button","mtouchquiz-results-button","mtouchquiz-back-button","mtouchquiz-next-button","mtouchquiz-wrong-marker","mtouchquiz-correct-marker"); 
+						<?php $preload_classes = array("mtouchquiz-back-button","mtouchquiz-next-button","mtouchquiz-wrong-marker","mtouchquiz-correct-marker"); 
 							foreach ($preload_classes as $i => $value) {
 								echo "<div class='$preload_classes[$i] preload'></div>";
 							}
