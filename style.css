@@ -1,3 +1,45 @@
+.mtouchquiz-nav-item {
+	float:left;
+	margin-left:0.5em;
+	margin-right:0.5em;
+	padding-left:2em;
+	padding-right:2em;
+	padding-top:.75em;
+	padding-bottom:.75em;
+	cursor: pointer;
+	cursor: hand;
+	border: thin solid;
+	border-color:#66F;
+}
+
+.mtouchquiz-nav-item-selected {
+	border:medium solid;
+}
+
+.mtouchquiz-nav-item-wrong {
+	color: #000;
+	font-weight: bold;
+	background: #eff2ff;
+}
+
+.mtouchquiz-nav-item-correct {
+	color: #000;
+	font-weight: bold;
+	background: #eff2ff;
+}
+.mtouchquiz-nav-item:hover {
+	font-weight:bold;	
+}
+
+#mtouchquiznavrow {
+	display:none;
+	width: 100%;	
+}
+
+#QuizStatus {
+	display:none;
+	text-align:center;
+}
 .quiz-area {
 	text-align:left;
 }
@@ -27,11 +69,8 @@
 .mtouchquiz-marker {
 	display:none;
 }
-/*.single-page-quiz .mtouchquiz-question, .single-page-quiz #action-button {
-	display:block;
-}*/
 .question-content {
-/*margin-top:1.5em*/
+
 }
 .show-question {
 	border-bottom:.1em solid #000;
@@ -52,11 +91,7 @@
 	text-align:center;
 	margin-top:.5em;
 }
-.mtouchquiz-results-request text {
-	text-align:left;
-	margin-bottom:1em;
-	margin-top:1em;
-}
+
 .mtouchquiz-question-heading-table {
 	padding:0;
 	margin:0;
@@ -80,10 +115,7 @@
 	background-color:#0066FF;
 	display:block;
 }
-/*#mtouchquiz-question-item {
-	text-align: left;
-	border-color:transparent;
-}*/
+
 .mtouchquiz-answer-table {
 	width:100%;
 	margin-top: 1em;
@@ -138,27 +170,44 @@
 }
 .mtouchquiz-action-button {
 	display:none;
-	width: 100px;
-	height: 80px;
-	margin-left: auto;
-	margin-right: auto;
+	width: 6em;
+	color:#FFF;
+	background:#0066FF;
+	font-size:200%;
+	font-weight:bold;
+	text-align:center;
+	margin-top: 1em;
+	margin-bottom:1em;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 0.5em;
+	border: thin solid;
+	border-color: #339;
+	-o-border-radius: 2em;
+	-moz-border-radius: 2em;
+	-webkit-border-radius: 2em;
+	border-radius: 2em;
 }
 .mtouchquiz-action-button:hover {
-	background-position: 0 0px;
+	/*background-position: 0 0px;*/
 	cursor: pointer;
 	cursor: hand;
+	
 }
 .mtouchquiz-start-button {
-	background: url("images/start.png") no-repeat 0 -80px;
+	/*display:block;*/
+	/*background: url("images/start.png") no-repeat 0 -80px;*/
 }
 .mtouchquiz-results-button {
-	background: url("images/results.png") no-repeat 0 -80px;
+	/*display:block;*/
+	/*background: url("images/results.png") no-repeat 0 -80px;*/
 }
 .mtouchquiz-back-button {
 	display: none;
 	width: 86px;
 	height: 48px;
 	background: url("images/back.png") no-repeat 0 -48px;
+	float: left;
 }
 .mtouchquiz-back-button:hover {
 	background-position: 0 0px;
@@ -170,6 +219,7 @@
 	width: 86px;
 	height: 48px;
 	background: url("images/next.png") no-repeat 0 -48px;
+	float:right;
 }
 .mtouchquiz-next-button:hover {
 	background-position: 0 0px;
@@ -216,13 +266,25 @@
 	background: url("images/wrong.png") no-repeat 0 0px;
 }
 .mtouchquiz-wrong-stamp {
-	background: url("images/wrong-stamp.png") no-repeat 0 -27px;
+	/*background: url("images/wrong-stamp.png") no-repeat 0 -27px;*/
+	color:#FFF;
+	background:#B5281E;
+	border: thin solid;
+	border-color: #B5281E;
 }
 .mtouchquiz-correct-stamp {
-	background: url("images/correct-stamp.png") no-repeat 0 -27px;
+	/*background: url("images/correct-stamp.png") no-repeat 0 -27px;*/
+	color:#FFF;
+	background:#006633;
+	border: thin solid;
+	border-color: #006633;
 }
 .mtouchquiz-partial-stamp {
-	background: url("images/partial-stamp.png") no-repeat 0 -27px;
+	/*background: url("images/partial-stamp.png") no-repeat 0 -27px;*/
+	color:#FFF;
+	background:#0099FF;
+	border: thin solid;
+	border-color: #0099FF;
 }
 .mtouchquiz-question-label {
 	font-weight:bold;
@@ -231,11 +293,24 @@
 .mtouchquiz-stamp {
 	float:left;
 	margin-left:1em;
-	width: 100px;
-	height: 25px;
+/*	width: 100px;
+	height: 80px;*/
+	text-align:center;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	-o-border-radius: 2em;
+	-moz-border-radius: 2em;
+	-webkit-border-radius: 2em;
+	border-radius: 2em;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-size:125%;
+/*	width: 100px;
+	height: 25px;*/
 }
 .mtouchquiz-stamp:hover {
-	background-position: 0 0px;
+	/*background-position: 0 0px;*/
+	/*font-weight:bold;*/
 }
 .mtouchquiz-correct-marker {
 	width: 40px;

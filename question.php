@@ -14,18 +14,18 @@ if(isset($_REQUEST['submit'])) {
 		$wpdb->query($wpdb->prepare("UPDATE {$wpdb->prefix}mtouchquiz_question SET question=%s, explanation=%s, number_correct=%d, point_value=%d WHERE ID=%d", $_REQUEST['content'], $_REQUEST['explanation'], $num_correct,$point_value,$_REQUEST['question'] ));
 		$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=%d", $_REQUEST['question']));
 		
-		wpframe_message(t('Question updated.'));
+		wpframe_message(__('Question updated.'));
 		
 	} else {
 		$wpdb->query($wpdb->prepare("INSERT INTO {$wpdb->prefix}mtouchquiz_question(quiz_id, question, explanation,number_correct, point_value) VALUES(%d, %s, %s, %d, %d)", $_REQUEST['quiz'], $_REQUEST['content'], $_REQUEST['explanation'],  $num_correct, $point_value));//Inserting the questions
-		wpframe_message(t('Question added.'));
+		wpframe_message(__('Question added.'));
 		$_REQUEST['question'] = $wpdb->insert_id;
 		$action='edit';
 	}
 	$question_id = $_REQUEST['question'];
 	$left_delimit = get_option('mtouchquiz_leftdelimit');
 	$right_delimit = get_option('mtouchquiz_rightdelimit');
-	//Yes, we need 2 different counters - the $counter will skip over empty answers - $sort_order_counter won't.
+	//Yes, we need 2 different counters - the $counter will skip over empty answers - $sort_order_counter will not.
 	$counter = 1;
 	$sort_order_counter = 1;
 	$correct_answers = $_REQUEST['correct_answer'];
@@ -71,40 +71,40 @@ if(isset($_REQUEST['submit'])) {
 
 
 if($_REQUEST['message'] == 'new_quiz') {
-	wpframe_message(t('New quiz added'));
+	wpframe_message(__('New quiz added'));
 }
 
 if($_REQUEST['action'] == 'delete') {
 	$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=%d", $_REQUEST['question']));
 	$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}mtouchquiz_question WHERE ID=%d", $_REQUEST['question']));
-	wpframe_message(t('Question Deleted'));
+	wpframe_message(__('Question Deleted'));
 }
 $quiz_name = stripslashes($wpdb->get_var($wpdb->prepare("SELECT name FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz'])));
 ?>
 
 <div class="wrap">
-  <h2><?php echo e("Manage Questions in ") . $quiz_name; ?></h2>
+  <h2><?php echo _e("Manage Questions in ") . $quiz_name; ?></h2>
   <?php
 wp_enqueue_script( 'listman' );
 wp_print_scripts();
 ?>
   <p>
-    <?php e('To add this quiz to your blog, insert the code ') ?>
+    <?php _e('To add this quiz to your blog, insert the code ') ?>
     [mtouchquiz <?php echo $_REQUEST['quiz'] ?>]
-    <?php e('into any post.') ?>
+    <?php _e('into any post.') ?>
   </p>
   <table class="widefat">
     <thead>
       <tr>
         <th scope="col"><div style="text-align: center;">#</div></th>
-        <th scope="col"><?php e('Question') ?></th>
+        <th scope="col"><?php _e('Question') ?></th>
         <th scope="col"><div style="text-align: center;">
-            <?php e('Number Answers') ?>
+            <?php _e('Number Answers') ?>
           </div></th>
-        <th scope="col"><?php e('Number Correct Answers') ?></th>
-        <th scope="col"><?php e('Point Value') ?></th>
+        <th scope="col"><?php _e('Number Correct Answers') ?></th>
+        <th scope="col"><?php _e('Point Value') ?></th>
         <th scope="col" colspan="2"><div style="text-align: center;">
-            <?php e('Action') ?>
+            <?php _e('Action') ?>
           </div></th>
       </tr>
     </thead>
@@ -130,10 +130,10 @@ if (count($all_question)) {
       <td><?php echo $question->number_correct ?></td>
       <td><?php echo $question->point_value ?></td>
       <td><a href='edit.php?page=mtouch-quiz/question_form.php&amp;question=<?php echo $question->ID?>&amp;action=edit&amp;quiz=<?php echo $_REQUEST['quiz']?>' class='edit'>
-        <?php e('Edit'); ?>
+        <?php _e('Edit'); ?>
         </a></td>
-      <td><a href='edit.php?page=mtouch-quiz/question.php&amp;action=delete&amp;question=<?php echo $question->ID?>&amp;quiz=<?php echo $_REQUEST['quiz']?>' class='delete' onclick="return confirm('<?php echo addslashes(t("You are about to delete this question. This will delete the answers and hints to this question. Press 'OK' to delete and 'Cancel' to stop."))?>');">
-        <?php e('Delete')?>
+      <td><a href='edit.php?page=mtouch-quiz/question.php&amp;action=delete&amp;question=<?php echo $question->ID?>&amp;quiz=<?php echo $_REQUEST['quiz']?>' class='delete' onclick="return confirm('<?php echo addslashes(__("You are about to delete this question. This will delete the answers and hints to this question. Press 'OK' to delete and 'Cancel' to stop."))?>');">
+        <?php _e('Delete')?>
         </a></td>
     </tr>
     <?php
@@ -141,7 +141,7 @@ if (count($all_question)) {
 	} else {
 ?>
     <tr style='background-color: <?php echo $bgcolor; ?>;'>
-      <td colspan="4"><?php e('No questions found.') ?></td>
+      <td colspan="4"><?php _e('No questions found.') ?></td>
     </tr>
     <?php
 }
@@ -150,5 +150,5 @@ if (count($all_question)) {
     
   </table>
   <a href="edit.php?page=mtouch-quiz/question_form.php&amp;action=new&amp;quiz=<?php echo $_REQUEST['quiz'] ?>">
-  <?php e('Create New Question')?>
+  <?php _e('Create New Question')?>
   </a> </div>

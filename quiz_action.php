@@ -28,7 +28,7 @@ if(isset($_REQUEST['submit'])) {
 		
 		wp_redirect($wpframe_home . '/wp-admin/admin.php?page=mtouch-quiz/quiz.php&message=updated');
 	
-	//Yes, we need 2 different counters - the $counter will skip over empty answers - $sort_order_counter won't.
+	//Yes, we need 2 different counters - the $counter will skip over empty answers - $sort_order_counter will not.
 	$counter = 1;
 	$wpdb->query($wpdb->prepare("DELETE FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id=%d", $_REQUEST['quiz']));
 	foreach ($_REQUEST['score_rating'] as $score_rating) {

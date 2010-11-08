@@ -104,7 +104,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 		{
 			update_option('mtouchquiz_showalerts', 0);
 		}
-		wpframe_message(t('Options updated'));   
+		wpframe_message(__('Options updated'));   
     }
 ?>
 
@@ -112,24 +112,24 @@ echo '<div class="wrap" id="mtouchquiz-options">
   <input type="hidden" name="mtouchquiz_hidden" value="Y">
   <table class="form-table">
     <tr valign="middle">
-      <th scope="row"><?php e("Left Delimiter"); ?><br/>
-        <font size="-2"><?php e("Left delimiter used when box is checked next to answer input."); ?></font></th>
+      <th scope="row"><?php _e("Left Delimiter"); ?><br/>
+        <font size="-2"><?php _e("Left delimiter used when box is checked next to answer input."); ?></font></th>
       <td><input type="textbox" name="left_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_leftdelimit')) ?>"/></td>
     </tr>
     <tr valign="middle">
-      <th scope="row"><?php e("Right Delimiter"); ?><br/>
-        <font size="-2"><?php e("Right delimiter used when box is checked next to answer input."); ?></font></th>
+      <th scope="row"><?php _e("Right Delimiter"); ?><br/>
+        <font size="-2"><?php _e("Right delimiter used when box is checked next to answer input."); ?></font></th>
       <td><input type="textbox" name="right_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_rightdelimit')) ?>" /></td>
     </tr>
     
        <tr valign="middle">
-      <th scope="row"><?php e("Show Alerts if Quiz unfinished?"); ?><br/>
-        <font size="-2"><?php e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress."); ?></font></th>
-      <td><?php showOption('showalerts', t('Display a warning before a user leaves an unfinished quiz.')); ?></td>
+      <th scope="row"><?php _e("Show Alerts if Quiz unfinished?"); ?><br/>
+        <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress."); ?></font></th>
+      <td><?php showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.')); ?></td>
     </tr>
   </table>
   <p class="submit">
-    <input type="submit" class="button-primary" value="<?php e('Save Changes') ?>" />
+    <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
   </p>
 </form>
 </div>
@@ -140,7 +140,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 function showOption($option, $title) {
 ?>
 <input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtouchquiz_'.$option)) print " checked='checked'"; ?> />
-<label for="<?php echo $option?>"><?php e($title) ?></label><br />
+<label for="<?php echo $option?>"><?php _e($title) ?></label><br />
 <?php
 }
 
@@ -161,7 +161,9 @@ function mtouchquiz_shortcode( $atts ) {
 	  'hints' => -1,
 	  'startscreen' => -1,
 	  'finalscreen' => -1,
-	  'showanswers' => -1
+	  'showanswers' => -1,
+	  'display' => 1,
+	  'nav' => -1
       ), $atts ) );
 	$quiz_id = -1;
 	$input_number_questions = -1;
@@ -173,12 +175,15 @@ function mtouchquiz_shortcode( $atts ) {
 	$input_startscreen = -1;
 	$input_finalscreen = -1;
 	$input_showanswers = -1;
+	$display_number = 1;
+	$show_nav = 1;
 	
 	if  (! isset($atts['id'])){
 		$quiz_id = $atts[0];
 	} else {
 		$quiz_id = $atts['id'];
 	}
+
 	
 	if ( isset( $atts['questions']) ){
 		$input_number_questions = $atts['questions'];
@@ -216,6 +221,12 @@ function mtouchquiz_shortcode( $atts ) {
 		$input_showanswers = $atts['showanswers'];
 	}
 	
+	if ( isset( $atts['display']) && is_numeric($atts['display']) && $atts['display'] > 1 ){
+		$display_number = $atts['display'];
+	}
+	if ( isset( $atts['nav']) && $atts['nav']== 'off' ){
+		$show_nav = 0;
+	}
 
 	wp_enqueue_script("jquery");
 	wp_enqueue_script('script.js', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js');
