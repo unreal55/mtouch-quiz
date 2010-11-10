@@ -177,6 +177,7 @@ function mtouchquizStartQuiz(){
 
 function mtouchquizGetResults(){
 	
+	quiz_finished = true;
 	//Hide a bunch of stuff
 	jQuery("#next_button").hide();
 	jQuery("#back_button").hide();
@@ -247,7 +248,7 @@ function mtouchquizGetResults(){
 	jQuery("#questions_not_attempted").val(questions_not_attempted);
 
 	
-	quiz_finished = true;
+	
 	mtouchquizResultsMessage();
 	jQuery("#QuizResults-bubble").show();
 	jQuery("#QuizResultsHighlight").show();
@@ -351,28 +352,31 @@ function mtouchquizUpdateStatus(){
 
 function mtouchquizStamp(q) {
 	if (answer_display != 0 ){
-		var points_possible = parseInt(jQuery("#is_worth-"+q).val());
-		var points_awarded = parseInt(jQuery("#points_awarded-"+q).val());
 		
-		jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-wrong-stamp');
-		jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-partial-stamp');
-		jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-correct-stamp');
-		jQuery("#mtouchquiz_nav_item-"+q).removeClass('mtouchquiz-nav-item-wrong');
-		jQuery("#mtouchquiz_nav_item-"+q).removeClass('mtouchquiz-nav-item-correct');
-		
-		jQuery("#mtouchquiz_stamp-"+q).html('');
-		if ( points_awarded > 0 && points_awarded < points_possible ){
-			jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-partial-stamp');
-			jQuery("#mtouchquiz_stamp-"+q).html(partial_string);
-			jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-correct');	
-		} else if ( points_awarded == points_possible ) {
-			jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-correct-stamp');
-			jQuery("#mtouchquiz_stamp-"+q).html(correct_string);
-			jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-correct');
-		} else {
-			jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-wrong-stamp');
-			jQuery("#mtouchquiz_stamp-"+q).html(wrong_string);
-			jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-wrong');
+		if ( answer_display == 2 || quiz_finished ){
+			var points_possible = parseInt(jQuery("#is_worth-"+q).val());
+			var points_awarded = parseInt(jQuery("#points_awarded-"+q).val());
+			
+			jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-wrong-stamp');
+			jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-partial-stamp');
+			jQuery("#mtouchquiz_stamp-"+q).removeClass('mtouchquiz-correct-stamp');
+			jQuery("#mtouchquiz_nav_item-"+q).removeClass('mtouchquiz-nav-item-wrong');
+			jQuery("#mtouchquiz_nav_item-"+q).removeClass('mtouchquiz-nav-item-correct');
+			
+			jQuery("#mtouchquiz_stamp-"+q).html('');
+			if ( points_awarded > 0 && points_awarded < points_possible ){
+				jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-partial-stamp');
+				jQuery("#mtouchquiz_stamp-"+q).html(partial_string);
+				jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-correct');	
+			} else if ( points_awarded == points_possible ) {
+				jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-correct-stamp');
+				jQuery("#mtouchquiz_stamp-"+q).html(correct_string);
+				jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-correct');
+			} else {
+				jQuery("#mtouchquiz_stamp-"+q).addClass('mtouchquiz-wrong-stamp');
+				jQuery("#mtouchquiz_stamp-"+q).html(wrong_string);
+				jQuery("#mtouchquiz_nav_item-"+q).addClass('mtouchquiz-nav-item-wrong');
+			}
 		}
 	}
 }

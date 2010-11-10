@@ -11,9 +11,13 @@
 	padding-right:1em;
 	padding-top:.25em;
 	padding-bottom:.25em;
+	/*margin:0.1em;*/
+	margin-top: 0.1em;
+	margin-bottom:0.1em;
 }
 .mtouchquiz-nav-item-selected {
-	border:medium solid;
+	/*border:medium solid;*/
+	font-weight:bold;
 }
 .mtouchquiz-nav-item-wrong {
 	color: #000;

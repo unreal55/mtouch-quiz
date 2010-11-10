@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 2.8
 Tested up to: 3.01
-Stable tag: 1.05
+Stable tag: 1.06
 
 mTouch Quiz lets you add quizzes to your blog. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -88,6 +88,10 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 
 == Changelog ==
 
+= 1.06 =
+* Bugfix where questions would be stamped correct/wrong even though answers were supposed to be hidden until the end
+* Updated Czech language files (again thanks to Tomas Hubka!)
+
 = 1.05 =
 * Bugfixes
 * Enhanced international support by removing all words from images. Now translating the pot file creates a complete translation.
@@ -111,6 +115,10 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.06 =
+* Bugfix where questions would be stamped correct/wrong even though answers were supposed to be hidden until the end
+* Updated Czech language files (again thanks to Tomas Hubka!)
 
 = 1.05 =
 * Bugfixes
