@@ -1,14 +1,14 @@
-# Translation of the WordPress plugin mTouch Quiz by Tomas Hubka.
+# Translation of the WordPress plugin mTouch Quiz by G. Michael Guy.
 # Copyright (C) 2010
 # This file is distributed under the same license as the  package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: mTouch Quiz plugin v. 1.03\n"
+"Project-Id-Version: mTouch Quiz\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/mtouch-quiz\n"
-"POT-Creation-Date: 2010-11-03 00:34+0000\n"
-"PO-Revision-Date: 2010-11-03 06:55+0100\n"
+"POT-Creation-Date: 2010-11-08 00:37+0000\n"
+"PO-Revision-Date: 2010-11-10 06:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -74,6 +74,10 @@ msgstr "Zobrazit upozornění pokud je kvíz nedokončený?"
 msgid "Since results to the quiz are stored locally, leaving the quiz page will lose all progress."
 msgstr "Jelikož jsou výsledky kvízu ukládány lokálně, tak ukončení kvízu znamená ztrátu veškerého dosaženého postupu."
 
+#: mtouchquiz.php:128
+msgid "Display a warning before a user leaves an unfinished quiz."
+msgstr "Zobrazit varování pokud uživatel opouští nedokončený kvíz."
+
 #: mtouchquiz.php:132
 msgid "Save Changes"
 msgstr "Uložit změny."
@@ -133,6 +137,10 @@ msgstr "Akce"
 msgid "Edit"
 msgstr "Upravit"
 
+#: question.php:135
+msgid "You are about to delete this question. This will delete the answers and hints to this question. Press 'OK' to delete and 'Cancel' to stop."
+msgstr "Chystáte se vymazat tuto otázku. Tím smažete i odpovědi a nápovědy k této otázce. Pro vymazání klikněte na OK, pro zrušení na Zrušit."
+
 #: question.php:136
 #: quiz.php:59
 msgid "Delete"
@@ -147,11 +155,12 @@ msgid "Create New Question"
 msgstr "Vytvořit novou otázku"
 
 #: question_form.php:17
-msgid " Question"
+msgid " Question "
 msgstr "Otázka"
 
 #: question_form.php:35
 #: question_form.php:144
+#: show_quiz.php:299
 msgid "Correct"
 msgstr "Správně"
 
@@ -233,6 +242,10 @@ msgstr "Spravovat otázky"
 msgid "Edit Quiz Options"
 msgstr "Upravovat nastavení kvízu"
 
+#: quiz.php:58
+msgid "You are about to delete this quiz? This will delete all the questions and answers within this quiz. Press 'OK' to delete and 'Cancel' to stop."
+msgstr "Chystáte se vymazat tento kvíz. Tím smažete i všechny otázky a odpovědi k tomutu kvízu. Pro vymazání klikněte na OK, pro zrušení na Zrušit."
+
 #: quiz.php:67
 msgid "No Quizzes found."
 msgstr "Nenalezeny žádné kvízy."
@@ -240,6 +253,15 @@ msgstr "Nenalezeny žádné kvízy."
 #: quiz.php:76
 msgid "Create New Quiz"
 msgstr "Vytvořit nový kvíz"
+
+#: quiz_form.php:21
+#, php-format
+msgid "<p>Congratulations - you have completed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%</p>"
+msgstr "<p>Gratulujeme - dokončil jste %%QUIZ_NAME%%.</p><p>Vaše skóre je %%SCORE%% z %%TOTAL%%.</p><p>Váš výkon byl vyhodnocen jakožto %%RATING%%</p>"
+
+#: quiz_form.php:28
+msgid " Quiz"
+msgstr "Kvíz"
 
 #: quiz_form.php:37
 msgid "Quiz Name"
@@ -308,27 +330,27 @@ msgid "Enter the percent (whole numbers only) and the message you would like the
 msgstr "Zvolte procenta (jen celá čísla) a zprávu, která se bude zobrazovat, když uživatel dosáhne %%RATING%% proměnné. Jedna z těchto zpráv se zobrazí pokud jeho skŕe bude větší nebo stejné jako zvolené procento. "
 
 #: quiz_form.php:130
-#: show_quiz.php:283
+#: show_quiz.php:319
 msgid "Need more practice!"
 msgstr "Tragický!"
 
 #: quiz_form.php:130
-#: show_quiz.php:285
+#: show_quiz.php:321
 msgid "Keep trying!"
 msgstr "Nedostatečný!"
 
 #: quiz_form.php:130
-#: show_quiz.php:287
+#: show_quiz.php:323
 msgid "Not bad!"
 msgstr "Průměrný!"
 
 #: quiz_form.php:130
-#: show_quiz.php:289
+#: show_quiz.php:325
 msgid "Good work!"
 msgstr "Dobrý!"
 
 #: quiz_form.php:130
-#: show_quiz.php:291
+#: show_quiz.php:327
 msgid "Perfect!"
 msgstr "Perfektní!"
 
@@ -401,54 +423,86 @@ msgstr "** Stále se budou zobrazovat správné či špatné odpovědi na konci 
 msgid "Please go to <a href='%s'>%s</a> to view the quiz"
 msgstr "Pro zobrazení kvízu prosím jděte na <a href='%s'>%s</a>"
 
-#: show_quiz.php:143
+#: show_quiz.php:147
 msgid "Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled."
 msgstr "Prosím počkejte až se kvíz načte. Pokud se kvíz nenačte, tak zkuste aktualizovat stránku v prohlížeči. Tato stránka také vyžaduje javascript, takže používejte prohlížeč, který ho podporuje. "
 
-#: show_quiz.php:155
+#: show_quiz.php:149
+msgid "Start"
+msgstr "Spustit"
+
+#: show_quiz.php:159
 msgid "Your answers are highlighed below."
 msgstr "Vaše odpovědi jsou zvýrazněny níže."
 
-#: show_quiz.php:164
+#: show_quiz.php:168
 #, php-format
-msgid "Question Number %d"
+msgid "Question %d"
 msgstr "Otázka číslo %d"
 
-#: show_quiz.php:228
+#: show_quiz.php:218
+msgid "Hint"
+msgstr "Nápověda"
+
+#: show_quiz.php:232
 #, php-format
 msgid "Question %d Explanation:"
 msgstr "Vysvětlení otázky číslo %d:"
 
-#: show_quiz.php:245
+#: show_quiz.php:249
 msgid "Once you are finished, click the button below. Any items you have not completed will be marked incorrect."
 msgstr "Až skončíte, tak klikněte na tlačítko níže. Otázky, které jste nezodpověděli budou označeny jako špatné."
 
-#: show_quiz.php:254
+#: show_quiz.php:250
+msgid "Get Results"
+msgstr "Zobrazit výsledky"
+
+#: show_quiz.php:253
 msgid "There is 1 question to complete."
 msgstr "Zbývá zodpovědět 1 otázku."
 
-#: show_quiz.php:254
+#: show_quiz.php:253
 #, php-format
 msgid "There are %d questions to complete."
 msgstr "Zbývá zodpovědět %d otázek."
 
-#: show_quiz.php:263
+#: show_quiz.php:268
+msgid "End"
+msgstr "Konec"
+
+#: show_quiz.php:295
 msgid "You have completed"
 msgstr "Zodpověděl jste"
 
-#: show_quiz.php:264
+#: show_quiz.php:296
 msgid "questions"
 msgstr "otázek"
 
-#: show_quiz.php:265
+#: show_quiz.php:297
 msgid "question"
 msgstr "otázku"
 
-#: show_quiz.php:266
+#: show_quiz.php:298
 msgid "Your score is"
 msgstr "Vaše skóre je"
 
-#: show_quiz.php:298
+#: show_quiz.php:300
+msgid "Wrong"
+msgstr "Špatně"
+
+#: show_quiz.php:301
+msgid "Partial-Credit"
+msgstr "Částečně správně"
+
+#: show_quiz.php:302
+msgid "You have not finished your quiz.If you leave this page, your progress will be lost."
+msgstr "Nedokončil jste kvíz. Pokud tuto stránku opustíte, tak váš dosavadní průběh bude ztracen. "
+
+#: show_quiz.php:334
 msgid "All done"
 msgstr "Hotovo"
+
+#: wpframe.php:33
+msgid "Don't call this page directly."
+msgstr "Tuto stránku nevyvolávejte přímo."
 
