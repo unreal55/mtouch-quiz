@@ -11,15 +11,16 @@ mTouch Quiz lets you add quizzes to your blog. This plugin was designed with lea
 
 == Description ==
 
-Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch screen friendly. You can specify hints based on answer selection, as well as give a detailed explanation of the solution. You can choose multiple correct answers, and specify when the correct answers are displayed. You can specify if a question may be attempted only once or many times and specify point values for each question. You can include customized start and finish screens. You can randomly order questions and/or answers.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
+Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection, as well as give a detailed explanation of the solution; choose multiple correct answers, and specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
 
 == Installation ==
+Best way to install is via the "Add New Plugins" feature inside your WordPress dashboard. Or...
 
 1. Download the zipped file.
 1. Extract and upload the contents of the folder to /wp-contents/plugins/ folder
 1. Go to the Plugin management page of WordPress admin section and enable the 'mTouch Quiz' plugin
 1. Go to the mTouch Quiz Management page (in a new group) to create or edit the quiz.
-1. Add the shortcode (and any options) [mtouchquiz #] to a post to display to your quiz!
+1. Add the shortcode (and any options) [mtouchquiz #] to a post to display your quiz!
 
 == Frequently Asked Questions ==
 
@@ -89,7 +90,7 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 == Changelog ==
 
 = 1.06 =
-* Bugfix where questions would be stamped correct/wrong even though answers were supposed to be hidden until the end
+* Bugfix issue where questions would be stamped correct/wrong even though answers were supposed to be hidden until the end.
 * Updated Czech language files (again thanks to Tomas Hubka!)
 
 = 1.05 =
@@ -117,7 +118,7 @@ Go to the plugin website at http://gmichaelguy.com/quizplugin/ and contact me us
 == Upgrade Notice ==
 
 = 1.06 =
-* Bugfix where questions would be stamped correct/wrong even though answers were supposed to be hidden until the end
+* Bugfix issue where questions would be stamped correct/wrong even though answers were supposed to be hidden until the end.
 * Updated Czech language files (again thanks to Tomas Hubka!)
 
 = 1.05 =
