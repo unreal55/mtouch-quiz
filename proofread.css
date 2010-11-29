@@ -1,0 +1,72 @@
+.mtouchquiz_css-button {
+	display:none;
+}
+.mtouchquiz_results_button {
+	display:none;
+}
+.mtouchquiz_show_list {
+	display:none;
+}
+.mtouchquiz_listrow {
+	display:none;
+}
+.mtouchquiz_return_list {
+	display:none;
+}
+.mtouchquiz_javawarning {
+	display:none;
+}
+.mtouchquiz_results-request {
+	display:none;
+}
+.mtouchquiz_hint {
+	display:block;
+}
+.mtouchquiz_status-table {
+	display:none;
+}
+
+.mtouchquiz_explanation {
+	display:block;
+}
+.mtouchquiz_action-button {
+	display:none;
+}
+.mtouchquiz_back-button {
+	display:none;
+}
+
+.mtouchquiz_next-button {
+	display:none;
+}
+
+.mtouchquiz_QuizResults-bubble {
+	display:block;
+}
+.mtouchquiz_QuizResults {
+	display:block;	
+}
+
+.mtouchquiz_wrong-marker {
+	display:block;
+}
+
+.mtouchquiz_correct-marker {
+	display:block;
+}
+.mtouchquiz_letter-button {
+	display:block;
+}
+.mtouchquiz_question {
+	display:block;	
+}
+.mtouchquiz_preload {
+	display:none;	
+}
+/*These last two are because it looks terrible in default 2010 theme without them*/
+/*#content table {
+	border:none;
+}
+#content tr td {
+	border:none;
+}*/
