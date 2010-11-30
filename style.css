@@ -10,7 +10,7 @@
 	display:none;
 	cursor:pointer;
 	font-weight:600;
-	font-size:125%;
+	font-size:125% !important;
 	color:#FFF;
 	background:#06F;
 	text-align:center;
