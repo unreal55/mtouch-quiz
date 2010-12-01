@@ -6,11 +6,37 @@
 	border:none;
 	padding:0;
 }
+
+.mtouchquiz_failed_button {
+	cursor:pointer;
+	font-weight:600;
+	font-size:125%;
+	color:#FFF;
+	background:#B5281E;
+	border:thin solid;
+	border-color:#B5281E;
+	text-align:center;
+	width:75%;
+	margin-left:auto;
+	margin-right:auto;
+	border:thin solid;
+	-o-border-radius:2em;
+	-moz-border-radius:2em;
+	-webkit-border-radius:2em;
+	border-radius:2em;
+	-o-box-shadow:.25em .25em .25em #333;
+	-moz-box-shadow:.25em .25em .25em #333;
+	-webkit-box-shadow:.25em .25em .25em #333;
+	box-shadow:.25em .25em .25em #333;
+	border-color:#333;
+	padding:.5em;
+	
+}
 .mtouchquiz_css-button {
 	display:none;
 	cursor:pointer;
 	font-weight:600;
-	font-size:125% !important;
+	font-size:125%;
 	color:#FFF;
 	background:#06F;
 	text-align:center;
