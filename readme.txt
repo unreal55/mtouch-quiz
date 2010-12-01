@@ -93,6 +93,9 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 
 == Changelog ==
 
+= 2.0.1 =
+* Fixed bug with missing CSS and java
+
 = 2.0.0 =
 * Same as 1.1. Changed due to typo in version number preventing upgrades.
 
@@ -136,6 +139,9 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+* Fixed bug with missing CSS and java. Please update to this version.
 
 = 2.0.0 =
 * Same as 1.1. Changed due to typo in version number preventing upgrades.
