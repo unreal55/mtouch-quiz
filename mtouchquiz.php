@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtouchquiz_VERSION', '2.0.0' );
+define( 'mtouchquiz_VERSION', '2.0.1' );
 define( 'mtouchquiz_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtouchquiz_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtouchquiz_add_menu_links' );
