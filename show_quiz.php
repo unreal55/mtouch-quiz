@@ -130,12 +130,12 @@
 		{
 			
 			$mtqid=$GLOBALS['mtouchquiz_number_displayed'];
-			if ($mtqid == 1 && $proofread != 1 ) {//Only include script and css once?>
+			if ($proofread != 1 ) {//Only include script and css once?>
 			<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wpframe_plugin_folder']?>/style.css" />
 			<script type="text/javascript" src="<?php echo $GLOBALS['wpframe_wordpress']?>/wp-includes/js/jquery/jquery.js"></script>
 			<script type="text/javascript" src="<?php echo $GLOBALS['wpframe_plugin_folder']?>/script.js"></script>
             <?php
-			} else if ($proofread == 1) {
+			} else {
 			?>
             	<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wpframe_plugin_folder']?>/style.css" />
                 <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wpframe_plugin_folder']?>/proofread.css" />
@@ -366,14 +366,17 @@
 							?>
                             <!--<input type="submit" name="action" id="mtouchquiz_email-button" value="<?php _e("Email Results",'mtouchquiz') ?>"  />-->
 						</form>
-						<?php $preload_classes = array("mtouchquiz_back-button","mtouchquiz_next-button","mtouchquiz_wrong-marker","mtouchquiz_correct-marker"); 
-							foreach ($preload_classes as $i => $value) {
-								echo "<div class='$preload_classes[$i] mtouchquiz_preload'></div>";
-							}
-							
-							for( $i = 0 ; $i <= 25; $i++ ){
-								echo "<div class='mtouchquiz_letter-mtouchquiz_button-$i mtouchquiz_preload'></div>";
-							}
+						<?php 
+							//if ( $mtqid == 1 ) {//Only include preloads and css once
+                                $preload_classes = array("mtouchquiz_back-button","mtouchquiz_next-button","mtouchquiz_wrong-marker","mtouchquiz_correct-marker"); 
+                                foreach ($preload_classes as $i => $value) {
+                                    echo "<div class='$preload_classes[$i] mtouchquiz_preload'></div>";
+                                }
+                                
+                                for( $i = 0 ; $i <= 25; $i++ ){
+                                    echo "<div class='mtouchquiz_letter-mtouchquiz_button-$i mtouchquiz_preload'></div>";
+                                }
+                            //}
 						?>
 					</div> <!--Quiz area div-->
 <?php 			} // closes show the quiz else statement
