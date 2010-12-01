@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.0.1
+Version: 2.0.2
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtouchquiz_VERSION', '2.0.1' );
+define( 'mtouchquiz_VERSION', '2.0.2' );
 define( 'mtouchquiz_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtouchquiz_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtouchquiz_add_menu_links' );
