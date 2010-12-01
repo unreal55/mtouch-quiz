@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 2.8
 Tested up to: 3.0.2
-Stable tag: 1.1
+Stable tag: 2.0.0
 
 mTouch Quiz lets you add quizzes to your blog. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -93,6 +93,9 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 
 == Changelog ==
 
+= 2.0.0 =
+* Same as 1.1. Changed due to typo in version number preventing upgrades.
+
 = 1.1 =
 * Several new UI features added.
 * Now includes a handy list view for easy navigation of longer quizzes. This is "on" by default. To turn it off, include "list=off" in the shortcode arguments.
@@ -133,6 +136,9 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+* Same as 1.1. Changed due to typo in version number preventing upgrades.
 
 = 1.1 =
 * Several new UI features added.
