@@ -6,7 +6,7 @@ Requires at least: 2.8
 Tested up to: 3.0.2
 Stable tag: 2.0.3
 
-mTouch Quiz lets you add quizzes to your blog. This plugin was designed with learning, touch friendliness and versatility in mind.
+mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
 
 == Description ==
