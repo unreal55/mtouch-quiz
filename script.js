@@ -42,7 +42,7 @@ function mtouchquiz_Init() {
 	var quizzes_present = [];
 	var N = 0;
 	jQuery("input:hidden[name=mtouchquiz_id_value]").each(function(){
-    quizzes_present.push($(this).val());
+    quizzes_present.push(jQuery(this).val());
 	N++;
 	});
 

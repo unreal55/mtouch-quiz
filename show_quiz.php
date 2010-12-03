@@ -168,7 +168,7 @@
 							  <div id="mtouchquiz_quiztitle<?php echo "-".$mtqid ?>" class="mtouchquiz_quiztitle"><?php echo stripslashes($quiz_options->name)?></div>
 							</h2>
                             <?php } ?>
-							<div id="mtouchquiz_javawarning<?php echo "-".$mtqid ?>" class="mtouchquiz_javawarning"><?php _e('Please wait while the activity loads.</br> If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.', 'mtouchquiz'); ?><!--div class="mtouchquiz_failed_button" onclick="mtouchquiz_Start_one(<?php echo $mtqid ?>)"> <?php _e('If loading fails, click here to try again','mtouchquiz') ?></div--></div>
+							<div id="mtouchquiz_javawarning<?php echo "-".$mtqid ?>" class="mtouchquiz_javawarning"><?php _e('Please wait while the activity loads.</br> If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.', 'mtouchquiz'); ?><div class="mtouchquiz_failed_button" onclick="mtouchquiz_Start_one(<?php echo $mtqid ?>)"> <?php _e('If loading fails, click here to try again','mtouchquiz') ?></div></div>
 							<div id="mtouchquiz_instructions<?php echo "-".$mtqid ?>" class="mtouchquiz_instructions"><?php echo stripslashes($quiz_options->description)?></div>
 							<div id="mtouchquiz_start_button<?php echo "-".$mtqid ?>" class='mtouchquiz_action-button mtouchquiz_css-button' onclick='mtouchquiz_StartQuiz(<?php echo $mtqid ?>)'><?php _e("Start", 'mtouchquiz'); ?></div>
 							<input type='hidden' id='mtouchquiz_answer_display<?php echo "-".$mtqid ?>' value='<?php echo $answer_display;?>'/>
