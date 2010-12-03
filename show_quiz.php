@@ -129,11 +129,11 @@
 		if($all_question) 
 		{
 			
-			$mtqid=$GLOBALS['mtouchquiz_number_displayed'];
-			if ($proofread != 1 ) {//Only include script and css once?>
-			<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wpframe_plugin_folder']?>/style.css" />
-			<script type="text/javascript" src="<?php echo $GLOBALS['wpframe_wordpress']?>/wp-includes/js/jquery/jquery.js"></script>
-			<script type="text/javascript" src="<?php echo $GLOBALS['wpframe_plugin_folder']?>/script.js"></script>
+			$mtqid=$GLOBALS['mtouchquiz_number_displayed']; ?>
+			<?php if ($proofread != 1 ) {//Only include script and css once?>
+			<!--<link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wpframe_plugin_folder']?>/style.css" />-->
+			<!--<script type="text/javascript" src="<?php echo $GLOBALS['wpframe_wordpress']?>/wp-includes/js/jquery/jquery.js"></script>-->
+			<!--<script type="text/javascript" src="<?php echo $GLOBALS['wpframe_plugin_folder']?>/script.js"></script>-->
             <?php
 			} else {
 			?>
@@ -162,10 +162,13 @@
 						<form action="" method="post" class="quiz-form" id="quiz-<?php echo $quiz_id?>">
 							<!-- OLD get_row was here! --> 
 							<a name='mtouchquiz_view-anchor<?php echo "-".$mtqid ?>'></a>
-							<h2>
+                            <input type="hidden" id="mtouchquiz_id<?php echo "-".$mtqid ?>" name="mtouchquiz_id_value" value="<?php echo $mtqid ?>" />
+							<?php if ( $show_title ) { ?>
+                            <h2>
 							  <div id="mtouchquiz_quiztitle<?php echo "-".$mtqid ?>" class="mtouchquiz_quiztitle"><?php echo stripslashes($quiz_options->name)?></div>
 							</h2>
-							<div id="mtouchquiz_javawarning<?php echo "-".$mtqid ?>" class="mtouchquiz_javawarning"><?php _e('Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.', 'mtouchquiz'); ?><div class="mtouchquiz_failed_button" onclick="mtouchquiz_Start_one(<?php echo $mtqid ?>)"> <?php _e('If loading fails, click here to try again','mtouchquiz') ?></div></div>
+                            <?php } ?>
+							<div id="mtouchquiz_javawarning<?php echo "-".$mtqid ?>" class="mtouchquiz_javawarning"><?php _e('Please wait while the activity loads.</br> If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.', 'mtouchquiz'); ?><!--div class="mtouchquiz_failed_button" onclick="mtouchquiz_Start_one(<?php echo $mtqid ?>)"> <?php _e('If loading fails, click here to try again','mtouchquiz') ?></div--></div>
 							<div id="mtouchquiz_instructions<?php echo "-".$mtqid ?>" class="mtouchquiz_instructions"><?php echo stripslashes($quiz_options->description)?></div>
 							<div id="mtouchquiz_start_button<?php echo "-".$mtqid ?>" class='mtouchquiz_action-button mtouchquiz_css-button' onclick='mtouchquiz_StartQuiz(<?php echo $mtqid ?>)'><?php _e("Start", 'mtouchquiz'); ?></div>
 							<input type='hidden' id='mtouchquiz_answer_display<?php echo "-".$mtqid ?>' value='<?php echo $answer_display;?>'/>
@@ -188,9 +191,11 @@
 									echo   "<div class='mtouchquiz_question' id='mtouchquiz_question-$question_count-$mtqid'>"; 
 										echo   "<div id='mtouchquiz_question-item'>";
 											echo   "<table class='mtouchquiz_question-heading-table'><tr><td>";
+												if ( $show_labels ) { 
 												echo   "<div class='mtouchquiz_question-label'>";
 													printf(__('Question %d', 'mtouchquiz'), $question_count);
 												echo   "</div>";
+												}
 												echo   "<div id='mtouchquiz_stamp-$question_count-$mtqid' class='mtouchquiz_stamp'></div>";
 												echo   "</td></tr></table>";
 											echo   stripslashes($ques->question) ;
@@ -273,7 +278,9 @@
 								<div id="mtouchquiz_results_button<?php echo "-".$mtqid ?>" class='mtouchquiz_results-button mtouchquiz_action-button mtouchquiz_css-button'  onclick='mtouchquiz_GetResults(<?php echo $mtqid ?>)'><?php _e("Get Results", 'mtouchquiz'); ?> </div>
 							</div>
                             <!--mtouchquiz_status-->
+                            <?php if ($show_status) { ?>
                             <div id="mtouchquiz_QuizStatus<?php echo "-".$mtqid ?>" class="mtouchquiz_QuizStatus"><?php if ($question_count == 1 ){ _e('There is 1 question to complete.', 'mtouchquiz');} else { printf(__("There are %d questions to complete.", 'mtouchquiz'), $question_count); } ?></div>
+                            <?php } ?>
                             <div id='mtouchquiz_return_list_t<?php echo "-".$mtqid ?>' class="mtouchquiz_return_list mtouchquiz_css-button" onclick='mtouchquiz_NavClick(0,<?php echo $mtqid ?>)'><?php _e('Return', 'mtouchquiz');?> </div>
                             <div id="mtouchquiz_shaded-item-msg<?php echo "-".$mtqid ?>" class="mtouchquiz_shaded-item-msg"><?php _e('Shaded items are complete.','mtouchquiz');?></div>
                             <table id="mtouchquiz_question-list-container<?php echo "-".$mtqid ?>" class="mtouchquiz_question-list-container">

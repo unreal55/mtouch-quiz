@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.0.2
+Version: 2.0.3
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtouchquiz_VERSION', '2.0.2' );
+define( 'mtouchquiz_VERSION', '2.0.3' );
 define( 'mtouchquiz_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtouchquiz_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtouchquiz_add_menu_links' );
@@ -167,6 +167,9 @@ function mtouchquiz_shortcode( $atts ) {
 	  'list' => -1,
 	  'proofread' => -1,
 	  'alerts' => -1,
+	  'showtitle' =>-1,
+	  'showlabels' =>-1,
+	  'showstatus' => -1
       ), $atts ) );
 	$quiz_id = -1;
 	$input_number_questions = -1;
@@ -245,26 +248,23 @@ function mtouchquiz_shortcode( $atts ) {
 		$proofread = 1;
 	}
 	
-	//$mtouchquiz_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.css';
-//    $mtouchquiz_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.css';
-//	 if ( file_exists($mtouchquiz_StyleFile)) {
-//		wp_register_style('mtouchquiz_StyleSheets', $mtouchquiz_StyleUrl);
-//		wp_enqueue_style( 'mtouchquiz_StyleSheets');
-//     }
-//	 
-//	$mtouchquiz_proofread_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/proofread.css';
-//    $mtouchquiz_proofread_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/proofread.css';
-//	 
-//	 if ( file_exists($mtouchquiz_proofread_StyleFile) && $proofread ) {
-//		wp_register_style('mtouchquiz_proofread_StyleSheets', $mtouchquiz_proofread_StyleUrl);
-//		wp_enqueue_style( 'mtouchquiz_proofread_StyleSheets');
-//     }
-//	 
-//	if (! $proofread ) {
-//		wp_enqueue_script("jquery");
-//		wp_enqueue_script('mtouchquiz_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),'1',true);
-//	}
-//	wp_head();
+	$show_title = 1;
+	if ( isset( $atts['showtitle']) && $atts['showtitle']== 'off' ){
+		$show_title = 0;
+	}
+	
+	$show_labels = 1;
+	if ( isset( $atts['showlabels']) && $atts['showlabels']== 'off' ){
+		$show_labels = 0;
+	}
+	
+	$show_status = 1;
+	if ( isset( $atts['showstatus']) && $atts['showstatus']== 'off' ){
+		$show_status = 0;
+	}
+	
+	
+
 	$contents = '';
 	if(is_numeric($quiz_id)) { // Basic validiation - more on the show_quiz.php file.
 		ob_start();
@@ -275,7 +275,7 @@ function mtouchquiz_shortcode( $atts ) {
 		
 	}
 	
-	return $contents;
+	return do_shortcode($contents);
 }
 
     /*
@@ -296,7 +296,36 @@ function mtouchquiz_shortcode( $atts ) {
 //        }
 //    }
 
+function switch_latex($stuff){
+	$replace_these	= array('\(', '\)','\[', '\]');
+	$with_these		= array("[latex size=1]",'[/latex]',"[latex size=2]",'[/latex]');
+	return str_replace($replace_these, $with_these, $stuff);
+}
 
+
+add_action('init', 'mtouchquiz_enqueue_stuff');
+function mtouchquiz_enqueue_stuff() {
+	$mtouchquiz_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.css';
+    $mtouchquiz_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.css';
+	 if ( file_exists($mtouchquiz_StyleFile)) {
+		wp_register_style('mtouchquiz_StyleSheets', $mtouchquiz_StyleUrl);
+		wp_enqueue_style( 'mtouchquiz_StyleSheets');
+     }
+	 
+	$mtouchquiz_proofread_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/proofread.css';
+    $mtouchquiz_proofread_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/proofread.css';
+	 
+	 if ( file_exists($mtouchquiz_proofread_StyleFile) && $proofread ) {
+		wp_register_style('mtouchquiz_proofread_StyleSheets', $mtouchquiz_proofread_StyleUrl);
+		wp_enqueue_style( 'mtouchquiz_proofread_StyleSheets');
+     }
+	 
+//	if (! $proofread ) {
+	wp_enqueue_script("jquery");
+	wp_enqueue_script('mtouchquiz_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),'1',true);
+//	}
+//	wp_head();	
+}
 
 add_filter('plugin_row_meta', 'mtouchquiz_filter_plugin_links', 10, 2);
 

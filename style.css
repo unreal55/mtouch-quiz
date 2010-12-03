@@ -11,8 +11,8 @@
 	cursor:pointer;
 	font-weight:600;
 	font-size:125%;
-	color:#FFF;
-	background:#B5281E;
+	color:#B5281E;
+	background:#fff;
 	border:thin solid;
 	border-color:#B5281E;
 	text-align:center;
@@ -24,11 +24,7 @@
 	-moz-border-radius:2em;
 	-webkit-border-radius:2em;
 	border-radius:2em;
-	-o-box-shadow:.25em .25em .25em #333;
-	-moz-box-shadow:.25em .25em .25em #333;
-	-webkit-box-shadow:.25em .25em .25em #333;
-	box-shadow:.25em .25em .25em #333;
-	border-color:#333;
+	border-color:#B5281E;
 	padding:.5em;
 	
 }

@@ -38,6 +38,19 @@ window.onbeforeunload = function() {
   }
 }
 
+function mtouchquiz_Init() {
+	var quizzes_present = [];
+	var N = 0;
+	jQuery("input:hidden[name=mtouchquiz_id_value]").each(function(){
+    quizzes_present.push($(this).val());
+	N++;
+	});
+
+	var j;
+	for (j = 0; j<= N-1; j++){
+		mtouchquiz_Start_one(parseInt(quizzes_present[j]));
+	}
+}
 
 function mtouchquiz_ShowNav(mtqid) {
 	mtouchquiz_HideCurrent(mtqid);
@@ -369,14 +382,7 @@ function mtouchquiz_Stamp(q,mtqid) {
 	}
 }
 
-function mtouchquiz_Init() {
-	var N=jQuery(".mtouchquiz_javawarning").length;
-	var j;
-	
-	for (j = 1; j<= N; j++){
-		mtouchquiz_Start_one(j);
-	}
-}
+
 
 function mtouchquiz_Start_one(mtqid) {
 	
@@ -446,7 +452,7 @@ function mtouchquiz_SinglePage(mtqid)
 	if (mtouchquiz_show_start[mtqid]) {
 		jQuery("#mtouchquiz_instructions"+"-"+mtqid).show();
 	}
-	jQuery("#mtouchquiz_status"+"-"+mtqid).show();
+	jQuery("#mtouchquiz_QuizStatus"+"-"+mtqid).show();
 	var j;
 	for (j=1;j<=mtouchquiz_total_questions[mtqid];j++){
 		
