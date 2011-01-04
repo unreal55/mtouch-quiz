@@ -169,8 +169,8 @@
 <?php _e('If loading fails, click here to try again','mtouchquiz') ?>
 </span></span></noscript>
 	<?php if ($show_start) {?>
-<span id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions"><?php echo stripslashes($quiz_options->description)?></span> <span id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button' onclick='mtq_start_quiz(<?php echo $mtqid ?>)'>
-<?php _e("Start", 'mtouchquiz'); ?>
+<span id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions"><?php echo stripslashes($quiz_options->description)?></span> <span id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_start_button' onclick='mtq_start_quiz(<?php echo $mtqid ?>)'>
+<span class="mtq_start_text"><?php _e("Start", 'mtouchquiz'); ?></span>
 </span>
 <?php } 
 if ($show_final ) {?>
@@ -298,8 +298,8 @@ if ($show_final ) {?>
                             <?php if ($show_final) {?>
     <div id="mtq_results_request-<?php echo $mtqid ?>" class="mtq_results_request mtq_scroll_item-<?php echo $mtqid;?>">
       <?php _e('Once you are finished, click the button below. Any items you have not completed will be marked incorrect.', 'mtouchquiz'); ?>
-      <span id="mtq_results_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button'  onclick='mtq_get_results(<?php echo $mtqid ?>)'>
-      <?php _e("Get Results", 'mtouchquiz'); ?>
+      <span id="mtq_results_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_results_button'  onclick='mtq_get_results(<?php echo $mtqid ?>)'>
+      <span class="mtq_results_text"><?php _e("Get Results", 'mtouchquiz'); ?></span>
       </span> </div>
       <?php } ?>
  <?php if (!$single_page) {?> </div> <?php } ?>
@@ -319,8 +319,8 @@ if ($show_final ) {?>
   <tr>
     <td class="mtq_listrow_button-td"><div id="mtq_back_button-<?php echo $mtqid ?>" class='prev browse left mtq_back_button mtq_listrow_button' alt="<?php _e("Go to Previous Question",'mtouchquiz'); ?>"></div></td>
     <td><?php if ($show_list) {?>
-      <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_css_button" onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>">
-        <?php _e("List", 'mtouchquiz');?>
+      <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_css_button mtq_list_button" onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>">
+        <span class="mtq_list_text"><?php _e("List", 'mtouchquiz');?></span>
       </div>
       <?php }?></td>
     <td class="mtq_listrow_button-td"><div id="mtq_next_button-<?php echo $mtqid ?>" class='next browse right mtq_next-button mtq_listrow_button' alt='<?php _e("Go to Next Question",'mtouchquiz');?>'></div></td>
@@ -332,8 +332,8 @@ if ($show_final ) {?>
 <?php if ( $show_list ) {?>
 <div id="mtq_navigator-<?php echo $mtqid ?>" class="mtq_navigator"> 
 
-<span id='mtq_return_list_t-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'>
-  <?php _e('Return', 'mtouchquiz');?>
+<span id='mtq_return_list_t-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'>
+  <span class="mtq_return_text"><?php _e('Return', 'mtouchquiz');?></span>
   </span> <span id="mtq_shaded_item_msg-<?php echo $mtqid ?>" class="mtq_shaded_item_msg">
   <?php _e('Shaded items are complete.','mtouchquiz');?>
   </span>
@@ -355,8 +355,8 @@ if ($show_final ) {?>
 								?>
     </tr>
   </table>
-  <span id='mtq_return_list_b-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'>
-  <?php _e('Return', 'mtouchquiz');?>
+  <span id='mtq_return_list_b-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'>
+  <span class="mtq_return_text"><?php _e('Return', 'mtouchquiz');?></span>
   </span></div>
 <?php } ?>
 <div id="mtq_variables" class="mtq_preload"> <?php echo $mtq_all_vars; ?> 
