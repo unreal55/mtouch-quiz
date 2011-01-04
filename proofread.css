@@ -1,66 +1,66 @@
-.mtouchquiz_css-button {
+.mtq_css-button {
 	display:none;
 }
-.mtouchquiz_results_button {
+.mtq_results_button {
 	display:none;
 }
-.mtouchquiz_show_list {
+.mtq_show_list {
 	display:none;
 }
-.mtouchquiz_listrow {
+.mtq_listrow {
 	display:none;
 }
-.mtouchquiz_return_list {
+.mtq_return_list {
 	display:none;
 }
-.mtouchquiz_javawarning {
+.mtq_javawarning {
 	display:none;
 }
-.mtouchquiz_results-request {
+.mtq_results-request {
 	display:none;
 }
-.mtouchquiz_hint {
+.mtq_hint {
 	display:block;
 }
-.mtouchquiz_status-table {
+.mtq_status-table {
 	display:none;
 }
 
-.mtouchquiz_explanation {
+.mtq_explanation {
 	display:block;
 }
-.mtouchquiz_action-button {
+.mtq_action-button {
 	display:none;
 }
-.mtouchquiz_back-button {
+.mtq_back-button {
 	display:none;
 }
 
-.mtouchquiz_next-button {
+.mtq_next-button {
 	display:none;
 }
 
-.mtouchquiz_QuizResults-bubble {
+.mtq_QuizResults-bubble {
 	display:block;
 }
-.mtouchquiz_QuizResults {
+.mtq_QuizResults {
 	display:block;	
 }
 
-.mtouchquiz_wrong-marker {
+.mtq_wrong-marker {
 	display:block;
 }
 
-.mtouchquiz_correct-marker {
+.mtq_correct-marker {
 	display:block;
 }
-.mtouchquiz_letter-button {
+.mtq_letter-button {
 	display:block;
 }
-.mtouchquiz_question {
+.mtq_question {
 	display:block;	
 }
-.mtouchquiz_preload {
+.mtq_preload {
 	display:none;	
 }
 /*These last two are because it looks terrible in default 2010 theme without them*/

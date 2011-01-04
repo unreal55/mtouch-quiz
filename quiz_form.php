@@ -251,7 +251,7 @@ if($action == 'edit') {
         </div>
       </div>
       <p class="submit">
-        <?php wp_nonce_field('mtouchquiz_create_edit_quiz'); ?>
+        <?php wp_nonce_field('mtq_create_edit_quiz'); ?>
         <input type="hidden" name="action" value="<?php echo $action; ?>" />
         <input type="hidden" name="quiz" value="<?php echo $_REQUEST['quiz']; ?>" />
         <input type="hidden" id="user-id" name="user_ID" value="<?php echo (int) $user_ID ?>" />

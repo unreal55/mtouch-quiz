@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.0.4
+Version: 2.1.0
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,19 +32,19 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtouchquiz_VERSION', '2.0.4' );
-define( 'mtouchquiz_URL','http://gmichaelguy.com/quizplugin/');
-define( 'mtouchquiz_DISPLAY_NAME','mTouch Quiz');
-add_action( 'admin_menu', 'mtouchquiz_add_menu_links' );
-function mtouchquiz_add_menu_links() {
+define( 'mtq_VERSION', '2.1.0' );
+define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
+define( 'mtq_DISPLAY_NAME','mTouch Quiz');
+add_action( 'admin_menu', 'mtq_add_menu_links' );
+function mtq_add_menu_links() {
 	global $wp_version, $_registered_pages;
 	$view_level= 'upload_files';
 	//$page = 'edit.php';
 	//if($wp_version >= '2.7') $page = 'tools.php';
 	
-	add_menu_page(__('mTouch Quiz', 'mtouchquiz'), __('mTouch Quiz', 'mtouchquiz'), $view_level, 'mtouchquiz_menu','mtouchquiz_plugin_options' , plugins_url('mtouch-quiz/images/menu-icon.png'));
+	add_menu_page(__('mTouch Quiz', 'mtouchquiz'), __('mTouch Quiz', 'mtouchquiz'), $view_level, 'mtq_menu','mtq_plugin_options' , plugins_url('mtouch-quiz/images/menu-icon.png'));
 
-	add_submenu_page('mtouchquiz_menu', __('Manage mTouch Quizzes', 'mtouchquiz'), __('Manage Quizzes', 'mtouchquiz'), $view_level, 'mtouch-quiz/quiz.php');
+	add_submenu_page('mtq_menu', __('Manage mTouch Quizzes', 'mtouchquiz'), __('Manage Quizzes', 'mtouchquiz'), $view_level, 'mtouch-quiz/quiz.php');
 	$code_pages = array('quiz_form.php','quiz_action.php', 'question_form.php', 'question.php');
 	foreach($code_pages as $code_page) {
 		$hookname = get_plugin_page_hookname("mtouch-quiz/$code_page", '' );
@@ -53,10 +53,10 @@ function mtouchquiz_add_menu_links() {
 }
 
 /// Initialize this plugin. Called by 'init' hook.
-add_action('init', 'mtouchquiz_init');
-function mtouchquiz_init() {
+add_action('init', 'mtq_init');
+function mtq_init() {
 	load_plugin_textdomain('mtouchquiz', 'wp-content/plugins/mtouch-quiz/lang/' );
-	add_action('admin_menu', 'mtouchquiz_menu');
+	add_action('admin_menu', 'mtq_menu');
 }
 
 
@@ -64,7 +64,7 @@ function mtouchquiz_init() {
  * Add Settings link to plugins - code from GD Star Ratings
  */
 
-function add_mtouchquiz_settings_link($links, $file) {
+function add_mtq_settings_link($links, $file) {
 	static $this_plugin;
 	if (!$this_plugin) $this_plugin = plugin_basename(__FILE__);
 
@@ -76,17 +76,17 @@ function add_mtouchquiz_settings_link($links, $file) {
 }
 
 
-add_filter('plugin_action_links', 'add_mtouchquiz_settings_link', 10, 2 );
+add_filter('plugin_action_links', 'add_mtq_settings_link', 10, 2 );
 
-add_action('admin_menu', 'mtouchquiz_options');
-function mtouchquiz_options()
+add_action('admin_menu', 'mtq_options');
+function mtq_options()
 {
 require('wpframe.php');
-function mtouchquiz_menu() {
-    add_options_page(__('mTouch Quiz Plugin Options', 'mtouchquiz'), __('mTouch Quiz Plugin', 'mtouchquiz'), 'upload_files', 'mtouchquiz', 'mtouchquiz_plugin_options');
+function mtq_menu() {
+    add_options_page(__('mTouch Quiz Plugin Options', 'mtouchquiz'), __('mTouch Quiz Plugin', 'mtouchquiz'), 'upload_files', 'mtouchquiz', 'mtq_plugin_options');
   }
   
- function mtouchquiz_plugin_options() {
+ function mtq_plugin_options() {
       //if (!current_user_can('manage_options'))  {
       if (!current_user_can('upload_files'))  {
 	    wp_die( __('You do not have sufficient permissions to access this page.','mtouchquiz') );
@@ -94,7 +94,7 @@ function mtouchquiz_menu() {
 echo '<div class="wrap" id="mtouchquiz-options">
 <h2>mTouch Quiz Plugin Options</h2>
 ';
-    if ($_POST['mtouchquiz_hidden'] == 'Y') {
+    if ($_POST['mtq_hidden'] == 'Y') {
         //process form
         update_option('mtouchquiz_leftdelimit', $_REQUEST['left_delimiter']);
 		update_option('mtouchquiz_rightdelimit', $_REQUEST['right_delimiter']);
@@ -109,7 +109,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 ?>
 
 <form id="mtouchquiz" name="mtouchquiz" action="" method='POST'>
-  <input type="hidden" name="mtouchquiz_hidden" value="Y">
+  <input type="hidden" name="mtq_hidden" value="Y">
   <table class="form-table">
     <tr valign="middle">
       <th scope="row"><?php _e("Left Delimiter", 'mtouchquiz'); ?><br/>
@@ -125,7 +125,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
        <tr valign="middle">
       <th scope="row"><?php _e("Show Alerts if Quiz unfinished?", 'mtouchquiz'); ?><br/>
         <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress.", 'mtouchquiz'); ?></font></th>
-      <td><?php mtouchquiz_showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td>
+      <td><?php mtq_showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td>
     </tr>
   </table>
   <!-- <?php _e('I will email my completed translation file to Michael at gmichaelguy.com so that others can benefit from my work. ;-)', 'mtouchquiz'); ?>-->
@@ -138,9 +138,9 @@ echo '<div class="wrap" id="mtouchquiz-options">
   }
 }
 
-function mtouchquiz_showOption($option, $title) {
+function mtq_showOption($option, $title) {
 ?>
-<input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtouchquiz_'.$option)) print " checked='checked'"; ?> />
+<input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtq_'.$option)) print " checked='checked'"; ?> />
 <label for="<?php echo $option?>"><?php _e($title, 'mtouchquiz') ?></label><br />
 <?php
 }
@@ -149,9 +149,9 @@ function mtouchquiz_showOption($option, $title) {
  * This will scan all the content pages that wordpress outputs for our special code. If the code is found, it will replace the requested quiz.
  */
 
-add_shortcode( 'mtouchquiz', 'mtouchquiz_shortcode' );
+add_shortcode( 'mtouchquiz', 'mtq_shortcode' );
 
-function mtouchquiz_shortcode( $atts ) {
+function mtq_shortcode( $atts ) {
 	extract( shortcode_atts( array(
       'id' => -1,
 	  'questions' => -1,
@@ -163,13 +163,16 @@ function mtouchquiz_shortcode( $atts ) {
 	  'startscreen' => -1,
 	  'finalscreen' => -1,
 	  'showanswers' => -1,
-	  'display' => 1,
+	  //'display' => 1,
 	  'list' => -1,
 	  'proofread' => -1,
 	  'alerts' => -1,
-	  'showtitle' =>-1,
-	  'showlabels' =>-1,
-	  'showstatus' => -1
+	  'title' =>-1,
+	  'labels' =>-1,
+	  'status' => -1,
+	  //'javawarning' => -1,
+	  'offset'=>0,
+	  'singlequestion'=>0
       ), $atts ) );
 	$quiz_id = -1;
 	$input_number_questions = -1;
@@ -229,9 +232,9 @@ function mtouchquiz_shortcode( $atts ) {
 		$input_showanswers = $atts['showanswers'];
 	}
 	
-	if ( isset( $atts['display']) && is_numeric($atts['display']) && $atts['display'] > 1 ){
-		$display_number = $atts['display'];
-	}
+	//if ( isset( $atts['display']) && is_numeric($atts['display']) && $atts['display'] > 1 ){
+	//	$display_number = $atts['display'];
+	//}
 	
 	$show_list = 1;
 	if ( isset( $atts['list']) && $atts['list']== 'off' ){
@@ -249,88 +252,115 @@ function mtouchquiz_shortcode( $atts ) {
 	}
 	
 	$show_title = 1;
-	if ( isset( $atts['showtitle']) && $atts['showtitle']== 'off' ){
+	if ( isset( $atts['title']) && $atts['title']== 'off' ){
 		$show_title = 0;
 	}
 	
 	$show_labels = 1;
-	if ( isset( $atts['showlabels']) && $atts['showlabels']== 'off' ){
+	if ( isset( $atts['labels']) && $atts['labels']== 'off' ){
 		$show_labels = 0;
 	}
 	
 	$show_status = 1;
-	if ( isset( $atts['showstatus']) && $atts['showstatus']== 'off' ){
+	if ( isset( $atts['status']) && $atts['status']== 'off' ){
 		$show_status = 0;
 	}
 	
+	//$show_javawarning = 1;
+	//if ( isset( $atts['javawarning']) && $atts['javawarning']== 'off' ){
+	//	$show_javawarning = 0;
+	//}
+	$offset_start = 1;
+	if( isset( $atts['offset']) && is_numeric($atts['offset']) && $atts['offset'] > 1 ){
+		$offset_start = $atts['offset'];
+	}
+	
+	//$single_question = -1;
+	if( isset( $atts['singlequestion']) && is_numeric($atts['singlequestion']) && $atts['singlequestion'] >= 1 ){
+		$offset_start = $atts['singlequestion'];
+		$input_randomq='off';
+		$input_singlepage='on';
+		$input_number_questions =1;
+	}
 	
 
 	$contents = '';
+	$mtq_mobile_device = mtq_is_mobile_device();
 	if(is_numeric($quiz_id)) { // Basic validiation - more on the show_quiz.php file.
 		ob_start();
 		include(ABSPATH . 'wp-content/plugins/mtouch-quiz/show_quiz.php');
 		$contents = ob_get_contents();
 		ob_end_clean();
 		
-		
 	}
-	
+	$switch_my_latex =false;
+	if ( $mtq_mobile_device && $switch_my_latex ) {
+		$contents=switch_latex($contents);	
+	}
 	return do_shortcode($contents);
 }
 
-    /*
-     * register with hook 'wp_print_styles'
-     */
-    //add_action('wp_print_styles', 'add_mtouchquiz_stylesheet');
-
-    /*
-     * Enqueue style-file, if it exists.
-     */
-
-//    function add_mtouchquiz_stylesheet() {
-//        $mtouchquiz_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.css';
-//        $mtouchquiz_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.css';
-//        if ( file_exists($mtouchquiz_StyleFile) ) {
-//            wp_register_style('mtouchquiz_StyleSheets', $mtouchquiz_StyleUrl);
-//            wp_enqueue_style( 'mtouchquiz_StyleSheets');
-//        }
-//    }
-
 function switch_latex($stuff){
 	$replace_these	= array('\(', '\)','\[', '\]');
-	$with_these		= array("[latex size=1]",'[/latex]',"[latex size=2]",'[/latex]');
+	$with_these		= array("[latex]",'[/latex]',"[latex]",'[/latex]');
 	return str_replace($replace_these, $with_these, $stuff);
 }
 
-
-add_action('init', 'mtouchquiz_enqueue_stuff');
-function mtouchquiz_enqueue_stuff() {
-	$mtouchquiz_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.css';
-    $mtouchquiz_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.css';
-	 if ( file_exists($mtouchquiz_StyleFile)) {
-		wp_register_style('mtouchquiz_StyleSheets', $mtouchquiz_StyleUrl);
-		wp_enqueue_style( 'mtouchquiz_StyleSheets');
-     }
-	 
-	$mtouchquiz_proofread_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/proofread.css';
-    $mtouchquiz_proofread_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/proofread.css';
-	 
-	 if ( file_exists($mtouchquiz_proofread_StyleFile) && $proofread ) {
-		wp_register_style('mtouchquiz_proofread_StyleSheets', $mtouchquiz_proofread_StyleUrl);
-		wp_enqueue_style( 'mtouchquiz_proofread_StyleSheets');
-     }
-	 
-//	if (! $proofread ) {
-	wp_enqueue_script("jquery");
-	wp_enqueue_script('mtouchquiz_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtouchquiz_VERSION,false);
-//	}
-//	wp_head();	
+function mtq_is_mobile_device(){
+		$return_value=false;
+	
+		$client_useragent=$_SERVER['HTTP_USER_AGENT'];
+		//echo $client_useragent;
+		
+		$simple_mobile_detect= Array("iPhone","iPod","android","webOS");
+		//echo $client_useragent;
+		foreach ($simple_mobile_detect as $mobile_agent) {
+			if (strpos($client_useragent,$mobile_agent)) {
+				//echo "is mobile detected ".$mobile_agent	;
+				$return_value=true;
+			}
+			else {
+				//echo "not mobile".$mobile_agent;
+			}	
+		}
+		
+		return $return_value;	
 }
 
-add_filter('plugin_row_meta', 'mtouchquiz_filter_plugin_links', 10, 2);
+
+add_action('init', 'mtq_enqueue_stuff');
+function mtq_enqueue_stuff() {
+	$mtq_use_min=true;
+	//$mtq_use_min=false;
+	if ( $mtq_use_min ) {
+		$mtq_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.min.css';
+		$mtq_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.min.css';
+	} else {
+		$mtq_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.css';
+		$mtq_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.css';
+	}
+	 if ( file_exists($mtq_StyleFile)) {
+		wp_register_style('mtq_StyleSheets', $mtq_StyleUrl);
+		wp_enqueue_style( 'mtq_StyleSheets');
+     }
+	 
+	$mtq_proofread_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/proofread.min.css';
+    $mtq_proofread_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/proofread.min.css';
+	 
+	wp_enqueue_script("jquery");
+	if ( $mtq_use_min ) {
+		wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.min.js',array('jquery'),mtq_VERSION,false);
+	} else {
+		wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtq_VERSION,false);
+	}
+	wp_enqueue_script('scrollable', WP_CONTENT_URL . '/plugins/mtouch-quiz/scrollable.min.js',array('jquery'),'1.2.5',false);
+	//wp_enqueue_script('jquerytools_full','http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js','1.2.5',false);
+}
+
+add_filter('plugin_row_meta', 'mtq_filter_plugin_links', 10, 2);
 
 // Add FAQ and contact information
-function mtouchquiz_filter_plugin_links($links, $file)
+function mtq_filter_plugin_links($links, $file)
 {
 	if ( $file == plugin_basename(__FILE__) )
 	{
@@ -342,15 +372,15 @@ function mtouchquiz_filter_plugin_links($links, $file)
 
  
 
-add_action('activate_mtouch-quiz/mtouchquiz.php','mtouchquiz_activate');
-function mtouchquiz_activate() {
+add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
+function mtq_activate() {
 	global $wpdb;
 	
 	$database_version = '1.0';
 	$installed_db = get_option('mtouchquiz_db_version');
 	// Initial options.
-	 //add_option('mtouchquiz_show_answers', 1);
-	 //add_option('mtouchquiz_single_page', 0);
+	 //add_option('mtq_show_answers', 1);
+	 //add_option('mtq_single_page', 0);
 	 add_option('mtouchquiz_leftdelimit', "\\\(\\\displaystyle{");
      add_option('mtouchquiz_rightdelimit', "}\\\)");
 	 add_option('mtouchquiz_showalerts', "1");

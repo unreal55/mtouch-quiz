@@ -1,7 +1,7 @@
 <?php
 require('../../../wp-blog-header.php');
 auth_redirect();
-if($wp_version >= '2.6.5') check_admin_referer('mtouchquiz_create_edit_quiz');
+if($wp_version >= '2.6.5') check_admin_referer('mtq_create_edit_quiz');
 require('wpframe.php');
 
 // I could have put this in the quiz_form.php - but the redirect will not work.

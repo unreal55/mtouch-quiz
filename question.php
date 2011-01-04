@@ -83,6 +83,7 @@ $quiz_name = stripslashes($wpdb->get_var($wpdb->prepare("SELECT name FROM {$wpdb
 ?>
 
 <div class="wrap">
+<?php if (! $quiz_name) { $quiz_name =__("Quiz ID Number",'mtouchquiz')." ".$_REQUEST['quiz']; } ?>
   <h2><?php echo _e("Manage Questions in ", 'mtouchquiz') . $quiz_name; ?></h2>
   <?php
 wp_enqueue_script( 'listman' );
