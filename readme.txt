@@ -25,7 +25,7 @@ Best way to install is via the "Add New Plugins" feature inside your WordPress d
 == Frequently Asked Questions ==
 
 = Where can I find the most up to date version of the FAQ? =
-You can find the most up to date version at the [ homepage of mTouch Quiz Plugin](http://gmichaelguy.com/mtouchquiz "mTouch Quiz Plugin Site")
+You can find the most up to date version at the [ homepage of mTouch Quiz Plugin](http://gmichaelguy.com/quizplugin "mTouch Quiz Plugin Site")
 
 = Can a question have more than one correct answer? =
 Yes. Each question can have as many correct answers as you like.
