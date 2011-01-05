@@ -102,6 +102,8 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Eliminated the shortcode option to display more than 1 question at a time. The choice is now 1 question or all questions. This is due to new scrolling option limitations. If enough people cry about this maybe I'll find a way to make this work too, but I doubt it.
 * Cleaned up some of the HTML. More changes in the future.
 * Added Estonian Translation. (Thanks to Martin Orn)
+* Known Existing Bugs Exterminated
+* New Bugs Populated
 
 = 2.0.4 =
 * Single character changed. What a difference a byte makes?
@@ -158,6 +160,18 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+* Improved UI. Questions now scroll instead of just flashing from question to question (thanks to jQuery Tools Scrollable scripts)
+* Added minified CSS and javascript files
+* Changed namespace for CSS to a shorter name. If you made customized CSS changes, you will need to update your CSS after install.
+* Added new shortcode options to eliminate certain parts of the quiz that are displayed. See the shortcode reference page on the plugin website for full details.
+* Added new shortcode options to control question selection.
+* Eliminated the shortcode option to display more than 1 question at a time. The choice is now 1 question or all questions. This is due to new scrolling option limitations. If enough people cry about this maybe I'll find a way to make this work too, but I doubt it.
+* Cleaned up some of the HTML. More changes in the future.
+* Added Estonian Translation. (Thanks to Martin Orn)
+* Known Existing Bugs Exterminated
+* New Bugs Populated
 
 = 2.0.4 =
 * Single character changed. What a difference a byte makes?
