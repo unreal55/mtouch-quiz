@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.1.0
+Version: 2.1.1
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '2.1.0' );
+define( 'mtq_VERSION', '2.1.1' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
@@ -140,7 +140,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
 
 function mtq_showOption($option, $title) {
 ?>
-<input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtq_'.$option)) print " checked='checked'"; ?> />
+<input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtouchquiz_'.$option)) print " checked='checked'"; ?> />
 <label for="<?php echo $option?>"><?php _e($title, 'mtouchquiz') ?></label><br />
 <?php
 }
@@ -189,47 +189,57 @@ function mtq_shortcode( $atts ) {
 	$proofread = 0;
 	$input_alerts = -1;
 	
+	$thetypedcode= "mtouchquiz";
 	if  (! isset($atts['id'])){
-		$quiz_id = $atts[0];
+		$quiz_id = $atts[0];	
 	} else {
 		$quiz_id = $atts['id'];
 	}
-
+	$thetypedcode.= " id=" . $quiz_id;
 	
 	if ( isset( $atts['questions']) ){
 		$input_number_questions = $atts['questions'];
+		$thetypedcode.= " questions=".$input_number_questions;
 	}
 	
 	if ( isset( $atts['randomq']) ){
 		$input_randomq = $atts['randomq'];
+		$thetypedcode.= " randomq=".$input_randomq;
 	}
 	
 	if ( isset( $atts['randoma']) ){
 		$input_randoma = $atts['randoma'];
+		$thetypedcode.= " randoma=".$input_randoma;
 	}
 	
 	if ( isset( $atts['singlepage']) ){
 		$input_singlepage = $atts['singlepage'];
+		$thetypedcode.= " singlepage=".$input_singlepage;
 	}
 	
 	if ( isset( $atts['multiplechances']) ){
 		$input_multiplechances = $atts['multiplechances'];
+		$thetypedcode.= " multiplechances=".$input_multiplechances;
 	}
 	
 	if ( isset( $atts['hints']) ){
 		$input_hints = $atts['hints'];
+		$thetypedcode.= " hints=".$input_hints;
 	}
 	
 	if ( isset( $atts['startscreen']) ){
 		$input_startscreen = $atts['startscreen'];
+		$thetypedcode.= " startscreen=".$input_startscreen;
 	}
 	
 	if ( isset( $atts['finalscreen']) ){
 		$input_finalscreen = $atts['finalscreen'];
+		$thetypedcode.= " finalscreen=".$input_finalscreen;
 	}
 	
 	if ( isset( $atts['showanswers']) ){
 		$input_showanswers = $atts['showanswers'];
+		$thetypedcode.= " showanswers=".$input_showanswers;
 	}
 	
 	//if ( isset( $atts['display']) && is_numeric($atts['display']) && $atts['display'] > 1 ){
@@ -239,40 +249,44 @@ function mtq_shortcode( $atts ) {
 	$show_list = 1;
 	if ( isset( $atts['list']) && $atts['list']== 'off' ){
 		$show_list = 0;
+		$thetypedcode.= " list=".$show_list;
 	}
 	
 	if ( isset( $atts['alerts']) && $atts['alerts']== 'on' ){
 		$input_alerts = 1;
+		$thetypedcode.= " alerts=".$input_alerts;
 	} elseif (isset( $atts['alerts']) && $atts['alerts']== 'off' ){
 		$input_alerts = 0;
+		$thetypedcode.= " alerts=".$input_alerts;
 	}
 	
 	if ( isset( $atts['proofread'])  && $atts['proofread']== 'on' ){
 		$proofread = 1;
+		$thetypedcode.= " proofread=".$proofread;
 	}
 	
 	$show_title = 1;
 	if ( isset( $atts['title']) && $atts['title']== 'off' ){
 		$show_title = 0;
+		$thetypedcode.= " title=".$show_title;
 	}
 	
 	$show_labels = 1;
 	if ( isset( $atts['labels']) && $atts['labels']== 'off' ){
 		$show_labels = 0;
+		$thetypedcode.= " labels=".$show_labels;
 	}
 	
 	$show_status = 1;
 	if ( isset( $atts['status']) && $atts['status']== 'off' ){
 		$show_status = 0;
+		$thetypedcode.= " status=".$show_status;
 	}
 	
-	//$show_javawarning = 1;
-	//if ( isset( $atts['javawarning']) && $atts['javawarning']== 'off' ){
-	//	$show_javawarning = 0;
-	//}
 	$offset_start = 1;
 	if( isset( $atts['offset']) && is_numeric($atts['offset']) && $atts['offset'] > 1 ){
 		$offset_start = $atts['offset'];
+		$thetypedcode.= " offset=".$offset_start;
 	}
 	
 	//$single_question = -1;
@@ -283,7 +297,7 @@ function mtq_shortcode( $atts ) {
 		$input_number_questions =1;
 	}
 	
-
+	$thetypedcode.= "";
 	$contents = '';
 	$mtq_mobile_device = mtq_is_mobile_device();
 	if(is_numeric($quiz_id)) { // Basic validiation - more on the show_quiz.php file.
@@ -340,7 +354,7 @@ function mtq_enqueue_stuff() {
 		$mtq_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.css';
 	}
 	 if ( file_exists($mtq_StyleFile)) {
-		wp_register_style('mtq_StyleSheets', $mtq_StyleUrl);
+		wp_register_style('mtq_StyleSheets', $mtq_StyleUrl,false,mtq_VERSION);
 		wp_enqueue_style( 'mtq_StyleSheets');
      }
 	 

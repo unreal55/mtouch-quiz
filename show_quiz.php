@@ -29,6 +29,7 @@
 		$random_answers = stripslashes($quiz_options->random_answers);
 		$mtq_show_alerts = get_option('mtouchquiz_showalerts');
 		
+		
 		if ( $input_randomq != -1 ) {
 			if ( $input_randomq == 'on' ){
 				$random_questions = 1;
@@ -60,6 +61,8 @@
 				$single_page = 0;
 			}
 		}
+		
+		
 		if ( $input_hints!= -1 ) {
 			if ( $input_hints == 'on' ){
 				$show_hints = 1;
@@ -67,6 +70,9 @@
 				$show_hints = 0;
 			}
 		}
+		
+		
+		
 		if ( $input_startscreen!= -1 ) {
 			if ( $input_startscreen == 'on' ){
 				$show_start = 1;
@@ -74,6 +80,7 @@
 				$show_start = 0;
 			}
 		}
+		
 
 		if ( $input_showanswers != -1 ) {
 			if ( $input_showanswers == 'never' ){
@@ -85,6 +92,8 @@
 			}
 		}
 		
+		
+		
 		if ( $input_finalscreen != -1 ) {
 			if ( $input_finalscreen == 'on' ){
 				$show_final = 1;
@@ -93,6 +102,8 @@
 			}
 		}
 		
+		
+		
 		if ( $input_multiplechances!= -1 ) {
 			if ( $input_multiplechances == 'on' ){
 				$multiple_chances = 1;
@@ -100,6 +111,8 @@
 				$multiple_chances = 0;
 			}
 		}
+		
+		
 		if( $multiple_chances == 1  ) {
 			$answer_display = 2; // You cannot allow multiple chances and not show the answers immediately.
 		}
@@ -110,30 +123,59 @@
 		
 		if ( $proofread ) {
 			$random_answers = 0;
-			$random_questions =0;
+			$random_questions = 0;
 			$input_number_questions = 0;
 			$single_page = 1;
+			$offset_start = 1;
 		}
+
+
 		
 		$mtq_all_vars = "";
 		
-
-		
 		if ($input_number_questions <= 0){ // If the user didn't specify the number of questions, then get them all
-			$input_number_questions = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id"); 
+			$input_number_questions = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id")); 
 		}
 		
-		$first_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id",0,$offset_start-1);  		
+		$foff=$offset_start-1;
+		$first_id_value = $wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID LIMIT 0, 1"));//,0,$offset_start-1);  
+		//$first_id_value = 1;
+		$theexecutedcode = '';
+		$theexecutedcode.= "mtouchquiz id=".$quiz_id;
+		$theexecutedcode.=" randomq=".$random_questions;
+		$theexecutedcode.=" alerts=".$mtq_show_alerts;
+		$theexecutedcode.=" singlepage=".$single_page;
+		$theexecutedcode.=" hints=".$show_hints;
+		$theexecutedcode.=" startscreen=".$show_start;
+		$theexecutedcode.=" finalscreen=".$show_final;
+		$theexecutedcode.=" multiplechances=".$multiple_chances;
+		$theexecutedcode.=" showanswers=".$answer_display;
+		$theexecutedcode.=" randomq=".$random_questions;
+		$theexecutedcode.=" randoma=".$random_answers;
+		$theexecutedcode.= " offset=".$offset_start;
+		$theexecutedcode.= " status=".$show_status;
+		$theexecutedcode.= " labels=".$show_labels;
+		$theexecutedcode.= " title=".$show_title;
+		$theexecutedcode.= " proofread=".$proofread;
+		$theexecutedcode.= " list=".$show_list;
+		$theexecutedcode.= " singlepage=".$single_page;
+		$theexecutedcode.= " offset=".$offset_start;
+		$theexecutedcode.= " questions=".$input_number_questions;
+		$theexecutedcode.= " firstid=".$first_id_value;
+		$theexecutedcode.="";	
+		
+				
 		
 		// Thanks http://ranawd.wordpress.com/2009/03/25/select-random-value-from-mysql-database-table/
 		
-		if( $random_questions == 1 && $input_number_questions > 0 ) { // Select input number of questions randomly
+		if( $random_questions == 1 && $input_number_questions > 0 ) { // Select questions randomly
 			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d AND ID>=$first_id_value ORDER BY RAND() LIMIT 0, $input_number_questions", $quiz_id));
-		} elseif( $random_questions != 1 && $input_number_questions > 0 ) { // Select some questions in order
+		} elseif( $random_questions != 1 && $input_number_questions > 0 ) { // Select questions in order
 			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d AND ID>=$first_id_value ORDER BY ID LIMIT 0, $input_number_questions", $quiz_id)); // Not random
 		} else { // select all questions in order
 			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d ORDER BY ID", $quiz_id)); // Not random, get everything, fallback else
 		}
+
 
 		if($all_question) 
 		{
@@ -156,6 +198,9 @@
 				?>
 <span id="mtq_quiz_area-<?php echo $mtqid ?>" class="mtq_quiz_area"> 
 <!--Quiz generated using <?php echo mtq_DISPLAY_NAME ?> Version <?php echo mtq_VERSION ?> by G. Michael Guy (<?php echo mtq_URL ?>)-->
+
+<!-- Shortcode entered <?php echo $thetypedcode; ?> -->
+<!-- Shortcode interpreted <?php echo $theexecutedcode;?> -->
 <form action="" method="post" class="quiz-form" id="quiz-<?php echo $quiz_id?>">
 
 <?php $mtq_all_vars.="<input type='hidden' id='mtq_id-{$mtqid}' name='mtq_id_value' value='{$mtqid}' />"; ?>
@@ -201,9 +246,7 @@ if ($show_final ) {?>
 								
 							$question_count = 1;
 								foreach ($all_question as $ques) {
-									//echo "<div>";
 									echo   "<div class='mtq_question mtq_scroll_item-$mtqid' id='mtq_question-$question_count-$mtqid'>"; 
-										//echo   "<span id='mtq_question-item'>"; //Not needed
 											echo   "<table class='mtq_question_heading_table'><tr><td>";
 												if ( $show_labels ) { 
 												echo   "<span class='mtq_question_label '>";
@@ -243,10 +286,10 @@ if ($show_final ) {?>
 															echo   "<span id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_letter_button mtq_letter_button_{$image_number}' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' alt='".$q_label .", Choice ".$answer_count."'>";															
 														echo   "</span>";
 														if ($ans->correct) {
-																echo   "<span id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", mtouchquiz)."'></span>"; 
+																echo   "<span id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", 'mtouchquiz')."'></span>"; 
 																$num_correct++;
 														} else {
-																echo   "<span id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_wrong_marker' alt='".__("Wrong", mtouchquiz)."'></span>"; 
+																echo   "<span id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_wrong_marker' alt='".__("Wrong", 'mtouchquiz')."'></span>"; 
 														}
 														
 														echo   "</td>";
