@@ -36,8 +36,10 @@ if($action == 'edit') {
         <h3 class="hndle"> <span>
           <?php _e('Quiz Name', 'mtouchquiz') ?>
           </span> </h3>
+          <p align="right"> <a class="button toggleVisualtwo"><?php _e('Visual', 'mtouchquiz') ?></a> <a class="button toggleHTMLtwo"><?php _e('HTML', 'mtouchquiz') ?></a> </p>
         <div class="inside">
-          <input type='text' name='name' id="title" value='<?php echo stripslashes($dquiz->name); ?>' />
+        <textarea rows='1' cols='50' style='width:100%' class='description' name='name' id='title'><?php echo stripslashes($dquiz->name); ?></textarea>
+          <!--input type='text' name='name' id="title" value='<?php //echo stripslashes($dquiz->name); ?>' /-->
         </div>
       </div>
       <div class="postbox">
@@ -96,6 +98,26 @@ if($action == 'edit') {
       <?php
 			// This is somewhat of a workaround to add some editing now.
 	?>
+    
+       <script type="text/javascript">
+			jQuery(document).ready(function($) {
+
+			var idtwo = 'title';
+
+			$('a.toggleVisualtwo').click(
+				function() {
+					tinyMCE.execCommand('mceAddControl', false, idtwo);
+				}
+			);
+
+			$('a.toggleHTMLtwo').click(
+				function() {
+					tinyMCE.execCommand('mceRemoveControl', false, idtwo);
+				}
+			);
+
+		});
+		</script>
       <script type="text/javascript">
 			jQuery(document).ready(function($) {
 
@@ -115,6 +137,7 @@ if($action == 'edit') {
 
 		});
 		</script>
+
       <div class="postbox">
         <h3 class="hndle"> <span>
           <?php _e('%%RATING%% Customization for Final Screen above', 'mtouchquiz') ?>
