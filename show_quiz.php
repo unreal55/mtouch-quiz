@@ -402,7 +402,7 @@ if ($show_final ) {?>
   <span class="mtq_return_text"><?php _e('Return', 'mtouchquiz');?></span>
   </span></div>
 <?php } ?>
-<div id="mtq_variables" class="mtq_preload"> <?php echo $mtq_all_vars; ?> 
+<div id="mtq_variables" class="mtq_preload" style="display:none"> <?php echo $mtq_all_vars; ?> 
 <span id="mtq_have_completed_string" class="mtq_preload"><?php _e('You have completed', 'mtouchquiz') ?></span> 
 <span id="mtq_questions_string" class="mtq_preload"><?php _e('questions', 'mtouchquiz') ?></span>
 <span id="mtq_question_string" class="mtq_preload"><?php _e('question', 'mtouchquiz') ?></span> 

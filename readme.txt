@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 2.8
 Tested up to: 3.0.4
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -94,16 +94,19 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 == Changelog ==
 
 = 2.1.2 =
-* Fixed a bug with apostrophe's in titles causing it to truncate
-* Added Italian language translation (Thanks Stefano)
+* Fixed a bug where new quizzes aren't created. Oops!
 * Known Existing Bugs Exterminated
 * New Bugs Populated
+
+= 2.1.2 =
+* Fixed a bug with apostrophe's in titles causing it to truncate
+* Added Italian language translation (Thanks Stefano)
+
 
 = 2.1.1 =
 * Fixed a bug which could result in some questions not being displayed if you had previously deleted questions
 * Added version number to style files to prevent old cached versions from being displayed instead of new ones
-* Known Existing Bugs Exterminated
-* New Bugs Populated
+
 
 = 2.1.0 =
 * Improved UI. Questions now scroll instead of just flashing from question to question (thanks to jQuery Tools Scrollable scripts)
@@ -114,8 +117,6 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Eliminated the shortcode option to display more than 1 question at a time. The choice is now 1 question or all questions. This is due to new scrolling option limitations. If enough people cry about this maybe I'll find a way to make this work too, but I doubt it.
 * Cleaned up some of the HTML. More changes in the future.
 * Added Estonian Translation. (Thanks to Martin Orn)
-* Known Existing Bugs Exterminated
-* New Bugs Populated
 
 = 2.0.4 =
 * Single character changed. What a difference a byte makes?
@@ -174,16 +175,19 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 == Upgrade Notice ==
 
 = 2.1.2 =
-* Fixed a bug with apostrophe's in titles causing it to truncate
-* Added Italian language translation (Thanks Stefano)
+* Fixed a bug where new quizzes aren't created. Oops!
 * Known Existing Bugs Exterminated
 * New Bugs Populated
+
+= 2.1.2 =
+* Fixed a bug with apostrophe's in titles causing it to truncate
+* Added Italian language translation (Thanks Stefano)
+
 
 = 2.1.1 =
 * Fixed a bug which could result in some questions not being displayed if you had previously deleted questions
 * Added version number to style files to prevent old cached versions from being displayed instead of new ones
-* Known Existing Bugs Exterminated
-* New Bugs Populated
+
 
 = 2.1.0 =
 * Improved UI. Questions now scroll instead of just flashing from question to question (thanks to jQuery Tools Scrollable scripts)
@@ -194,8 +198,6 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Eliminated the shortcode option to display more than 1 question at a time. The choice is now 1 question or all questions. This is due to new scrolling option limitations. If enough people cry about this maybe I'll find a way to make this work too, but I doubt it.
 * Cleaned up some of the HTML. More changes in the future.
 * Added Estonian Translation. (Thanks to Martin Orn)
-* Known Existing Bugs Exterminated
-* New Bugs Populated
 
 = 2.0.4 =
 * Single character changed. What a difference a byte makes?
@@ -207,7 +209,7 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Another bug with multiple quizzes
 
 = 2.0.1 =
-* Fixed bug with missing CSS and java. Please update to this version.
+* Fixed bug with missing CSS and java
 
 = 2.0.0 =
 * Same as 1.1. Changed due to typo in version number preventing upgrades.
@@ -223,6 +225,7 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * French translation provided kindly by Jean-Michel Meyer. Many thanks!
 * Bug fixes
 * New bugs added
+
 
 = 1.06 =
 * Bugfix issue where questions would be stamped correct/wrong even though answers were supposed to be hidden until the end.
