@@ -46,7 +46,7 @@ if(isset($_REQUEST['submit'])) {
 	
 	
 	} else {
-		$wpdb->get_results($wpdb->prepare("INSERT INTO {$wpdb->prefix}mtouchquiz_quiz(name=%s,description,final_screen, answer_mode, single_page, show_hints, show_start, show_final, multiple_chances, random_questions, random_answers, added_on) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())", $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['content'], $answer_mode, $single_page, $show_hints, $show_start, $show_final,$multiple_chances, $random_questions, $random_answers));
+		$wpdb->get_results($wpdb->prepare("INSERT INTO {$wpdb->prefix}mtouchquiz_quiz(name,description,final_screen, answer_mode, single_page, show_hints, show_start, show_final, multiple_chances, random_questions, random_answers, added_on) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())", $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['content'], $answer_mode, $single_page, $show_hints, $show_start, $show_final,$multiple_chances, $random_questions, $random_answers));
 		$quiz_id = $wpdb->insert_id;
 		$counter = 1;
 		foreach ($_REQUEST['score_rating'] as $score_rating) {
