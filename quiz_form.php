@@ -38,7 +38,7 @@ if($action == 'edit') {
           </span> </h3>
           <p align="right"> <a class="button toggleVisualtwo"><?php _e('Visual', 'mtouchquiz') ?></a> <a class="button toggleHTMLtwo"><?php _e('HTML', 'mtouchquiz') ?></a> </p>
         <div class="inside">
-        <textarea rows='1' cols='50' style='width:100%' class='description' name='name' id='title'><?php echo stripslashes($dquiz->name); ?></textarea>
+        <textarea rows='1' cols='50' style='width:100%' name='name' id='title'><?php echo stripslashes($dquiz->name); ?></textarea>
           <!--input type='text' name='name' id="title" value='<?php //echo stripslashes($dquiz->name); ?>' /-->
         </div>
       </div>
