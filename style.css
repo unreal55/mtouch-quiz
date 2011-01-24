@@ -1,8 +1,8 @@
 /*
-	root element for the scrollable.
+	root element for the mtqscrollable.
 	when scrolling occurs this element stays still.
 */
-.scrollable {
+.mtqscrollable {
 	/* required settings */
 	position:relative;
 	overflow:hidden;
@@ -10,12 +10,12 @@
 }
 
 /*
-	root element for scrollable items. Must be absolutely positioned
-	and it should have a extremely large width to accomodate scrollable items.
+	root element for mtqscrollable items. Must be absolutely positioned
+	and it should have a extremely large width to accomodate mtqscrollable items.
 	it's enough that you set the width and height for the root element and
 	not for this element.
 */
-.scrollable .items {
+.mtqscrollable .items {
 	/* this cannot be too large */
 	width:20000em;
 	position:absolute;
@@ -28,7 +28,7 @@
 
 
 /* active item */
-.scrollable .active {
+.mtqscrollable .active {
 	position:relative;
 	cursor:default;
 }

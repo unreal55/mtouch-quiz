@@ -1,10 +1,10 @@
 /**
  * @license 
- * jQuery Tools 1.2.5 Scrollable - New wave UI design
+ * jQuery Tools 1.2.5 mtqscrollable - New wave UI design
  * 
  * NO COPYRIGHTS OR LICENSES. DO WHAT YOU LIKE.
  * 
- * http://flowplayer.org/tools/scrollable.html
+ * http://flowplayer.org/tools/mtqscrollable.html
  *
  * Since: March 2008
  * Date:    Wed Sep 22 06:02:10 2010 +0000 
@@ -14,7 +14,7 @@
 	// static constructs
 	$.tools = $.tools || {version: '1.2.5'};
 	
-	$.tools.scrollable = {
+	$.tools.mtqscrollable = {
 		
 		conf: {	
 			activeClass: 'active',
@@ -52,7 +52,7 @@
 	var current;		
 	
 	// constructor
-	function Scrollable(root, conf) {   
+	function mtqscrollable(root, conf) {   
 		
 		// current instance
 		var self = this, 
@@ -283,7 +283,7 @@
 		
 		if (conf.keyboard)  {
 			
-			$(document).bind("keydown.scrollable", function(evt) {
+			$(document).bind("keydown.mtqscrollable", function(evt) {
 
 				// skip certain conditions
 				if (!conf.keyboard || evt.altKey || evt.ctrlKey || $(evt.target).is(":input")) { return; }
@@ -314,17 +314,17 @@
 
 		
 	// jQuery plugin implementation
-	$.fn.scrollable = function(conf) { 
+	$.fn.mtqscrollable = function(conf) { 
 			
 		// already constructed --> return API
-		var el = this.data("scrollable");
+		var el = this.data("mtqscrollable");
 		if (el) { return el; }		 
 
-		conf = $.extend({}, $.tools.scrollable.conf, conf); 
+		conf = $.extend({}, $.tools.mtqscrollable.conf, conf); 
 		
 		this.each(function() {			
-			el = new Scrollable($(this), conf);
-			$(this).data("scrollable", el);	
+			el = new mtqscrollable($(this), conf);
+			$(this).data("mtqscrollable", el);	
 		});
 		
 		return conf.api ? el: this; 

@@ -233,9 +233,9 @@ if ($show_final ) {?>
 		//}
 		?>
 
-<!-- root element for scrollable --> 
+<!-- root element for mtqscrollable --> 
 <span id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
-<div <?php if (!$single_page) { echo "class='scrollable' id='mtq_scroll_container-{$mtqid}'";}?>> 
+<div <?php if (!$single_page) { echo "class='mtqscrollable' id='mtq_scroll_container-{$mtqid}'";}?>> 
   
   
   <?php if (!$single_page) {?>
@@ -346,10 +346,10 @@ if ($show_final ) {?>
       </span> </div>
       <?php } ?>
  <?php if (!$single_page) {?> </div> <?php } ?>
-  <!--End of scrollable items--> 
+  <!--End of mtqscrollable items--> 
   
 </div>
-<!--End of Scrollable-->
+<!--End of mtqscrollable-->
 <!--mtq_status-->
 <?php if ($show_status) { ?>
 <span id="mtq_quiz_status-<?php echo $mtqid ?>" class="mtq_quiz_status">

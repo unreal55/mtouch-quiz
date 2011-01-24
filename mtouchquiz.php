@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.1.4
+Version: 2.1.5
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '2.1.4' );
+define( 'mtq_VERSION', '2.1.5' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
@@ -104,6 +104,13 @@ echo '<div class="wrap" id="mtouchquiz-options">
 		{
 			update_option('mtouchquiz_showalerts', 0);
 		}
+		
+		//if(!empty($_POST['skiploadjquerytools'])) {
+		//	update_option('mtouchquiz_skiploadjquerytools', $_POST['skiploadjquerytools']);
+		//} else 
+		//{
+		//	update_option('mtouchquiz_skiploadjquerytools', 0);
+		//}
 		wpframe_message(__('Options updated', 'mtouchquiz'));   
     }
 ?>
@@ -127,6 +134,12 @@ echo '<div class="wrap" id="mtouchquiz-options">
         <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress.", 'mtouchquiz'); ?></font></th>
       <td><?php mtq_showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td>
     </tr>
+      <tr valign="middle">
+      <th scope="row"><?php _e("Check this box to skip loading jQuery Tools", 'mtouchquiz'); ?><br/></th>
+      <td><?php mtq_showOption('skiploadjquerytools', __('If you check this box, this script will NOT load jQuery Tools (needed for scrolling).', 'mtouchquiz')); ?></td>
+    </tr>
+    
+    mtouchquiz_
   </table>
   <!-- <?php _e('I will email my completed translation file to Michael at gmichaelguy.com so that others can benefit from my work. ;-)', 'mtouchquiz'); ?>-->
   <p class="submit">
@@ -367,7 +380,9 @@ function mtq_enqueue_stuff() {
 	} else {
 		wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtq_VERSION,false);
 	}
-	wp_enqueue_script('scrollable', WP_CONTENT_URL . '/plugins/mtouch-quiz/scrollable.min.js',array('jquery'),'1.2.5',false);
+	//if (! get_option('mtouchquiz_skiploadjquerytools'))  {
+		wp_enqueue_script('mtq_scrollable', WP_CONTENT_URL . '/plugins/mtouch-quiz/scrollable.min.js',array('jquery'),mtq_VERSION,false);
+	//}
 	//wp_enqueue_script('jquerytools_full','http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js','1.2.5',false);
 }
 
@@ -390,7 +405,7 @@ add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
 function mtq_activate() {
 	global $wpdb;
 	
-	$database_version = '1.0';
+	$database_version = '1.3';
 	$installed_db = get_option('mtouchquiz_db_version');
 	// Initial options.
 	 //add_option('mtq_show_answers', 1);
@@ -398,6 +413,7 @@ function mtq_activate() {
 	 add_option('mtouchquiz_leftdelimit', "\\\(\\\displaystyle{");
      add_option('mtouchquiz_rightdelimit', "}\\\)");
 	 add_option('mtouchquiz_showalerts', "1");
+	 //add_option('mtouchquiz_skiploadjquerytools', "0");
 	
 	if($database_version != $installed_db) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
