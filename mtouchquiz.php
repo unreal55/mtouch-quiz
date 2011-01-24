@@ -134,12 +134,6 @@ echo '<div class="wrap" id="mtouchquiz-options">
         <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress.", 'mtouchquiz'); ?></font></th>
       <td><?php mtq_showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td>
     </tr>
-      <tr valign="middle">
-      <th scope="row"><?php _e("Check this box to skip loading jQuery Tools", 'mtouchquiz'); ?><br/></th>
-      <td><?php mtq_showOption('skiploadjquerytools', __('If you check this box, this script will NOT load jQuery Tools (needed for scrolling).', 'mtouchquiz')); ?></td>
-    </tr>
-    
-    mtouchquiz_
   </table>
   <!-- <?php _e('I will email my completed translation file to Michael at gmichaelguy.com so that others can benefit from my work. ;-)', 'mtouchquiz'); ?>-->
   <p class="submit">
