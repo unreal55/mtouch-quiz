@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 2.8
 Tested up to: 3.0.4
-Stable tag: 2.1.5
+Stable tag: 2.1.6
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -93,10 +93,14 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 
 == Changelog ==
 
-= 2.1.5 =
-* Fixes a conflict for users already using the scroll libraries in this plugin.
+= 2.1.6 =
+* Added a closing form tag. Should fix inability to comment on pages continaing quizzes. (Thanks yuriki)
+* Updated some CSS and javascript in the proofread mode.
 * Known Existing Bugs Exterminated
 * New Bugs Populated
+
+= 2.1.5 =
+* Fixes a conflict for users already using the scroll libraries in this plugin.
 
 = 2.1.4 =
 * Again, Fixed a bug where new quizzes aren't created. Double Oops!
@@ -180,10 +184,14 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 
 == Upgrade Notice ==
 
-= 2.1.5 =
-* Fixes a conflict for users already using the scroll libraries in this plugin.
+= 2.1.6 =
+* Added a closing form tag. Should fix inability to comment on pages continaing quizzes. (Thanks yuriki)
+* Updated some CSS and javascript in the proofread mode.
 * Known Existing Bugs Exterminated
 * New Bugs Populated
+
+= 2.1.5 =
+* Fixes a conflict for users already using the scroll libraries in this plugin.
 
 = 2.1.4 =
 * Again, Fixed a bug where new quizzes aren't created. Double Oops!

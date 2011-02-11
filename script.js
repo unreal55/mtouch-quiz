@@ -210,18 +210,18 @@ function mtq_start_one(mtqid) {
 	
 
 	
-	if (! mtq_proofread ) {
+	//if (! mtq_proofread ) {
 //		if (mtq_single_page[mtqid]){
 //			mtq_single_page(mtqid);	
 		//} else 
-		if (! mtq_show_start[mtqid]){
+		if (! mtq_show_start[mtqid] || mtq_proofread ){
 			mtq_start_quiz(mtqid);	
 		} else
 		{
 			jQuery("#mtq_instructions-"+mtqid).css('display','block');
 			jQuery("#mtq_start_button-"+mtqid).css('display','block');	
 		}
-	}
+	//}
 	
 	
 }

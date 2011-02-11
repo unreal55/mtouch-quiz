@@ -1,72 +1,65 @@
-.mtq_css-button {
-	display:none;
+.mtq_css_button {
+	display:none !important;
 }
 .mtq_results_button {
-	display:none;
+	display:none !important;
 }
 .mtq_show_list {
-	display:none;
+	display:none !important;
 }
 .mtq_listrow {
-	display:none;
+	display:none !important;
 }
 .mtq_return_list {
-	display:none;
+	display:none !important;
 }
 .mtq_javawarning {
-	display:none;
+	display:none !important;
 }
-.mtq_results-request {
-	display:none;
+.mtq_results_request {
+	display:none !important;
 }
 .mtq_hint {
-	display:block;
+	display:block !important;
 }
-.mtq_status-table {
-	display:none;
+.mtq_status_table {
+	display:none !important;
 }
 
 .mtq_explanation {
-	display:block;
+	display:block !important;
 }
-.mtq_action-button {
-	display:none;
+.mtq_action_button {
+	display:none !important;
 }
-.mtq_back-button {
-	display:none;
-}
-
-.mtq_next-button {
-	display:none;
+.mtq_back_button {
+	display:none !important;
 }
 
-.mtq_QuizResults-bubble {
-	display:block;
-}
-.mtq_QuizResults {
-	display:block;	
+.mtq_next_button {
+	display:none !important;
 }
 
-.mtq_wrong-marker {
-	display:block;
+.mtq_quiz_results_bubble {
+	display:block !important;
 }
 
-.mtq_correct-marker {
-	display:block;
+.mtq_wrong_marker {
+	display:block !important;
 }
-.mtq_letter-button {
-	display:block;
+
+.mtq_correct_marker {
+	display:block !important;
+}
+.mtq_letter_button {
+	display:block !important;
 }
 .mtq_question {
-	display:block;	
+	display:block !important;	
 }
 .mtq_preload {
-	display:none;	
+	display:none !important;	
 }
-/*These last two are because it looks terrible in default 2010 theme without them*/
-/*#content table {
-	border:none;
+.mtq_start_button {
+	display:block !important;	
 }
-#content tr td {
-	border:none;
-}*/

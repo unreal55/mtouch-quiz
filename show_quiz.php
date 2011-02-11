@@ -465,6 +465,7 @@ if ($show_final ) {?>
 							?>
 </div>
 <!--Variables Div--> 
+</form>
 </span> <!--Quiz area span--> 
 
 
