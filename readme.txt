@@ -3,8 +3,8 @@ Contributors: gmichaelguy
 Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 2.8
-Tested up to: 3.0.4
-Stable tag: 2.1.7
+Tested up to: 3.1
+Stable tag: 2.1.8
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -93,6 +93,13 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 
 == Changelog ==
 
+= 2.1.8 =
+* Bumped to show compatibility with 3.1
+* Corrected an error with the offset and singlequestion shortcode option
+* Changed name of a few functions to try to prevent conflicts with other instances of jquery tools
+* Known Existing Bugs Exterminated
+* New Bugs Populated
+
 = 2.1.7 =
 * Changed one span to a div which was creating an extra close span
 * Added Polish Translation thanks to spopielares
@@ -102,8 +109,6 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 = 2.1.6 =
 * Added a closing form tag. Should fix inability to comment on pages continaing quizzes. (Thanks yuriki)
 * Updated some CSS and javascript in the proofread mode.
-* Known Existing Bugs Exterminated
-* New Bugs Populated
 
 = 2.1.5 =
 * Fixes a conflict for users already using the scroll libraries in this plugin.
@@ -189,6 +194,13 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.1.8 =
+* Bumped to show compatibility with 3.1
+* Corrected an error with the offset and singlequestion shortcode option
+* Changed name of a few functions to try to prevent conflicts with other instances of jquery tools
+* Known Existing Bugs Exterminated
+* New Bugs Populated
 
 = 2.1.7 =
 * Changed one span to a div which was creating an extra close span

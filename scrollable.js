@@ -96,7 +96,7 @@
 			},
 							
 			move: function(offset, time) {
-				return self.seekTo(index + offset, time);
+				return self.mtq_seekTo(index + offset, time);
 			},
 			
 			next: function(time) {
@@ -108,11 +108,11 @@
 			},
 			
 			begin: function(time) {
-				return self.seekTo(0, time);	
+				return self.mtq_seekTo(0, time);	
 			},
 			
 			end: function(time) {
-				return self.seekTo(self.getSize() -1, time);	
+				return self.mtq_seekTo(self.getSize() -1, time);	
 			},	
 			
 			focus: function() {
@@ -136,7 +136,7 @@
 			
 			
 			/* all seeking functions depend on this */		
-			seekTo: function(i, time, fn) {	
+			mtq_seekTo: function(i, time, fn) {	
 				
 				// ensure numeric index
 				if (!i.jquery) { i *= 1; }
@@ -156,8 +156,8 @@
 					item = self.getItems().eq(i);
 				}  
 				
-				// onBeforeSeek
-				var e = $.Event("onBeforeSeek"); 
+				// mtq_onBeforeSeek
+				var e = $.Event("mtq_onBeforeSeek"); 
 				if (!fn) {
 					fire.trigger(e, [i, time]);				
 					if (e.isDefaultPrevented() || !item.length) { return self; }			
@@ -170,7 +170,7 @@
 				if (time === undefined) { time = conf.speed; }   
 				
 				itemWrap.animate(props, time, conf.easing, fn || function() { 
-					fire.trigger("onSeek", [i]);		
+					fire.trigger("mtq_onSeek", [i]);		
 				});	 
 				
 				return self; 
@@ -179,7 +179,7 @@
 		});
 				
 		// callbacks	
-		$.each(['onBeforeSeek', 'onSeek', 'onAddItem'], function(i, name) {
+		$.each(['mtq_onBeforeSeek', 'mtq_onSeek', 'onAddItem'], function(i, name) {
 				
 			// configuration
 			if ($.isFunction(conf[name])) { 
@@ -200,7 +200,7 @@
 				
 			cloned1.add(cloned2).addClass(conf.clonedClass);
 			
-			self.onBeforeSeek(function(e, i, time) {
+			self.mtq_onBeforeSeek(function(e, i, time) {
 
 				
 				if (e.isDefaultPrevented()) { return; }
@@ -210,13 +210,13 @@
 					2. seek to correct position with 0 speed
 				*/
 				if (i == -1) {
-					self.seekTo(cloned1, time, function()  {
+					self.mtq_seekTo(cloned1, time, function()  {
 						self.end(0);		
 					});          
 					return e.preventDefault();
 					
 				} else if (i == self.getSize()) {
-					self.seekTo(cloned2, time, function()  {
+					self.mtq_seekTo(cloned2, time, function()  {
 						self.begin(0);		
 					});	
 				}
@@ -224,7 +224,7 @@
 			});
 			
 			// seek over the cloned item
-			self.seekTo(0, 0, function() {});
+			self.mtq_seekTo(0, 0, function() {});
 		}
 		
 		// next/prev buttons
@@ -233,7 +233,7 @@
 		
 		if (!conf.circular && self.getSize() > 1) {
 			
-			self.onBeforeSeek(function(e, i) {
+			self.mtq_onBeforeSeek(function(e, i) {
 				setTimeout(function() {
 					if (!e.isDefaultPrevented()) {
 						prev.toggleClass(conf.disabledClass, i <= 0);
@@ -308,7 +308,7 @@
 		
 		// initial index
 		if (conf.initialIndex) {
-			self.seekTo(conf.initialIndex, 0, function() {});
+			self.mtq_seekTo(conf.initialIndex, 0, function() {});
 		}
 	} 
 

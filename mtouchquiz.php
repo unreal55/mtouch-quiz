@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.1.7
+Version: 2.1.8
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '2.1.7' );
+define( 'mtq_VERSION', '2.1.8' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
@@ -292,7 +292,7 @@ function mtq_shortcode( $atts ) {
 	$offset_start = 1;
 	if( isset( $atts['offset']) && is_numeric($atts['offset']) && $atts['offset'] > 1 ){
 		$offset_start = $atts['offset'];
-		$thetypedcode.= " offset=".$offset_start;
+		
 	}
 	
 	//$single_question = -1;
@@ -300,8 +300,10 @@ function mtq_shortcode( $atts ) {
 		$offset_start = $atts['singlequestion'];
 		$input_randomq='off';
 		$input_singlepage='on';
-		$input_number_questions =1;
+		$input_number_questions = 1;
+		$thetypedcode.= " singlequestion=".$offset_start;
 	}
+	$thetypedcode.= " offset=".$offset_start;
 	
 	$thetypedcode.= "";
 	$contents = '';

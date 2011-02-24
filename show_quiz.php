@@ -137,12 +137,12 @@
 			$input_number_questions = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id")); 
 		}
 		
-		$foff=$offset_start-1;
-		$first_id_value = $wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID LIMIT 0, 1"));//,0,$offset_start-1);  
+		$foff = $offset_start - 1;
+		//$first_id_value = $wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID LIMIT 0, 1"));//,0,$offset_start-1);
+		$first_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$foff);  
 		//$first_id_value = 1;
 		$theexecutedcode = '';
 		$theexecutedcode.= "mtouchquiz id=".$quiz_id;
-		$theexecutedcode.=" randomq=".$random_questions;
 		$theexecutedcode.=" alerts=".$mtq_show_alerts;
 		$theexecutedcode.=" singlepage=".$single_page;
 		$theexecutedcode.=" hints=".$show_hints;
