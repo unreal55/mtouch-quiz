@@ -7,7 +7,7 @@ if($_REQUEST['action'] == 'edit') $action = 'edit';
 
 $dquiz = array();
 if($action == 'edit') {
-	$dquiz = $wpdb->get_row($wpdb->prepare("SELECT name,description,final_screen,answer_mode,single_page,show_hints,show_start, show_final,multiple_chances,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz']));
+	$dquiz = $wpdb->get_row($wpdb->prepare("SELECT name,description,final_screen,answer_mode,single_page,show_hints,show_start, show_final,multiple_chances,random_questions,random_answers,form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz']));
 	$final_screen = stripslashes($dquiz->final_screen);
 	$answer_display = stripslashes($dquiz->answer_mode);
 	$single_page = stripslashes($dquiz->single_page);
@@ -17,6 +17,7 @@ if($action == 'edit') {
 	$multiple_chances = stripslashes($dquiz->multiple_chances);
 	$random_questions = stripslashes($dquiz->random_questions);
 	$random_answers = stripslashes($dquiz->random_answers);
+	$form_code = stripslashes($dquiz->form_code);
 } else {
 	$final_screen = __("<p>Congratulations - you have completed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%</p>", 'mtouchquiz');
 }
@@ -51,6 +52,43 @@ if($action == 'edit') {
           <textarea name='description' rows='5' cols='50' style='width:100%' id='description' class='description'><?php echo stripslashes($dquiz->description); ?></textarea>
         </div>
       </div>
+            <div class="postbox">
+        <h3 class="hndle"> 
+           <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> </h3>
+        <div class="inside">
+         <?php 
+	$mtq_gf_addon_active = in_array( 'mtouch-quiz-gf/mtouchquiz-gf.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+	$mtq_gf_active = in_array( 'gravityforms/gravityforms.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
+	
+	if ( ! $mtq_gf_active ) {
+		if ( ! function_exists( 'is_plugin_active_for_network' ) )
+		   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		   // Makes sure the plugin is defined before trying to use it
+		
+		if ( is_plugin_active_for_network( 'gravityforms/gravityforms.php' ) ) {
+		   // Plugin is activated
+				$mtq_gf_active = true;
+		  }
+	} 
+	
+	if ( ! $mtq_gf_addon_active ) { ?>
+          <h4> <?php _e('To allow users to submit their results to you via email, you need the ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/gf/" title="mTouch Quiz Gravity Forms Addon" target="_blank">mTouch Quiz Gravity Forms Addon</a> plugin. '; ?></h4>
+      <span style="display:none"><textarea name="gravity" rows="1" cols="100"><?php echo $form_code ?></textarea></span>
+      <?php } else {
+		   ?>
+           <h4> <?php _e('<a href="http://gmichaelguy.com/quizplugin/gf/">For detailed instructions on how to configure this option visit the plugin homepage.</a>', 'mtouchquiz'); 
+		   
+		   if ( ! $mtq_gf_active ) {
+			echo "<br> <br>**".__('WARNING','mtouchquiz')."** <br />";
+			echo '<a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms Plugin </a>'. __('is not active. You must activate it before this feature will work.','mtouchquiz');   
+			   
+		   }
+		   
+		   ?></h4>
+		  <textarea name="gravity" rows="1" cols="100"><?php echo $form_code ?></textarea>
+	<?php  } ?>
+      
+      </div></div>
       <div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea postbox">
         <h3 class="hndle"> <span>
           <?php _e('Final Screen', 'mtouchquiz') ?>
@@ -64,6 +102,18 @@ if($action == 'edit') {
             <tr>
               <th style="text-align:left;"><?php _e('Variable', 'mtouchquiz') ?></th>
               <th style="text-align:left;"><?php _e('Value', 'mtouchquiz') ?></th>
+            </tr>
+                        <tr>
+            <td>%%FORM%%</td>
+              <td>
+              <?php if ( $mtq_gf_addon_active ) { ?>
+              <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms</a><?php _e(' location for emailing results. (You may put this variable in the ratings below for conditional email option)', 'mtouchquiz') ?>
+              <?php } else {
+              _e('To allow users to submit their results to you via email, you need the ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/gf/" title="mTouch Quiz Gravity Forms Addon" target="_blank">mTouch Quiz Gravity Forms Addon</a> plugin. ';
+              
+              } ?>
+              
+              </td>
             </tr>
             <tr>
               <td>%%SCORE%%</td>
@@ -102,7 +152,7 @@ if($action == 'edit') {
        <script type="text/javascript">
 			jQuery(document).ready(function($) {
 
-			var idtwo = 'title';
+			var idtwo = 'name';
 
 			$('a.toggleVisualtwo').click(
 				function() {

@@ -22,7 +22,8 @@ var mtq_exit_warning = [] ;
 var mtq_quiz_started = [] ;
 var mtq_display_number = [] ;
 var mtq_first_show = [];
-var mtq_view_anchor = []
+var mtq_view_anchor = [];
+var mtq_gf_present = [];
 
 
 //Not dependent on mtqid
@@ -208,12 +209,6 @@ function mtq_start_one(mtqid) {
 		mtq_extra_page[mtqid] = 1;
 	}
 	
-
-	
-	//if (! mtq_proofread ) {
-//		if (mtq_single_page[mtqid]){
-//			mtq_single_page(mtqid);	
-		//} else 
 		if (! mtq_show_start[mtqid] || mtq_proofread ){
 			mtq_start_quiz(mtqid);	
 		} else
@@ -221,8 +216,11 @@ function mtq_start_one(mtqid) {
 			jQuery("#mtq_instructions-"+mtqid).css('display','block');
 			jQuery("#mtq_start_button-"+mtqid).css('display','block');	
 		}
+		
+		mtq_gf_present[mtqid]=parseInt(jQuery("#mtq_gf_present-"+mtqid).val());
+	//if (mtq_gf_present[mtqid] ) {
+	//	mtq_gf_start_one(mtqid);	
 	//}
-	
 	
 }
 
@@ -273,6 +271,13 @@ function mtq_results_message(mtqid){
 	ResultsMsg=ResultsMsg.replace("%%TOTAL%%",mtq_total_questions[mtqid]);
 	ResultsMsg=ResultsMsg.replace("%%WRONG_ANSWERS%%",mtq_questions_wrong[mtqid]);
 	ResultsMsg=ResultsMsg.replace("%%PERCENTAGE%%",mtq_score_percent[mtqid].toFixed(0)+"%");
+	if ( mtq_gf_present[mtqid] ) {
+		ResultsMsg=ResultsMsg.replace("%%FORM%%",jQuery("#mtq_contact_form-"+mtqid).html());
+		jQuery("#mtq_contact_form-"+mtqid).remove();
+	} else {
+		ResultsMsg=ResultsMsg.replace("%%FORM%%","*** mTouch Quiz Forms Addon Not Properly Configured ***");
+		jQuery("#mtq_contact_form-"+mtqid).remove();
+	}
 	ResultsMsg=ResultsMsg;
 	jQuery("#mtq_quiz_results-"+mtqid).html(ResultsMsg);
 }
@@ -280,6 +285,8 @@ function mtq_results_message(mtqid){
 function mtq_get_results(mtqid){
 	
 	mtq_quiz_finished[mtqid] = true;
+	mtq_email_results = '';
+	mtq_email_results_itemized = '';
 	//Hide a bunch of stuff
 	//jQuery("#mtq_next_button-"+mtqid).css('display','none');
 	//jQuery("#mtq_back_button-"+mtqid).css('display','none');
@@ -302,9 +309,14 @@ function mtq_get_results(mtqid){
 		var N = parseInt(number_answers);
 		var attempted_this_one = 0;
 		var a=1;
+		
+		mtq_email_results_itemized += "Question "+q+" Score: ";
+		
+		answer_order = [];
 		for (a = 1; a<= N; a++){
 			var ever_selected = parseInt(jQuery("#mtq_was_ever_selected-"+q+"-"+a+"-"+mtqid).val());
 			var end_selected = parseInt(jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid).val());
+			answer_order[ever_selected] = a;
 			if ( ( ever_selected || end_selected ) && mtq_answer_display[mtqid] == 2 )	{
 				jQuery("#mtq_row-"+q+"-"+a+"-"+mtqid).addClass("mtq_selected_row");
 				attempted_this_one = 1;
@@ -318,11 +330,29 @@ function mtq_get_results(mtqid){
 				jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).css('display','none');
 			}
 		}
+		
 		mtq_problems_attempted[mtqid]+=attempted_this_one;
+		
+		answer_print = '';
+		if ( attempted_this_one ) {
+			
+			for ( a = 1; a<answer_order.length; a++ ) {
+				answer_print=answer_print+","+answer_order[a];
+			}
+			answer_print = answer_print.substr(1);
+			
+		} else {
+			answer_print = "Not Attempted";
+		}
+		
+		
 		
 		jQuery("#mtq_question-" + q+"-"+mtqid).css('display','block');
 		var points_possible = parseInt(jQuery("#mtq_is_worth-"+q+"-"+mtqid).val());
 		var points_awarded = parseInt(jQuery("#mtq_points_awarded-"+q+"-"+mtqid).val());
+		mtq_email_results_itemized+=points_awarded+"/"+points_possible+"\n";
+		mtq_email_results_itemized+="Answer(s) Chosen: "+answer_print+"\n";
+		mtq_email_results_itemized+="----------\n";
 		if ( points_awarded == points_possible ) {
 			mtq_questions_correct[mtqid]++;
 		}
@@ -348,25 +378,39 @@ function mtq_get_results(mtqid){
 	jQuery("#mtq_questions_correct-"+mtqid).val(mtq_questions_correct[mtqid]);
 	mtq_questions_wrong[mtqid] = mtq_problems_attempted[mtqid] - mtq_questions_correct[mtqid];
 	jQuery("#mtq_questions_wrong-"+mtqid).val(mtq_questions_wrong[mtqid]);
-	
+
 	mtq_questions_not_attempted[mtqid]=mtq_total_questions[mtqid] -mtq_problems_attempted[mtqid];
 	jQuery("#mtq_questions_not_attempted-"+mtqid).val(mtq_questions_not_attempted[mtqid]);
+	
 
 	
-	
 	mtq_results_message(mtqid);
+	
 	jQuery("#mtq_quiz_results_bubble-"+mtqid).css('display','block');
 	jQuery("#mtq_quiz_results_highlight-"+mtqid).css('display','block');
 	if ( mtq_show_final[mtqid] ) {
 		jQuery("#mtq_quiz_results-"+mtqid).css('display','block');
 	}
-	
-	//jQuery("mtq_email-button").css('display','block');
 	mtq_set_height(mtqid,1);
 	var whereTo = jQuery("#mtq_quiz_results_bubble-"+mtqid).offset().top;
     jQuery('html,body').animate({scrollTop: whereTo},'fast');
 	
+	mtq_email_results+="Final Score on Quiz: "+mtq_current_score[mtqid] +"/"+mtq_max_score[mtqid] + " (" + mtq_score_percent[mtqid].toFixed(0) + "%)" + "\n";
+	mtq_email_results+="Attempted Questions Correct: "+mtq_questions_correct[mtqid] + "\n";
+	mtq_email_results+="Attempted Questions Wrong: "+mtq_questions_wrong[mtqid] + "\n";
+	mtq_email_results+="Questions Not Attempted: "+mtq_questions_not_attempted[mtqid] + "\n";
+	mtq_email_results+="Total Questions on Quiz: "+mtq_total_questions[mtqid] + "\n";
+	
+	mtq_email_results+="\n**********\n"+"Question Details\n"+"---------\n";
+	mtq_email_results+=mtq_email_results_itemized;
+	if ( mtq_gf_present[mtqid] ) {
+		quiz_title=jQuery('span.mtq_quiztitle').find('h2').html() + " Quiz Results\nDate: "+Date();
+		mtq_email_results=quiz_title+"\n"+mtq_email_results;
+		mtq_gf_fill_form(mtq_email_results,mtqid);	
+	}
 }
+
+
 
 function mtq_show_all_markers(mtqid){
 	var q;

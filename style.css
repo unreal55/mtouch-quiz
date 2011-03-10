@@ -2,6 +2,7 @@
 	root element for the mtqscrollable.
 	when scrolling occurs this element stays still.
 */
+
 .mtqscrollable {
 	/* required settings */
 	position:relative;
@@ -132,6 +133,11 @@
 .mtq_question_list_container tr {
 	padding-top:2em;
 }
+
+.mtq_question_text {
+	padding-right: 2em;
+	width:90%;
+}
 .mtq_question_list_container tr td {
 	border:thin solid !important;
 	border-color:#66F !important;
@@ -210,7 +216,8 @@
 	padding:0 0 .1em !important;
 }
 .mtq_answer_table {
-	width:100%;
+	width:85%;
+	padding-right: 1em;
 	margin-top:1em;
 	text-align:left;
 	border-collapse:collapse;
@@ -467,4 +474,8 @@
 }
 .mtq_marker, #mtq_quiz_results, .mtq_preload, .mtq_navigator {
 	display:none;
+}
+
+#content .mtq {
+	display:none;	
 }

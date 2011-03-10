@@ -4,7 +4,7 @@
  * A simple framework to make WP Plugin development easier.
  */
 
-$GLOBALS['wpframe_home'] = get_option('home');
+$GLOBALS['wpframe_home'] = get_option('siteurl');
 $GLOBALS['wpframe_wordpress'] = $GLOBALS['wpframe_siteurl'] = get_option('siteurl');
 if(!$GLOBALS['wpframe_wordpress']) $GLOBALS['wpframe_wordpress'] = $GLOBALS['wpframe_home'];
 $GLOBALS['wpframe_plugin_name'] = basename(dirname(__FILE__));

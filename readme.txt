@@ -2,9 +2,9 @@
 Contributors: gmichaelguy
 Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
-Requires at least: 2.8
+Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 2.1.8
+Stable tag: 2.2.0
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -93,12 +93,14 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 
 == Changelog ==
 
+= 2.2.0 =
+* Added support for emailed quiz results.
+* Bugfixes
+
 = 2.1.8 =
 * Bumped to show compatibility with 3.1
 * Corrected an error with the offset and singlequestion shortcode option
 * Changed name of a few functions to try to prevent conflicts with other instances of jquery tools
-* Known Existing Bugs Exterminated
-* New Bugs Populated
 
 = 2.1.7 =
 * Changed one span to a div which was creating an extra close span
@@ -194,6 +196,10 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.2.0 =
+* Added support for emailed quiz results.
+* Bugfixes
 
 = 2.1.8 =
 * Bumped to show compatibility with 3.1
