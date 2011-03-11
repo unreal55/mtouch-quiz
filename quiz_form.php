@@ -56,31 +56,30 @@ if($action == 'edit') {
         <h3 class="hndle"> 
            <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> </h3>
         <div class="inside">
-         <?php 
-	$mtq_gf_addon_active = in_array( 'mtouch-quiz-gf/mtouchquiz-gf.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
-	$mtq_gf_active = in_array( 'gravityforms/gravityforms.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
-	
-	if ( ! $mtq_gf_active ) {
-		if ( ! function_exists( 'is_plugin_active_for_network' ) )
+         <?php
+		 
+		 if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
 		   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-		   // Makes sure the plugin is defined before trying to use it
-		
-		if ( is_plugin_active_for_network( 'gravityforms/gravityforms.php' ) ) {
-		   // Plugin is activated
-				$mtq_gf_active = true;
-		  }
-	} 
+		   
+		 // Makes sure the plugin is defined before trying to use it
+		$mtq_gf_addon_active = is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
+		$mtq_gf_active = is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
+		$mtq_gf_addon_exists = file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');
+		$mtq_gf_exists = file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');
+	
+		$mtq_gf_allgood = $mtq_gf_addon_active & $mtq_gf_active & $mtq_gf_addon_exists & $mtq_gf_exists;
+
 	
 	if ( ! $mtq_gf_addon_active ) { ?>
           <h4> <?php _e('To allow users to submit their results to you via email, you need the ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/gf/" title="mTouch Quiz Gravity Forms Addon" target="_blank">mTouch Quiz Gravity Forms Addon</a> plugin. '; ?></h4>
       <span style="display:none"><textarea name="gravity" rows="1" cols="100"><?php echo $form_code ?></textarea></span>
       <?php } else {
 		   ?>
-           <h4> <?php _e('<a href="http://gmichaelguy.com/quizplugin/gf/">For detailed instructions on how to configure this option visit the plugin homepage.</a>', 'mtouchquiz'); 
+           <h4> <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">For detailed instructions on how to configure this option visit the plugin homepage.</a>', 'mtouchquiz'); 
 		   
 		   if ( ! $mtq_gf_active ) {
 			echo "<br> <br>**".__('WARNING','mtouchquiz')."** <br />";
-			echo '<a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms Plugin </a>'. __('is not active. You must activate it before this feature will work.','mtouchquiz');   
+			echo '<a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms Plugin </a>'. __('is not active. You must install and/or activate it before this feature will work.','mtouchquiz');   
 			   
 		   }
 		   

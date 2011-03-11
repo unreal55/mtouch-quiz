@@ -119,19 +119,27 @@ echo '<div class="wrap" id="mtouchquiz-options">
   <input type="hidden" name="mtq_hidden" value="Y">
   <table class="form-table">
     <tr valign="middle">
-      <th scope="row"><?php _e("Left Delimiter", 'mtouchquiz'); ?><br/>
-        <font size="-2"><?php _e("Left delimiter used when box is checked next to answer input.", 'mtouchquiz'); ?></font></th>
+      <th scope="row"><?php _e("Left Delimiter", 'mtouchquiz'); ?>
+        <br/>
+        <font size="-2">
+        <?php _e("Left delimiter used when box is checked next to answer input.", 'mtouchquiz'); ?>
+        </font></th>
       <td><input type="textbox" name="left_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_leftdelimit')) ?>"/></td>
     </tr>
     <tr valign="middle">
-      <th scope="row"><?php _e("Right Delimiter", 'mtouchquiz'); ?><br/>
-        <font size="-2"><?php _e("Right delimiter used when box is checked next to answer input.", 'mtouchquiz'); ?></font></th>
+      <th scope="row"><?php _e("Right Delimiter", 'mtouchquiz'); ?>
+        <br/>
+        <font size="-2">
+        <?php _e("Right delimiter used when box is checked next to answer input.", 'mtouchquiz'); ?>
+        </font></th>
       <td><input type="textbox" name="right_delimiter" value="<?php echo stripslashes(get_option('mtouchquiz_rightdelimit')) ?>" /></td>
     </tr>
-    
-       <tr valign="middle">
-      <th scope="row"><?php _e("Show Alerts if Quiz unfinished?", 'mtouchquiz'); ?><br/>
-        <font size="-2"><?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress.", 'mtouchquiz'); ?></font></th>
+    <tr valign="middle">
+      <th scope="row"><?php _e("Show Alerts if Quiz unfinished?", 'mtouchquiz'); ?>
+        <br/>
+        <font size="-2">
+        <?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress.", 'mtouchquiz'); ?>
+        </font></th>
       <td><?php mtq_showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td>
   </table>
   <!-- <?php _e('I will email my completed translation file to Michael at gmichaelguy.com so that others can benefit from my work. ;-)', 'mtouchquiz'); ?>-->
@@ -139,6 +147,61 @@ echo '<div class="wrap" id="mtouchquiz-options">
     <input type="submit" class="button-primary" value="<?php _e('Save Changes', 'mtouchquiz') ?>" />
   </p>
 </form>
+<br />
+<?php 	
+		if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+		   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		   
+		   // Makes sure the plugin is defined before trying to use it
+	$mtq_gf_addon_active = is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
+	$mtq_gf_active = is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
+	$mtq_gf_addon_exists = file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');
+	$mtq_gf_exists = file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');
+	$mtq_gf_allgood = $mtq_gf_addon_active & $mtq_gf_active & $mtq_gf_addon_exists & $mtq_gf_exists;
+	?>
+<div style="width:600px">
+  <h2> <a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon Status</a></h2>
+  Add the ability to email quiz results to you and/or the quiz taker!
+  <table class='mtq_question_heading_table'>
+    <tr>
+      <td><h3><a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Get Gravity Forms">Gravity Forms</a> plugin status</h3></td>
+    </tr>
+  </table>
+  <table class='mtq_answer_table'>
+    <colgroup>
+    <col class='mtq_oce_first'/>
+    </colgroup>
+    <tr> </tr>
+    <tr>
+      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_exists){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
+      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Get Gravity Forms">Gravity Forms</a> Installed</td>
+    </tr>
+    <tr>
+      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_active){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
+      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Get Gravity Forms">Gravity Forms</a> Activated </td>
+    </tr>
+  </table>
+  <table class='mtq_question_heading_table'>
+    <tr>
+      <td><h3><a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon</a> plugin status</h3></td>
+    </tr>
+  </table>
+  <table class='mtq_answer_table'>
+    <colgroup>
+    <col class='mtq_oce_first'/>
+    </colgroup>
+    <tr> </tr>
+    <tr>
+      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_addon_exists){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
+      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon</a> Installed</td>
+    </tr>
+    <tr>
+      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_addon_active){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
+      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon</a> Activated </td>
+    </tr>
+  </table>
+  
+  </div>
 </div>
 <?php
   }
@@ -147,7 +210,10 @@ echo '<div class="wrap" id="mtouchquiz-options">
 function mtq_showOption($option, $title) {
 ?>
 <input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtouchquiz_'.$option)) print " checked='checked'"; ?> />
-<label for="<?php echo $option?>"><?php _e($title, 'mtouchquiz') ?></label><br />
+<label for="<?php echo $option?>">
+  <?php _e($title, 'mtouchquiz') ?>
+</label>
+<br />
 <?php
 }
 
@@ -406,7 +472,7 @@ add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
 function mtq_activate() {
 	global $wpdb;
 	
-	$database_version = '1.4';
+	$database_version = '1.6';
 	$installed_db = get_option('mtouchquiz_db_version');
 	// Initial options.
 	 //add_option('mtq_show_answers', 1);
@@ -451,7 +517,7 @@ function mtq_activate() {
 					name varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 					description mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 					final_screen mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-					form_code mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+					form_code mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL default '',
 					added_on datetime NOT NULL,
 					show_hints enum('0','1') NOT NULL default '1',
 					show_start enum('0','1') NOT NULL default '1',
@@ -467,4 +533,5 @@ function mtq_activate() {
 		update_option( "mtouchquiz_db_version", $database_version );
 	}
 }
+
 

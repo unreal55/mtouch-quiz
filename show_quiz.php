@@ -31,27 +31,23 @@
 		
 		$form_code = stripslashes($quiz_options->form_code);
 		
+		
+		
+		if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+		   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		   
+		 // Makes sure the plugin is defined before trying to use it
+		$mtq_gf_addon_active = is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
+		$mtq_gf_active = is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
+		$mtq_gf_addon_exists = file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');
+		$mtq_gf_exists = file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');
+	
+		$mtq_gf_allgood = $mtq_gf_addon_active & $mtq_gf_active & $mtq_gf_addon_exists & $mtq_gf_exists;
+		
+
+
+		
 		$mtq_gf_present = 0;
-		
-		$mtq_gf_addon_active = in_array( 'mtouch-quiz-gf/mtouchquiz-gf.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
-
-		$mtq_gf_active = in_array( 'gravityforms/gravityforms.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) );
-		
-		if ( ! $mtq_gf_active ) {
-			if ( ! function_exists( 'is_plugin_active_for_network' ) )
-			   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-			   // Makes sure the plugin is defined before trying to use it
-			
-			if ( is_plugin_active_for_network( 'gravityforms/gravityforms.php' ) ) {
-			   // Plugin is activated
-			$mtq_gf_active = true;
-			   }
-		}
-
-
-
-		
-		
 		if ( strlen($form_code) && $mtq_gf_addon_active && $mtq_gf_active ) {
 			$mtq_gf_present = 1;
 			if ( substr($form_code,0,1) != "[" ) {
