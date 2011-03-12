@@ -7,7 +7,7 @@ if($_REQUEST['action'] == 'edit') $action = 'edit';
 
 $dquiz = array();
 if($action == 'edit') {
-	$dquiz = $wpdb->get_row($wpdb->prepare("SELECT name,description,final_screen,answer_mode,single_page,show_hints,show_start, show_final,multiple_chances,random_questions,random_answers,form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz']));
+	$dquiz = $wpdb->get_row($wpdb->prepare("SELECT name,description,final_screen,answer_mode,single_page,show_hints,show_start, show_final,multiple_chances,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz']));
 	$final_screen = stripslashes($dquiz->final_screen);
 	$answer_display = stripslashes($dquiz->answer_mode);
 	$single_page = stripslashes($dquiz->single_page);
@@ -17,7 +17,8 @@ if($action == 'edit') {
 	$multiple_chances = stripslashes($dquiz->multiple_chances);
 	$random_questions = stripslashes($dquiz->random_questions);
 	$random_answers = stripslashes($dquiz->random_answers);
-	$form_code = stripslashes($dquiz->form_code);
+	$dquizfm = $wpdb->get_row($wpdb->prepare("SELECT form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz']));
+	$form_code = stripslashes($dquizfm->form_code);
 } else {
 	$final_screen = __("<p>Congratulations - you have completed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%</p>", 'mtouchquiz');
 }
