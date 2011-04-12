@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.2.2
+Version: 2.2.3
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '2.2.2' );
+define( 'mtq_VERSION', '2.2.3' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
@@ -261,7 +261,7 @@ function mtq_shortcode( $atts ) {
 	$proofread = 0;
 	$input_alerts = -1;
 	
-	$thetypedcode= "[[mtouchquiz";
+	$thetypedcode= "mtouchquiz";
 	if  (! isset($atts['id'])){
 		$quiz_id = $atts[0];	
 	} else {
@@ -373,7 +373,7 @@ function mtq_shortcode( $atts ) {
 	
 	
 	
-	$thetypedcode.= "]]";
+	$thetypedcode.= "";
 	$replace_these	= array('showanswers=0','showanswers=1','showanswers=2');
 	$with_these = array ('showanswers=never','showanswers=end','showanswers=now');
 	$thetypedcodee = str_replace($replace_these, $with_these,$thetypedcode);
@@ -391,6 +391,9 @@ function mtq_shortcode( $atts ) {
 	if ( $mtq_mobile_device && $switch_my_latex ) {
 		$contents=switch_latex($contents);	
 	}
+	
+	//apply_filters('the_content',$contents);
+	
 	return do_shortcode($contents);
 }
 
@@ -424,7 +427,7 @@ function mtq_is_mobile_device(){
 
 add_action('init', 'mtq_enqueue_stuff');
 function mtq_enqueue_stuff() {
-	$mtq_use_min=false;
+	$mtq_use_min=true;
 	//$mtq_use_min=false;
 	if ( $mtq_use_min ) {
 		$mtq_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.min.css';
@@ -441,7 +444,7 @@ function mtq_enqueue_stuff() {
 	$mtq_proofread_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/proofread.min.css';
     $mtq_proofread_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/proofread.min.css';
 	 
-	wp_enqueue_script("jquery");
+	//wp_enqueue_script("jquery");
 	if ( $mtq_use_min ) {
 		wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.min.js',array('jquery'),mtq_VERSION,false);
 	} else {

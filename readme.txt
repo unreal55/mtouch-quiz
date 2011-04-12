@@ -3,8 +3,8 @@ Contributors: gmichaelguy
 Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 2.2.2
+Tested up to: 3.1.1
+Stable tag: 2.2.3
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -92,6 +92,13 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 2.2.3 =
+* Corrected minimized scripts not being used
+* Changed output of source code by removing some brackets which could cause issues with other plugins
+* Added Swedish translation (thanks to Andreas Lundgren)
+* Added Turkish translation (thanks to Can Kirca)
+
 
 = 2.2.2 =
 * Bugfix for additional issues with blank values showing up when editing existing quizzes. BTW, if you don't hit "save" with all the fields blank, your existing data does not disappear. If you hit "save" it will all save as blank.
@@ -203,6 +210,12 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.2.3 =
+* Corrected minimized scripts not being used
+* Changed output of source code by removing some brackets which could cause issues with other plugins
+* Added Swedish translation (thanks to Andreas Lundgren)
+* Added Turkish translation (thanks to Can Kirca)
 
 = 2.2.2 =
 * Bugfix for additional issues with blank values showing up when editing existing quizzes. BTW, if you don't hit "save" with all the fields blank, your existing data does not disappear. If you hit "save" it will all save as blank.

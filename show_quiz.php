@@ -182,7 +182,7 @@
 		$first_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$foff);  
 		//$first_id_value = 1;
 		$theexecutedcode = '';
-		$theexecutedcode.= "[[mtouchquiz id=".$quiz_id;
+		$theexecutedcode.= "mtouchquiz id=".$quiz_id;
 		$theexecutedcode.=" alerts=".$mtq_show_alerts;
 		$theexecutedcode.=" singlepage=".$single_page;
 		$theexecutedcode.=" hints=".$show_hints;
@@ -207,7 +207,7 @@
 		$theexecutedcode.= " offset=".$offset_start;
 		$theexecutedcode.= " questions=".$input_number_questions;
 		$theexecutedcode.= " firstid=".$first_id_value;	
-		$theexecutedcode.=	"]]";
+		$theexecutedcode.=	"";
 		
 		// Thanks http://ranawd.wordpress.com/2009/03/25/select-random-value-from-mysql-database-table/
 		
