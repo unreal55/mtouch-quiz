@@ -3,8 +3,8 @@ Contributors: gmichaelguy
 Donate link: http://gmichaelguy.com/quizplugin/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
-Tested up to: 3.1.1
-Stable tag: 2.2.3
+Tested up to: 3.2
+Stable tag: 2.2.4
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -27,60 +27,6 @@ Best way to install is via the "Add New Plugins" feature inside your WordPress d
 = Where can I find the most up to date version of the FAQ? =
 You can find the most up to date version at the [ homepage of mTouch Quiz Plugin](http://gmichaelguy.com/quizplugin "mTouch Quiz Plugin Site")
 
-= Can a question have more than one correct answer? =
-Yes. Each question can have as many correct answers as you like.
-
-= How does scoring work? =
-If the correct answer is selected on the first attempt, full credit is assigned for the problem. However, if you allow multiple chances to answer each question, partial credit is calculated based on the number of attempts as well as the number of correct answers to the question.
-
-= Can I give Hints based on the answer selected? =
-Yes. This was one of the main reasons I wrote this plugin. Learning often requires more feedback than just right or wrong.
-
-= Can questions be assigned point values/weights? =
-Yes. It is at the bottom of each question, right above the Save button. The default value is 100.
-
-= How do I get the quiz to show up on my page? =
-You simply include the shortcode mtouchquiz id# options inside square brackets anywhere on your page. The id# is listed in the leftmost column on the Manage Quiz page and at the top of the Manage Questions page.
-
-= Once I set the quiz options such a single page and randomization, can I use different options on different versions of the same quiz? =
-Yes! Just set the options on the shortcode when you embed the quiz in your page.
-
-= Where can I find out about the configurable options for the shortcode? =
-Next to each option on the Edit Quiz page, there is a column to the right, which indicates what to add to the shortcode to set the options. I think they are clear, but ask if you are unsure.
-
-= What arguments can I use on the shortcode? =
-Each argument must be followed by an equals sign and the selection in quotations. Here they are: questions (number of questions to display if you do not choose random questions, it will be the first ones in order), singlepage, multiplechances, hints, startscreen, finalscreen, randomq, randoma, showanswers.
-
-= What does Delimit mean next to the answer choices in the question editor? =
-If you want to enclose all your answers in some kind of delimiter, select this option to save time. For example, you may want to modify the style or formatting or enclose the answer choice in some LaTeX code, as the default is set.
-
-= Can I change the default delimiters I see in the answers? =
-Yes. You can change that in the options page. You will have to make any changes manually to answers already in the database, however.
-
-= Does this work with multi-site? =
-Yes, as far as I can test it does! Any user with Author role or higher should have access to this plugin. My site is a 3.0+ multi-site enabled site, and it works fine.
-
-= Who can access to this plugin within my WordPress site? =
-Any user with Author role or higher has access to this plugin. This can be changed to require higher role, if desired.
-
-= Does this work in a sidebar? =
-It worked in mine when I tried it. Just make sure you sidebar executes and shortcodes contained inside it.
-
-= Can I keep track of statistics of which answers are selected? =
-Look for this in the future!
-
-= Can I have the results of the quiz emailed to me? =
-Look for this in the future if enough people want it!
-
-= Does this plugin support international translation? =
-I hope so. I've tested this some. I uploaded the pot and po files in the lang subdirectory. Put your file named mtouchquiz-language.po/mo in the lang subdirectory. No graphics have words on them as of v 1.05.
-
-= Can I do this or that? =
-I don't know.  Ask me. Perhaps if it seems useful to a large number of people, I can find a way to make it do this or that.
-
-= Where can I get more help or get a question answered? =
-Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichaelguy.com/mtouchquiz "mTouch Quiz Plugin Site") and contact me using the methods listed there.
-
 
 
 == Screenshots ==
@@ -92,6 +38,13 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 2.2.4 =
+* Compatibility with WordPress 3.2
+* More features coming soon!
+* Bug fix for title in add on (thanks to Dave Hale)
+* Added Hebrew translation (thanks to Shakhar Pelled)
+* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/)
 
 = 2.2.3 =
 * Corrected minimized scripts not being used
@@ -210,6 +163,13 @@ Go to the plugin website at the [ homepage of mTouch Quiz Plugin](http://gmichae
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.2.4 =
+* Compatibility with WordPress 3.2
+* More features coming soon!
+* Bug fix for title in add on (thanks to Dave Hale)
+* Added Hebrew translation (thanks to Shakhar Pelled)
+* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/)
 
 = 2.2.3 =
 * Corrected minimized scripts not being used

@@ -404,7 +404,7 @@ function mtq_get_results(mtqid){
 	mtq_email_results+="\n**********\n"+"Question Details\n"+"---------\n";
 	mtq_email_results+=mtq_email_results_itemized;
 	if ( mtq_gf_present[mtqid] ) {
-		quiz_title=jQuery('span.mtq_quiztitle').find('h2').html() + " Quiz Results\nDate: "+Date();
+		quiz_title=jQuery("#mtq_quiztitle-"+mtqid).find('h2').html() + " Quiz Results\nDate: "+Date(); // Fix this line for title problem
 		mtq_email_results=quiz_title+"\n"+mtq_email_results;
 		mtq_gf_fill_form(mtq_email_results,mtqid);	
 	}
