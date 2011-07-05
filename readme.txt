@@ -44,7 +44,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * More features coming soon!
 * Bug fix for title in add on (thanks to Dave Hale)
 * Added Hebrew translation (thanks to Shakhar Pelled)
-* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/)
+* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/ )
 
 = 2.2.3 =
 * Corrected minimized scripts not being used
@@ -169,7 +169,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * More features coming soon!
 * Bug fix for title in add on (thanks to Dave Hale)
 * Added Hebrew translation (thanks to Shakhar Pelled)
-* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/)
+* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/ )
 
 = 2.2.3 =
 * Corrected minimized scripts not being used
