@@ -12,7 +12,7 @@
 		$GLOBALS['wpframe_plugin_name'] = basename(dirname(__FILE__));
 		$GLOBALS['wpframe_plugin_folder'] = $GLOBALS['wpframe_wordpress'] . '/wp-content/plugins/' . $GLOBALS['wpframe_plugin_name'];
 
-		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers,time_limit FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));			 		
+		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));			 		
 		$final_screen = stripslashes($quiz_options->final_screen);
 		$answer_display = stripslashes($quiz_options->answer_mode);
 		$single_page = stripslashes($quiz_options->single_page);
@@ -22,12 +22,14 @@
 		$multiple_chances = stripslashes($quiz_options->multiple_chances);
 		$random_questions = stripslashes($quiz_options->random_questions);
 		$random_answers = stripslashes($quiz_options->random_answers);
-		$db_time = stripslashes($quiz_options->time_limit);
+		
 		$mtq_show_alerts = get_option('mtouchquiz_showalerts');
 		
 		$dquizfm = $wpdb->get_row($wpdb->prepare("SELECT form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$form_code = stripslashes($dquizfm->form_code);
-
+		
+		$tquizfm = $wpdb->get_row($wpdb->prepare("SELECT time_limit FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
+		$db_time = stripslashes($tquizfm->time_limit);
 		
 		$mtq_cf7_addon_active = mtq_check_addon_cf7_active();
 		$mtq_cf7_active = mtq_check_cf7_active();
