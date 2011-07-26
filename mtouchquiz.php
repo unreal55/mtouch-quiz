@@ -45,6 +45,7 @@ function mtq_add_menu_links() {
 	add_menu_page(__('mTouch Quiz', 'mtouchquiz'), __('mTouch Quiz', 'mtouchquiz'), $view_level, 'mtq_menu','mtq_plugin_options' , plugins_url('mtouch-quiz/images/menu-icon.png'));
 
 	add_submenu_page('mtq_menu', __('Manage mTouch Quizzes', 'mtouchquiz'), __('Manage Quizzes', 'mtouchquiz'), $view_level, 'mtouch-quiz/quiz.php');
+	add_submenu_page('mtq_menu',__('Premium Features', 'mtouchquiz'), __('Premium Features', 'mtouchquiz'), $view_level, 'mtouch-quiz/premium.php');
 	$code_pages = array('quiz_form.php','quiz_action.php', 'question_form.php', 'question.php');
 	foreach($code_pages as $code_page) {
 		$hookname = get_plugin_page_hookname("mtouch-quiz/$code_page", '' );
@@ -148,64 +149,129 @@ echo '<div class="wrap" id="mtouchquiz-options">
   </p>
 </form>
 <br />
-<?php 	
-		if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-		   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-		   
-		   // Makes sure the plugin is defined before trying to use it
-	$mtq_gf_addon_active = is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
-	$mtq_gf_active = is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
-	$mtq_gf_addon_exists = file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');
-	$mtq_gf_exists = file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');
-	$mtq_gf_allgood = $mtq_gf_addon_active & $mtq_gf_active & $mtq_gf_addon_exists & $mtq_gf_exists;
-	?>
-<div style="width:600px">
-  <h2> <a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon Status</a></h2>
-  Add the ability to email quiz results to you and/or the quiz taker!
-  <table class='mtq_question_heading_table'>
-    <tr>
-      <td><h3><a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Get Gravity Forms">Gravity Forms</a> plugin status</h3></td>
-    </tr>
-  </table>
-  <table class='mtq_answer_table'>
-    <colgroup>
-    <col class='mtq_oce_first'/>
-    </colgroup>
-    <tr> </tr>
-    <tr>
-      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_exists){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
-      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Get Gravity Forms">Gravity Forms</a> Installed</td>
-    </tr>
-    <tr>
-      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_active){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
-      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Get Gravity Forms">Gravity Forms</a> Activated </td>
-    </tr>
-  </table>
-  <table class='mtq_question_heading_table'>
-    <tr>
-      <td><h3><a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon</a> plugin status</h3></td>
-    </tr>
-  </table>
-  <table class='mtq_answer_table'>
-    <colgroup>
-    <col class='mtq_oce_first'/>
-    </colgroup>
-    <tr> </tr>
-    <tr>
-      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_addon_exists){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
-      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon</a> Installed</td>
-    </tr>
-    <tr>
-      <td class='mtq_letter_button_td'><span class="<?php if ($mtq_gf_addon_active){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
-      <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">mTouch Quiz Gravity Forms Addon</a> Activated </td>
-    </tr>
-  </table>
-  
-  </div>
+<?php mtq_premium_list() ?>
+
 </div>
 <?php
   }
 }
+
+function mtq_check_all_gf() {
+	return mtq_check_gf() && mtq_check_addon_gf();	
+}
+
+function mtq_check_gf() {
+	return  mtq_check_gf_active() &&  mtq_check_gf_exists();	
+}
+
+function mtq_check_gf_active() {
+
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		   // Makes sure the plugin is defined before trying to use it
+	return is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
+		
+}
+
+function mtq_check_gf_exists() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+		   // Makes sure the plugin is defined before trying to use it
+	return file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');		
+}
+
+function mtq_check_addon_gf() {
+	return mtq_check_addon_gf_active() && mtq_check_addon_gf_exists();
+}
+
+function mtq_check_addon_gf_active() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );		   
+		   // Makes sure the plugin is defined before trying to use it
+	return is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
+}
+
+function mtq_check_addon_gf_exists() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+		   // Makes sure the plugin is defined before trying to use it
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');	
+}
+
+
+function mtq_check_all_cf7() {
+	return mtq_check_cf7() && mtq_check_addon_cf7();	
+}
+
+function mtq_check_cf7() {
+	return  mtq_check_cf7_active() &&  mtq_check_cf7_exists();	
+}
+
+function mtq_check_cf7_active() {
+
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		   // Makes sure the plugin is defined before trying to use it
+	return is_plugin_active('contact-form-7/wp-contact-form-7.php') || is_plugin_active_for_network( 'contact-form-7/wp-contact-form-7.php');
+		
+}
+
+function mtq_check_cf7_exists() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+		   // Makes sure the plugin is defined before trying to use it
+	return file_exists(ABSPATH . 'wp-content/plugins/contact-form-7/wp-contact-form-7.php');		
+}
+
+function mtq_check_addon_cf7() {
+	return mtq_check_addon_cf7_active() && mtq_check_addon_cf7_exists();
+}
+
+function mtq_check_addon_cf7_active() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );		   
+		   // Makes sure the plugin is defined before trying to use it
+	return is_plugin_active( 'mtouch-quiz-cf7/mtouchquiz-cf7.php') || is_plugin_active_for_network( 'mtouch-quiz-cf7/mtouchquiz-cf7.php');
+}
+
+function mtq_check_addon_cf7_exists() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+		   // Makes sure the plugin is defined before trying to use it
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-cf7/mtouchquiz-cf7.php');	
+}
+
+
+function mtq_check_addon_timer_active() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );		   
+		   // Makes sure the plugin is defined before trying to use it
+	return is_plugin_active( 'mtouch-quiz-timer/mtouchquiz-timer.php') || is_plugin_active_for_network( 'mtouch-quiz-timer/mtouchquiz-timerf.php');
+}
+
+function mtq_check_addon_timer_exists() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+		   // Makes sure the plugin is defined before trying to use it
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-timer/mtouchquiz-timer.php');	
+}
+
+
+function mtq_check_all_timer() {
+	return mtq_check_addon_timer_active() && mtq_check_addon_timer_exists();	
+}
+
+function mtq_premium_list() {
+	echo "<h1>Want more features for the free mTouch Quiz plugin?</h1><h2> Consider the following <a href='http://gmichaelguy.com/quizplugin/go/premium'>premium addon</a> features.</h2>";
+  echo "<ul>";
+    echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/gf/' title='mTouch Quiz Gravity Forms Addon'>Gravity Forms Addon:</a> Add the ability to email quiz results (and keep a copy of the email in the dashboard. Not to mention make use of all the power of <a href='http://gmichaelguy.com/quizplugin/go/gravity/' title='Get Gravity Forms'>Gravity Forms</a>) </li>";
+    echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/cf7/' title='mTouch Quiz Contact Form 7 Addon'>Contact Form 7 Addon:</a> Add the ability to email quiz results (NO copy is kept in the dashboard, but it works with the free plugin <a href='http://contactform7.com/' title='Get Contact Form 7'>Contact Form 7</a>) </li>";
+    echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/timer/' title='mTouch Quiz Timer Addon'>Timer Addon:</a> Add a timer to your quiz. When time is up, the quiz is over! </li>";
+  echo"</ul>";	
+  
+  //return $return_text;
+}
+
 
 function mtq_showOption($option, $title) {
 ?>
@@ -244,6 +310,14 @@ function mtq_shortcode( $atts ) {
 	  'status' => -1,
 	  //'javawarning' => -1,
 	  'offset'=>0,
+	  'lastq'=>0,
+	  'firstq'=>0,
+	  'time'=>0,
+	  'forcecf'=>0,
+	  'forcegf'=>0,
+	  'inform'=>0,
+	  'autoadvance'=>0,
+	  'formid'=>-1,
 	  'singlequestion'=>0
       ), $atts ) );
 	$quiz_id = -1;
@@ -260,6 +334,8 @@ function mtq_shortcode( $atts ) {
 	$show_list = 0;
 	$proofread = 0;
 	$input_alerts = -1;
+	$input_formid = -1;
+	$mtq_max_time = 0;
 	
 	$thetypedcode= "mtouchquiz";
 	if  (! isset($atts['id'])){
@@ -314,9 +390,6 @@ function mtq_shortcode( $atts ) {
 		$thetypedcode.= " showanswers=".$input_showanswers;
 	}
 	
-	//if ( isset( $atts['display']) && is_numeric($atts['display']) && $atts['display'] > 1 ){
-	//	$display_number = $atts['display'];
-	//}
 	
 	$show_list = 1;
 	if ( isset( $atts['list']) && $atts['list']== 'off' ){
@@ -355,11 +428,58 @@ function mtq_shortcode( $atts ) {
 		$thetypedcode.= " status=off";
 	}
 	
+	if ( isset( $atts['time']) && mtq_check_all_timer() ){
+		$mtq_max_time = $atts['time'];
+		$mtq_use_timer = 1;
+		$thetypedcode.= " time=".$mtq_max_time;
+	}
+	
 	$offset_start = 1;
 	if( isset( $atts['offset']) && is_numeric($atts['offset']) && $atts['offset'] > 1 ){
 		$offset_start = $atts['offset'];
 		$thetypedcode.= " offset=".$offset_start;
 	}
+	
+	if( isset( $atts['firstq']) && is_numeric($atts['firstq']) && $atts['firstq'] > 1 ){
+		$offset_start = $atts['firstq'];
+		$thetypedcode.= " firstq=".$offset_start;
+	}
+	
+	$offset_stop = 0;
+	if( isset( $atts['lastq']) && is_numeric($atts['lastq']) && $atts['lastq'] > $offset_start ){
+		$offset_stop = $atts['lastq'];
+		$thetypedcode.= " lastq=".$offset_stop;
+	}
+	
+	$forcegf = 0;
+	if ( isset( $atts['forcegf']) ){
+		$forcegf = $atts['forcegf'];
+		$thetypedcode.= " forcegf=".$forcegf;
+	}
+	
+	$forcecf = 0;
+	if ( isset( $atts['forcecf']) ){
+		$forcecf = $atts['forcecf'];
+		$thetypedcode.= " forcecf=".$forcecf;
+	}
+	
+	$inform = 0;
+	if ( isset( $atts['inform']) && $atts['inform']=='on'  ){
+		$inform = 1;
+		$thetypedcode.= " inform=".$inform;
+	}
+	
+	$autoadvance = 0;
+	if ( isset( $atts['autoadvance']) && $atts['autoadvance'] == 'on'  ){
+		$autoadvance = 1;
+		$thetypedcode.= " autoadvance=on";
+	}
+	
+	if( isset( $atts['formid']) && is_numeric($atts['formid']) ){
+		$input_formid = $atts['formid'];
+		$thetypedcode.= " formid=".$input_formid;
+	}
+
 	
 	//$single_question = -1;
 	if( isset( $atts['singlequestion']) && is_numeric($atts['singlequestion']) && $atts['singlequestion'] >= 1 ){
@@ -427,7 +547,7 @@ function mtq_is_mobile_device(){
 
 add_action('init', 'mtq_enqueue_stuff');
 function mtq_enqueue_stuff() {
-	$mtq_use_min=true;
+	$mtq_use_min=false;
 	//$mtq_use_min=false;
 	if ( $mtq_use_min ) {
 		$mtq_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.min.css';
@@ -475,7 +595,7 @@ add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
 function mtq_activate() {
 	global $wpdb;
 	
-	$database_version = '1.6.1';
+	$database_version = '1.6.2';
 	$installed_db = get_option('mtouchquiz_db_version');
 	// Initial options.
 	 //add_option('mtq_show_answers', 1);
@@ -530,6 +650,7 @@ function mtq_activate() {
 					multiple_chances enum('0','1') NOT NULL default '1',
 					single_page enum('0','1') NOT NULL default '0',
 					answer_mode enum('0','1','2') NOT NULL default '2',
+					time_limit int(11) unsigned NOT NULL default 0,
 					PRIMARY KEY  (ID)
 				);";
 		dbDelta($sql);
