@@ -75,3 +75,10 @@ if (count($all_quiz)) {
   <a href="edit.php?page=mtouch-quiz/quiz_form.php&amp;action=new">
   <?php _e("Create New Quiz", 'mtouchquiz')?>
   </a> </div>
+  <br />
+  <br />
+  <br />
+   <br />
+  <br />
+  <br />
+  <?php mtq_premium_list() ?>

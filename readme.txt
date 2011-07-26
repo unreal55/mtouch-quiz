@@ -1,10 +1,10 @@
 === mTouch Quiz ===
 Contributors: gmichaelguy
-Donate link: http://gmichaelguy.com/quizplugin/
+Donate link: http://gmichaelguy.com/quizplugin/go/donate/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
-Tested up to: 3.2
-Stable tag: 2.2.4
+Tested up to: 3.2.1
+Stable tag: 2.3.0
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -38,6 +38,17 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 2.3.0 =
+* Added a [ timer](http://gmichaelguy.com/quizplugin/go/timer/ "mTouch Quiz Timer Addon").
+* Added ability to submit results of quiz using [Contact Form 7 addon] (http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
+* Entire answer text is now selectable instead of just the A, B, C buttons (by popular request!)
+* Added new shortcode to select which form is used to submit results (formid).
+* Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
+* Added new shortcode options to control which questions are selected (firstq, lastq)
+* Bug fixes with scoring and stamping of questions with multiple answers or when no answers are supposed to be indicated.
+* Minor cosmetic tweaks to dashboard interface.
+
 
 = 2.2.4 =
 * Compatibility with WordPress 3.2
@@ -163,6 +174,16 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.3.0 =
+* Added a [ timer](http://gmichaelguy.com/quizplugin/go/timer/ "mTouch Quiz Timer Addon").
+* Added ability to submit results of quiz using [Contact Form 7 addon] (http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
+* Entire answer text is now selectable instead of just the A, B, C buttons (by popular request!)
+* Added new shortcode to select which form is used to submit results (formid).
+* Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
+* Added new shortcode options to control which questions are selected (firstq, lastq)
+* Bug fixes with scoring and stamping of questions with multiple answers or when no answers are supposed to be indicated.
+* Minor cosmetic tweaks to dashboard interface.
 
 = 2.2.4 =
 * Compatibility with WordPress 3.2

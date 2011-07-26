@@ -19,6 +19,8 @@ if($action == 'edit') {
 	$random_answers = stripslashes($dquiz->random_answers);
 	$dquizfm = $wpdb->get_row($wpdb->prepare("SELECT form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz']));
 	$form_code = stripslashes($dquizfm->form_code);
+	$tquizfm = $wpdb->get_row($wpdb->prepare("SELECT time_limit FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $_REQUEST['quiz']));
+	$mtq_time = stripslashes($tquizfm->time_limit);
 } else {
 	$final_screen = __("<p>Congratulations - you have completed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%</p>", 'mtouchquiz');
 }
@@ -53,36 +55,34 @@ if($action == 'edit') {
           <textarea name='description' rows='5' cols='50' style='width:100%' id='description' class='description'><?php echo stripslashes($dquiz->description); ?></textarea>
         </div>
       </div>
-            <div class="postbox">
+            <div class="postbox mtq_premium_feature"><div class="mtq_email"></div>
         <h3 class="hndle"> 
-           <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> </h3>
+           <a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Results Form" target="_blank">Results Form ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> </h3>
         <div class="inside">
          <?php
 		 
-		 if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-		   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-		   
+	   
 		 // Makes sure the plugin is defined before trying to use it
-		$mtq_gf_addon_active = is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
-		$mtq_gf_active = is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
-		$mtq_gf_addon_exists = file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');
-		$mtq_gf_exists = file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');
+		$mtq_cf7_addon_active = mtq_check_addon_cf7_active();
+		$mtq_cf7_active = mtq_check_cf7_active();
+		$mtq_cf7_addon_exists =  mtq_check_addon_cf7_exists();
+		$mtq_cf7_exists = mtq_check_cf7_exists();
+		$mtq_cf7_allgood = mtq_check_all_cf7();
+	  
+		$mtq_gf_addon_active = mtq_check_addon_gf_active();
+		$mtq_gf_active = mtq_check_gf_active();
+		$mtq_gf_addon_exists =  mtq_check_addon_gf_exists();
+		$mtq_gf_exists = mtq_check_gf_exists();
+		$mtq_gf_allgood = mtq_check_all_gf();
 	
-		$mtq_gf_allgood = $mtq_gf_addon_active & $mtq_gf_active & $mtq_gf_addon_exists & $mtq_gf_exists;
 
 	
-	if ( ! $mtq_gf_addon_active ) { ?>
-          <h4> <?php _e('To allow users to submit their results to you via email, you need the ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/gf/" title="mTouch Quiz Gravity Forms Addon" target="_blank">mTouch Quiz Gravity Forms Addon</a> plugin. '; ?></h4>
+	if ( ! $mtq_gf_addon_active && ! $mtq_cf7_addon_active ) { ?>
+          <h4> <?php _e('To allow users to submit their results to you via email, you need a ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/premium/" title="mTouch Quiz Premium Feature Addon" target="_blank">mTouch Quiz Premium Feature</a> addon. '; ?></h4>
       <span style="display:none"><textarea name="gravity" rows="1" cols="100"><?php echo $form_code ?></textarea></span>
       <?php } else {
 		   ?>
-           <h4> <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/gf/" title="Find out about mTouch Quiz Gravity Forms Addon">For detailed instructions on how to configure this option visit the plugin homepage.</a>', 'mtouchquiz'); 
-		   
-		   if ( ! $mtq_gf_active ) {
-			echo "<br> <br>**".__('WARNING','mtouchquiz')."** <br />";
-			echo '<a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms Plugin </a>'. __('is not active. You must install and/or activate it before this feature will work.','mtouchquiz');   
-			   
-		   }
+           <h4> <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Find out about mTouch Quiz Premium Feature Addons">For detailed instructions on how to configure this option visit the plugin homepage.</a>', 'mtouchquiz'); 
 		   
 		   ?></h4>
 		  <textarea name="gravity" rows="1" cols="100"><?php echo $form_code ?></textarea>
@@ -106,10 +106,10 @@ if($action == 'edit') {
                         <tr>
             <td>%%FORM%%</td>
               <td>
-              <?php if ( $mtq_gf_addon_active ) { ?>
-              <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Gravity Forms" target="_blank">Gravity Forms</a><?php _e(' location for emailing results. (You may put this variable in the ratings below for conditional email option)', 'mtouchquiz') ?>
+              <?php if ( $mtq_gf_addon_active || $mtq_cf7_addon_active  ) { ?>
+              Results Form<?php _e(' location for emailing results. (You may put this variable in the ratings below for conditional email option)', 'mtouchquiz') ?>
               <?php } else {
-              _e('To allow users to submit their results to you via email, you need the ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/gf/" title="mTouch Quiz Gravity Forms Addon" target="_blank">mTouch Quiz Gravity Forms Addon</a> plugin. ';
+              _e('To allow users to submit their results to you via email, you need a ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/premium/" title="mTouch Quiz Premium Feature" target="_blank">mTouch Quiz Premium Feature</a>.';
               
               } ?>
               
@@ -323,6 +323,31 @@ if($action == 'edit') {
           </table>
         </div>
       </div>
+      
+      <div class="postbox mtq_premium_feature"><div class="mtq_timer_icon"></div>
+        <h3 class="hndle"> 
+           <a href="http://gmichaelguy.com/quizplugin/go/timer/" title="Time Limit" target="_blank">Time Limit (in seconds)</a> <?php echo "(".__('Add a time limit and countdown clock.','mtouchquiz').")"?> </h3>
+        <div class="inside">
+         <?php
+		 
+	   
+		 // Makes sure the plugin is defined before trying to use it
+		$mtq_timer_addon_active = mtq_check_addon_timer_active();
+		$mtq_timer_addon_exists =  mtq_check_addon_timer_exists();
+		$mtq_timer_allgood = mtq_check_all_timer();
+	  	
+	if ( ! $mtq_timer_allgood ) { ?>
+          <h4> <?php _e('To set a time limit and have a countdown clock, you need the ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/timer/" title="mTouch Quiz Timer Addon" target="_blank">mTouch Quiz Timer</a> addon. '; ?></h4>
+      <span style="display:none"><textarea name="mtq_timer" rows="1" cols="100"><?php echo $mtq_time ?></textarea></span>
+      <?php } else {
+		   ?>
+           <h4 > <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/timer/" title="mTouch Quiz Timer Addon" target="_blank">For detailed instructions on how to configure the timer option visit the plugin homepage.</a>', 'mtouchquiz'); 
+		   
+		   ?></h4>
+		  <textarea name="mtq_timer" rows="1" cols="100"><?php echo $mtq_time ?></textarea>
+	<?php  } ?>
+      
+      </div></div>
       <p class="submit">
         <?php wp_nonce_field('mtq_create_edit_quiz'); ?>
         <input type="hidden" name="action" value="<?php echo $action; ?>" />

@@ -24,7 +24,7 @@ if (isset($_REQUEST['random_answers'])) $random_answers = '1';
 if(isset($_REQUEST['submit'])) {
 	if($_REQUEST['action'] == 'edit') { //Update goes here
 
-		$wpdb->get_results($wpdb->prepare("UPDATE {$wpdb->prefix}mtouchquiz_quiz SET name=%s, description=%s,final_screen=%s,answer_mode=%s,single_page=%s, show_hints=%s, show_start=%s, show_final=%s, multiple_chances=%s, random_questions=%s, random_answers=%s, form_code=%s WHERE ID=%d", $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['content'], $answer_mode, $single_page, $show_hints, $show_start, $show_final,$multiple_chances, $random_questions, $random_answers,$_REQUEST['gravity'],$_REQUEST['quiz']));
+		$wpdb->get_results($wpdb->prepare("UPDATE {$wpdb->prefix}mtouchquiz_quiz SET name=%s, description=%s,final_screen=%s,answer_mode=%s,single_page=%s, show_hints=%s, show_start=%s, show_final=%s, multiple_chances=%s, random_questions=%s, random_answers=%s, form_code=%s, time_limit=%s WHERE ID=%d", $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['content'], $answer_mode, $single_page, $show_hints, $show_start, $show_final,$multiple_chances, $random_questions, $random_answers,$_REQUEST['gravity'],$_REQUEST['mtq_timer'],$_REQUEST['quiz']));
 		
 		wp_redirect($wpframe_home . '/wp-admin/admin.php?page=mtouch-quiz/quiz.php&message=updated');
 	
@@ -46,7 +46,7 @@ if(isset($_REQUEST['submit'])) {
 	
 	
 	} else {
-		$wpdb->get_results($wpdb->prepare("INSERT INTO {$wpdb->prefix}mtouchquiz_quiz(name,description,final_screen, answer_mode, single_page, show_hints, show_start, show_final, multiple_chances, random_questions, random_answers, added_on) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())", $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['content'], $answer_mode, $single_page, $show_hints, $show_start, $show_final,$multiple_chances, $random_questions, $random_answers));
+		$wpdb->get_results($wpdb->prepare("INSERT INTO {$wpdb->prefix}mtouchquiz_quiz(name,description,final_screen, answer_mode, single_page, show_hints, show_start, show_final, multiple_chances, random_questions, random_answers, form_code, added_on) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())", $_REQUEST['name'], $_REQUEST['description'], $_REQUEST['content'], $answer_mode, $single_page, $show_hints, $show_start, $show_final,$multiple_chances, $random_questions, $random_answers,$_REQUEST['gravity'],$_REQUEST['mtq_timer']));
 		$quiz_id = $wpdb->insert_id;
 		$counter = 1;
 		foreach ($_REQUEST['score_rating'] as $score_rating) {

@@ -41,6 +41,9 @@
 	border:none;
 	padding:0;
 }
+.mtq_timer {
+	float:right;	
+}
 
 .mtq_failed_button {
 	cursor:pointer;
@@ -62,6 +65,10 @@
 	border-color:#B5281E;
 	padding:.5em;
 	
+}
+
+.mtq_clickable {
+	cursor:pointer;
 }
 .mtq_css_button {
 	display:block;
@@ -100,7 +107,7 @@
 	font-size:200%;
 }
 .mtq_show_list {
-	width:3em;
+	width:3.5em;
 }
 .mtq_list_item_complete {
 	color:#000;
@@ -478,4 +485,49 @@
 
 #content .mtq {
 	display:none;	
+}
+
+.mtq_thanks {
+	display:block;
+	width:80px;
+	height:80px;
+	float:left;
+	background:url(images/thanks.png) no-repeat 0 0px;
+}
+
+.mtq_cone {
+	display:block;
+	width:64px;
+	height:64px;
+	float:left;
+	background:url(images/cone.png) no-repeat 0 0px;
+}
+
+.mtq_setup {
+	display:block;
+	width:64px;
+	height:64px;
+	float:left;
+	background:url(images/setup.png) no-repeat 0 0px;
+}
+
+.mtq_timer_icon {
+	display:block;
+	width:32px;
+	height:32px;
+	float:left;
+	background:url(images/timer.png) no-repeat 0 0px;
+}
+
+.mtq_email {
+	display:block;
+	width:32px;
+	height:32px;
+	float:left;
+	background:url(images/email.png) no-repeat 0 0px;
+}
+
+.mtq_premium_feature {
+	border:thin solid;
+	border-color:#03C !important;
 }
