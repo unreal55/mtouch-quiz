@@ -547,7 +547,7 @@ function mtq_is_mobile_device(){
 
 add_action('init', 'mtq_enqueue_stuff');
 function mtq_enqueue_stuff() {
-	$mtq_use_min=false;
+	$mtq_use_min=true;
 	//$mtq_use_min=false;
 	if ( $mtq_use_min ) {
 		$mtq_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.min.css';
