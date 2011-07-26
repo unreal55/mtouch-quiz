@@ -1,23 +1,18 @@
 <?php
 	require_once('wpframe.php');
-	//require_once('mtouchquiz.php');
-	//require_once('show_question.php');
 	
 	if(!isset($GLOBALS['mtq_number_displayed'])) {
 		$GLOBALS['mtq_number_displayed'] = 1;
 	} else {
 		$GLOBALS['mtq_number_displayed']++;
-	}
-	//if(!is_single() and isset($GLOBALS['mtq_client_includes_loaded'])) { #If this is in the listing page - and a quiz is already shown, do not show another.
-	//	printf(__("Please go to <a href='%s'>%s</a> to view the quiz", 'mtouchquiz'), get_permalink(), get_the_title());
-	//} else 
+	} 
 	if (true) {
 		
 		global $wpdb;
 		$GLOBALS['wpframe_plugin_name'] = basename(dirname(__FILE__));
 		$GLOBALS['wpframe_plugin_folder'] = $GLOBALS['wpframe_wordpress'] . '/wp-content/plugins/' . $GLOBALS['wpframe_plugin_name'];
 
-		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));			 		
+		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers,time_limit FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));			 		
 		$final_screen = stripslashes($quiz_options->final_screen);
 		$answer_display = stripslashes($quiz_options->answer_mode);
 		$single_page = stripslashes($quiz_options->single_page);
@@ -27,31 +22,52 @@
 		$multiple_chances = stripslashes($quiz_options->multiple_chances);
 		$random_questions = stripslashes($quiz_options->random_questions);
 		$random_answers = stripslashes($quiz_options->random_answers);
+		$db_time = stripslashes($quiz_options->time_limit);
 		$mtq_show_alerts = get_option('mtouchquiz_showalerts');
 		
 		$dquizfm = $wpdb->get_row($wpdb->prepare("SELECT form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$form_code = stripslashes($dquizfm->form_code);
 
 		
+		$mtq_cf7_addon_active = mtq_check_addon_cf7_active();
+		$mtq_cf7_active = mtq_check_cf7_active();
+		$mtq_cf7_addon_exists =  mtq_check_addon_cf7_exists();
+		$mtq_cf7_exists = mtq_check_cf7_exists();
+		$mtq_cf7_allgood = mtq_check_all_cf7();
+	  
+		$mtq_gf_addon_active = mtq_check_addon_gf_active();
+		$mtq_gf_active = mtq_check_gf_active();
+		$mtq_gf_addon_exists =  mtq_check_addon_gf_exists();
+		$mtq_gf_exists = mtq_check_gf_exists();
+		$mtq_gf_allgood = mtq_check_all_gf();
 		
+		$mtq_form_present = 0;
 		
-		if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-		   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
-		   
-		 // Makes sure the plugin is defined before trying to use it
-		$mtq_gf_addon_active = is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
-		$mtq_gf_active = is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
-		$mtq_gf_addon_exists = file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');
-		$mtq_gf_exists = file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');
-	
-		$mtq_gf_allgood = $mtq_gf_addon_active & $mtq_gf_active & $mtq_gf_addon_exists & $mtq_gf_exists;
+		$mtq_use_gf = 0;
+		$mtq_use_cf = 0;
 		
-
-
+		if ( $mtq_cf7_allgood || $mtq_gf_allgood ) {
+			if ( strlen($form_code) ) {
+				if ( $forcegf ) {
+					$mtq_use_gf = 1;	
+				} elseif ($forcecf) {
+					$mtq_use_cf = 1;
+					
+				} elseif ($mtq_gf_allgood ) {
+					$mtq_use_gf = 1;
+					
+				} elseif ($mtq_cf7_allgood ) {
+					$mtq_use_cf = 1;
+				}
+			}	
+		}
 		
-		$mtq_gf_present = 0;
-		if ( strlen($form_code) && $mtq_gf_addon_active && $mtq_gf_active ) {
-			$mtq_gf_present = 1;
+		if ( $input_formid != -1 ) {
+			$form_code = $input_formid;
+		}
+		
+		if ( $mtq_use_gf && $mtq_gf_allgood ) {
+			$mtq_form_present = 1;
 			if ( substr($form_code,0,1) != "[" ) {
 				$form_code = "[gravityform id=" .$form_code;
 			}
@@ -67,6 +83,27 @@
 			if ( substr($form_code,-1) != "]" ) {
 				$form_code .="]" ;
 			}
+		}
+		
+		
+		
+		if ( $mtq_use_cf && $mtq_cf7_allgood ) {
+			$mtq_form_present = 1;
+			if ( substr($form_code,0,1) != "[" ) {
+				$form_code = "[contact-form " .$form_code;
+			}
+						
+			if ( substr($form_code,-1) != "]" ) {
+				$form_code .="]" ;
+			}
+		}
+		
+		if ( $forcecf ) {
+			$mtq_use_cf = 1;
+		}
+		
+		if ( $forcegf || $inform ) {
+			$mtq_use_gf = 1;
 		}
 		
 		
@@ -102,6 +139,9 @@
 			}
 		}
 		
+		if ( $inform ) {
+			$single_page = 1;
+		}
 		
 		if ( $input_hints!= -1 ) {
 			if ( $input_hints == 'on' ){
@@ -172,15 +212,32 @@
 
 		
 		$mtq_all_vars = "";
-		
+		$number_questions_available = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id")); 
 		if ($input_number_questions <= 0){ // If the user didn't specify the number of questions, then get them all
-			$input_number_questions = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id")); 
+			$input_number_questions = $number_questions_available;
 		}
 		
+	
+		
 		$foff = $offset_start - 1;
+		if ( $offset_stop ) {
+			$loff = $offset_stop - 1;
+		}		
+
 		//$first_id_value = $wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID LIMIT 0, 1"));//,0,$offset_start-1);
 		$first_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$foff);  
-		//$first_id_value = 1;
+		if ( $offset_stop ) {
+			$last_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$loff);
+		} else {
+			$last_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$number_questions_available-1);
+		}
+		
+		if ( ! $mtq_use_timer  && $db_time > 0) {
+			$mtq_max_time = $db_time;
+			$mtq_use_timer = 1;
+		}
+		
+		
 		$theexecutedcode = '';
 		$theexecutedcode.= "mtouchquiz id=".$quiz_id;
 		$theexecutedcode.=" alerts=".$mtq_show_alerts;
@@ -197,6 +254,11 @@
 		$theexecutedcode.= " title=".$show_title;
 		$theexecutedcode.= " proofread=".$proofread;
 		$theexecutedcode.= " list=".$show_list;
+		$theexecutedcode.=" time=".$mtq_max_time;
+		$theexecutedcode.=" autoadvance=".$autoadvance;
+		$theexecutedcode.=" inform=".$inform;
+		$theexecutedcode.=" forcecf=".$forcecf;
+		$theexecutedcode.=" forcegf=".$forcegf;
 		$replace_these	= array('1','0');
 		$with_these = array ('on','off');	
 		$theexecutedcode = str_replace($replace_these, $with_these,$theexecutedcode);
@@ -207,14 +269,15 @@
 		$theexecutedcode.= " offset=".$offset_start;
 		$theexecutedcode.= " questions=".$input_number_questions;
 		$theexecutedcode.= " firstid=".$first_id_value;	
+		$theexecutedcode.= " lastid=".$last_id_value;	
 		$theexecutedcode.=	"";
 		
 		// Thanks http://ranawd.wordpress.com/2009/03/25/select-random-value-from-mysql-database-table/
 		
 		if( $random_questions == 1 && $input_number_questions > 0 ) { // Select questions randomly
-			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d AND ID>=$first_id_value ORDER BY RAND() LIMIT 0, $input_number_questions", $quiz_id));
+			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d AND ID>=$first_id_value AND ID<=$last_id_value ORDER BY RAND() LIMIT 0, $input_number_questions", $quiz_id));
 		} elseif( $random_questions != 1 && $input_number_questions > 0 ) { // Select questions in order
-			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d AND ID>=$first_id_value ORDER BY ID LIMIT 0, $input_number_questions", $quiz_id)); // Not random
+			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d AND ID>=$first_id_value  AND ID<=$last_id_value ORDER BY ID LIMIT 0, $input_number_questions", $quiz_id)); // Not random
 		} else { // select all questions in order
 			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d ORDER BY ID", $quiz_id)); // Not random, get everything, fallback else
 		}
@@ -247,6 +310,18 @@
 		echo "<!--Gravity Forms Plugin is NOT active, however.)-->" ; 
 	}
   }?>
+    <?php if  ( $mtq_cf7_addon_active ) {
+	echo "<!--Enhanced with ".mtq_cf7_DISPLAY_NAME." Version ".mtq_cf7_VERSION ." (". mtq_cf7_URL.")-->" ; 
+	if ( ! $mtq_cf7_active ) {
+		echo "<!--Contact Form 7 Plugin is NOT active, however.)-->" ; 
+	}
+  }?>
+  
+      <?php if  ( mtq_check_all_timer() ) {
+	echo "<!--Enhanced with ".mtq_timer_DISPLAY_NAME." Version ".mtq_timer_VERSION ." (". mtq_timer_URL.")-->" ; 
+  }?>
+  
+  
   <!-- Shortcode entered <?php echo $thetypedcode; ?> --> 
   <!-- Shortcode interpreted <?php echo $theexecutedcode;?> --> 
   <!--form action="" method="post" class="quiz-form" id="quiz-<?php echo $quiz_id?>"-->
@@ -281,10 +356,15 @@ if ($show_final ) {?>
 		?>
   
   <!-- root element for mtqscrollable --> 
+     <?php if ($mtq_use_timer) {?>
+    <div id="mtq_timer_row-<?php echo $mtqid ?>"><span id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></span> </div>
+    <?php $mtq_all_vars.=   "<input type='hidden' id='mtq_timer_val-$mtqid' value='".$mtq_max_time."'/>";?>
+    <?php }?>
   <span id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
   <div <?php if (!$single_page) { echo "class='mtqscrollable' id='mtq_scroll_container-{$mtqid}'";}?>>
     <?php if (!$single_page) {?>
     <!-- root element for the items -->
+
     <div id="mtq_scroll_items_container-<?php echo $mtqid ?>" class="items">
       <?php }?>
       <?php
@@ -326,9 +406,9 @@ if ($show_final ) {?>
 												$num_correct = 0;
 												foreach ($dans as $ans) {
 													$image_number = ($answer_count-1) % 26;
-													echo   "<tr id='mtq_row-{$question_count}-{$answer_count}-$mtqid'>";
+													echo   "<tr id='mtq_row-{$question_count}-{$answer_count}-$mtqid' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' class='mtq_clickable'>";
 														echo   "<td class='mtq_letter_button_td'>";
-															echo   "<span id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_letter_button mtq_letter_button_{$image_number}' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' alt='".$q_label .", Choice ".$answer_count."'>";															
+															echo   "<span id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_letter_button mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";															
 														echo   "</span>";
 														if ($ans->correct) {
 																echo   "<span id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", 'mtouchquiz')."'></span>"; 
@@ -464,6 +544,7 @@ if ($show_final ) {?>
     <?php _e('You have not finished your quiz. If you leave this page, your progress will be lost.', 'mtouchquiz')?>
     </span>
     <input type='hidden' id='mtq_answer_display-<?php echo $mtqid ?>' value='<?php echo $answer_display;?>'/>
+    <input type='hidden' id='mtq_autoadvance-<?php echo $mtqid ?>' value='<?php echo $autoadvance;?>'/>
     <input type='hidden' id='mtq_single_page-<?php echo $mtqid ?>' value='<?php echo $single_page;?>'/>
     <input type='hidden' id='mtq_show_hints-<?php echo $mtqid ?>' value='<?php echo $show_hints;?>'/>
     <input type='hidden' id='mtq_show_start-<?php echo $mtqid ?>' value='<?php echo $show_start;?>'/>
@@ -525,9 +606,11 @@ if ($show_final ) {?>
 									
 								}
 							?>
-    <input type="hidden" id="mtq_gf_present-<?php echo $mtqid ?>" value="<?php echo $mtq_gf_present ?>"/>
-    <?php if  ( $mtq_gf_present ) { ?>
-    <span id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </span>
+    <input type="hidden" id="mtq_gf_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_gf ?>"/>
+    <input type="hidden" id="mtq_cf7_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_cf  ?>"/>
+     <input type="hidden" id="mtq_quiz_in_form-<?php echo $mtqid ?>" value="<?php echo $inform  ?>"/>
+    <?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
+    	<span id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </span>
     <?php } ?>
   </div>
   
