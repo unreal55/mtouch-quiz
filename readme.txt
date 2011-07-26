@@ -42,7 +42,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 = 2.3.1 =
 * You may need to deactivate and then reactivate your plugin after install. All data will remain intact.
 * Added a [ timer](http://gmichaelguy.com/quizplugin/go/timer/ "mTouch Quiz Timer Addon").
-* Added ability to submit results of quiz using [ Contact Form 7 addon] (http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
+* Added ability to submit results of quiz using [ Contact Form 7 addon](http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
 * Entire answer text is now selectable instead of just the A, B, C buttons (by popular request!)
 * Added new shortcode to select which form is used to submit results (formid).
 * Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
@@ -55,7 +55,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 = 2.3.0 =
 * Added a [ timer](http://gmichaelguy.com/quizplugin/go/timer/ "mTouch Quiz Timer Addon").
-* Added ability to submit results of quiz using [ Contact Form 7 addon] (http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
+* Added ability to submit results of quiz using [ Contact Form 7 addon](http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
 * Entire answer text is now selectable instead of just the A, B, C buttons (by popular request!)
 * Added new shortcode to select which form is used to submit results (formid).
 * Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
@@ -191,7 +191,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 = 2.3.1 =
 * You may need to deactivate and then reactivate your plugin after install. All data will remain intact.
 * Added a [ timer](http://gmichaelguy.com/quizplugin/go/timer/ "mTouch Quiz Timer Addon").
-* Added ability to submit results of quiz using [ Contact Form 7 addon] (http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
+* Added ability to submit results of quiz using [ Contact Form 7 addon](http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
 * Entire answer text is now selectable instead of just the A, B, C buttons (by popular request!)
 * Added new shortcode to select which form is used to submit results (formid).
 * Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
@@ -204,7 +204,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 = 2.3.0 =
 * Added a [ timer](http://gmichaelguy.com/quizplugin/go/timer/ "mTouch Quiz Timer Addon").
-* Added ability to submit results of quiz using [ Contact Form 7 addon] (http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
+* Added ability to submit results of quiz using [ Contact Form 7 addon](http://gmichaelguy.com/quizplugin/go/cf7/ "mTouch Quiz Contact Form 7 Addon").
 * Entire answer text is now selectable instead of just the A, B, C buttons (by popular request!)
 * Added new shortcode to select which form is used to submit results (formid).
 * Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
