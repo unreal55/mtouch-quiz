@@ -804,8 +804,9 @@ function mtq_score_blindly(mtqid){ // This assumes that there was only one attem
 		jQuery("#mtq_points_awarded-"+q+"-"+mtqid).val(points_awarded);
 		if ( points_awarded == points_possible ){
 			mtq_questions_correct[mtqid]++;
+			jQuery("#mtq_is_correct-"+q+"-"+mtqid).val(1);
 		}
-		mtq_stamp(q);
+		mtq_stamp(q,mtqid);
 		
 		mtq_max_score[mtqid]+=P;
 	}
