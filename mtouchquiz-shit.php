@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.3.3
+Version: 2.3.2
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -31,10 +31,14 @@ Text Domain: mtouchquiz
 /**
  * Add a new menu page, visible for all users with template viewing level.
  */
- 
-define( 'mtq_VERSION', '2.3.3' );
+$mtq_version = "2.3.2"; 
+define( 'mtq_VERSION', $mtq_version );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
+if (get_option('mtq_version')  !=  $mtq_version) {
+    update_option('mtq_version', $mtq_version);
+	mtq_activate();}
+	
 add_action( 'admin_menu', 'mtq_add_menu_links' );
 function mtq_add_menu_links() {
 	global $wp_version, $_registered_pages;
@@ -77,7 +81,10 @@ function add_mtq_settings_link($links, $file) {
 }
 
 
+
 add_filter('plugin_action_links', 'add_mtq_settings_link', 10, 2 );
+
+
 
 add_action('admin_menu', 'mtq_options');
 function mtq_options()
@@ -87,7 +94,7 @@ function mtq_menu() {
     add_options_page(__('mTouch Quiz Plugin Options', 'mtouchquiz'), __('mTouch Quiz Plugin', 'mtouchquiz'), 'upload_files', 'mtouchquiz', 'mtq_plugin_options');
   }
   
- function mtq_plugin_options() {
+  function mtq_plugin_options() {
       //if (!current_user_can('manage_options'))  {
       if (!current_user_can('upload_files'))  {
 	    wp_die( __('You do not have sufficient permissions to access this page.','mtouchquiz') );
@@ -105,17 +112,16 @@ echo '<div class="wrap" id="mtouchquiz-options">
 		{
 			update_option('mtouchquiz_showalerts', 0);
 		}
-		
 		if(!empty($_POST['show_support'])) {
 			update_option('mtouchquiz_show_support', "true");
 		} else 
 		{
 			update_option('mtouchquiz_show_support', "false");
 		}
+		
 		wpframe_message(__('Options updated', 'mtouchquiz'));   
     }
 ?>
-
 <form id="mtouchquiz" name="mtouchquiz" action="" method='POST'>
   <input type="hidden" name="mtq_hidden" value="Y">
   <table class="form-table">
@@ -141,14 +147,15 @@ echo '<div class="wrap" id="mtouchquiz-options">
         <font size="-2">
         <?php _e("Since results to the quiz are stored locally, leaving the quiz page will lose all progress.", 'mtouchquiz'); ?>
         </font></th>
-      <td><?php mtq_showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td></tr>
-          <tr valign="middle">
+      <td><?php mtq_showOption('showalerts', __('Display a warning before a user leaves an unfinished quiz.', 'mtouchquiz')); ?></td>
+    </tr>
+    <tr valign="middle">
       <th scope="row"><?php _e("Hide donation links", 'mtouchquiz'); ?>
         <br/>
         <font size="-2">
         <?php _e("I already supported mTouch Quiz or prefer not to.", 'mtouchquiz'); ?>
         </font></th>
-      <td><input type="checkbox" name="show_support" value="1" id="show_support" <?php if (get_option(mtouchquiz_show_support)=='true') {echo " checked='checked'"; } ?> /></td>
+      <td><input type="checkbox" name="show_support" value="1" id="show_support" <?php if (get_option(mtouchquiz_show_support)=='true') {?>checked='checked' <?php }?>"></td>
     </tr>
   </table>
   <!-- <?php _e('I will email my completed translation file to Michael at gmichaelguy.com so that others can benefit from my work. ;-)', 'mtouchquiz'); ?>-->
@@ -157,13 +164,11 @@ echo '<div class="wrap" id="mtouchquiz-options">
   </p>
 </form>
 <br />
-<?php mtq_premium_list();
-echo mtq_donate_form(); ?>
-
+<?php mtq_premium_list() ?>
+<?php echo mtq_donate_form() ?>
 </div>
 <?php
   }
-}
 
 function mtq_check_all_gf() {
 	return mtq_check_gf() && mtq_check_addon_gf();	
@@ -270,13 +275,28 @@ function mtq_check_all_timer() {
 	return mtq_check_addon_timer_active() && mtq_check_addon_timer_exists();	
 }
 
+
+
 function mtq_premium_list() {
-	echo "<h1>Want more features for the free mTouch Quiz plugin?</h1><h2> Consider the following <a href='http://gmichaelguy.com/quizplugin/go/premium'>premium addon</a> features.</h2>";
-  echo "<ul>";
-    echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/gf/' title='mTouch Quiz Gravity Forms Addon'>Gravity Forms Addon:</a> Add the ability to email quiz results (and keep a copy of the email in the dashboard. Not to mention make use of all the power of <a href='http://gmichaelguy.com/quizplugin/go/gravity/' title='Get Gravity Forms'>Gravity Forms</a>) </li>";
-    echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/cf7/' title='mTouch Quiz Contact Form 7 Addon'>Contact Form 7 Addon:</a> Add the ability to email quiz results (NO copy is kept in the dashboard, but it works with the free plugin <a href='http://contactform7.com/' title='Get Contact Form 7'>Contact Form 7</a>) </li>";
-    echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/timer/' title='mTouch Quiz Timer Addon'>Timer Addon:</a> Add a timer to your quiz. When time is up, the quiz is over! </li>";
-  echo"</ul>";	
+	echo "
+    <h1>Want more features for the free mTouch Quiz plugin?</h1>
+    <h2> Consider the following <a href='http://gmichaelguy.com/quizplugin/go/premium'>premium addon</a> features.</h2>
+";
+  echo "
+  <ul>
+  ";
+  echo "
+  <li> <a href='http://gmichaelguy.com/quizplugin/go/gf/' title='mTouch Quiz Gravity Forms Addon'>Gravity Forms Addon:</a> Add the ability to email quiz results (and keep a copy of the email in the dashboard. Not to mention make use of all the power of <a href='http://gmichaelguy.com/quizplugin/go/gravity/' title='Get Gravity Forms'>Gravity Forms</a>) </li>
+  ";
+  echo "
+  <li> <a href='http://gmichaelguy.com/quizplugin/go/cf7/' title='mTouch Quiz Contact Form 7 Addon'>Contact Form 7 Addon:</a> Add the ability to email quiz results (NO copy is kept in the dashboard, but it works with the free plugin <a href='http://contactform7.com/' title='Get Contact Form 7'>Contact Form 7</a>) </li>
+  ";
+  echo "
+  <li> <a href='http://gmichaelguy.com/quizplugin/go/timer/' title='mTouch Quiz Timer Addon'>Timer Addon:</a> Add a timer to your quiz. When time is up, the quiz is over! </li>
+  ";
+  echo"
+</ul>
+";	
   
   //return $return_text;
 }
@@ -284,6 +304,7 @@ function mtq_premium_list() {
 
 function mtq_showOption($option, $title) {
 ?>
+
 <input type="checkbox" name="<?php echo $option; ?>" value="1" id="<?php echo $option?>" <?php if(get_option('mtouchquiz_'.$option)) print " checked='checked'"; ?> />
 <label for="<?php echo $option?>">
   <?php _e($title, 'mtouchquiz') ?>
@@ -598,32 +619,6 @@ function mtq_filter_plugin_links($links, $file)
 	return $links;
 }
 
-function mtq_donate_form() {
-	 $mtouchquiz_show_support=get_option(mtouchquiz_show_support);
-	 if ( $mtouchquiz_show_support == 'false' ){
-			$return_string='';
-			$return_string.="<div class='wrap' style='width:500px;'>";
-			$return_string.="<h2>Support mTouch Quiz Plugin</h2>";
-			
-			$return_string.="<p>Your donations help support the development of mTouch Quiz. You can hide this request by selecting an option in mTouch Quiz Settings page.</p>";
-			$return_string.="<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>";
-			$return_string.="  <div class='paypal-donations'>";
-			$return_string.="    <input type='hidden' name='cmd' value='_donations' />";
-			$return_string.="    <input type='hidden' name='business' value='YKRHNGVU4LSHE' />";
-			$return_string.="    <input type='hidden' name='item_name' value='mTouch Quiz Developer Appreciation' />";
-			$return_string.="    <input type='hidden' name='currency_code' value='USD' />";
-			$return_string.="    <input type='image' src='https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif' name='submit' alt='PayPal - The safer, easier way to pay online.' />";
-			$return_string.="    <img alt='Paypal Donation' src='https://www.paypal.com/en_US/i/scr/pixel.gif' width='1' height='1' /></div>";
-			$return_string.="</form>";
-			$return_string.="</div>";
-			$return_string.="<!--//support div-->";
-			
-
-	 }
-
-
-return $return_string;
-}
  
 
 add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
@@ -638,6 +633,7 @@ function mtq_activate() {
 	 add_option('mtouchquiz_leftdelimit', "\\\(\\\displaystyle{");
      add_option('mtouchquiz_rightdelimit', "}\\\)");
 	 add_option('mtouchquiz_showalerts', "1");
+	 add_option("mtouchquiz_show_support", 'false'); 
 	 //add_option('mtouchquiz_skiploadjquerytools', "0");
 	
 	if($database_version != $installed_db) {
@@ -694,3 +690,33 @@ function mtq_activate() {
 }
 
 
+
+
+
+function mtq_donate_form() {
+	 $mtouchquiz_show_support=get_option(mtouchquiz_show_support);
+	 if ( $mtouchquiz_show_support == 'false' ){
+			$return_string='';
+			$return_string.="<div class='wrap' style='width:500px;'>";
+			$return_string.="<h2>Support mTouch Quiz Plugin</h2>";
+			
+			$return_string.="<p>Donations are welcome:</p>";
+			$return_string.="<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>";
+			$return_string.="  <div class='paypal-donations'>";
+			$return_string.="    <input type='hidden' name='cmd' value='_donations' />";
+			$return_string.="    <input type='hidden' name='business' value='YKRHNGVU4LSHE' />";
+			$return_string.="    <input type='hidden' name='item_name' value='mTouch Quiz Developer Appreciation' />";
+			$return_string.="    <input type='hidden' name='currency_code' value='USD' />";
+			$return_string.="    <input type='image' src='https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif' name='submit' alt='PayPal - The safer, easier way to pay online.' />";
+			$return_string.="    <img alt='Paypal Donation' src='https://www.paypal.com/en_US/i/scr/pixel.gif' width='1' height='1' /></div>";
+			$return_string.="</form>";
+			$return_string.="</div>";
+			$return_string.="<!--//support div-->";
+			
+
+	 }
+
+
+return $return_string;
+} 
+  }

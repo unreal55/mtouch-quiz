@@ -81,4 +81,5 @@ if (count($all_quiz)) {
    <br />
   <br />
   <br />
-  <?php mtq_premium_list() ?>
+  <?php mtq_premium_list();
+  echo mtq_donate_form(); ?>
