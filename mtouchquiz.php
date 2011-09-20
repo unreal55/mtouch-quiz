@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.3.3
+Version: 2.4.0
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,9 +32,10 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '2.3.3' );
+define( 'mtq_VERSION', '2.4.0' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
+define( 'mtq_database_version','1.6.4');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
 function mtq_add_menu_links() {
 	global $wp_version, $_registered_pages;
@@ -58,6 +59,10 @@ add_action('init', 'mtq_init');
 function mtq_init() {
 	load_plugin_textdomain('mtouchquiz', 'wp-content/plugins/mtouch-quiz/lang/' );
 	add_action('admin_menu', 'mtq_menu');
+	$installed_db = get_option('mtouchquiz_db_version');
+	if ( $installed_db != mtq_database_version ) {
+		mtq_activate();	
+	}
 }
 
 
@@ -107,10 +112,10 @@ echo '<div class="wrap" id="mtouchquiz-options">
 		}
 		
 		if(!empty($_POST['show_support'])) {
-			update_option('mtouchquiz_show_support', "true");
+			update_option('mtouchquiz_show_support', "false");
 		} else 
 		{
-			update_option('mtouchquiz_show_support', "false");
+			update_option('mtouchquiz_show_support', "true");
 		}
 		wpframe_message(__('Options updated', 'mtouchquiz'));   
     }
@@ -148,7 +153,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
         <font size="-2">
         <?php _e("I already supported mTouch Quiz or prefer not to.", 'mtouchquiz'); ?>
         </font></th>
-      <td><input type="checkbox" name="show_support" value="1" id="show_support" <?php if (get_option(mtouchquiz_show_support)=='true') {echo " checked='checked'"; } ?> /></td>
+      <td><input type="checkbox" name="show_support" value="1" id="show_support" <?php if (get_option(mtouchquiz_show_support)=='false') {echo " checked='checked'"; } ?> /></td>
     </tr>
   </table>
   <!-- <?php _e('I will email my completed translation file to Michael at gmichaelguy.com so that others can benefit from my work. ;-)', 'mtouchquiz'); ?>-->
@@ -327,7 +332,9 @@ function mtq_shortcode( $atts ) {
 	  'inform'=>0,
 	  'autoadvance'=>0,
 	  'formid'=>-1,
-	  'singlequestion'=>0
+	  'singlequestion'=>0,
+	  'scoring'=>0,
+	  'vform'=>1
       ), $atts ) );
 	$quiz_id = -1;
 	$input_number_questions = -1;
@@ -345,6 +352,8 @@ function mtq_shortcode( $atts ) {
 	$input_alerts = -1;
 	$input_formid = -1;
 	$mtq_max_time = 0;
+	$scoring = 0;
+	$vform = 1;
 	
 	$thetypedcode= "mtouchquiz";
 	if  (! isset($atts['id'])){
@@ -500,7 +509,15 @@ function mtq_shortcode( $atts ) {
 		$thetypedcode.= " offset=".$offset_start;
 	}
 	
+	if( isset( $atts['scoring']) && is_numeric($atts['scoring']) ){
+		$scoring = $atts['scoring'];
+		$thetypedcode.= " scoring=".$scoring;
+	}
 	
+	if( isset( $atts['vform']) && is_numeric($atts['vform']) ){
+		$vform = $atts['vform'];
+		$thetypedcode.= " vform=".$vform;
+	}
 	
 	$thetypedcode.= "";
 	$replace_these	= array('showanswers=0','showanswers=1','showanswers=2');
@@ -600,12 +617,12 @@ function mtq_filter_plugin_links($links, $file)
 
 function mtq_donate_form() {
 	 $mtouchquiz_show_support=get_option(mtouchquiz_show_support);
-	 if ( $mtouchquiz_show_support == 'false' ){
+	 if ( $mtouchquiz_show_support == 'true' ){
 			$return_string='';
 			$return_string.="<div class='wrap' style='width:500px;'>";
 			$return_string.="<h2>Support mTouch Quiz Plugin</h2>";
 			
-			$return_string.="<p>Your donations help support the development of mTouch Quiz. You can hide this request by selecting an option in mTouch Quiz Settings page.</p>";
+			$return_string.="<p>Your donations help support the development of mTouch Quiz.</p>";
 			$return_string.="<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>";
 			$return_string.="  <div class='paypal-donations'>";
 			$return_string.="    <input type='hidden' name='cmd' value='_donations' />";
@@ -630,7 +647,7 @@ add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
 function mtq_activate() {
 	global $wpdb;
 	
-	$database_version = '1.6.2';
+	$database_version = mtq_database_version;
 	$installed_db = get_option('mtouchquiz_db_version');
 	// Initial options.
 	 //add_option('mtq_show_answers', 1);
@@ -638,6 +655,8 @@ function mtq_activate() {
 	 add_option('mtouchquiz_leftdelimit', "\\\(\\\displaystyle{");
      add_option('mtouchquiz_rightdelimit', "}\\\)");
 	 add_option('mtouchquiz_showalerts', "1");
+	 add_option('mtouchquiz_show_support',"true");
+	 update_option('mtouchquiz_show_support',"true");
 	 //add_option('mtouchquiz_skiploadjquerytools', "0");
 	
 	if($database_version != $installed_db) {

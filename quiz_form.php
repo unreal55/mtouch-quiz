@@ -57,7 +57,7 @@ if($action == 'edit') {
       </div>
             <div class="postbox mtq_premium_feature"><div class="mtq_email"></div>
         <h3 class="hndle"> 
-           <a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Results Form" target="_blank">Results Form ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> </h3>
+           <a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Results Form" target="_blank">Results Form ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> Works best with <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Find out about Gravity Forms" target="_blank">Gravity Forms</a></h3>
         <div class="inside">
          <?php
 		 

@@ -257,6 +257,8 @@
 		$theexecutedcode.= " proofread=".$proofread;
 		$theexecutedcode.= " list=".$show_list;
 		$theexecutedcode.=" time=".$mtq_max_time;
+		$theexecutedcode.=" scoring=".$scoring;
+		$theexecutedcode.=" vform=".$vform;
 		$theexecutedcode.=" autoadvance=".$autoadvance;
 		$theexecutedcode.=" inform=".$inform;
 		$theexecutedcode.=" forcecf=".$forcecf;
@@ -554,6 +556,8 @@ if ($show_final ) {?>
     <input type='hidden' id='mtq_show_alerts-<?php echo $mtqid ?>' value='<?php echo $mtq_show_alerts;?>'/>
     <input type='hidden' id='mtq_multiple_chances-<?php echo $mtqid ?>' value='<?php echo $multiple_chances;?>'/>
     <input type='hidden' id='mtq_proofread-<?php echo $mtqid ?>' value='<?php echo $proofread;?>'/>
+    <input type='hidden' id='mtq_scoring-<?php echo $mtqid ?>' value='<?php echo $scoring;?>'/>
+    <input type='hidden' id='mtq_vform-<?php echo $mtqid ?>' value='<?php echo $vform;?>'/>
     <input type="hidden" name="quiz_id" id="quiz_id-<?php echo $mtqid ?>" value="<?php echo  $quiz_id ?>" />
     <input type="hidden" name="mtq_total_questions" id="mtq_total_questions-<?php echo $mtqid ?>" value="<?php echo  $question_count; ?>" />
     <input type="hidden" name="mtq_current_score" id="mtq_current_score-<?php echo $mtqid ?>" value="0" />

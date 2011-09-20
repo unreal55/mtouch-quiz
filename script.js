@@ -27,9 +27,11 @@ var mtq_gf_present = [];
 var mtq_quiz_in_form = [];
 var mtq_cf7_present = [];
 var mtq_timer_val = [];
+var mtq_timer_initial_val = [];
 var mtq_timer_on = [];
 var mtq_autoadvance = [];
-
+var mtq_scoring_option = [];
+var mtq_vform = [];
 
 //Not dependent on mtqid
 var mtq_quizzes_present = [];
@@ -229,6 +231,8 @@ function mtq_start_one(mtqid) {
 	var mtq_proofread  = parseInt(jQuery("#mtq_proofread-"+mtqid).val());
 	mtq_show_list[mtqid] =  parseInt(jQuery("#mtq_show_list_option-"+mtqid).val());
 	mtq_autoadvance[mtqid] = parseInt(jQuery("#mtq_autoadvance-"+mtqid).val());
+	mtq_scoring_option[mtqid] = parseInt(jQuery("#mtq_scoring-"+mtqid).val());
+	mtq_vform[mtqid] = parseInt(jQuery("#mtq_vform-"+mtqid).val());
 	mtq_extra_page[mtqid] = 0;
 	mtq_timer_on[mtqid] = 0;
 	if ( mtq_show_final[mtqid] || mtq_answer_display[mtqid] != 2 ) {
@@ -263,6 +267,7 @@ function mtq_start_quiz(mtqid){
 		mtq_quiz_started[mtqid] = true;
 		if ( parseInt(jQuery("#mtq_timer_val-"+mtqid).val()) > 0 ) {
 			mtq_timer_on[mtqid] = 1;
+			mtq_timer_initial_val[mtqid]=parseInt(jQuery("#mtq_timer_val-"+mtqid).val());
 			mtq_start_timer(mtqid);	
 		}
 		//mtq_ShowBatch(mtqid);
@@ -314,8 +319,31 @@ function mtq_get_results(mtqid){
 	
 	mtq_quiz_finished[mtqid] = true;
 	mtq_timer_on[mtqid] = 0;
+	mtq_time_allowed_message='';
+	mtq_time_used_message='';
+	mtq_time_used_val='';
+	mtq_time_message='';
+	if (mtq_timer_initial_val[mtqid] > 0 ) {
+		mtq_time_used_val=mtq_timer_initial_val[mtqid]-mtq_timer_val[mtqid];
+		
+		min = Math.floor(mtq_time_used_val/60);
+		sec = mtq_time_used_val-min*60;
+
+		mtq_time_used_message= "Time used: " + min + " minutes, " + sec + " seconds.\n";
+		
+		min = Math.floor(mtq_timer_initial_val[mtqid]/60);
+		sec = mtq_timer_initial_val[mtqid]-min*60;
+
+		mtq_time_allowed_message= "Time allowed: " + min +  " minutes, " + sec + " seconds.\n";
+		mtq_time_message= mtq_time_allowed_message+ mtq_time_used_message;
+	}
+	
+	
 	mtq_email_results = '';
 	mtq_email_results_itemized = '';
+	mtq_email_results_verbose = '';
+	mtq_email_results_correct_answer='';
+	mtq_email_results_selected_answer='';
 	//Hide a bunch of stuff
 	//jQuery("#mtq_next_button-"+mtqid).css('display','none');
 	//jQuery("#mtq_back_button-"+mtqid).css('display','none');
@@ -340,11 +368,13 @@ function mtq_get_results(mtqid){
 		var a=1;
 		
 		mtq_email_results_itemized += "Question "+q+" Score: ";
-		
+		mtq_email_results_correct_answer='';
+		mtq_email_results_selected_answer='';
 		answer_order = [];
 		for (a = 1; a<= N; a++){
 			var ever_selected = parseInt(jQuery("#mtq_was_ever_selected-"+q+"-"+a+"-"+mtqid).val());
 			var end_selected = parseInt(jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid).val());
+			var is_correct_answer = parseInt(jQuery("#mtq_is_correct-"+q+"-"+a+"-"+mtqid).val());
 			answer_order[ever_selected] = a;
 			if ( ( ever_selected || end_selected ) && mtq_answer_display[mtqid] == 2 )	{
 				jQuery("#mtq_row-"+q+"-"+a+"-"+mtqid).addClass("mtq_selected_row");
@@ -354,6 +384,10 @@ function mtq_get_results(mtqid){
 				attempted_this_one = 1;
 			}
 			
+			if ( is_correct_answer == 1) {
+				mtq_email_results_correct_answer=mtq_email_results_correct_answer+"Correct Answer: "+jQuery("#mtq_answer_text-"+q+"-"+a+"-"+mtqid).text()+"\n";
+			}
+			
 			if ( mtq_answer_display[mtqid] != 0 ){
 				jQuery("#mtq_marker-"+q+"-"+a+"-"+mtqid).css('display','block');
 				jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).css('display','none');
@@ -361,12 +395,13 @@ function mtq_get_results(mtqid){
 		}
 		
 		mtq_problems_attempted[mtqid]+=attempted_this_one;
-		
+		mtq_email_results_verbose=jQuery("#mtq_question_text-"+q+"-"+mtqid).text();
 		answer_print = '';
 		if ( attempted_this_one ) {
 			
 			for ( a = 1; a<answer_order.length; a++ ) {
 				answer_print=answer_print+","+answer_order[a];
+				mtq_email_results_selected_answer=mtq_email_results_selected_answer+"You Selected: " + jQuery("#mtq_answer_text-"+q+"-"+answer_order[a]+"-"+mtqid).text()+"\n";
 			}
 			answer_print = answer_print.substr(1);
 			
@@ -380,7 +415,13 @@ function mtq_get_results(mtqid){
 		var points_possible = parseInt(jQuery("#mtq_is_worth-"+q+"-"+mtqid).val());
 		var points_awarded = parseInt(jQuery("#mtq_points_awarded-"+q+"-"+mtqid).val());
 		mtq_email_results_itemized+=points_awarded+"/"+points_possible+"\n";
-		mtq_email_results_itemized+="Answer(s) Chosen: "+answer_print+"\n";
+		mtq_email_results_itemized+="Answer Choice(s) Selected: "+answer_print+"\n";
+		if ( mtq_vform[mtqid] == 1) {
+			mtq_email_results_itemized+= "Question Text: "+mtq_email_results_verbose+"\n";
+			mtq_email_results_itemized+=mtq_email_results_correct_answer;
+			mtq_email_results_itemized+= mtq_email_results_selected_answer;
+		}
+		
 		mtq_email_results_itemized+="----------\n";
 		if ( points_awarded == points_possible ) {
 			mtq_questions_correct[mtqid]++;
@@ -429,13 +470,14 @@ function mtq_get_results(mtqid){
 	mtq_email_results+="Attempted Questions Wrong: "+mtq_questions_wrong[mtqid] + "\n";
 	mtq_email_results+="Questions Not Attempted: "+mtq_questions_not_attempted[mtqid] + "\n";
 	mtq_email_results+="Total Questions on Quiz: "+mtq_total_questions[mtqid] + "\n";
-	
+	mtq_email_results+=mtq_time_message;
 	mtq_email_results+="\n**********\n"+"Question Details\n"+"---------\n";
 	mtq_email_results+=mtq_email_results_itemized;
-	quiz_title=jQuery("#mtq_quiztitle-"+mtqid).find('h2').html() + " Quiz Results\nDate: "+Date(); // Fix this line for title problem
+	quiz_title=jQuery("#mtq_quiztitle-"+mtqid).find('h2').text() + " Quiz Results\nDate: "+Date(); // Fix this line for title problem
 		mtq_email_results=quiz_title+"\n"+mtq_email_results;
 	if ( mtq_gf_present[mtqid] ) {
 		if (! mtq_quiz_in_form[mtqid] ) {
+			jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq').find('textarea').css('display','none');
 			mtq_gf_fill_form(mtq_email_results,mtqid);
 		} else {
 			mtq_gf_fill_in_form(mtq_email_results);
@@ -445,6 +487,7 @@ function mtq_get_results(mtqid){
 	
 	if ( mtq_cf7_present[mtqid] ) {
 		if (! mtq_quiz_in_form[mtqid] ) {
+			jQuery("#mtq_quiz_area-"+mtqid).find('.mtq').css('display','none');
 			mtq_cf7_fill_form(mtq_email_results,mtqid);
 		} else {
 			
@@ -513,6 +556,9 @@ function mtq_update_status(mtqid){
 			} else {
 				points_awarded = P;
 			}
+		}
+		if ( mtq_scoring_option[mtqid] ==1 && points_awarded < points_possible ) {
+			points_awarded=0;
 		}
 		mtq_current_score[mtqid] += points_awarded;
 		jQuery("#mtq_points_awarded-"+q+"-"+mtqid).val(points_awarded)

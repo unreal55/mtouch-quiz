@@ -487,6 +487,10 @@
 	display:none;	
 }
 
+#container .mtq {
+	display:none;	
+}
+
 .mtq_thanks {
 	display:block;
 	width:80px;
