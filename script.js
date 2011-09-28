@@ -37,13 +37,36 @@ var mtq_vform = [];
 var mtq_quizzes_present = [];
 var mtq_current_window_width;
 var	mtq_have_completed_string = "";
-var	mtq_question_string = "";
 var	mtq_questions_string = "";
 var	mtq_your_score_is_string = "";
 var mtq_correct_string = "Correct";
 var mtq_wrong_string = "Wrong";
 var mtq_partial_string = "Partial-Credit";
 var mtq_exit_warning_string ="You have not finished your quiz. If you leave this page, your progress will be lost.";
+var mtq_correct_answer_string='Correct Answer';
+var mtq_you_selected_string='You Selected';
+var mtq_not_attempted_string='Not Attempted';
+var mtq_final_score_on_quiz_string='Final Score on Quiz';
+var mtq_attempted_questions_correct_string='Attempted Questions Correct';
+var mtq_attempted_questions_wrong_string='Attempted Questions Wrong';
+var mtq_questions_not_attempted_string='Questions Not Attempted';
+var mtq_total_questions_on_quiz_string='Total Questions on Quiz';
+var mtq_question_details_string='Question Details';
+var mtq_quiz_results_string='Results';
+var mtq_date_string='Date';
+var mtq_question_string='Question';
+var mtq_score_string='Score';
+var mtq_time_allowed_string='Time allowed';
+var mtq_minutes_string='minutes';
+var mtq_seconds_string='seconds';
+var mtq_time_used_string='Time used';
+var mtq_answer_choices_selected_string='Answer Choice(s) Selected';
+var mtq_question_text_string='Question Text';
+
+
+
+
+
 
 window.onbeforeunload = function() {
 	var N = mtq_quizzes_present.length;
@@ -182,6 +205,47 @@ function mtq_init() {
 	mtq_wrong_string = jQuery("#mtq_wrong_string").html();
 	mtq_partial_string = jQuery("#mtq_partial_string").html();
 	mtq_exit_warning_string = jQuery("#mtq_exit_warning_string").html();
+	mtq_correct_answer_string=jQuery('#mtq_correct_answer_string').html();
+	mtq_you_selected_string=jQuery('#mtq_you_selected_string').html();
+	mtq_not_attempted_string=jQuery('#mtq_not_attempted_string').html();
+	mtq_final_score_on_quiz_string=jQuery('#mtq_final_score_on_quiz_string').html();
+	mtq_attempted_questions_correct_string=jQuery('#mtq_attempted_questions_correct_string').html();
+	mtq_attempted_questions_wrong_string=jQuery('#mtq_attempted_questions_wrong_string').html();
+	mtq_questions_not_attempted_string=jQuery('#mtq_questions_not_attempted_string').html();
+	mtq_total_questions_on_quiz_string=jQuery('#mtq_total_questions_on_quiz_string').html();
+	mtq_question_details_string=jQuery('#mtq_question_details_string').html();
+	mtq_quiz_results_string=jQuery('#mtq_quiz_results_string').html();
+	mtq_date_string=jQuery('#mtq_date_string').html();
+	mtq_time_allowed_string=jQuery('#mtq_time_allowed_string').html();
+	mtq_minutes_string=jQuery('#mtq_minutes_string').html();
+	mtq_seconds_string=jQuery('#mtq_seconds_string').html();
+	mtq_time_used_string=jQuery('#mtq_time_used_string').html();
+	mtq_answer_choices_selected_string=jQuery('#mtq_answer_choices_selected_string').html();
+	mtq_question_text_string=jQuery('#mtq_question_text_string').html();
+	mtq_correct_answer_string=mtq_correct_answer_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_you_selected_string=mtq_you_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_not_attempted_string=mtq_not_attempted_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_final_score_on_quiz_string=mtq_final_score_on_quiz_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_attempted_questions_correct_string=mtq_attempted_questions_correct_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_attempted_questions_wrong_string=mtq_attempted_questions_wrong_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_questions_not_attempted_string=mtq_questions_not_attempted_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_total_questions_on_quiz_string=mtq_total_questions_on_quiz_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_question_details_string=mtq_question_details_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_quiz_results_string=mtq_quiz_results_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_date_string=mtq_date_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_question_string=mtq_question_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_score_string=mtq_score_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_time_allowed_string=mtq_time_allowed_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_minutes_string=mtq_minutes_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_seconds_string=mtq_seconds_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_time_used_string=mtq_time_used_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_answer_choices_selected_string=mtq_answer_choices_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	mtq_question_text_string=mtq_question_text_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+
+;
+
+
+
 
 	var j;
 	for (j = 0; j<= N-1; j++){
@@ -329,12 +393,12 @@ function mtq_get_results(mtqid){
 		min = Math.floor(mtq_time_used_val/60);
 		sec = mtq_time_used_val-min*60;
 
-		mtq_time_used_message= "Time used: " + min + " minutes, " + sec + " seconds.\n";
+		mtq_time_used_message=mtq_time_used_string+ ": " + min + " "+mtq_minutes_string+", " + sec + " "+mtq_seconds_string+".\n";
 		
 		min = Math.floor(mtq_timer_initial_val[mtqid]/60);
 		sec = mtq_timer_initial_val[mtqid]-min*60;
 
-		mtq_time_allowed_message= "Time allowed: " + min +  " minutes, " + sec + " seconds.\n";
+		mtq_time_allowed_message= mtq_time_allowed_string+": " + min + " "+mtq_minutes_string+", " + sec + " "+mtq_seconds_string+".\n";
 		mtq_time_message= mtq_time_allowed_message+ mtq_time_used_message;
 	}
 	
@@ -367,7 +431,7 @@ function mtq_get_results(mtqid){
 		var attempted_this_one = 0;
 		var a=1;
 		
-		mtq_email_results_itemized += "Question "+q+" Score: ";
+		mtq_email_results_itemized += mtq_question_string.substr(0,1).toUpperCase()+mtq_question_string.substr(1)+" "+q+" "+mtq_score_string+": ";
 		mtq_email_results_correct_answer='';
 		mtq_email_results_selected_answer='';
 		answer_order = [];
@@ -385,7 +449,8 @@ function mtq_get_results(mtqid){
 			}
 			
 			if ( is_correct_answer == 1) {
-				mtq_email_results_correct_answer=mtq_email_results_correct_answer+"Correct Answer: "+jQuery("#mtq_answer_text-"+q+"-"+a+"-"+mtqid).text()+"\n";
+				mtq_email_results_correct_answer=mtq_email_results_correct_answer+mtq_correct_answer_string
++": "+jQuery("#mtq_answer_text-"+q+"-"+a+"-"+mtqid).text()+"\n";
 			}
 			
 			if ( mtq_answer_display[mtqid] != 0 ){
@@ -401,12 +466,13 @@ function mtq_get_results(mtqid){
 			
 			for ( a = 1; a<answer_order.length; a++ ) {
 				answer_print=answer_print+","+answer_order[a];
-				mtq_email_results_selected_answer=mtq_email_results_selected_answer+"You Selected: " + jQuery("#mtq_answer_text-"+q+"-"+answer_order[a]+"-"+mtqid).text()+"\n";
+				mtq_email_results_selected_answer=mtq_email_results_selected_answer+mtq_you_selected_string
++": " + jQuery("#mtq_answer_text-"+q+"-"+answer_order[a]+"-"+mtqid).text()+"\n";
 			}
 			answer_print = answer_print.substr(1);
 			
 		} else {
-			answer_print = "Not Attempted";
+			answer_print = mtq_not_attempted_string;
 		}
 		
 		
@@ -415,9 +481,9 @@ function mtq_get_results(mtqid){
 		var points_possible = parseInt(jQuery("#mtq_is_worth-"+q+"-"+mtqid).val());
 		var points_awarded = parseInt(jQuery("#mtq_points_awarded-"+q+"-"+mtqid).val());
 		mtq_email_results_itemized+=points_awarded+"/"+points_possible+"\n";
-		mtq_email_results_itemized+="Answer Choice(s) Selected: "+answer_print+"\n";
+		mtq_email_results_itemized+=mtq_answer_choices_selected_string+": "+answer_print+"\n";
 		if ( mtq_vform[mtqid] == 1) {
-			mtq_email_results_itemized+= "Question Text: "+mtq_email_results_verbose+"\n";
+			mtq_email_results_itemized+=mtq_question_text_string+ ": "+mtq_email_results_verbose+"\n";
 			mtq_email_results_itemized+=mtq_email_results_correct_answer;
 			mtq_email_results_itemized+= mtq_email_results_selected_answer;
 		}
@@ -465,15 +531,15 @@ function mtq_get_results(mtqid){
 	var whereTo = jQuery("#mtq_quiz_results_bubble-"+mtqid).offset().top;
     jQuery('html,body').animate({scrollTop: whereTo},'fast');
 	
-	mtq_email_results+="Final Score on Quiz: "+mtq_current_score[mtqid] +"/"+mtq_max_score[mtqid] + " (" + mtq_score_percent[mtqid].toFixed(0) + "%)" + "\n";
-	mtq_email_results+="Attempted Questions Correct: "+mtq_questions_correct[mtqid] + "\n";
-	mtq_email_results+="Attempted Questions Wrong: "+mtq_questions_wrong[mtqid] + "\n";
-	mtq_email_results+="Questions Not Attempted: "+mtq_questions_not_attempted[mtqid] + "\n";
-	mtq_email_results+="Total Questions on Quiz: "+mtq_total_questions[mtqid] + "\n";
+	mtq_email_results+=mtq_final_score_on_quiz_string+": "+mtq_current_score[mtqid] +"/"+mtq_max_score[mtqid] + " (" + mtq_score_percent[mtqid].toFixed(0) + "%)" + "\n";
+	mtq_email_results+=mtq_attempted_questions_correct_string+": "+mtq_questions_correct[mtqid] + "\n";
+	mtq_email_results+=mtq_attempted_questions_wrong_string+": "+mtq_questions_wrong[mtqid] + "\n";
+	mtq_email_results+=mtq_questions_not_attempted_string+": "+mtq_questions_not_attempted[mtqid] + "\n";
+	mtq_email_results+=mtq_total_questions_on_quiz_string+": "+mtq_total_questions[mtqid] + "\n";
 	mtq_email_results+=mtq_time_message;
-	mtq_email_results+="\n**********\n"+"Question Details\n"+"---------\n";
+	mtq_email_results+="\n**********\n"+mtq_question_details_string+"\n"+"---------\n";
 	mtq_email_results+=mtq_email_results_itemized;
-	quiz_title=jQuery("#mtq_quiztitle-"+mtqid).find('h2').text() + " Quiz Results\nDate: "+Date(); // Fix this line for title problem
+	quiz_title=jQuery("#mtq_quiztitle-"+mtqid).find('h2').text() + " "+mtq_quiz_results_string+"\n"+mtq_date_string+": "+Date(); // Fix this line for title problem
 		mtq_email_results=quiz_title+"\n"+mtq_email_results;
 	if ( mtq_gf_present[mtqid] ) {
 		if (! mtq_quiz_in_form[mtqid] ) {

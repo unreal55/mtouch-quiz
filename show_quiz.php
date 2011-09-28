@@ -314,17 +314,15 @@
 		echo "<!--Gravity Forms Plugin is NOT active, however.)-->" ; 
 	}
   }?>
-    <?php if  ( $mtq_cf7_addon_active ) {
+  <?php if  ( $mtq_cf7_addon_active ) {
 	echo "<!--Enhanced with ".mtq_cf7_DISPLAY_NAME." Version ".mtq_cf7_VERSION ." (". mtq_cf7_URL.")-->" ; 
 	if ( ! $mtq_cf7_active ) {
 		echo "<!--Contact Form 7 Plugin is NOT active, however.)-->" ; 
 	}
   }?>
-  
-      <?php if  ( mtq_check_all_timer() ) {
+  <?php if  ( mtq_check_all_timer() ) {
 	echo "<!--Enhanced with ".mtq_timer_DISPLAY_NAME." Version ".mtq_timer_VERSION ." (". mtq_timer_URL.")-->" ; 
   }?>
-  
   
   <!-- Shortcode entered <?php echo $thetypedcode; ?> --> 
   <!-- Shortcode interpreted <?php echo $theexecutedcode;?> --> 
@@ -359,16 +357,16 @@ if ($show_final ) {?>
 		//}
 		?>
   
-  <!-- root element for mtqscrollable --> 
-     <?php if ($mtq_use_timer) {?>
-    <div id="mtq_timer_row-<?php echo $mtqid ?>"><span id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></span> </div>
-    <?php $mtq_all_vars.=   "<input type='hidden' id='mtq_timer_val-$mtqid' value='".$mtq_max_time."'/>";?>
-    <?php }?>
+  <!-- root element for mtqscrollable -->
+  <?php if ($mtq_use_timer) {?>
+  <div id="mtq_timer_row-<?php echo $mtqid ?>"><span id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></span> </div>
+  <?php $mtq_all_vars.=   "<input type='hidden' id='mtq_timer_val-$mtqid' value='".$mtq_max_time."'/>";?>
+  <?php }?>
   <span id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
   <div <?php if (!$single_page) { echo "class='mtqscrollable' id='mtq_scroll_container-{$mtqid}'";}?>>
     <?php if (!$single_page) {?>
     <!-- root element for the items -->
-
+    
     <div id="mtq_scroll_items_container-<?php echo $mtqid ?>" class="items">
       <?php }?>
       <?php
@@ -546,7 +544,39 @@ if ($show_final ) {?>
     <?php _e('Partial-Credit', 'mtouchquiz')?>
     </span> <span id="mtq_exit_warning_string"  class="mtq_preload">
     <?php _e('You have not finished your quiz. If you leave this page, your progress will be lost.', 'mtouchquiz')?>
+    </span> <span id='mtq_correct_answer_string' class='mtq_preload'>
+    <?php _e('Correct Answer', 'mtouchquiz')?>
+    </span> <span id='mtq_you_selected_string' class='mtq_preload'>
+    <?php _e('You Selected', 'mtouchquiz')?>
+    </span> <span id='mtq_not_attempted_string' class='mtq_preload'>
+    <?php _e('Not Attempted', 'mtouchquiz')?>
+    </span> <span id='mtq_final_score_on_quiz_string' class='mtq_preload'>
+    <?php _e('Final Score on Quiz', 'mtouchquiz')?>
+    </span> <span id='mtq_attempted_questions_correct_string' class='mtq_preload'>
+    <?php _e('Attempted Questions Correct', 'mtouchquiz')?>
+    </span> <span id='mtq_attempted_questions_wrong_string' class='mtq_preload'>
+    <?php _e('Attempted Questions Wrong', 'mtouchquiz')?>
+    </span> <span id='mtq_questions_not_attempted_string' class='mtq_preload'>
+    <?php _e('Questions Not Attempted', 'mtouchquiz')?>
+    </span> <span id='mtq_total_questions_on_quiz_string' class='mtq_preload'>
+    <?php _e('Total Questions on Quiz', 'mtouchquiz')?>
+    </span> <span id='mtq_question_details_string' class='mtq_preload'>
+    <?php _e('Question Details', 'mtouchquiz')?>
+    </span> <span id='mtq_quiz_results_string' class='mtq_preload'>
+    <?php _e('Results', 'mtouchquiz')?>
+    </span> <span id='mtq_date_string' class='mtq_preload'>
+    <?php _e('Date', 'mtouchquiz')?>
+    </span> <span id='mtq_score_string' class='mtq_preload'>
+    <?php _e('Score', 'mtouchquiz')?>
     </span>
+    <span id='mtq_time_allowed_string' class='mtq_preload'><?php _e('Time allowed', 'mtouchquiz')?></span>
+<span id='mtq_minutes_string' class='mtq_preload'><?php _e('minutes', 'mtouchquiz')?></span>
+<span id='mtq_seconds_string' class='mtq_preload'><?php _e('seconds', 'mtouchquiz')?></span>
+<span id='mtq_time_used_string' class='mtq_preload'><?php _e('Time used', 'mtouchquiz')?></span>
+<span id='mtq_answer_choices_selected_string' class='mtq_preload'><?php _e('Answer Choice(s) Selected', 'mtouchquiz')?></span>
+<span id='mtq_question_text_string' class='mtq_preload'><?php _e('Question Text', 'mtouchquiz')?></span>
+
+
     <input type='hidden' id='mtq_answer_display-<?php echo $mtqid ?>' value='<?php echo $answer_display;?>'/>
     <input type='hidden' id='mtq_autoadvance-<?php echo $mtqid ?>' value='<?php echo $autoadvance;?>'/>
     <input type='hidden' id='mtq_single_page-<?php echo $mtqid ?>' value='<?php echo $single_page;?>'/>
@@ -614,9 +644,9 @@ if ($show_final ) {?>
 							?>
     <input type="hidden" id="mtq_gf_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_gf ?>"/>
     <input type="hidden" id="mtq_cf7_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_cf  ?>"/>
-     <input type="hidden" id="mtq_quiz_in_form-<?php echo $mtqid ?>" value="<?php echo $inform  ?>"/>
+    <input type="hidden" id="mtq_quiz_in_form-<?php echo $mtqid ?>" value="<?php echo $inform  ?>"/>
     <?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
-    	<span id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </span>
+    <span id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </span>
     <?php } ?>
   </div>
   
