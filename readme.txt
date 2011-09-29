@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/go/donate/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 2.4.1
+Stable tag: 2.4.2
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -38,6 +38,10 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 2.4.2 =
+* Bugfix for javascript. Update to this version!
+* Added Greek Translation (Thanks to Nikolaos Vavoulas)
 
 = 2.4.1 =
 * Added many features all by request of paying supporters.
@@ -205,6 +209,10 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.4.2 =
+* Bugfix for javascript. Update to this version!
+* Added Greek Translation (Thanks to Nikolaos Vavoulas)
 
 = 2.4.1 =
 * Added many features all by request of paying supporters.

@@ -197,55 +197,53 @@ function mtq_init() {
 		N++;
 	});
 	
-	mtq_have_completed_string = jQuery("#mtq_have_completed_string").html();
-	mtq_question_string = jQuery("#mtq_question_string").html();
-	mtq_questions_string = jQuery("#mtq_questions_string").html();
-	mtq_your_score_is_string = jQuery("#mtq_your_score_is_string").html();
-	mtq_correct_string = jQuery("#mtq_correct_string").html();
-	mtq_wrong_string = jQuery("#mtq_wrong_string").html();
-	mtq_partial_string = jQuery("#mtq_partial_string").html();
-	mtq_exit_warning_string = jQuery("#mtq_exit_warning_string").html();
-	mtq_correct_answer_string=jQuery('#mtq_correct_answer_string').html();
-	mtq_you_selected_string=jQuery('#mtq_you_selected_string').html();
-	mtq_not_attempted_string=jQuery('#mtq_not_attempted_string').html();
-	mtq_final_score_on_quiz_string=jQuery('#mtq_final_score_on_quiz_string').html();
-	mtq_attempted_questions_correct_string=jQuery('#mtq_attempted_questions_correct_string').html();
-	mtq_attempted_questions_wrong_string=jQuery('#mtq_attempted_questions_wrong_string').html();
-	mtq_questions_not_attempted_string=jQuery('#mtq_questions_not_attempted_string').html();
-	mtq_total_questions_on_quiz_string=jQuery('#mtq_total_questions_on_quiz_string').html();
-	mtq_question_details_string=jQuery('#mtq_question_details_string').html();
-	mtq_quiz_results_string=jQuery('#mtq_quiz_results_string').html();
-	mtq_date_string=jQuery('#mtq_date_string').html();
-	mtq_time_allowed_string=jQuery('#mtq_time_allowed_string').html();
-	mtq_minutes_string=jQuery('#mtq_minutes_string').html();
-	mtq_seconds_string=jQuery('#mtq_seconds_string').html();
-	mtq_time_used_string=jQuery('#mtq_time_used_string').html();
-	mtq_answer_choices_selected_string=jQuery('#mtq_answer_choices_selected_string').html();
-	mtq_question_text_string=jQuery('#mtq_question_text_string').html();
-	mtq_correct_answer_string=mtq_correct_answer_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_you_selected_string=mtq_you_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_not_attempted_string=mtq_not_attempted_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_final_score_on_quiz_string=mtq_final_score_on_quiz_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_attempted_questions_correct_string=mtq_attempted_questions_correct_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_attempted_questions_wrong_string=mtq_attempted_questions_wrong_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_questions_not_attempted_string=mtq_questions_not_attempted_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_total_questions_on_quiz_string=mtq_total_questions_on_quiz_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_question_details_string=mtq_question_details_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_quiz_results_string=mtq_quiz_results_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_date_string=mtq_date_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_question_string=mtq_question_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_score_string=mtq_score_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_time_allowed_string=mtq_time_allowed_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_minutes_string=mtq_minutes_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_seconds_string=mtq_seconds_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_time_used_string=mtq_time_used_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_answer_choices_selected_string=mtq_answer_choices_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-	mtq_question_text_string=mtq_question_text_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
-
-;
-
-
-
+	if ( N>=1 ) {
+		mtq_have_completed_string = jQuery("#mtq_have_completed_string").html();
+		mtq_question_string = jQuery("#mtq_question_string").html();
+		mtq_questions_string = jQuery("#mtq_questions_string").html();
+		mtq_your_score_is_string = jQuery("#mtq_your_score_is_string").html();
+		mtq_correct_string = jQuery("#mtq_correct_string").html();
+		mtq_wrong_string = jQuery("#mtq_wrong_string").html();
+		mtq_partial_string = jQuery("#mtq_partial_string").html();
+		mtq_exit_warning_string = jQuery("#mtq_exit_warning_string").html();
+		mtq_correct_answer_string=jQuery('#mtq_correct_answer_string').html();
+		mtq_you_selected_string=jQuery('#mtq_you_selected_string').html();
+		mtq_not_attempted_string=jQuery('#mtq_not_attempted_string').html();
+		mtq_final_score_on_quiz_string=jQuery('#mtq_final_score_on_quiz_string').html();
+		mtq_attempted_questions_correct_string=jQuery('#mtq_attempted_questions_correct_string').html();
+		mtq_attempted_questions_wrong_string=jQuery('#mtq_attempted_questions_wrong_string').html();
+		mtq_questions_not_attempted_string=jQuery('#mtq_questions_not_attempted_string').html();
+		mtq_total_questions_on_quiz_string=jQuery('#mtq_total_questions_on_quiz_string').html();
+		mtq_question_details_string=jQuery('#mtq_question_details_string').html();
+		mtq_quiz_results_string=jQuery('#mtq_quiz_results_string').html();
+		mtq_date_string=jQuery('#mtq_date_string').html();
+		mtq_time_allowed_string=jQuery('#mtq_time_allowed_string').html();
+		mtq_minutes_string=jQuery('#mtq_minutes_string').html();
+		mtq_seconds_string=jQuery('#mtq_seconds_string').html();
+		mtq_time_used_string=jQuery('#mtq_time_used_string').html();
+		mtq_answer_choices_selected_string=jQuery('#mtq_answer_choices_selected_string').html();
+		mtq_question_text_string=jQuery('#mtq_question_text_string').html();
+		
+		mtq_correct_answer_string=mtq_correct_answer_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_you_selected_string=mtq_you_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_not_attempted_string=mtq_not_attempted_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_final_score_on_quiz_string=mtq_final_score_on_quiz_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_attempted_questions_correct_string=mtq_attempted_questions_correct_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_attempted_questions_wrong_string=mtq_attempted_questions_wrong_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_questions_not_attempted_string=mtq_questions_not_attempted_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_total_questions_on_quiz_string=mtq_total_questions_on_quiz_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_question_details_string=mtq_question_details_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_quiz_results_string=mtq_quiz_results_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_date_string=mtq_date_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_question_string=mtq_question_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_score_string=mtq_score_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_time_allowed_string=mtq_time_allowed_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_minutes_string=mtq_minutes_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_seconds_string=mtq_seconds_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_time_used_string=mtq_time_used_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_answer_choices_selected_string=mtq_answer_choices_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_question_text_string=mtq_question_text_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+	}
 
 	var j;
 	for (j = 0; j<= N-1; j++){
@@ -449,8 +447,7 @@ function mtq_get_results(mtqid){
 			}
 			
 			if ( is_correct_answer == 1) {
-				mtq_email_results_correct_answer=mtq_email_results_correct_answer+mtq_correct_answer_string
-+": "+jQuery("#mtq_answer_text-"+q+"-"+a+"-"+mtqid).text()+"\n";
+				mtq_email_results_correct_answer=mtq_email_results_correct_answer+mtq_correct_answer_string+": "+jQuery("#mtq_answer_text-"+q+"-"+a+"-"+mtqid).text()+"\n";
 			}
 			
 			if ( mtq_answer_display[mtqid] != 0 ){
@@ -466,8 +463,7 @@ function mtq_get_results(mtqid){
 			
 			for ( a = 1; a<answer_order.length; a++ ) {
 				answer_print=answer_print+","+answer_order[a];
-				mtq_email_results_selected_answer=mtq_email_results_selected_answer+mtq_you_selected_string
-+": " + jQuery("#mtq_answer_text-"+q+"-"+answer_order[a]+"-"+mtqid).text()+"\n";
+				mtq_email_results_selected_answer=mtq_email_results_selected_answer+mtq_you_selected_string+": " + jQuery("#mtq_answer_text-"+q+"-"+answer_order[a]+"-"+mtqid).text()+"\n";
 			}
 			answer_print = answer_print.substr(1);
 			
