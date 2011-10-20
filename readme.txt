@@ -41,7 +41,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 = 2.4.2 =
 * Bugfix for javascript. Update to this version!
-* Added Greek Translation (Thanks to Nikolaos Vavoulas)
+* Added Greek Translation. Thanks to Nikolaos Vavoulas.
 
 = 2.4.1 =
 * Added many features all by request of paying supporters.
@@ -52,14 +52,14 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Enhanced Functionality of the Email Forms Feature. Question text and time used now included in email.
 * Added an option to allow multiple opportunities to answer question, but not award any partial credit using shortcode option scoring=1
 * There's always some bug fixes, and more inserted.
-* Added Japanese Translation (Thanks to Glen Charles Rowell http://a4jp.com & http://agreatdream.com)
+* Added Japanese Translation. Thanks to Glen Charles Rowell http://a4jp.com & http://agreatdream.com
 
 = 2.3.3 =
 * Fixed upgrade issue due to previous reliance on activation hook.
 
 = 2.3.2 =
 * Bugfix with stamping questions wrong that are correct.
-* Added Romanian translation (thanks Richard Vencu http://richardconsulting.ro/)
+* Added Romanian translation. Thanks Richard Vencu http://richardconsulting.ro/
 
 = 2.3.1 =
 * You may need to deactivate and then reactivate your plugin after install. All data will remain intact.
@@ -69,7 +69,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Added new shortcode to select which form is used to submit results (formid).
 * Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
 * Added new shortcode options to control which questions are selected (firstq, lastq)
-* Added formal Dutch translation, as spoken in The Netherlands. (Thanks to Sybrand Frietema de Vries)
+* Added formal Dutch translation, as spoken in The Netherlands. Thanks to Sybrand Frietema de Vries.
 * Incremented Version Number
 * Attempted a fix for an upgrade bug requiring deactivation/reactivation for proper functionality.
 * Bug fixes with scoring and stamping of questions with multiple answers or when no answers are supposed to be indicated.
@@ -88,15 +88,15 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 = 2.2.4 =
 * Compatibility with WordPress 3.2
 * More features coming soon!
-* Bug fix for title in add on (thanks to Dave Hale)
-* Added Hebrew translation (thanks to Shakhar Pelled)
-* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/ )
+* Bug fix for title in add on. Thanks to Dave Hale.
+* Added Hebrew translation. Thanks to Shakhar Pelled.
+* Added neutral Spanish translation. Thanks to Eduardo Aranda http://www.sinetiks.com/
 
 = 2.2.3 =
 * Corrected minimized scripts not being used
 * Changed output of source code by removing some brackets which could cause issues with other plugins
-* Added Swedish translation (thanks to Andreas Lundgren)
-* Added Turkish translation (thanks to Can Kirca)
+* Added Swedish translation. Thanks to Andreas Lundgren.
+* Added Turkish translation. Thanks to Can Kirca.
 
 
 = 2.2.2 =
@@ -122,7 +122,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Partial Russian Translation thanks to 3dyuriki
 
 = 2.1.6 =
-* Added a closing form tag. Should fix inability to comment on pages continaing quizzes. (Thanks yuriki)
+* Added a closing form tag. Should fix inability to comment on pages continaing quizzes. Thanks yuriki.
 * Updated some CSS and javascript in the proofread mode.
 
 = 2.1.5 =
@@ -136,7 +136,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 = 2.1.2 =
 * Fixed a bug with apostrophe's in titles causing it to truncate
-* Added Italian language translation (Thanks Stefano)
+* Added Italian language translation. Thanks Stefano.
 
 
 = 2.1.1 =
@@ -145,14 +145,14 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 
 = 2.1.0 =
-* Improved UI. Questions now scroll instead of just flashing from question to question (thanks to jQuery Tools Scrollable scripts)
+* Improved UI. Questions now scroll instead of just flashing from question to question. Thanks to jQuery Tools Scrollable scripts.
 * Added minified CSS and javascript files
 * Changed namespace for CSS to a shorter name. If you made customized CSS changes, you will need to update your CSS after install.
 * Added new shortcode options to eliminate certain parts of the quiz that are displayed. See the shortcode reference page on the plugin website for full details.
 * Added new shortcode options to control question selection.
 * Eliminated the shortcode option to display more than 1 question at a time. The choice is now 1 question or all questions. This is due to new scrolling option limitations. If enough people cry about this maybe I'll find a way to make this work too, but I doubt it.
 * Cleaned up some of the HTML. More changes in the future.
-* Added Estonian Translation. (Thanks to Martin Orn)
+* Added Estonian Translation. Thanks to Martin Orn.
 
 = 2.0.4 =
 * Single character changed. What a difference a byte makes?
@@ -212,7 +212,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 = 2.4.2 =
 * Bugfix for javascript. Update to this version!
-* Added Greek Translation (Thanks to Nikolaos Vavoulas)
+* Added Greek Translation. Thanks to Nikolaos Vavoulas.
 
 = 2.4.1 =
 * Added many features all by request of paying supporters.
@@ -226,7 +226,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 = 2.3.2 =
 * Bugfix with stamping questions wrong that are correct.
-* Added Romanian translation (thanks Richard Vencu http://richardconsulting.ro/)
+* Added Romanian translation. Thanks Richard Vencu http://richardconsulting.ro/
 
 = 2.3.1 =
 * You may need to deactivate and then reactivate your plugin after install. All data will remain intact.
@@ -236,7 +236,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Added new shortcode to select which form is used to submit results (formid).
 * Added new shortcode to automatically move to the next question once it is completed. (autoadvance)
 * Added new shortcode options to control which questions are selected (firstq, lastq)
-* Added formal Dutch translation, as spoken in The Netherlands. (Thanks to Sybrand Frietema de Vries)
+* Added formal Dutch translation, as spoken in The Netherlands. Thanks to Sybrand Frietema de Vries.
 * Incremented Version Number
 * Attempted a fix for an upgrade bug requiring deactivation/reactivation for proper functionality.
 * Bug fixes with scoring and stamping of questions with multiple answers or when no answers are supposed to be indicated.
@@ -255,15 +255,15 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 = 2.2.4 =
 * Compatibility with WordPress 3.2
 * More features coming soon!
-* Bug fix for title in add on (thanks to Dave Hale)
-* Added Hebrew translation (thanks to Shakhar Pelled)
-* Added neutral Spanish translation (thanks to Eduardo Aranda http://www.sinetiks.com/ )
+* Bug fix for title in add on. Thanks to Dave Hale.
+* Added Hebrew translation. Thanks to Shakhar Pelled.
+* Added neutral Spanish translation. Thanks to Eduardo Aranda http://www.sinetiks.com/ 
 
 = 2.2.3 =
 * Corrected minimized scripts not being used
 * Changed output of source code by removing some brackets which could cause issues with other plugins
-* Added Swedish translation (thanks to Andreas Lundgren)
-* Added Turkish translation (thanks to Can Kirca)
+* Added Swedish translation. Thanks to Andreas Lundgren.
+* Added Turkish translation. Thanks to Can Kirca.
 
 = 2.2.2 =
 * Bugfix for additional issues with blank values showing up when editing existing quizzes. BTW, if you don't hit "save" with all the fields blank, your existing data does not disappear. If you hit "save" it will all save as blank.
@@ -290,7 +290,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Partial Russian Translation thanks to 3dyuriki
 
 = 2.1.6 =
-* Added a closing form tag. Should fix inability to comment on pages continaing quizzes. (Thanks yuriki)
+* Added a closing form tag. Should fix inability to comment on pages continaing quizzes. Thanks yuriki.
 * Updated some CSS and javascript in the proofread mode.
 * Known Existing Bugs Exterminated
 * New Bugs Populated
@@ -306,7 +306,7 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 = 2.1.2 =
 * Fixed a bug with apostrophe's in titles causing it to truncate
-* Added Italian language translation (Thanks Stefano)
+* Added Italian language translation. Thanks Stefano.
 
 
 = 2.1.1 =
@@ -315,14 +315,14 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 
 
 = 2.1.0 =
-* Improved UI. Questions now scroll instead of just flashing from question to question (thanks to jQuery Tools Scrollable scripts)
+* Improved UI. Questions now scroll instead of just flashing from question to question. Thanks to jQuery Tools Scrollable scripts.
 * Added minified CSS and javascript files
 * Changed namespace for CSS to a shorter name. If you made customized CSS changes, you will need to update your CSS after install.
 * Added new shortcode options to eliminate certain parts of the quiz that are displayed. See the shortcode reference page on the plugin website for full details.
 * Added new shortcode options to control question selection.
 * Eliminated the shortcode option to display more than 1 question at a time. The choice is now 1 question or all questions. This is due to new scrolling option limitations. If enough people cry about this maybe I'll find a way to make this work too, but I doubt it.
 * Cleaned up some of the HTML. More changes in the future.
-* Added Estonian Translation. (Thanks to Martin Orn)
+* Added Estonian Translation. Thanks to Martin Orn.
 
 = 2.0.4 =
 * Single character changed. What a difference a byte makes?
