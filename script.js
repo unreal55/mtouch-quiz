@@ -16,6 +16,7 @@ var	mtq_show_start = [] ;
 var	mtq_show_final = [] ;
 var mtq_extra_page = [] ;
 var mtq_show_list = [] ;
+var mtq_show_stamps = [] ;
 var	mtq_multiple_chances = [] ;
 var mtq_quiz_finished = [] ;
 var mtq_exit_warning = [] ;
@@ -286,6 +287,7 @@ function mtq_start_one(mtqid) {
 	mtq_show_hints[mtqid] = parseInt(jQuery("#mtq_show_hints-"+mtqid).val());
 	mtq_show_start[mtqid] = parseInt(jQuery("#mtq_show_start-"+mtqid).val());
 	mtq_show_final[mtqid] = parseInt(jQuery("#mtq_show_final-"+mtqid).val());
+	mtq_show_stamps[mtqid]= parseInt(jQuery("#mtq_show_stamps-"+mtqid).val());
 	mtq_exit_warning[mtqid] = parseInt(jQuery("#mtq_show_alerts-"+mtqid).val());
 	mtq_multiple_chances[mtqid] = parseInt(jQuery("#mtq_multiple_chances-"+mtqid).val());
 	mtq_total_questions[mtqid] = parseInt(jQuery("#mtq_total_questions-"+mtqid).val()); //jQuery(".mtq_question").length;
@@ -364,7 +366,7 @@ function mtq_results_message(mtqid){
 	
 	ResultsMsg=ResultsMsg.replace(/%%SCORE%%/gi,mtq_questions_correct[mtqid]);
 	ResultsMsg=ResultsMsg.replace(/%%TOTAL%%/gi,mtq_total_questions[mtqid]);
-	ResultsMsg=ResultsMsg.replace(/%%WRONG_ANSWERS%%/gi,mtq_questions_wrong[mtqid]);
+	ResultsMsg=ResultsMsg.replace(/%%WRONG_ANSWERS%%/gi,mtq_total_questions[mtqid]-mtq_questions_correct[mtqid]);
 	ResultsMsg=ResultsMsg.replace(/%%PERCENTAGE%%/gi,mtq_score_percent[mtqid].toFixed(0)+"%");
 	if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
 		ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,jQuery("#mtq_contact_form-"+mtqid).html());
@@ -373,8 +375,30 @@ function mtq_results_message(mtqid){
 		ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,"*** mTouch Quiz Forms Addon Not Properly Configured ***");
 		jQuery("#mtq_contact_form-"+mtqid).remove();
 	}
+	ResultsMsg=ResultsMsg.replace(/%%TIME_USED%%/gi,mtq_timer_initial_val[mtqid]-mtq_timer_val[mtqid]);
+	ResultsMsg=ResultsMsg.replace(/%%TIME_ALLOWED%%/gi,mtq_timer_initial_val[mtqid]);
+	
 	ResultsMsg=ResultsMsg;
 	jQuery("#mtq_quiz_results-"+mtqid).html(ResultsMsg);
+}
+
+function mtq_gf_fill_form(results_message,mtqid){
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq').find('textarea').val(results_message);
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_score').find('input').val(mtq_questions_correct[mtqid]);
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_total').find('input').val(mtq_total_questions[mtqid]);
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_percentage').find('input').val(mtq_score_percent[mtqid].toFixed(0));
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_wrong_answers').find('input').val(mtq_total_questions[mtqid]-mtq_questions_correct[mtqid]);
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_allowed').find('input').val(mtq_timer_initial_val[mtqid]);
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_used').find('input').val(mtq_timer_initial_val[mtqid]-mtq_timer_val[mtqid]);
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_quiz_name').find('input').val(jQuery("#mtq_quiztitle-"+mtqid).text());
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq').css('display','none');
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_score').css('display','none');
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_total').css('display','none');
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_percentage').css('display','none');
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_wrong_answers').css('display','none');
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_allowed').css('display','none');
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_used').css('display','none');
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_quiz_name').css('display','none');
 }
 
 function mtq_get_results(mtqid){
@@ -659,12 +683,12 @@ function mtq_update_status(mtqid){
 }
 
 function mtq_stamp(q,mtqid) {
-	if (mtq_answer_display[mtqid] != 0 ){
+	if (mtq_answer_display[mtqid] != 0 || (mtq_show_stamps[mtqid]==2 && mtq_quiz_finished[mtqid] ) ){
 		
 		if ( mtq_answer_display[mtqid] == 2 || mtq_quiz_finished[mtqid] ){
 			var points_possible = parseInt(jQuery("#mtq_is_worth-"+q+"-"+mtqid).val());
 			var points_awarded = parseInt(jQuery("#mtq_points_awarded-"+q+"-"+mtqid).val());
-			
+	
 			jQuery("#mtq_stamp-"+q+"-"+mtqid).removeClass('mtq_wrong_stamp');
 			jQuery("#mtq_stamp-"+q+"-"+mtqid).removeClass('mtq_partial_stamp');
 			jQuery("#mtq_stamp-"+q+"-"+mtqid).removeClass('mtq_correct_stamp');

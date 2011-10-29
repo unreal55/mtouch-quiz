@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.4.2
+Version: 2.5.0
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,10 +32,10 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '2.4.2' );
+define( 'mtq_VERSION', '2.5.0' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
-define( 'mtq_database_version','1.6.4');
+define( 'mtq_database_version','1.6.5.3');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
 function mtq_add_menu_links() {
 	global $wp_version, $_registered_pages;
@@ -334,7 +334,8 @@ function mtq_shortcode( $atts ) {
 	  'formid'=>-1,
 	  'singlequestion'=>0,
 	  'scoring'=>0,
-	  'vform'=>1
+	  'vform'=>1,
+	  'show_stamps'=>1
       ), $atts ) );
 	$quiz_id = -1;
 	$input_number_questions = -1;
@@ -519,6 +520,11 @@ function mtq_shortcode( $atts ) {
 		$thetypedcode.= " vform=".$vform;
 	}
 	
+	if( isset( $atts['showstamps']) && $atts['showstamps']=='end' ){
+		$show_stamps = 2;
+		$thetypedcode.= " showstamps=".$show_stamps;
+	}
+	
 	$thetypedcode.= "";
 	$replace_these	= array('showanswers=0','showanswers=1','showanswers=2');
 	$with_these = array ('showanswers=never','showanswers=end','showanswers=now');
@@ -600,6 +606,7 @@ function mtq_enqueue_stuff() {
 		wp_enqueue_script('mtq_scrollable', WP_CONTENT_URL . '/plugins/mtouch-quiz/scrollable.min.js',array('jquery'),mtq_VERSION,false);
 	//}
 	//wp_enqueue_script('jquerytools_full','http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js','1.2.5',false);
+	wp_dequeue_script('mtq_gf_script'); //Replaced Functions
 }
 
 add_filter('plugin_row_meta', 'mtq_filter_plugin_links', 10, 2);
@@ -641,6 +648,11 @@ function mtq_donate_form() {
 
 return $return_string;
 }
+
+//function add_sort_order() {
+//	
+//	//UPDATE wp_mtouchquiz_question SET `sort_order`=`ID`	
+//}
  
 
 add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
@@ -656,6 +668,7 @@ function mtq_activate() {
      add_option('mtouchquiz_rightdelimit', "}\\\)");
 	 add_option('mtouchquiz_showalerts', "1");
 	 add_option('mtouchquiz_show_support',"true");
+	 add_option('mtouchquiz_ordering_set',0);
 	 update_option('mtouchquiz_show_support',"true");
 	 //add_option('mtouchquiz_skiploadjquerytools', "0");
 	
@@ -708,6 +721,10 @@ function mtq_activate() {
 					PRIMARY KEY  (ID)
 				);";
 		dbDelta($sql);
+		//if (get_option('mtouchquiz_ordering_set')== 0) {
+//			$wpdb->query("UPDATE `{$wpdb->prefix}mtouchquiz_question` SET `sort_order`=`ID`");
+//			update_option('mtouchquiz_ordering_set',1);
+//		}
 		update_option( "mtouchquiz_db_version", $database_version );
 	}
 }

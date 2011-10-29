@@ -136,6 +136,14 @@ if($action == 'edit') {
               <td><?php _e("A rating of your performance. (Customize below.)", 'mtouchquiz') ?></td>
             </tr>
             <tr>
+              <td>%%TIME_ALLOWED%%</td>
+              <td><?php _e("Time Allowed in Seconds. (Requires Timer Add on)", 'mtouchquiz') ?></td>
+            </tr>
+            <tr>
+              <td>%%TIME_USED%%</td>
+              <td><?php _e("Time Used in Seconds. (Requires Timer Add on)", 'mtouchquiz') ?></td>
+            </tr>
+            <tr>
               <td>%%QUIZ_NAME%%</td>
               <td><?php _e('The name of the quiz', 'mtouchquiz') ?></td>
             </tr>

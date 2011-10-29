@@ -255,6 +255,7 @@
 .mtq_explanation {
 	display:none;
 	margin-left:3em;
+	width:80%;
 	margin-top:1em;
 	margin-bottom:3em;
 	background:#ADE0C1;
@@ -483,11 +484,7 @@
 	display:none;
 }
 
-#content .mtq {
-	display:none;	
-}
-
-#container .mtq {
+#content .mtq, #content .mtq_auto, #content .mtq_quiz_name, #content .mtq_score, #content .mtq_total, #content .mtq_percentage, #content .mtq_wrong_answers,#content .mtq_time_allowed, #content .mtq_time_used,#container .mtq, #container .mtq_auto, #container .mtq_quiz_name, #container .mtq_score, #container .mtq_total, #container .mtq_percentage, #container .mtq_wrong_answers,#container .mtq_time_allowed, #container .mtq_time_used  {
 	display:none;	
 }
 

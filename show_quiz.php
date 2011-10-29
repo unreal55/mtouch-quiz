@@ -27,7 +27,7 @@
 		
 		$dquizfm = $wpdb->get_row($wpdb->prepare("SELECT form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$form_code = stripslashes($dquizfm->form_code);
-		
+		$form_id= $form_code;
 		$tquizfm = $wpdb->get_row($wpdb->prepare("SELECT time_limit FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$db_time = stripslashes($tquizfm->time_limit);
 		
@@ -249,6 +249,7 @@
 		$theexecutedcode.=" finalscreen=".$show_final;
 		$theexecutedcode.=" multiplechances=".$multiple_chances;
 		$theexecutedcode.=" showanswers=".$answer_display;
+		$theexecutedcode.=" show_stamps=".$show_stamps;
 		$theexecutedcode.=" randomq=".$random_questions;
 		$theexecutedcode.=" randoma=".$random_answers;
 		$theexecutedcode.= " status=".$show_status;
@@ -258,6 +259,7 @@
 		$theexecutedcode.= " list=".$show_list;
 		$theexecutedcode.=" time=".$mtq_max_time;
 		$theexecutedcode.=" scoring=".$scoring;
+		$theexecutedcode.=" formid=".$form_id;
 		$theexecutedcode.=" vform=".$vform;
 		$theexecutedcode.=" autoadvance=".$autoadvance;
 		$theexecutedcode.=" inform=".$inform;
@@ -598,6 +600,7 @@ if ($show_final ) {?>
     <input type="hidden" name="mtq_questions_not_attempted" id="mtq_questions_not_attempted-<?php echo $mtqid ?>" value="0" />
     <input type="hidden" id="mtq_display_number-<?php echo $mtqid ?>" value="<?php echo  $display_number; ?>" />
     <input type="hidden" id="mtq_show_list_option-<?php echo $mtqid ?>" value="<?php echo  $show_list; ?>" />
+    <input type="hidden" id="mtq_show_stamps-<?php echo $mtqid ?>" value="<?php echo  $show_stamps; ?>" />
     <?php 
 								$all_ratings = $wpdb->get_results($wpdb->prepare("SELECT score_rating, min_points FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id=%d ORDER BY min_points", $quiz_id));
 								$mtq_num_ratings=count($all_ratings);

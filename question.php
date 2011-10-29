@@ -112,9 +112,9 @@ wp_print_scripts();
     <tbody id="the-list">
       <?php
 // Retrieve the questions
-$all_question = $wpdb->get_results("SELECT Q.ID,Q.question, Q.number_correct, Q.point_value, (SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=Q.ID) AS answer_count
+$all_question = $wpdb->get_results("SELECT Q.ID,Q.sort_order,Q.question, Q.number_correct, Q.point_value, (SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id=Q.ID) AS answer_count
 										FROM `{$wpdb->prefix}mtouchquiz_question` AS Q
-										WHERE Q.quiz_id=$_REQUEST[quiz] ORDER BY Q.ID");
+										WHERE Q.quiz_id=$_REQUEST[quiz] ORDER BY Q.sort_order, Q.ID");
 										
 
 if (count($all_question)) {
