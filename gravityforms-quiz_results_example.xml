@@ -72,10 +72,5 @@
 				<label><![CDATA[Time Used (Seconds)]]></label>
 			</field>
 		</fields>
-		<notification>
-			<to><![CDATA[michael@gmichaelguy.com]]></to>
-			<subject><![CDATA[New submission from {form_title}]]></subject>
-			<message><![CDATA[{all_fields}]]></message>
-		</notification>
 	</form>
 </forms>
