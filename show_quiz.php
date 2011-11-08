@@ -92,7 +92,7 @@
 		if ( $mtq_use_cf && $mtq_cf7_allgood ) {
 			$mtq_form_present = 1;
 			if ( substr($form_code,0,1) != "[" ) {
-				$form_code = "[contact-form " .$form_code;
+				$form_code = '[contact-form-7 id="' .$form_code.'"';
 			}
 						
 			if ( substr($form_code,-1) != "]" ) {
