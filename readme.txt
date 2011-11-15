@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/go/donate/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
 Tested up to: 3.2.1
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -38,6 +38,9 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 2.5.2 =
+* jQuery 1.7/ WP 3.3 compatibility update. Removed reliance on unmaintained jQuery Tools and implemented own scrolling.
 
 = 2.5.1 =
 * New Dashboard Results Storage. [ Screenshot here.](http://gmichaelguy.com/mtq_dash.png "Dashboard Results Screenshot"). Adds ability to store individual quiz scores, percents, etc as separate fields in Gravity Forms Addon for enhanced dashboard storage. Importable form now available to help set up Dashboard Results.
@@ -221,6 +224,9 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.5.2 =
+* jQuery 1.7/ WP 3.3 compatibility update. Removed reliance on unmaintained jQuery Tools and implemented own scrolling.
 
 = 2.5.1 =
 * New Dashboard Results Storage. [ Screenshot here.](http://gmichaelguy.com/mtq_dash.png "Dashboard Results Screenshot"). Adds ability to store individual quiz scores, percents, etc as separate fields in Gravity Forms Addon for enhanced dashboard storage. Importable form now available to help set up Dashboard Results.

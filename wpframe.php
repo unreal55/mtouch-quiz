@@ -43,13 +43,13 @@ function wpframe_message($message, $type='updated') {
 }
 
 /// Globalization function - Returns the translated string
-function t($message) {
-	return __($message, 'mtouchquiz');
-}
+//function t($message) {
+//	return __($message, 'mtouchquiz');
+//}
 
 /// Globalization function - prints the translated string
-function e($message) {
-	_e($message, 'mtouchquiz');
-}
+//function e($message) {
+//	_e($message, 'mtouchquiz');
+//}
 
 }

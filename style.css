@@ -305,6 +305,7 @@
 }
 .mtq_listrow_button-td {
 	width:80px !important;
+	display:block;
 }
 .mtq_next-button {
 	background:url(images/next.png) no-repeat 0 -46px;
