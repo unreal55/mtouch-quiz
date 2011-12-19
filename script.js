@@ -66,10 +66,6 @@ var mtq_answer_choices_selected_string='Answer Choice(s) Selected';
 var mtq_question_text_string='Question Text';
 
 
-
-
-
-
 window.onbeforeunload = function() {
 	var N = mtq_quizzes_present.length;
   	var count;
@@ -123,7 +119,7 @@ function mtq_resize_one_quiz(mtqid) {
 	if ( ! mtq_single_page[mtqid] ){
 		var newWidth =jQuery("#mtq_quiz_area-"+mtqid).parent().width();
 		jQuery("div.mtq_scroll_item-"+mtqid).css('width',newWidth);
-		mtq_animate_question(mtq_current_question[mtqid],mtqid);
+		mtq_jump_question(mtq_current_question[mtqid],mtqid);
 	}
 	//var TheApi = jQuery(".mtqscrollable:eq("+mtqid+")");
 	//jQuery("#mtq_scroll_container-"+mtqid).data("mtqscrollable").mtq_seekTo(TheApi.data("mtqscrollable").getIndex(),0);
@@ -158,11 +154,11 @@ function mtq_init() {
 	});
 	jQuery(function() {
 		//var api = jQuery(".mtqscrollable").mtqscrollable({ circular: false, touch: false });
-		var StartIndex;
-		var StopIndex;
-		var mtqid;
+		//var StartIndex;
+		//var StopIndex;
+		//var mtqid;
 		
-		var count;
+		//var count;
 		//for (count=0;count<api.length;count++) {
 //			var TheApi = jQuery(".mtqscrollable:eq("+count+")");
 //			TheApi.bind("mtq_onBeforeSeek",function() {
@@ -270,6 +266,8 @@ function mtq_set_height(q,mtqid) {
 function mtq_start_one(mtqid) {
 	var newWidth =jQuery("#mtq_quiz_area-"+mtqid).parent().width();
 	jQuery("div.mtq_scroll_item-"+mtqid).css('width',newWidth);
+	jQuery("#mtq_quiz_results_bubble-"+mtqid).css('display','none');
+	
 	mtq_set_height(1,mtqid);		
 	mtq_current_question[mtqid] = 1;
 	mtq_total_questions[mtqid] = 0;
@@ -313,13 +311,13 @@ function mtq_start_one(mtqid) {
 		mtq_ui_questions[mtqid]++;
 	}
 	
-		if (! mtq_show_start[mtqid] || mtq_proofread ){
-			mtq_start_quiz(mtqid);	
-		} else
-		{
-			jQuery("#mtq_instructions-"+mtqid).css('display','block');
-			jQuery("#mtq_start_button-"+mtqid).css('display','block');	
-		}
+	if (! mtq_show_start[mtqid] || mtq_proofread ){
+		mtq_start_quiz(mtqid);	
+	} else
+	{
+		jQuery("#mtq_instructions-"+mtqid).css('display','block');
+		jQuery("#mtq_start_button-"+mtqid).css('display','block');	
+	}
 		
 		mtq_gf_present[mtqid]=parseInt(jQuery("#mtq_gf_present-"+mtqid).val());
 		mtq_cf7_present[mtqid]=parseInt(jQuery("#mtq_cf7_present-"+mtqid).val());
@@ -327,23 +325,23 @@ function mtq_start_one(mtqid) {
 }
 
 function mtq_animate_question(q,mtqid) {
-		wid=jQuery("#mtq_question-1-"+mtqid).width();
-		pos= (q-1)* wid * -1;
-		jQuery("#mtq_scroll_items_container-"+mtqid).animate({left: pos +'px'});	
-		mtq_current_question[mtqid] = q;
-		mtq_set_height(q,mtqid);
-		mtq_check_arrows(mtqid);
-		mtq_scroll_anchor(mtqid);
+	wid=jQuery("#mtq_question-1-"+mtqid).width();
+	pos= (q-1)* wid * -1;
+	jQuery("#mtq_scroll_items_container-"+mtqid).animate({left: pos +'px'});	
+	mtq_current_question[mtqid] = q;
+	mtq_set_height(q,mtqid);
+	mtq_check_arrows(mtqid);
+	mtq_scroll_anchor(mtqid);
 }
 
 function mtq_jump_question(q,mtqid) {
-		wid=jQuery("#mtq_question-1-"+mtqid).width();
-		pos= (q-1)* wid * -1;
-		jQuery("#mtq_scroll_items_container-"+mtqid).css({left: pos +'px'});	
-		mtq_current_question[mtqid] = q;
-		mtq_set_height(q,mtqid);
-		mtq_check_arrows(mtqid);
-		mtq_scroll_anchor(mtqid);
+	wid=jQuery("#mtq_question-1-"+mtqid).width();
+	pos= (q-1)* wid * -1;
+	jQuery("#mtq_scroll_items_container-"+mtqid).css({left: pos +'px'});	
+	mtq_current_question[mtqid] = q;
+	mtq_set_height(q,mtqid);
+	mtq_check_arrows(mtqid);
+	mtq_scroll_anchor(mtqid);
 }
 
 function mtq_check_arrows(mtqid) {
@@ -452,8 +450,13 @@ function mtq_gf_fill_form(results_message,mtqid){
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_total').find('input').val(mtq_total_questions[mtqid]);
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_percentage').find('input').val(mtq_score_percent[mtqid].toFixed(0));
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_wrong_answers').find('input').val(mtq_total_questions[mtqid]-mtq_questions_correct[mtqid]);
-	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_allowed').find('input').val(mtq_timer_initial_val[mtqid]);
-	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_used').find('input').val(mtq_timer_initial_val[mtqid]-mtq_timer_val[mtqid]);
+	if (mtq_timer_initial_val[mtqid] >0 ) {
+		jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_allowed').find('input').val(mtq_timer_initial_val[mtqid]);
+		jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_used').find('input').val(mtq_timer_initial_val[mtqid]-mtq_timer_val[mtqid]);
+	} else {
+		jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_allowed').find('input').val(1);
+		jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_used').find('input').val(1);
+	}
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_quiz_name').find('input').val(jQuery("#mtq_quiztitle-"+mtqid).text());
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq').css('display','none');
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_score').css('display','none');
