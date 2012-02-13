@@ -42,7 +42,8 @@
 	padding:0;
 }
 .mtq_timer {
-	float:right;	
+	float:right;
+	margin-top: -30px;	
 }
 
 .mtq_failed_button {
@@ -243,7 +244,7 @@
 }
 .mtq_answer_table tr:hover td {
 	color:#000;
-	font-weight:600;
+/*	font-weight:600;*/
 	background:#eff2ff;
 }
 .mtq_answer_td {
@@ -268,9 +269,9 @@
 	border-color:#030;
 	padding:.5em;
 }
-.mtq_explanation:hover {
+/*.mtq_explanation:hover {
 	font-weight:600;
-}
+}*/
 .mtq_explanation-label {
 	display:block;
 	padding-bottom:.25em;

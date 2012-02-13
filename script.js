@@ -32,6 +32,7 @@ var mtq_timer_val = [];
 var mtq_timer_initial_val = [];
 var mtq_timer_on = [];
 var mtq_autoadvance = [];
+var mtq_autosubmit = [];
 var mtq_scoring_option = [];
 var mtq_vform = [];
 
@@ -302,6 +303,7 @@ function mtq_start_one(mtqid) {
 	var mtq_proofread  = parseInt(jQuery("#mtq_proofread-"+mtqid).val());
 	mtq_show_list[mtqid] =  parseInt(jQuery("#mtq_show_list_option-"+mtqid).val());
 	mtq_autoadvance[mtqid] = parseInt(jQuery("#mtq_autoadvance-"+mtqid).val());
+	mtq_autosubmit[mtqid] = parseInt(jQuery("#mtq_autosubmit-"+mtqid).val());
 	mtq_scoring_option[mtqid] = parseInt(jQuery("#mtq_scoring-"+mtqid).val());
 	mtq_vform[mtqid] = parseInt(jQuery("#mtq_vform-"+mtqid).val());
 	//mtq_extra_page[mtqid] = 0;
@@ -391,6 +393,7 @@ function mtq_start_quiz(mtqid){
 			mtq_timer_initial_val[mtqid]=parseInt(jQuery("#mtq_timer_val-"+mtqid).val());
 			mtq_start_timer(mtqid);	
 		}
+		mtq_check_arrows(mtqid);
 		//mtq_ShowBatch(mtqid);
 }
 
@@ -414,8 +417,14 @@ function mtq_nav_click(q,mtqid) {
 }
 
 function mtq_results_message(mtqid){
+	
+	if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
+		theClonedForm=jQuery("#mtq_contact_form-"+mtqid).clone(true);
+	} 
+	
 	var ResultsMsg = jQuery("#mtq_quiz_results-"+mtqid).html();
 	var numRatings = parseInt(jQuery("#mtq_num_ratings-"+mtqid).val());
+	//var safeRating = '';
 	var j=1;
 	for(j=numRatings;j>0;j--){
 		var rating_score = parseInt(jQuery("#mtq_ratingval-"+j+"-"+mtqid).val());
@@ -430,18 +439,29 @@ function mtq_results_message(mtqid){
 	ResultsMsg=ResultsMsg.replace(/%%TOTAL%%/gi,mtq_total_questions[mtqid]);
 	ResultsMsg=ResultsMsg.replace(/%%WRONG_ANSWERS%%/gi,mtq_total_questions[mtqid]-mtq_questions_correct[mtqid]);
 	ResultsMsg=ResultsMsg.replace(/%%PERCENTAGE%%/gi,mtq_score_percent[mtqid].toFixed(0)+"%");
-	if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
-		ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,jQuery("#mtq_contact_form-"+mtqid).html());
-		jQuery("#mtq_contact_form-"+mtqid).remove();
-	} else {
-		ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,"*** mTouch Quiz Forms Addon Not Properly Configured ***");
-		jQuery("#mtq_contact_form-"+mtqid).remove();
-	}
+	
 	ResultsMsg=ResultsMsg.replace(/%%TIME_USED%%/gi,mtq_timer_initial_val[mtqid]-mtq_timer_val[mtqid]);
 	ResultsMsg=ResultsMsg.replace(/%%TIME_ALLOWED%%/gi,mtq_timer_initial_val[mtqid]);
 	
-	ResultsMsg=ResultsMsg;
+	//Determine if a form should be added
+	var mtq_addForm = false;
+	if ( ResultsMsg.search(/%%FORM%%/i) != -1 ) {
+		if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
+			ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,'');
+			mtq_addForm= true;
+			jQuery("#mtq_contact_form-"+mtqid).remove();
+		} else {
+			ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,"*** mTouch Quiz Forms Addon Not Properly Configured ***");
+			jQuery("#mtq_contact_form-"+mtqid).remove();
+		}
+	}
+	
 	jQuery("#mtq_quiz_results-"+mtqid).html(ResultsMsg);
+	if (mtq_addForm ) {
+		if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
+			jQuery("#mtq_quiz_results-"+mtqid).append(theClonedForm);
+		}
+}
 }
 
 function mtq_gf_fill_form(results_message,mtqid){
@@ -639,6 +659,9 @@ function mtq_get_results(mtqid){
 			mtq_gf_fill_in_form(mtq_email_results);
 			
 		}
+		if (mtq_autosubmit[mtqid]) {
+			jQuery("#gform_"+parseInt(jQuery("#mtq_gf_formid_number-"+mtqid).val())).submit();
+		}
 	}
 	
 	if ( mtq_cf7_present[mtqid] ) {
@@ -650,6 +673,7 @@ function mtq_get_results(mtqid){
 		}
 	}
 }
+
 
 function mtq_gf_fill_in_form(results_message){
 	jQuery('#content').find('li.mtq').find('textarea').val(results_message);
@@ -877,7 +901,7 @@ function mtq_button_click (q,a,mtqid)
 	jQuery("#mtq_is_correct-"+q+"-"+mtqid).val(question_correct);
 
 	
-	if ( number_selected >= number_correct && mtq_show_hints[mtqid] ) { // Wrong answer, but sufficient number to show hints.
+	if ( mtq_show_hints[mtqid] ) { // Wrong answer, but sufficient number to show hints.
 		for (j=1;j<=number_answers;j++){
 			//scroll var has_hint = parseInt(jQuery("#mtq_has_hint-"+q+"-"+j+"-"+mtqid).val());
 			if(  parseInt(jQuery("#mtq_was_selected-"+q+"-"+j+"-"+mtqid).val()) ) { //has_hint &&

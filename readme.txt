@@ -3,8 +3,8 @@ Contributors: gmichaelguy
 Donate link: http://gmichaelguy.com/quizplugin/go/donate/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
-Tested up to: 3.3
-Stable tag: 2.5.3
+Tested up to: 3.3.1
+Stable tag: 2.5.4
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -38,6 +38,12 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 2.5.4 =
+* Small CSS Tweaks for bolding on hover
+* Changed behavior of hint showing on questions with multiple correct answers
+* Added an autosubmit feature for Gravity Forms. autosubmit=on shortcode will automatically submit the form after hitting "Get Results." You may not have required fields, however, since the user will not have time to input them before the form is submitted.
+* Small tweaks to other areas for improved performance
 
 = 2.5.3 =
 * If you update to WP 3.3, you must update to this version!
@@ -227,6 +233,12 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.5.4 =
+* Small CSS Tweaks for bolding on hover
+* Changed behavior of hint showing on questions with multiple correct answers
+* Added an autosubmit feature for Gravity Forms. autosubmit=on shortcode will automatically submit the form after hitting "Get Results." You may not have required fields, however, since the user will not have time to input them before the form is submitted.
+* Small tweaks to other areas for improved performance
 
 = 2.5.3 =
 * If you update to WP 3.3, you must update to this version!

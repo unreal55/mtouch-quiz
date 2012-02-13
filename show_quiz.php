@@ -68,6 +68,8 @@
 			$form_code = $input_formid;
 		}
 		
+		$gf_formid_number = $form_code;
+		
 		if ( $mtq_use_gf && $mtq_gf_allgood ) {
 			$mtq_form_present = 1;
 			if ( substr($form_code,0,1) != "[" ) {
@@ -262,6 +264,7 @@
 		$theexecutedcode.=" formid=".$form_id;
 		$theexecutedcode.=" vform=".$vform;
 		$theexecutedcode.=" autoadvance=".$autoadvance;
+		$theexecutedcode.=" autosubmit=".$auto_submit;
 		$theexecutedcode.=" inform=".$inform;
 		$theexecutedcode.=" forcecf=".$forcecf;
 		$theexecutedcode.=" forcegf=".$forcegf;
@@ -312,14 +315,20 @@
   <!--Quiz generated using <?php echo mtq_DISPLAY_NAME ?> Version <?php echo mtq_VERSION ?> by G. Michael Guy (<?php echo mtq_URL ?>)-->
   <?php if  ( $mtq_gf_addon_active ) {
 	echo "<!--Enhanced with ".mtq_gf_DISPLAY_NAME." Version ".mtq_gf_VERSION ." (". mtq_gf_URL.")-->" ; 
-	if ( ! $mtq_gf_active ) {
-		echo "<!--Gravity Forms Plugin is NOT active, however.)-->" ; 
+	if ( ! $mtq_gf_addon_exists ) {
+		echo "<!--(Gravity Forms Plugin is NOT installed, however.)-->" ; 
+	}
+	elseif ( ! $mtq_gf_active ) {
+		echo "<!--(Gravity Forms Plugin is installed but NOT active.)-->" ; 
 	}
   }?>
   <?php if  ( $mtq_cf7_addon_active ) {
 	echo "<!--Enhanced with ".mtq_cf7_DISPLAY_NAME." Version ".mtq_cf7_VERSION ." (". mtq_cf7_URL.")-->" ; 
-	if ( ! $mtq_cf7_active ) {
-		echo "<!--Contact Form 7 Plugin is NOT active, however.)-->" ; 
+	if ( ! $mtq_cf7_addon_exists ) {
+		echo "<!--(Contact Form 7 Plugin is NOT installed, however.)-->" ; 
+	}
+	elseif ( ! $mtq_cf7_active ) {
+		echo "<!--(Contact Form 7 Plugin is installed but NOT active.)-->" ; 
 	}
   }?>
   <?php if  ( mtq_check_all_timer() ) {
@@ -330,30 +339,30 @@
   <!-- Shortcode interpreted <?php echo $theexecutedcode;?> --> 
   <!--form action="" method="post" class="quiz-form" id="quiz-<?php echo $quiz_id?>"-->
   <?php $mtq_all_vars.="<input type='hidden' id='mtq_id-{$mtqid}' name='mtq_id_value' value='{$mtqid}' />"; ?>
-  <span id="mtq_quiztitle-<?php echo $mtqid ?>" class="mtq_quiztitle" <?php if ( ! $show_title ) { echo "style='display:none'"; } ?>>
+  <div id="mtq_quiztitle-<?php echo $mtqid ?>" class="mtq_quiztitle" <?php if ( ! $show_title ) { echo "style='display:none'"; } ?>>
   <h2><?php echo stripslashes($quiz_options->name)?></h2>
-  </span>
+  </div>
   <noscript>
-  <span id="mtq_javawarning-<?php echo $mtqid ?>" class="mtq_javawarning">
+  <div id="mtq_javawarning-<?php echo $mtqid ?>" class="mtq_javawarning">
   <?php _e('Please wait while the activity loads.</br> If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.', 'mtouchquiz'); ?>
-  <span class="mtq_failed_button" onclick="mtq_start_one(<?php echo $mtqid ?>)">
+  <div class="mtq_failed_button" onclick="mtq_start_one(<?php echo $mtqid ?>)">
   <?php _e('If loading fails, click here to try again','mtouchquiz') ?>
-  </span></span>
+  </div></div>
   </noscript>
   <?php if ($show_start) {?>
-  <span id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions"><?php echo stripslashes($quiz_options->description)?></span> <span id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_start_button' onclick='mtq_start_quiz(<?php echo $mtqid ?>)'> <span class="mtq_start_text">
+  <div id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions"><?php echo stripslashes($quiz_options->description)?></div> <div id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_start_button' onclick='mtq_start_quiz(<?php echo $mtqid ?>)'> <div class="mtq_start_text">
   <?php _e("Start", 'mtouchquiz'); ?>
-  </span> </span>
+  </div> </div>
   <?php } 
 if ($show_final ) {?>
-  <span id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble"> <span id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br>
-  </span> <span id="mtq_quiz_results_highlight-<?php echo $mtqid ?>" class="mtq_quiz_results_highlight">
+<div id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble"> <span id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br>
+  </span> <div id="mtq_quiz_results_highlight-<?php echo $mtqid ?>" class="mtq_quiz_results_highlight">
   <?php _e('Your answers are highlighted below.', 'mtouchquiz'); ?>
-  </span> </span>
+  </div> </div>
   <?php } 
 			if ($mtq_mobile_device ){
 				?>
-  <span id='mtq_view_anchor-<?php echo $mtqid ?>'></span>
+  <div id='mtq_view_anchor-<?php echo $mtqid ?>'></div>
   <?php
 			}
 		//}
@@ -361,10 +370,10 @@ if ($show_final ) {?>
   
   <!-- root element for mtqscrollable -->
   <?php if ($mtq_use_timer) {?>
-  <div id="mtq_timer_row-<?php echo $mtqid ?>"><span id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></span> </div>
+  <div id="mtq_timer_row-<?php echo $mtqid ?>"><div id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></div> </div>
   <?php $mtq_all_vars.=   "<input type='hidden' id='mtq_timer_val-$mtqid' value='".$mtq_max_time."'/>";?>
   <?php }?>
-  <span id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
+  <div id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
   <div <?php if (!$single_page) { echo "class='mtqscrollable' id='mtq_scroll_container-{$mtqid}'";}?>>
     <?php if (!$single_page) {?>
     <!-- root element for the items -->
@@ -378,19 +387,19 @@ if ($show_final ) {?>
 									echo   "<div class='mtq_question mtq_scroll_item-$mtqid' id='mtq_question-$question_count-$mtqid'>"; 
 											echo   "<table class='mtq_question_heading_table'><tr><td>";
 												if ( $show_labels ) { 
-												echo   "<span class='mtq_question_label '>";
+												echo   "<div class='mtq_question_label '>";
 													ob_start();
 															printf(__('Question %d', 'mtouchquiz'), $question_count);
 													$q_label = ob_get_contents();
 													ob_end_clean();
 													echo $q_label;
-												echo   "</span>";
+												echo   "</div>";
 												}
-												echo   "<span id='mtq_stamp-$question_count-$mtqid' class='mtq_stamp'></span>";
+												echo   "<div id='mtq_stamp-$question_count-$mtqid' class='mtq_stamp'></div>";
 												echo   "</td></tr></table>";
-												echo "<span id='mtq_question_text-$question_count-$mtqid' class='mtq_question_text'>";
+												echo "<div id='mtq_question_text-$question_count-$mtqid' class='mtq_question_text'>";
 											echo   stripslashes($ques->question) ;
-											echo "</span>";
+											echo "</div>";
 											$mtq_all_vars.=   "<input type='hidden' name='question_id[]' value='{$ques->ID}'/>";
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_is_answered-{$question_count}-$mtqid' value='0'/>";
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_is_correct-{$question_count}-$mtqid' value='0'/>";
@@ -412,18 +421,18 @@ if ($show_final ) {?>
 													$image_number = ($answer_count-1) % 26;
 													echo   "<tr id='mtq_row-{$question_count}-{$answer_count}-$mtqid' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' class='mtq_clickable'>";
 														echo   "<td class='mtq_letter_button_td'>";
-															echo   "<span id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_letter_button mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";															
-														echo   "</span>";
+															echo   "<div id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_letter_button mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";															
+														echo   "</div>";
 														if ($ans->correct) {
-																echo   "<span id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", 'mtouchquiz')."'></span>"; 
+																echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", 'mtouchquiz')."'></div>"; 
 																$num_correct++;
 														} else {
-																echo   "<span id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_wrong_marker' alt='".__("Wrong", 'mtouchquiz')."'></span>"; 
+																echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_wrong_marker' alt='".__("Wrong", 'mtouchquiz')."'></div>"; 
 														}
 														
 														echo   "</td>";
 														echo   "<td class='mtq_answer_td'>";
-															echo   "<span id='mtq_answer_text-{$question_count}-{$answer_count}-$mtqid' class='mtq_answer_text'>".stripslashes($ans->answer)."</span>";
+															echo   "<div id='mtq_answer_text-{$question_count}-{$answer_count}-$mtqid' class='mtq_answer_text'>".stripslashes($ans->answer)."</div>";
 															$is_correct_value = '0';
 															if($ans->correct) $is_correct_value = '1';
 															$mtq_all_vars.=   "<input type='hidden' id='mtq_is_correct-{$question_count}-{$answer_count}-$mtqid' value='$is_correct_value'/>";
@@ -434,8 +443,8 @@ if ($show_final ) {?>
 															//echo   "<input type='hidden' id='mtq_has_hint-{$question_count}-{$answer_count}-$mtqid' value='$has_hint_value'/>";
 															if ( $has_hint_value && $show_hints ) {
 															echo   "<div id='mtq_hint-$question_count-$answer_count-$mtqid' class='mtq_hint'>";					
-																echo   "<span class='mtq_hint_label'>".__('Hint', 'mtouchquiz').": </span>";
-																echo   "<span class='mtq_hint_text'>".stripslashes($ans->hint)."</span>";
+																echo   "<div class='mtq_hint_label'>".__('Hint', 'mtouchquiz').": </div>";
+																echo   "<div class='mtq_hint_text'>".stripslashes($ans->hint)."</div>";
 															echo   "</div>";
 															}
 														echo   "</td>";
@@ -447,17 +456,17 @@ if ($show_final ) {?>
 
 											if ($ques->explanation) //Need to format this better 
 											{
-												echo   "<span id='mtq_question_explanation-{$question_count}-$mtqid' class='mtq_explanation'>";
-														echo   "<span class='mtq_explanation-label'>";
+												echo   "<div id='mtq_question_explanation-{$question_count}-$mtqid' class='mtq_explanation'>";
+														echo   "<div class='mtq_explanation-label'>";
 															 printf(__('Question %d Explanation:', 'mtouchquiz'), $question_count);
-														echo   "</span>";
-														echo   "<span class='mtq_explanation-text'>".stripslashes($ques->explanation."</span>");
-												echo   "</span>";
+														echo   "</div>";
+														echo   "<div class='mtq_explanation-text'>".stripslashes($ques->explanation."</div>");
+												echo   "</div>";
 												//echo   "<input type='hidden' id='mtq_has_explanation-$question_count-$mtqid' value='1' />";
 											} else {
 												//echo   "<input type='hidden' id='mtq_has_explanation-$question_count-$mtqid' value='0' />";
 											}
-										//echo   "</span>";
+										//echo   "</div>";
 									$mtq_all_vars.=   "<input type='hidden' id='mtq_num_ans-$question_count-$mtqid' value='$answer_count' />";
 									$mtq_all_vars.=   "<input type='hidden' id='mtq_num_correct-$question_count-$mtqid' value='$num_correct' />";
 									echo   "</div>";
@@ -483,31 +492,31 @@ if ($show_final ) {?>
   <!--End of mtqscrollable--> 
   <!--mtq_status-->
   <?php if ($show_status) { ?>
-  <span id="mtq_quiz_status-<?php echo $mtqid ?>" class="mtq_quiz_status">
+  <div id="mtq_quiz_status-<?php echo $mtqid ?>" class="mtq_quiz_status">
   <?php if ($question_count == 1 ){ _e('There is 1 question to complete.', 'mtouchquiz');} else { printf(__("There are %d questions to complete.", 'mtouchquiz'), $question_count); } ?>
-  </span>
+  </div>
   <?php } ?>
   <?php if (!$single_page && ($question_count > 1 || $show_final)) { ?>
   <table id="mtq_listrow-<?php echo $mtqid ?>" class="mtq_listrow">
     <tr>
       <td class="mtq_listrow_button-td"><div id="mtq_back_button-<?php echo $mtqid ?>" class='prev browse left mtq_back_button mtq_listrow_button' alt="<?php _e("Go to Previous Question",'mtouchquiz'); ?>" onclick="mtq_back_nav(<?php echo $mtqid ?>)"></div></td>
       <td><?php if ($show_list) {?>
-        <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_css_button mtq_list_button" onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>"> <span class="mtq_list_text">
+        <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_css_button mtq_list_button" onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>"> <div class="mtq_list_text">
           <?php _e("List", 'mtouchquiz');?>
-          </span> </div>
+          </div> </div>
         <?php }?></td>
       <td class="mtq_listrow_button-td"><div id="mtq_next_button-<?php echo $mtqid ?>" class='next browse right mtq_next-button mtq_listrow_button' alt='<?php _e("Go to Next Question",'mtouchquiz');?>' onclick="mtq_next_nav(<?php echo $mtqid ?>)"></div></td>
     </tr>
   </table>
   <?php } ?>
-  </span> 
+  </div> 
   <!--Holds all questions-->
   <?php if ( $show_list ) {?>
-  <div id="mtq_navigator-<?php echo $mtqid ?>" class="mtq_navigator"> <span id='mtq_return_list_t-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'> <span class="mtq_return_text">
+  <div id="mtq_navigator-<?php echo $mtqid ?>" class="mtq_navigator"> <div id='mtq_return_list_t-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'> <div class="mtq_return_text">
     <?php _e('Return', 'mtouchquiz');?>
-    </span> </span> <span id="mtq_shaded_item_msg-<?php echo $mtqid ?>" class="mtq_shaded_item_msg">
+    </div> </div> <div id="mtq_shaded_item_msg-<?php echo $mtqid ?>" class="mtq_shaded_item_msg">
     <?php _e('Shaded items are complete.','mtouchquiz');?>
-    </span>
+    </div>
     <table id="mtq_question_list_container-<?php echo $mtqid ?>" class="mtq_question_list_container">
       <tr>
         <?php
@@ -526,61 +535,62 @@ if ($show_final ) {?>
 								?>
       </tr>
     </table>
-    <span id='mtq_return_list_b-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'> <span class="mtq_return_text">
+    <div id='mtq_return_list_b-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'> <div class="mtq_return_text">
     <?php _e('Return', 'mtouchquiz');?>
-    </span> </span></div>
+    </div> </div></div>
   <?php } ?>
-  <div id="mtq_variables" class="mtq_preload" style="display:none"> <?php echo $mtq_all_vars; ?> <span id="mtq_have_completed_string" class="mtq_preload">
+  <div id="mtq_variables" class="mtq_preload" style="display:none"> <?php echo $mtq_all_vars; ?> <div id="mtq_have_completed_string" class="mtq_preload">
     <?php _e('You have completed', 'mtouchquiz') ?>
-    </span> <span id="mtq_questions_string" class="mtq_preload">
+    </div> <div id="mtq_questions_string" class="mtq_preload">
     <?php _e('questions', 'mtouchquiz') ?>
-    </span> <span id="mtq_question_string" class="mtq_preload">
+    </div> <div id="mtq_question_string" class="mtq_preload">
     <?php _e('question', 'mtouchquiz') ?>
-    </span> <span id="mtq_your_score_is_string"  class="mtq_preload">
+    </div> <div id="mtq_your_score_is_string"  class="mtq_preload">
     <?php _e('Your score is', 'mtouchquiz')?>
-    </span> <span id="mtq_correct_string"  class="mtq_preload">
+    </div> <div id="mtq_correct_string"  class="mtq_preload">
     <?php _e('Correct', 'mtouchquiz')?>
-    </span> <span id="mtq_wrong_string"  class="mtq_preload">
+    </div> <div id="mtq_wrong_string"  class="mtq_preload">
     <?php _e('Wrong', 'mtouchquiz')?>
-    </span> <span id="mtq_partial_string"  class="mtq_preload">
+    </div> <div id="mtq_partial_string"  class="mtq_preload">
     <?php _e('Partial-Credit', 'mtouchquiz')?>
-    </span> <span id="mtq_exit_warning_string"  class="mtq_preload">
+    </div> <div id="mtq_exit_warning_string"  class="mtq_preload">
     <?php _e('You have not finished your quiz. If you leave this page, your progress will be lost.', 'mtouchquiz')?>
-    </span> <span id='mtq_correct_answer_string' class='mtq_preload'>
+    </div> <div id='mtq_correct_answer_string' class='mtq_preload'>
     <?php _e('Correct Answer', 'mtouchquiz')?>
-    </span> <span id='mtq_you_selected_string' class='mtq_preload'>
+    </div> <div id='mtq_you_selected_string' class='mtq_preload'>
     <?php _e('You Selected', 'mtouchquiz')?>
-    </span> <span id='mtq_not_attempted_string' class='mtq_preload'>
+    </div> <div id='mtq_not_attempted_string' class='mtq_preload'>
     <?php _e('Not Attempted', 'mtouchquiz')?>
-    </span> <span id='mtq_final_score_on_quiz_string' class='mtq_preload'>
+    </div> <div id='mtq_final_score_on_quiz_string' class='mtq_preload'>
     <?php _e('Final Score on Quiz', 'mtouchquiz')?>
-    </span> <span id='mtq_attempted_questions_correct_string' class='mtq_preload'>
+    </div> <div id='mtq_attempted_questions_correct_string' class='mtq_preload'>
     <?php _e('Attempted Questions Correct', 'mtouchquiz')?>
-    </span> <span id='mtq_attempted_questions_wrong_string' class='mtq_preload'>
+    </div> <div id='mtq_attempted_questions_wrong_string' class='mtq_preload'>
     <?php _e('Attempted Questions Wrong', 'mtouchquiz')?>
-    </span> <span id='mtq_questions_not_attempted_string' class='mtq_preload'>
+    </div> <div id='mtq_questions_not_attempted_string' class='mtq_preload'>
     <?php _e('Questions Not Attempted', 'mtouchquiz')?>
-    </span> <span id='mtq_total_questions_on_quiz_string' class='mtq_preload'>
+    </div> <div id='mtq_total_questions_on_quiz_string' class='mtq_preload'>
     <?php _e('Total Questions on Quiz', 'mtouchquiz')?>
-    </span> <span id='mtq_question_details_string' class='mtq_preload'>
+    </div> <div id='mtq_question_details_string' class='mtq_preload'>
     <?php _e('Question Details', 'mtouchquiz')?>
-    </span> <span id='mtq_quiz_results_string' class='mtq_preload'>
+    </div> <div id='mtq_quiz_results_string' class='mtq_preload'>
     <?php _e('Results', 'mtouchquiz')?>
-    </span> <span id='mtq_date_string' class='mtq_preload'>
+    </div> <div id='mtq_date_string' class='mtq_preload'>
     <?php _e('Date', 'mtouchquiz')?>
-    </span> <span id='mtq_score_string' class='mtq_preload'>
+    </div> <div id='mtq_score_string' class='mtq_preload'>
     <?php _e('Score', 'mtouchquiz')?>
-    </span>
-    <span id='mtq_time_allowed_string' class='mtq_preload'><?php _e('Time allowed', 'mtouchquiz')?></span>
-<span id='mtq_minutes_string' class='mtq_preload'><?php _e('minutes', 'mtouchquiz')?></span>
-<span id='mtq_seconds_string' class='mtq_preload'><?php _e('seconds', 'mtouchquiz')?></span>
-<span id='mtq_time_used_string' class='mtq_preload'><?php _e('Time used', 'mtouchquiz')?></span>
-<span id='mtq_answer_choices_selected_string' class='mtq_preload'><?php _e('Answer Choice(s) Selected', 'mtouchquiz')?></span>
-<span id='mtq_question_text_string' class='mtq_preload'><?php _e('Question Text', 'mtouchquiz')?></span>
+    </div>
+    <div id='mtq_time_allowed_string' class='mtq_preload'><?php _e('Time allowed', 'mtouchquiz')?></div>
+<div id='mtq_minutes_string' class='mtq_preload'><?php _e('minutes', 'mtouchquiz')?></div>
+<div id='mtq_seconds_string' class='mtq_preload'><?php _e('seconds', 'mtouchquiz')?></div>
+<div id='mtq_time_used_string' class='mtq_preload'><?php _e('Time used', 'mtouchquiz')?></div>
+<div id='mtq_answer_choices_selected_string' class='mtq_preload'><?php _e('Answer Choice(s) Selected', 'mtouchquiz')?></div>
+<div id='mtq_question_text_string' class='mtq_preload'><?php _e('Question Text', 'mtouchquiz')?></div>
 
 
     <input type='hidden' id='mtq_answer_display-<?php echo $mtqid ?>' value='<?php echo $answer_display;?>'/>
     <input type='hidden' id='mtq_autoadvance-<?php echo $mtqid ?>' value='<?php echo $autoadvance;?>'/>
+    <input type='hidden' id='mtq_autosubmit-<?php echo $mtqid ?>' value='<?php echo $auto_submit;?>'/>
     <input type='hidden' id='mtq_single_page-<?php echo $mtqid ?>' value='<?php echo $single_page;?>'/>
     <input type='hidden' id='mtq_show_hints-<?php echo $mtqid ?>' value='<?php echo $show_hints;?>'/>
     <input type='hidden' id='mtq_show_start-<?php echo $mtqid ?>' value='<?php echo $show_start;?>'/>
@@ -609,37 +619,37 @@ if ($show_final ) {?>
 							?>
     <input type="hidden" id="mtq_num_ratings-<?php echo $mtqid ?>" value="5"/>
     <input type="hidden" id="mtq_ratingval-1-<?php echo $mtqid ?>" value="0"/>
-    <span id="mtq_rating-1-<?php echo $mtqid ?>" class="mtq_preload">
+    <div id="mtq_rating-1-<?php echo $mtqid ?>" class="mtq_preload">
     <?php _e('Need more practice!', 'mtouchquiz'); ?>
-    </span>
+    </div>
     <input type="hidden" id="mtq_ratingval-2-<?php echo $mtqid ?>" value="40"/>
-    <span id="mtq_rating-2-<?php echo $mtqid ?>" class="mtq_preload">
+    <div id="mtq_rating-2-<?php echo $mtqid ?>" class="mtq_preload">
     <?php _e('Keep trying!', 'mtouchquiz'); ?>
-    </span>
+    </div>
     <input type="hidden" id="mtq_ratingval-3-<?php echo $mtqid ?>" value="60"/>
-    <span id="mtq_rating-3-<?php echo $mtqid ?>" class="mtq_preload">
+    <div id="mtq_rating-3-<?php echo $mtqid ?>" class="mtq_preload">
     <?php _e('Not bad!', 'mtouchquiz'); ?>
-    </span>
+    </div>
     <input type="hidden" id="mtq_ratingval-4-<?php echo $mtqid ?>" value="80"/>
-    <span id="mtq_rating-4-<?php echo $mtqid ?>" class="mtq_preload">
+    <div id="mtq_rating-4-<?php echo $mtqid ?>" class="mtq_preload">
     <?php _e('Good work!', 'mtouchquiz'); ?>
-    </span>
+    </div>
     <input type="hidden" id="mtq_ratingval-5-<?php echo $mtqid ?>" value="100"/>
-    <span id="mtq_rating-5-<?php echo $mtqid ?>" class="mtq_preload">
+    <div id="mtq_rating-5-<?php echo $mtqid ?>" class="mtq_preload">
     <?php _e('Perfect!', 'mtouchquiz'); ?>
-    </span>
+    </div>
     <?php
 								} else
 								{
 									$how_many = $mtq_num_ratings + 1;
 									echo "<input type='hidden' id='mtq_num_ratings-$mtqid' value='". $how_many ."'/>";
 									echo "<input type='hidden' id='mtq_ratingval-1-$mtqid' value='-1'/>";
-                            		echo "<span id='mtq_rating-1-$mtqid' class='mtq_preload'>".__('All done', 'mtouchquiz')."</span>";
+                            		echo "<div id='mtq_rating-1-$mtqid' class='mtq_preload'>".__('All done', 'mtouchquiz')."</div>";
 									$counter = 2;
 									foreach ($all_ratings as $quiz_rating) 
 									{
 										echo "<input type='hidden' id='mtq_ratingval-$counter-$mtqid' value='$quiz_rating->min_points'/>";
-                            			echo "<span id='mtq_rating-$counter-$mtqid' class='mtq_preload'>".trim(stripslashes($quiz_rating->score_rating))."</span>";
+                            			echo "<div id='mtq_rating-$counter-$mtqid' class='mtq_preload'>".trim(stripslashes($quiz_rating->score_rating))."</div>";
 										$counter++;
 									}
 									
@@ -647,9 +657,10 @@ if ($show_final ) {?>
 							?>
     <input type="hidden" id="mtq_gf_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_gf ?>"/>
     <input type="hidden" id="mtq_cf7_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_cf  ?>"/>
-    <input type="hidden" id="mtq_quiz_in_form-<?php echo $mtqid ?>" value="<?php echo $inform  ?>"/>
-    <?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
-    <span id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </span>
+    <input type="hidden" id="mtq_quiz_in_form-<?php echo $mtqid ?>" value="<?php echo $inform  ?>"/>$gf_formid_number
+    <input type="hidden" id="mtq_gf_formid_number-<?php echo $mtqid ?>" value="<?php echo $gf_formid_number  ?>"/>
+	    <?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
+    <div id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </div>
     <?php } ?>
   </div>
   
