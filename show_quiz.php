@@ -342,6 +342,10 @@
   <div id="mtq_quiztitle-<?php echo $mtqid ?>" class="mtq_quiztitle" <?php if ( ! $show_title ) { echo "style='display:none'"; } ?>>
   <h2><?php echo stripslashes($quiz_options->name)?></h2>
   </div>
+    <?php if ($mtq_use_timer) {?>
+  <div id="mtq_timer_row-<?php echo $mtqid ?>"><div id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></div> </div>
+  <?php $mtq_all_vars.=   "<input type='hidden' id='mtq_timer_val-$mtqid' value='".$mtq_max_time."'/>";?>
+  <?php }?>
   <noscript>
   <div id="mtq_javawarning-<?php echo $mtqid ?>" class="mtq_javawarning">
   <?php _e('Please wait while the activity loads.</br> If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled.', 'mtouchquiz'); ?>
@@ -355,8 +359,10 @@
   </div> </div>
   <?php } 
 if ($show_final ) {?>
-<div id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble"> <span id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br>
-  </span> <div id="mtq_quiz_results_highlight-<?php echo $mtqid ?>" class="mtq_quiz_results_highlight">
+<div id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble"> <div id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br>    
+  </div><?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
+    <div id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </div>
+    <?php } ?> <div id="mtq_quiz_results_highlight-<?php echo $mtqid ?>" class="mtq_quiz_results_highlight">
   <?php _e('Your answers are highlighted below.', 'mtouchquiz'); ?>
   </div> </div>
   <?php } 
@@ -369,10 +375,7 @@ if ($show_final ) {?>
 		?>
   
   <!-- root element for mtqscrollable -->
-  <?php if ($mtq_use_timer) {?>
-  <div id="mtq_timer_row-<?php echo $mtqid ?>"><div id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></div> </div>
-  <?php $mtq_all_vars.=   "<input type='hidden' id='mtq_timer_val-$mtqid' value='".$mtq_max_time."'/>";?>
-  <?php }?>
+
   <div id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
   <div <?php if (!$single_page) { echo "class='mtqscrollable' id='mtq_scroll_container-{$mtqid}'";}?>>
     <?php if (!$single_page) {?>
@@ -657,11 +660,9 @@ if ($show_final ) {?>
 							?>
     <input type="hidden" id="mtq_gf_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_gf ?>"/>
     <input type="hidden" id="mtq_cf7_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_cf  ?>"/>
-    <input type="hidden" id="mtq_quiz_in_form-<?php echo $mtqid ?>" value="<?php echo $inform  ?>"/>$gf_formid_number
+    <input type="hidden" id="mtq_quiz_in_form-<?php echo $mtqid ?>" value="<?php echo $inform  ?>"/>
     <input type="hidden" id="mtq_gf_formid_number-<?php echo $mtqid ?>" value="<?php echo $gf_formid_number  ?>"/>
-	    <?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
-    <div id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </div>
-    <?php } ?>
+
   </div>
   
   <!--Variables Div--> 

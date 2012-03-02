@@ -1,3 +1,7 @@
+.mtq_quiz_area div {
+	max-width:none !important;	
+}
+
 /*
 	root element for the mtqscrollable.
 	when scrolling occurs this element stays still.
@@ -43,7 +47,7 @@
 }
 .mtq_timer {
 	float:right;
-	margin-top: -30px;	
+	/*margin-top: -30px;*/	
 }
 
 .mtq_failed_button {

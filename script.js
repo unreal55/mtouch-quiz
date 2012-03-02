@@ -418,9 +418,9 @@ function mtq_nav_click(q,mtqid) {
 
 function mtq_results_message(mtqid){
 	
-	if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
-		theClonedForm=jQuery("#mtq_contact_form-"+mtqid).clone(true);
-	} 
+	//if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
+	//	theClonedForm=jQuery("#mtq_contact_form-"+mtqid).clone(true);
+	//} 
 	
 	var ResultsMsg = jQuery("#mtq_quiz_results-"+mtqid).html();
 	var numRatings = parseInt(jQuery("#mtq_num_ratings-"+mtqid).val());
@@ -449,19 +449,21 @@ function mtq_results_message(mtqid){
 		if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
 			ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,'');
 			mtq_addForm= true;
-			jQuery("#mtq_contact_form-"+mtqid).remove();
+			
 		} else {
 			ResultsMsg=ResultsMsg.replace(/%%FORM%%/gi,"*** mTouch Quiz Forms Addon Not Properly Configured ***");
-			jQuery("#mtq_contact_form-"+mtqid).remove();
+			//jQuery("#mtq_contact_form-"+mtqid).remove();
 		}
+	} else {
+		jQuery("#mtq_contact_form-"+mtqid).remove();	
 	}
 	
 	jQuery("#mtq_quiz_results-"+mtqid).html(ResultsMsg);
-	if (mtq_addForm ) {
-		if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
-			jQuery("#mtq_quiz_results-"+mtqid).append(theClonedForm);
-		}
-}
+	//if (mtq_addForm ) {
+	//	if ( mtq_gf_present[mtqid] || mtq_cf7_present[mtqid] ) {
+	//		jQuery("#mtq_quiz_results-"+mtqid).append(theClonedForm);
+	//	}
+	//}
 }
 
 function mtq_gf_fill_form(results_message,mtqid){
