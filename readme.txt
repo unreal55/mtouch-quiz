@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/go/donate/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
 Tested up to: 3.3.1
-Stable tag: 2.5.5
+Stable tag: 2.5.6
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -38,6 +38,9 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 2.5.6 =
+* Bug fix for timer clipping part of the questions and %%QUIZ_NAME%% variable not displaying.
 
 = 2.5.5 =
 * Bug fixes dealing with timer and gravity forms premium plugins recent issues related to upgrades in WPTouch and Gravity Forms.
@@ -236,6 +239,9 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.5.6 =
+* Bug fix for timer clipping part of the questions and %%QUIZ_NAME%% variable not displaying.
 
 = 2.5.5 =
 * Bug fixes dealing with timer and Gravity Forms premium plugins recent issues related to upgrades in WPTouch and Gravity Forms.

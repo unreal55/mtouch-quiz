@@ -434,6 +434,9 @@ function mtq_results_message(mtqid){
 			break;
 		}
 	}
+	var mtq_quiz_name;
+	mtq_quiz_name=jQuery("#mtq_quiztitle-"+mtqid).text();
+	ResultsMsg=ResultsMsg.replace(/%%QUIZ_NAME%%/gi,mtq_quiz_name);
 	
 	ResultsMsg=ResultsMsg.replace(/%%SCORE%%/gi,mtq_questions_correct[mtqid]);
 	ResultsMsg=ResultsMsg.replace(/%%TOTAL%%/gi,mtq_total_questions[mtqid]);
