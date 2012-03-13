@@ -46,7 +46,7 @@
 	padding:0;
 }
 .mtq_timer {
-	float:right;
+	text-align:right;
 	/*margin-top: -30px;*/	
 }
 
