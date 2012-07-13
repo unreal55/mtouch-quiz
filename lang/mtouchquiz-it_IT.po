@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: mTouch Quiz WordPress Plugin v. 1.1\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/mtouch-quiz\n"
 "POT-Creation-Date: 2010-11-29 22:48+0000\n"
-"PO-Revision-Date: 2011-01-17 11:35+0100\n"
-"Last-Translator: Stefano Garuti <stefano@wordpressmania.it>\n"
+"PO-Revision-Date: 2012-04-23 11:57-0500\n"
+"Last-Translator: Marco De Veglia <marcodeveglia@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,7 +157,7 @@ msgstr "Cancella"
 
 #: question.php:144
 msgid "No questions found."
-msgstr "Nessuna domanda"
+msgstr "Nessuna domanda presente."
 
 #: question.php:153
 msgid "Create New Question"
@@ -184,7 +184,7 @@ msgstr "Risposta:"
 
 #: question_form.php:58
 msgid "Hint:"
-msgstr "Sugegrimento:"
+msgstr "Suggerimento:"
 
 #: question_form.php:84
 msgid "Please enter the question"
@@ -230,7 +230,7 @@ msgstr "Quiz aggiornato"
 
 #: quiz.php:12
 msgid "Quiz Deleted"
-msgstr "Quiz Cancellato"
+msgstr "Quiz cancellato"
 
 #: quiz.php:28
 msgid "ID"
@@ -299,7 +299,7 @@ msgstr "Schermata finale"
 
 #: quiz_form.php:59
 msgid "Usable Variables..."
-msgstr "Usa variabili..."
+msgstr "Variabili Utilizzabili..."
 
 #: quiz_form.php:63
 msgid "Variable"
@@ -315,7 +315,7 @@ msgstr "Il numero di risposte esatte"
 
 #: quiz_form.php:72
 msgid "Total number of questions"
-msgstr "Il numero di Domande"
+msgstr "Il numero di domande"
 
 #: quiz_form.php:76
 msgid "Correct answer percentage"
@@ -341,7 +341,7 @@ msgstr "Personalizzazione di %%RATING%% per la schermata finale qui sopra"
 #: quiz_form.php:123
 #, php-format
 msgid "Enter the percent (whole numbers only) and the message you would like the user to receive in place of the %%RATING%% variable. One of these messages will be displayed if their score is greater than or equal to the listed score."
-msgstr "Inserisci la percentuale (solo numeri) e il messaggio che vuoi che l'utente riceva al posto della variabile %%RATING%%. Uno di questi messaggi verrà mostrato se il suo punteggio sarà maggiore o uguale a quello indicato"
+msgstr "Inserisci la percentuale (solo numeri interi) e il messaggio che vuoi che l'utente riceva al posto della variabile %%RATING%%. Uno di questi messaggi verrà mostrato se il suo punteggio sarà maggiore o uguale a quello indicato"
 
 #: quiz_form.php:130
 #: show_quiz.php:341
@@ -390,7 +390,7 @@ msgstr "Mostra tutte le domande in una sigola pagina"
 
 #: quiz_form.php:197
 msgid "Allow multiple opportunites to answer questions.*"
-msgstr "Permetti più tentativi per rispondere alla domanda. *"
+msgstr "Permetti più tentativi per rispondere alla domanda*."
 
 #: quiz_form.php:202
 msgid "Show the hints, when available."
@@ -430,7 +430,7 @@ msgstr "* Devi anche selezionare \"Mostra la risposta corretta alla fine di ogni
 
 #: show_quiz.php:168
 msgid "Please wait while the activity loads. If this activity does not load, try refreshing your browser. Also, this page requires javascript. Please visit using a browser with javascript enabled."
-msgstr "Pregoi, attendere il caricamento del test. Se il test non viene caricato, prova a ricaricare la pagina. Inoltre, questa pagina richiede javascript. Se il tuo browser non lo supporta o è disabilitato visita questa pagina con un browser adeguato"
+msgstr "Prego, attendere il caricamento del test. Se il test non viene caricato, prova a ricaricare la pagina. Inoltre, questa pagina richiede javascript. Se il tuo browser non lo supporta o è disabilitato visita questa pagina con un browser adeguato"
 
 #: show_quiz.php:170
 msgid "Start"
@@ -524,13 +524,12 @@ msgstr "Invia risultati per email"
 msgid "Don't call this page directly."
 msgstr "Non chiamare questa pagina direttamente"
 
-.php:320
 msgid "Partial-Credit"
 msgstr "Credito parziale"
 
 #: show_quiz.php:321
 msgid "You have not finished your quiz. If you leave this page, your progress will be lost."
-msgstr "Non hai terminato il test. Se lasci questa pagina, le tue risposte andranno perse"
+msgstr "Non hai terminato il test. Se lasci questa pagina, le tue risposte andranno perse."
 
 #: show_quiz.php:356
 msgid "All done"
@@ -540,5 +539,3 @@ msgstr "Fatto tutto!"
 msgid "Email Results"
 msgstr "Invia risultati per email"
 
-#: wpframe.php:33
-m
