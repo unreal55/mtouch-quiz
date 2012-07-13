@@ -36,7 +36,7 @@ define( 'mtq_VERSION', '3.0.0' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
 define( 'mtq_database_version','1.6.5.4');
-define( 'mtq_use_min','0');
+define( 'mtq_use_min','1');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
 function mtq_add_menu_links() {
 	global $wp_version, $_registered_pages;
