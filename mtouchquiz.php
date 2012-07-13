@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 2.5.7
+Version: 3.0.0
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -32,11 +32,11 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '2.5.7' );
+define( 'mtq_VERSION', '3.0.0' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
-define( 'mtq_database_version','1.6.5.3');
-define( 'mtq_use_min','1');
+define( 'mtq_database_version','1.6.5.4');
+define( 'mtq_use_min','0');
 add_action( 'admin_menu', 'mtq_add_menu_links' );
 function mtq_add_menu_links() {
 	global $wp_version, $_registered_pages;
@@ -48,6 +48,7 @@ function mtq_add_menu_links() {
 
 	add_submenu_page('mtq_menu', __('Manage mTouch Quizzes', 'mtouchquiz'), __('Manage Quizzes', 'mtouchquiz'), $view_level, 'mtouch-quiz/quiz.php');
 	add_submenu_page('mtq_menu',__('Premium Features', 'mtouchquiz'), __('Premium Features', 'mtouchquiz'), $view_level, 'mtouch-quiz/premium.php');
+	add_submenu_page('mtq_menu',__('Color Theme', 'mtouchquiz'), __('Color Theme', 'mtouchquiz'), $view_level, 'mtouch-quiz/theme.php');
 	$code_pages = array('quiz_form.php','quiz_action.php', 'question_form.php', 'question.php');
 	foreach($code_pages as $code_page) {
 		$hookname = get_plugin_page_hookname("mtouch-quiz/$code_page", '' );
@@ -271,6 +272,13 @@ function mtq_check_addon_timer_exists() {
 	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-timer/mtouchquiz-timer.php');	
 }
 
+function mtq_check_theme_addon_exists() {
+	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+		   // Makes sure the plugin is defined before trying to use it
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-theme/mtouchquiz-theme.php');	
+}
+
 
 function mtq_check_all_timer() {
 	return mtq_check_addon_timer_active() && mtq_check_addon_timer_exists();	
@@ -279,9 +287,11 @@ function mtq_check_all_timer() {
 function mtq_premium_list() {
 	echo "<h1>Want more features for the free mTouch Quiz plugin?</h1><h2> Consider the following <a href='http://gmichaelguy.com/quizplugin/go/premium'>premium addon</a> features.</h2>";
   echo "<ul>";
+  echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/theme/' title='mTouch Quiz Theme Addon'>Theme Addon:</a> Easily change the color of your quiz to match your site's theme. </li>";
     echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/gf/' title='mTouch Quiz Gravity Forms Addon'>Gravity Forms Addon:</a> Add the ability to email quiz results (and keep a copy of the email in the dashboard. Not to mention make use of all the power of <a href='http://gmichaelguy.com/quizplugin/go/gravity/' title='Get Gravity Forms'>Gravity Forms</a>) </li>";
     echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/cf7/' title='mTouch Quiz Contact Form 7 Addon'>Contact Form 7 Addon:</a> Add the ability to email quiz results (NO copy is kept in the dashboard, but it works with the free plugin <a href='http://contactform7.com/' title='Get Contact Form 7'>Contact Form 7</a>) </li>";
     echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/timer/' title='mTouch Quiz Timer Addon'>Timer Addon:</a> Add a timer to your quiz. When time is up, the quiz is over! </li>";
+	 
   echo"</ul>";	
   
   //return $return_text;
@@ -337,7 +347,8 @@ function mtq_shortcode( $atts ) {
 	  'scoring'=>0,
 	  'vform'=>1,
 	  'show_stamps'=>1,
-	  'autosubmit'=>0
+	  'autosubmit'=>0,
+	  'color'=>'-1'
       ), $atts ) );
 	$quiz_id = -1;
 	$input_number_questions = -1;
@@ -354,6 +365,7 @@ function mtq_shortcode( $atts ) {
 	$proofread = 0;
 	$input_alerts = -1;
 	$input_formid = -1;
+	$input_color=-1;
 	$mtq_max_time = 0;
 	$scoring = 0;
 	$vform = 1;
@@ -507,6 +519,19 @@ function mtq_shortcode( $atts ) {
 		$input_formid = $atts['formid'];
 		$thetypedcode.= " formid=".$input_formid;
 	}
+	
+	if ( mtq_check_theme_addon_exists() ) {
+		if( isset( $atts['color']) && ( in_array($atts['color'],mtq_color_options()) || $atts['color']=='random' )){
+			$input_color = $atts['color'];
+			$thetypedcode.= " color=".$input_color;
+		} else {
+			$input_color=get_option('mtouchquiz_color');
+		}
+	} else {
+		$input_color="blue";
+	}
+	
+	
 
 	
 	//$single_question = -1;
@@ -593,15 +618,21 @@ function mtq_enqueue_stuff() {
 	//$mtq_use_min=true;
 	//$mtq_use_min=false;
 	if ( mtq_use_min == '1' ) {
-		$mtq_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.min.css';
-		$mtq_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.min.css';
+		$mtq_CoreStyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/mtq_core_style.min.css';
+		$mtq_CoreStyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/mtq_core_style.min.css';
+		$mtq_ThemeStyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/mtq_theme_style.min.css';
+		$mtq_ThemeStyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/mtq_theme_style.min.css';
 	} else {
-		$mtq_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/style.css';
-		$mtq_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/style.css';
+		$mtq_CoreStyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/mtq_core_style.css';
+		$mtq_CoreStyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/mtq_core_style.css';
+		$mtq_ThemeStyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/mtq_theme_style.css';
+		$mtq_ThemeStyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/mtq_theme_style.css';
 	}
-	 if ( file_exists($mtq_StyleFile)) {
-		wp_register_style('mtq_StyleSheets', $mtq_StyleUrl,false,mtq_VERSION);
-		wp_enqueue_style( 'mtq_StyleSheets');
+	 if ( file_exists($mtq_CoreStyleFile)) {
+		wp_register_style('mtq_CoreStyleSheets', $mtq_CoreStyleUrl,false,mtq_VERSION);
+		wp_enqueue_style( 'mtq_CoreStyleSheets');
+		wp_register_style('mtq_ThemeStyleSheets', $mtq_ThemeStyleUrl,false,mtq_VERSION);
+		wp_enqueue_style( 'mtq_ThemeStyleSheets');
      }
 		
 	$mtq_proofread_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/proofread.min.css';
@@ -680,6 +711,7 @@ function mtq_activate() {
 	 add_option('mtouchquiz_showalerts', "1");
 	 add_option('mtouchquiz_show_support',"true");
 	 add_option('mtouchquiz_ordering_set',0);
+	 add_option('mtouchquiz_color','blue');
 	 update_option('mtouchquiz_show_support',"true");
 	 //add_option('mtouchquiz_skiploadjquerytools', "0");
 	
@@ -739,5 +771,13 @@ function mtq_activate() {
 		update_option( "mtouchquiz_db_version", $database_version );
 	}
 }
+
+function mtq_color_options()
+{
+    return array("blue","green","red","orange","yellow","indigo","violet","fuchsia","khaki","burgundy","black","lightblue","teal","lightgreen","lightpink","darkgreen","brown","purple","navy","darkpink","lavender");
+
+
+}
+
 
 

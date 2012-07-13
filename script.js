@@ -65,6 +65,7 @@ var mtq_seconds_string='seconds';
 var mtq_time_used_string='Time used';
 var mtq_answer_choices_selected_string='Answer Choice(s) Selected';
 var mtq_question_text_string='Question Text';
+var mtq_hint_string='Hint';
 
 
 window.onbeforeunload = function() {
@@ -223,6 +224,7 @@ function mtq_init() {
 		mtq_time_used_string=jQuery('#mtq_time_used_string').html();
 		mtq_answer_choices_selected_string=jQuery('#mtq_answer_choices_selected_string').html();
 		mtq_question_text_string=jQuery('#mtq_question_text_string').html();
+		mtq_question_hint_string=jQuery('#mtq_hint_string').html();
 		
 		mtq_correct_answer_string=mtq_correct_answer_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
 		mtq_you_selected_string=mtq_you_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
@@ -243,6 +245,7 @@ function mtq_init() {
 		mtq_time_used_string=mtq_time_used_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
 		mtq_answer_choices_selected_string=mtq_answer_choices_selected_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
 		mtq_question_text_string=mtq_question_text_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
+		mtq_question_hint_string=mtq_question_hint_string.replace(/(\r\n|\n|\r)/gm,'').replace(/^\s+|\s+$/g,'');
 	}
 
 	var j;
@@ -547,7 +550,8 @@ function mtq_get_results(mtqid){
 		var N = parseInt(number_answers);
 		var attempted_this_one = 0;
 		var a=1;
-		
+		var mtq_explanation_text='';
+		mtq_explanation_text=jQuery("#mtq_question_explanation-"+q+"-"+mtqid).text()+"\n";;
 		mtq_email_results_itemized += mtq_question_string.substr(0,1).toUpperCase()+mtq_question_string.substr(1)+" "+q+" "+mtq_score_string+": ";
 		mtq_email_results_correct_answer='';
 		mtq_email_results_selected_answer='';
@@ -583,6 +587,9 @@ function mtq_get_results(mtqid){
 			for ( a = 1; a<answer_order.length; a++ ) {
 				answer_print=answer_print+","+answer_order[a];
 				mtq_email_results_selected_answer=mtq_email_results_selected_answer+mtq_you_selected_string+": " + jQuery("#mtq_answer_text-"+q+"-"+answer_order[a]+"-"+mtqid).text()+"\n";
+				if (parseInt(jQuery("#mtq_has_hint-"+q+"-"+answer_order[a]+"-"+mtqid).val())==1 ) {
+					mtq_email_results_selected_answer=mtq_email_results_selected_answer+ jQuery("#mtq_hint-"+q+"-"+answer_order[a]+"-"+mtqid).text()+"\n";
+				}
 			}
 			answer_print = answer_print.substr(1);
 			
@@ -601,6 +608,7 @@ function mtq_get_results(mtqid){
 			mtq_email_results_itemized+=mtq_question_text_string+ ": "+mtq_email_results_verbose+"\n";
 			mtq_email_results_itemized+=mtq_email_results_correct_answer;
 			mtq_email_results_itemized+= mtq_email_results_selected_answer;
+			mtq_email_results_itemized+=mtq_explanation_text;
 		}
 		
 		mtq_email_results_itemized+="----------\n";
@@ -610,7 +618,8 @@ function mtq_get_results(mtqid){
 		mtq_stamp(q,mtqid);		
 		//var has_explanation = parseInt(jQuery("#mtq_has_explanation-"+q+"-"+mtqid).val());
 		if ( mtq_answer_display[mtqid] != 0 )  {
-			jQuery("#mtq_question_explanation-"+q+"-"+mtqid).css('display','block');	
+			jQuery("#mtq_question_explanation-"+q+"-"+mtqid).css('display','block');
+			
 		}
 	}
 	
@@ -661,7 +670,7 @@ function mtq_get_results(mtqid){
 			jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq').find('textarea').css('display','none');
 			mtq_gf_fill_form(mtq_email_results,mtqid);
 		} else {
-			mtq_gf_fill_in_form(mtq_email_results);
+			mtq_gf_fill_in_form(mtq_email_results,mtqid);
 			
 		}
 		if (mtq_autosubmit[mtqid]) {
@@ -680,8 +689,29 @@ function mtq_get_results(mtqid){
 }
 
 
-function mtq_gf_fill_in_form(results_message){
+function mtq_gf_fill_in_form(results_message,mtqid){
 	jQuery('#content').find('li.mtq').find('textarea').val(results_message);
+		//jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq').find('textarea').val(results_message);
+		jQuery('#content').find('li.mtq_score').find('input').val(mtq_questions_correct[mtqid]);
+		jQuery('#content').find('li.mtq_total').find('input').val(mtq_total_questions[mtqid]);
+		jQuery('#content').find('li.mtq_percentage').find('input').val(mtq_score_percent[mtqid].toFixed(0));
+		jQuery('#content').find('li.mtq_wrong_answers').find('input').val(mtq_total_questions[mtqid]-mtq_questions_correct[mtqid]);
+		if (mtq_timer_initial_val[mtqid] >0 ) {
+			jQuery('#content').find('li.mtq_time_allowed').find('input').val(mtq_timer_initial_val[mtqid]);
+			jQuery('#content').find('li.mtq_time_used').find('input').val(mtq_timer_initial_val[mtqid]-mtq_timer_val[mtqid]);
+		} else {
+			jQuery('#content').find('li.mtq_time_allowed').find('input').val(1);
+			jQuery('#content').find('li.mtq_time_used').find('input').val(1);
+		}
+		jQuery('#content').find('li.mtq_quiz_name').find('input').val(jQuery("#mtq_quiztitle-"+mtqid).text());
+		jQuery('#content').find('li.mtq').css('display','none');
+		jQuery('#content').find('li.mtq_score').css('display','none');
+		jQuery('#content').find('li.mtq_total').css('display','none');
+		jQuery('#content').find('li.mtq_percentage').css('display','none');
+		jQuery('#content').find('li.mtq_wrong_answers').css('display','none');
+		jQuery('#content').find('li.mtq_time_allowed').css('display','none');
+		jQuery('#content').find('li.mtq_time_used').css('display','none');
+		jQuery('#content').find('li.mtq_quiz_name').css('display','none');
 	$mtq_use_gf = 1;
 }
 
@@ -864,13 +894,13 @@ function mtq_button_click (q,a,mtqid)
 		if ( was_selected ) {
 			jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid).val('0');
 			jQuery("#mtq_was_ever_selected-"+q+"-"+a+"-"+mtqid).val('0');
-			jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).removeClass('mtq_letter_selected');
+			jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).removeClass('mtq_css_letter_selected');
 			jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).removeClass('mtq_letter_selected-'+q+"-"+mtqid);
 		} 
 		else
 		{
 			jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid).val('1');
-			jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).addClass('mtq_letter_selected');
+			jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).addClass('mtq_css_letter_selected');
 			jQuery("#mtq_button-"+q+"-"+a+"-"+mtqid).addClass('mtq_letter_selected-'+q+"-"+mtqid);
 		}
 	}
@@ -938,7 +968,7 @@ function mtq_button_click (q,a,mtqid)
 				}
 				
 				if (( ! parseInt(jQuery("#mtq_is_correct-"+q+"-"+j+"-"+mtqid).val()) ) && (mtq_answer_display[mtqid] == 2) ) { //Unselect the wrong answers automatically since they will be hidden and user cannot do it
-					jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_letter_selected');
+					jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_css_letter_selected');
 					jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_letter_selected-'+q+"-"+mtqid);
 				}
 			}
@@ -964,12 +994,12 @@ function mtq_button_click (q,a,mtqid)
 		var j=1;
 		for (j=1; j<=number_answers; j++ ){
 			if (j != a) {
-				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_letter_selected');
+				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_css_letter_selected');
 				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_letter_selected-'+q+"-"+mtqid);
 				jQuery("#mtq_was_selected-"+q+"-"+j+"-"+mtqid).val('0');
 				jQuery("#mtq_was_ever_selected-"+q+"-"+j+"-"+mtqid).val('0'); // does this defeat purpose of was_ever_selected? Don't think so.
 			} else if(parseInt(jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid)) ) {
-				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).addClass('mtq_letter_selected');
+				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).addClass('mtq_css_letter_selected');
 				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).addClass('mtq_letter_selected-'+q+"-"+mtqid);
 			}
 		}

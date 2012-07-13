@@ -74,6 +74,8 @@ if($action == 'edit') {
 		$mtq_gf_addon_exists =  mtq_check_addon_gf_exists();
 		$mtq_gf_exists = mtq_check_gf_exists();
 		$mtq_gf_allgood = mtq_check_all_gf();
+		
+		$mtq_theme_allgood=mtq_check_theme_addon_exists();
 	
 
 	
@@ -356,6 +358,17 @@ if($action == 'edit') {
 	<?php  } ?>
       
       </div></div>
+      <div class="inside">
+      <?php
+	  if ($mtq_theme_allgood) {
+	  	$mtq_color_theme=get_option("mtouchquiz_color");
+	  } else {
+		 $mtq_color_theme="blue"; 
+	  }
+	  ?>
+      Your <a href="admin.php?page=mtouch-quiz/theme.php">color theme</a> is <span class="mtq_color_<?php echo $mtq_color_theme; ?>"><span class="mtq_css_letter_button">A</span><?php echo $mtq_color_theme; ?></span>
+      
+      </div>
       <p class="submit">
         <?php wp_nonce_field('mtq_create_edit_quiz'); ?>
         <input type="hidden" name="action" value="<?php echo $action; ?>" />

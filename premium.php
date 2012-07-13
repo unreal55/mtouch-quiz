@@ -32,9 +32,32 @@ wp_print_scripts();
 	$mtq_timer_addon_exists =  mtq_check_addon_timer_exists();
 	$mtq_timer_allgood = mtq_check_all_timer();
 	?>
+    
+      <?php  
+	$mtq_theme_addon_allgood = mtq_check_theme_addon_exists();
+	?>
   <?php mtq_premium_list() ?>
   <hr />
   <div style="width:600px">
+  
+    <div style="width:600px">
+    <table class='mtq_question_heading_table'>
+      <tr>
+        <td><h2> <a href="http://gmichaelguy.com/quizplugin/go/theme/" title="Find out about mTouch Quiz Theme Addon">mTouch Quiz Theme Addon</a><div class="<?php if ($mtq_theme_addon_allgood){ echo "mtq_thanks"; }   else { echo "mtq_cone";}?>"></div></h2>
+          Easily change the color of your quiz to match your site's theme.</td>
+      </tr>
+    </table>
+    <table class='mtq_answer_table'>
+      <colgroup>
+      <col class='mtq_oce_first'/>
+      </colgroup>
+      <tr> </tr>
+      <tr>
+        <td class='mtq_letter_button_td'><span class="<?php if ($mtq_theme_addon_allgood){ echo "mtq_correct_marker"; } else { echo "mtq_wrong_marker";}?>"></span></td>
+        <td class='mtq_answer_text'><a href="http://gmichaelguy.com/quizplugin/go/theme/" title="Find out about mTouch Quiz Theme Addon">mTouch Quiz Theme Addon</a> Installed and ready to go!</td>
+      </tr>
+    </table>
+  </div>
     
     <table class='mtq_question_heading_table'>
       <tr>
