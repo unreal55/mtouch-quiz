@@ -4,7 +4,7 @@ Donate link: http://gmichaelguy.com/quizplugin/go/donate/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
 Tested up to: 3.4.1
-Stable tag: 3.0.0
+Stable tag: 3.0.1
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -38,6 +38,13 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 3.0.1 =
+* COLOR THEMES!!
+* Enhancement to premium email results feature so that results message now includes explanation text and hint text when included.
+* Improved Italian translation (Thanks Marco De Veglia)
+* All CSS quiz layouts.
+* Small CSS Tweaks from 3.0.0
 
 = 3.0.0 =
 * COLOR THEMES!!
@@ -247,6 +254,13 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Initial release
 
 == Upgrade Notice ==
+= 3.0.1 =
+* COLOR THEMES!!
+* Enhancement to premium email results feature so that results message now includes explanation text and hint text when included.
+* Improved Italian translation (Thanks Marco De Veglia)
+* All CSS quiz layouts.
+
+
 = 3.0.0 =
 * COLOR THEMES!!
 * Enhancement to premium email results feature so that results message now includes explanation text and hint text when included.

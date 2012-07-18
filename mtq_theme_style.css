@@ -1,45 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
 /* 
-Theme Name: blue
-Super Dark: #339
-Dark: #06F
-Medium: #09F
-Light: #d0dafd
-Super Light: #eff2ff
-*/
-.mtq_color_blue .mtq_css_button, .mtq_color_blue .mtq_css_letter_button { /* Dark Button with white text*/
-	color:#fff;
-	background:#06F;
-}
-.mtq_color_blue .mtq_quiz_results_bubble, .mtq_color_blue .mtq_list_item_complete, .mtq_color_blue .mtq_shaded_item_msg, .mtq_color_blue .mtq_hint, .mtq_color_blue .mtq_hint_label, .mtq_color_blue .mtq_hint_text { /*Super Dark Text with Light background*/
-	color:#339;
-	background:#d0dafd!important;
-	border-color:#06F !important;
-}
-.mtq_color_blue .mtq_css_button:hover, .mtq_color_blue .mtq_css_letter_button:hover { /*Medium Button with white text */
-	color:#fff;
-	background:#09F;
-}
-.mtq_color_blue .mtq_question_list_container tr td { /*White background with Super Dark Text and border */
-	background:#FFF;
-	color:#339;
-	border-color:#339 !important;
-}
-.mtq_color_blue .mtq_question_heading_table { /* Dark color underline */
-	border-bottom:.1em solid #06F !important;
-}
-.mtq_color_blue .mtq_oce_first /* Light Background */ {
-	background:#d0dafd;
-}
-.mtq_color_blue .mtq_answer_table tr:hover td { /* Super light background, black text */
-	color:#000;
-	background:#eff2ff;
-}
-.mtq_color_blue .mtq_next_button, .mtq_color_blue .mtq_back_button {
-	color:#339;
-}
-/* 
 Theme Name: green
 Super Dark: #004A07
 Dark: #00930E
@@ -75,7 +36,7 @@ Super Light: #E6F5E7
 	color:#000;
 	background:#E6F5E7;
 }
-.mtq_color_green .mtq_next_button, .mtq_color_green .mtq_back_button {
+.mtq_color_green .mtq_css_next_button, .mtq_color_green .mtq_css_back_button {
 	color:#004A07;
 }
 /* 
@@ -114,7 +75,7 @@ Super Light: #FCE8EB
 	color:#000;
 	background:#FCE8EB;
 }
-.mtq_color_red .mtq_next_button, .mtq_color_red .mtq_back_button {
+.mtq_color_red .mtq_css_next_button, .mtq_color_red .mtq_css_back_button {
 	color:#6C0C18;
 }
 /* 
@@ -153,7 +114,7 @@ Super Light: #FFF0E6
 	color:#000;
 	background:#FFF0E6;
 }
-.mtq_color_orange .mtq_next_button, .mtq_color_orange .mtq_back_button {
+.mtq_color_orange .mtq_css_next_button, .mtq_color_orange .mtq_css_back_button {
 	color:#D95700;
 }
 /* 
@@ -192,8 +153,47 @@ Super Light: #FFFFE6
 	color:#000;
 	background:#FFFFE6;
 }
-.mtq_color_yellow .mtq_next_button, .mtq_color_yellow .mtq_back_button {
+.mtq_color_yellow .mtq_css_next_button, .mtq_color_yellow .mtq_css_back_button {
 	color:#D9D900;
+}
+/* 
+Theme Name: blue
+Super Dark: #339
+Dark: #06F
+Medium: #09F
+Light: #d0dafd
+Super Light: #eff2ff
+*/
+.mtq_color_blue .mtq_css_button, .mtq_color_blue .mtq_css_letter_button { /* Dark Button with white text*/
+	color:#fff;
+	background:#06F;
+}
+.mtq_color_blue .mtq_quiz_results_bubble, .mtq_color_blue .mtq_list_item_complete, .mtq_color_blue .mtq_shaded_item_msg, .mtq_color_blue .mtq_hint, .mtq_color_blue .mtq_hint_label, .mtq_color_blue .mtq_hint_text { /*Super Dark Text with Light background*/
+	color:#339;
+	background:#d0dafd!important;
+	border-color:#06F !important;
+}
+.mtq_color_blue .mtq_css_button:hover, .mtq_color_blue .mtq_css_letter_button:hover { /*Medium Button with white text */
+	color:#fff;
+	background:#09F;
+}
+.mtq_color_blue .mtq_question_list_container tr td { /*White background with Super Dark Text and border */
+	background:#FFF;
+	color:#339;
+	border-color:#339 !important;
+}
+.mtq_color_blue .mtq_question_heading_table { /* Dark color underline */
+	border-bottom:.1em solid #06F !important;
+}
+.mtq_color_blue .mtq_oce_first /* Light Background */ {
+	background:#d0dafd;
+}
+.mtq_color_blue .mtq_answer_table tr:hover td { /* Super light background, black text */
+	color:#000;
+	background:#eff2ff;
+}
+.mtq_color_blue .mtq_css_next_button, .mtq_color_blue .mtq_css_back_button {
+	color:#339;
 }
 /* 
 Theme Name: indigo
@@ -231,7 +231,7 @@ Super Light: #EBE7EE
 	color:#000;
 	background:#EBE7EE;
 }
-.mtq_color_indigo .mtq_next_button, .mtq_color_indigo .mtq_back_button {
+.mtq_color_indigo .mtq_css_next_button, .mtq_color_indigo .mtq_css_back_button {
 	color:#270747;
 }
 /* 
@@ -270,7 +270,7 @@ Super Light: #EEEBEE
 	color:#000;
 	background:#EEEBEE;
 }
-.mtq_color_violet .mtq_next_button, .mtq_color_violet .mtq_back_button {
+.mtq_color_violet .mtq_css_next_button, .mtq_color_violet .mtq_css_back_button {
 	color:#4F2F4F;
 }
 /* 
@@ -309,7 +309,7 @@ Super Light: #FFE6FF
 	color:#000;
 	background:#FFE6FF;
 }
-.mtq_color_fuchsia .mtq_next_button, .mtq_color_fuchsia .mtq_back_button {
+.mtq_color_fuchsia .mtq_css_next_button, .mtq_color_fuchsia .mtq_css_back_button {
 	color:#D900D9;
 }
 /* 
@@ -348,7 +348,7 @@ Super Light: #F5F5EF
 	color:#000;
 	background:#F5F5EF;
 }
-.mtq_color_khaki .mtq_next_button, .mtq_color_khaki .mtq_back_button {
+.mtq_color_khaki .mtq_css_next_button, .mtq_color_khaki .mtq_css_back_button {
 	color:#5C3317;
 }
 /* 
@@ -387,7 +387,7 @@ Super Light: #E7C0C1
 	color:#000;
 	background:#E7C0C1;
 }
-.mtq_color_burgundy .mtq_next_button, .mtq_color_burgundy .mtq_back_button {
+.mtq_color_burgundy .mtq_css_next_button, .mtq_color_burgundy .mtq_css_back_button {
 	color:#4F0304;
 }
 /* 
@@ -426,7 +426,7 @@ Super Light: #E6E6E6
 	color:#000;
 	background:#E6E6E6;
 }
-.mtq_color_black .mtq_next_button, .mtq_color_black .mtq_back_button {
+.mtq_color_black .mtq_css_next_button, .mtq_color_black .mtq_css_back_button {
 	color:#000000;
 }
 /* 
@@ -465,7 +465,7 @@ Super Light: #EAF5F9
 	color:#000;
 	background:#EAF5F9;
 }
-.mtq_color_lightblue .mtq_next_button, .mtq_color_lightblue .mtq_back_button {
+.mtq_color_lightblue .mtq_css_next_button, .mtq_color_lightblue .mtq_css_back_button {
 	color:#0147FA;
 }
 /* 
@@ -504,7 +504,7 @@ Super Light: #BFDFDF
 	color:#000;
 	background:#BFDFDF;
 }
-.mtq_color_teal .mtq_next_button, .mtq_color_teal .mtq_back_button {
+.mtq_color_teal .mtq_css_next_button, .mtq_color_teal .mtq_css_back_button {
 	color:#004040;
 }
 /* 
@@ -543,7 +543,7 @@ Super Light: #E3FBE3
 	color:#000;
 	background:#E3FBE3;
 }
-.mtq_color_lightgreen .mtq_next_button, .mtq_color_lightgreen .mtq_back_button {
+.mtq_color_lightgreen .mtq_css_next_button, .mtq_color_lightgreen .mtq_css_back_button {
 	color:#002600;
 }
 /* 
@@ -582,7 +582,7 @@ Super Light: #FFEDEF
 	color:#000;
 	background:#FFEDEF;
 }
-.mtq_color_lightpink .mtq_next_button, .mtq_color_lightpink .mtq_back_button {
+.mtq_color_lightpink .mtq_css_next_button, .mtq_color_lightpink .mtq_css_back_button {
 	color:#BF8991;
 }
 /* 
@@ -621,7 +621,7 @@ Super Light: #BFCCBF
 	color:#000;
 	background:#BFCCBF;
 }
-.mtq_color_darkgreen .mtq_next_button, .mtq_color_darkgreen .mtq_back_button {
+.mtq_color_darkgreen .mtq_css_next_button, .mtq_color_darkgreen .mtq_css_back_button {
 	color:#002600;
 }
 /* 
@@ -660,7 +660,7 @@ Super Light: #E1D0C7
 	color:#000;
 	background:#E1D0C7;
 }
-.mtq_color_brown .mtq_next_button, .mtq_color_brown .mtq_back_button {
+.mtq_color_brown .mtq_css_next_button, .mtq_color_brown .mtq_css_back_button {
 	color:#442110;
 }
 /* 
@@ -699,7 +699,7 @@ Super Light: #DFBFDF
 	color:#000;
 	background:#DFBFDF;
 }
-.mtq_color_purple .mtq_next_button, .mtq_color_purple .mtq_back_button {
+.mtq_color_purple .mtq_css_next_button, .mtq_color_purple .mtq_css_back_button {
 	color:#400040;
 }
 /* 
@@ -738,7 +738,7 @@ Super Light: #C8C8E3
 	color:#000;
 	background:#C8C8E3;
 }
-.mtq_color_navy .mtq_next_button, .mtq_color_navy .mtq_back_button {
+.mtq_color_navy .mtq_css_next_button, .mtq_color_navy .mtq_css_back_button {
 	color:#121247;
 }
 /* 
@@ -777,7 +777,7 @@ Super Light: #F2C3DD
 	color:#000;
 	background:#F2C3DD;
 }
-.mtq_color_darkpink .mtq_next_button, .mtq_color_darkpink .mtq_back_button {
+.mtq_color_darkpink .mtq_css_next_button, .mtq_color_darkpink .mtq_css_back_button {
 	color:#67083B;
 }
 /* 
@@ -816,38 +816,6 @@ Super Light: #F2E5F2
 	color:#000;
 	background:#F2E5F2;
 }
-.mtq_color_lavender .mtq_next_button, .mtq_color_lavender .mtq_back_button {
+.mtq_color_lavender .mtq_css_next_button, .mtq_color_lavender .mtq_css_back_button {
 	color:#664D66;
-}
-/* Non themed, but colored Items */
-.mtq_explanation {
-	background:#ADE0C1;
-	color:#030;
-	border-color:#030;
-}
-.mtq_wrong_stamp {
-	color:#FFF;
-	background:#B5281E;
-	border-color:#B5281E;
-}
-.mtq_correct_stamp {
-	color:#FFF;
-	background:#063;
-	border-color:#063;
-}
-.mtq_partial_stamp {
-	color:#FFF;
-	background:#09F;
-	border-color:#09F;
-}
-.mtq_selected_row {
-	background:#CCC;
-	color:#000;
-}
-.mtq_css_letter_selected {
-	color:#fff !important;
-	background:#333 !important;
-}
-.mtq_css_letter_selected:hover {
-	background:#666 !important;
 }

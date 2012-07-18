@@ -36,12 +36,13 @@
 	position:relative;
 	cursor:default;
 }
-#mtq_quiz_area table {
+.mtq_quiz_area table {
 	border:none;
 }
-#mtq_quiz_area tr td {
+.mtq_quiz_area th, .mtq_quiz_area td, .mtq_quiz_area tr td {
 	border:none;
 	padding:0;
+	vertical-align:middle;
 }
 .mtq_css_button {
 	display:block;
@@ -49,7 +50,7 @@
 	font-weight:600;
 	font-size:125%;
 	text-align:center;
-	width:5em;
+	width:8em;
 	margin-left:auto;
 	margin-right:auto;
 	-o-border-radius:2em;
@@ -62,7 +63,7 @@
 	cursor:pointer;
 }
 .mtq_results_button {
-	width:6em;
+	width:8em;
 }
 .mtq_list_item {
 	cursor:pointer;
@@ -71,7 +72,7 @@
 	font-size:200%;
 }
 .mtq_show_list {
-	width:3.5em;
+	/*width:3.5em;*/
 }
 .mtq_list_item_complete {
 	font-weight:400;
@@ -86,7 +87,7 @@
 }
 .mtq_question_list_container {
 	/*scroll display:none;*/
-	width:95%;
+	width:95% !important;
 	font-weight:600;
 	margin-left:auto;
 	margin-right:auto;
@@ -110,7 +111,7 @@
 }
 .mtq_shaded_item_msg {
 	display:block;
-	width:20em;
+	width:25em;
 	text-align:center;
 	font-weight:600;
 	border:thin solid;
@@ -165,13 +166,13 @@
 	margin-top:.5em;
 }
 .mtq_question_heading_table {
-	width:100%;
+	width:100% !important;
 	border-collapse:collapse;
 	margin:.5em 0;
 	padding:0 0 .1em !important;
 }
 .mtq_answer_table {
-	width:85%;
+	width:85% !important;
 	padding-right: 1em;
 	margin-top:1em;
 	text-align:left;
@@ -218,7 +219,7 @@
 	margin-bottom:.5em;
 	font-size:200%;
 }
-.mtq_next_button, .mtq_back_button {
+.mtq_css_next_button, .mtq_css_back_button {
 	width:46px;
 	height:30px;
 	display:block;

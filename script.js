@@ -311,7 +311,7 @@ function mtq_start_one(mtqid) {
 	mtq_vform[mtqid] = parseInt(jQuery("#mtq_vform-"+mtqid).val());
 	//mtq_extra_page[mtqid] = 0;
 	mtq_timer_on[mtqid] = 0;
-	if ( mtq_show_final[mtqid] || mtq_answer_display[mtqid] != 2 ) {
+	if ( mtq_show_final[mtqid] || mtq_answer_display[mtqid] != 0 ) {
 		//mtq_extra_page[mtqid] = 1;
 		mtq_ui_questions[mtqid]++;
 	}
