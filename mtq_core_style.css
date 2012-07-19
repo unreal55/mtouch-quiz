@@ -461,3 +461,36 @@
 .mtq_clickable {
 	cursor:pointer;
 }
+
+/* Non themed, but colored Items */
+.mtq_explanation {
+	background:#ADE0C1;
+	color:#030;
+	border-color:#030;
+}
+.mtq_wrong_stamp {
+	color:#FFF;
+	background:#B5281E;
+	border-color:#B5281E;
+}
+.mtq_correct_stamp {
+	color:#FFF;
+	background:#063;
+	border-color:#063;
+}
+.mtq_partial_stamp {
+	color:#FFF;
+	background:#09F;
+	border-color:#09F;
+}
+.mtq_selected_row {
+	background:#CCC;
+	color:#000;
+}
+.mtq_css_letter_selected {
+	color:#fff !important;
+	background:#333 !important;
+}
+.mtq_css_letter_selected:hover {
+	background:#666 !important;
+}
