@@ -486,6 +486,7 @@ function mtq_gf_fill_form(results_message,mtqid){
 		jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_time_used').find('input').val(1);
 	}
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_quiz_name').find('input').val(jQuery("#mtq_quiztitle-"+mtqid).text());
+	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_auto').css('display','none');
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq').css('display','none');
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_score').css('display','none');
 	jQuery("#mtq_quiz_area-"+mtqid).find('li.mtq_total').css('display','none');
@@ -556,11 +557,19 @@ function mtq_get_results(mtqid){
 		mtq_email_results_correct_answer='';
 		mtq_email_results_selected_answer='';
 		answer_order = [];
+		var multi_answer_select_count = 0;
 		for (a = 1; a<= N; a++){
 			var ever_selected = parseInt(jQuery("#mtq_was_ever_selected-"+q+"-"+a+"-"+mtqid).val());
 			var end_selected = parseInt(jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid).val());
 			var is_correct_answer = parseInt(jQuery("#mtq_is_correct-"+q+"-"+a+"-"+mtqid).val());
-			answer_order[ever_selected] = a;
+			if ( number_answers==1 ) {
+				answer_order[ever_selected] = a;
+			} else {
+				if (ever_selected || end_selected ) {
+				multi_answer_select_count++;
+				answer_order[multi_answer_select_count] = a;	
+				}
+			}
 			if ( ( ever_selected || end_selected ) && mtq_answer_display[mtqid] == 2 )	{
 				jQuery("#mtq_row-"+q+"-"+a+"-"+mtqid).addClass("mtq_selected_row");
 				attempted_this_one = 1;
