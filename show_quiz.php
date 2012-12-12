@@ -216,7 +216,7 @@
 
 		
 		$mtq_all_vars = "";
-		$number_questions_available = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id")); 
+		$number_questions_available = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d",$quiz_id)); 
 		if ($input_number_questions <= 0){ // If the user didn't specify the number of questions, then get them all
 			$input_number_questions = $number_questions_available;
 		}

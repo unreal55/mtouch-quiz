@@ -393,7 +393,7 @@
 .mtq_marker, #mtq_quiz_results, .mtq_preload, .mtq_navigator {
 	display:none;
 }
-#content .mtq, #content .mtq_auto, #content .mtq_quiz_name, #content .mtq_score, #content .mtq_total, #content .mtq_percentage, #content .mtq_wrong_answers, #content .mtq_time_allowed, #content .mtq_time_used, #container .mtq, #container .mtq_auto, #container .mtq_quiz_name, #container .mtq_score, #container .mtq_total, #container .mtq_percentage, #container .mtq_wrong_answers, #container .mtq_time_allowed, #container .mtq_time_used {
+#content .mtq, #content .mtq_auto, #content .mtq_quiz_name, #content .mtq_score, #content .mtq_total, #content .mtq_percentage, #content .mtq_wrong_answers, #content .mtq_time_allowed, #content .mtq_time_used, #container .mtq, #container .mtq_auto, #container .mtq_quiz_name, #container .mtq_score, #container .mtq_total, #container .mtq_percentage, #container .mtq_wrong_answers, #container .mtq_time_allowed, #container .mtq_time_used, .mtq_auto {
 	display:none;
 }
 .mtq_thanks {

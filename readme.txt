@@ -3,8 +3,8 @@ Contributors: gmichaelguy
 Donate link: http://gmichaelguy.com/quizplugin/go/donate/
 Tags: quiz, question, answer, test, touch, education, learning, elearning
 Requires at least: 3.0
-Tested up to: 3.4.2
-Stable tag: 3.0.3
+Tested up to: 3.5.0
+Stable tag: 3.0.4
 
 mTouch Quiz lets you add quizzes to your site. This plugin was designed with learning, touch friendliness and versatility in mind.
 
@@ -38,6 +38,10 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 5. List view for easy navigation of longer quizzes
 
 == Changelog ==
+
+= 3.0.3 =
+* Compatibility with WP 3.5
+* Updated French Translation (Thanks Capronnier Luc)
 
 = 3.0.2 =
 * COLOR THEMES!!
@@ -265,6 +269,10 @@ You can find the most up to date version at the [ homepage of mTouch Quiz Plugin
 * Initial release
 
 == Upgrade Notice ==
+
+= 3.0.3 =
+* Compatibility with WP 3.5
+* Updated French Translation (Thanks Capronnier Luc)
 
 = 3.0.2 =
 * COLOR THEMES!!
