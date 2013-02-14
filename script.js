@@ -695,6 +695,7 @@ function mtq_get_results(mtqid){
 			
 		}
 	}
+	mtq_set_height(1,mtqid);
 }
 
 
@@ -896,6 +897,24 @@ function mtq_button_click (q,a,mtqid)
 	var number_correct = parseInt(jQuery("#mtq_num_correct-"+q+"-"+mtqid).val());
 	var was_selected = parseInt(jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid).val());
 	var number_answers = parseInt(jQuery("#mtq_num_ans-"+q+"-"+mtqid).val());
+	
+	if (  number_correct == 1 && ! mtq_quiz_finished[mtqid]  ) {// If there is only one answer, we will not allow multiple selects to be nice, even though it's a hint!
+		//mtq_answer_display[mtqid] != 2 &&
+		var j=1;
+		for (j=1; j<=number_answers; j++ ){
+			if (j != a) {
+				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_css_letter_selected');
+				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_letter_selected-'+q+"-"+mtqid);
+				jQuery("#mtq_was_selected-"+q+"-"+j+"-"+mtqid).val('0');
+				jQuery("#mtq_was_ever_selected-"+q+"-"+j+"-"+mtqid).val('0'); // does this defeat purpose of was_ever_selected? Don't think so.
+			} //else if( ! was_selected ) {
+			//	jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).addClass('mtq_css_letter_selected');
+			//	jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).addClass('mtq_letter_selected-'+q+"-"+mtqid);
+			//}
+		}
+	}
+	
+	
 	//var has_explanation = parseInt(jQuery("#mtq_has_explanation-"+q+"-"+mtqid).val());
 	//var choices_remain = number_answers;
 	
@@ -998,22 +1017,7 @@ function mtq_button_click (q,a,mtqid)
 		}
 	}
 	
-	
-	if ( mtq_answer_display[mtqid] != 2 && number_correct == 1 && ! mtq_quiz_finished[mtqid]  ) {// If there is only one answer, we will not allow multiple selects to be nice, even though it's a hint!
-		var j=1;
-		for (j=1; j<=number_answers; j++ ){
-			if (j != a) {
-				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_css_letter_selected');
-				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).removeClass('mtq_letter_selected-'+q+"-"+mtqid);
-				jQuery("#mtq_was_selected-"+q+"-"+j+"-"+mtqid).val('0');
-				jQuery("#mtq_was_ever_selected-"+q+"-"+j+"-"+mtqid).val('0'); // does this defeat purpose of was_ever_selected? Don't think so.
-			} else if(parseInt(jQuery("#mtq_was_selected-"+q+"-"+a+"-"+mtqid)) ) {
-				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).addClass('mtq_css_letter_selected');
-				jQuery("#mtq_button-"+q+"-"+j+"-"+mtqid).addClass('mtq_letter_selected-'+q+"-"+mtqid);
-			}
-		}
-	}
-	if ( number_selected >= number_correct ) {//don't update or stamp unless enough answers are chosen already!
+	if ( number_selected >= number_correct || was_selected ) {//don't update or stamp unless enough answers are chosen already!
 		mtq_update_status(mtqid);
 		mtq_stamp(q,mtqid); // Must follow status update where points are calculated
 
