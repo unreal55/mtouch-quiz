@@ -3,7 +3,7 @@
 Plugin Name: mTouch Quiz
 Plugin URI: http://gmichaelguy.com/quizplugin/
 Description: Create a multiple choice quiz (or exam). This plugin was written with learning and mobility in mind.  The quiz interface is touch friendly. You can: specify hints based on answer selection; give a detailed explanation of the solution; choose multiple correct answers; specify when the correct answers are displayed; specify if a question may be attempted only once or many times; specify point values for each question; include customized start and finish screens; randomly order questions and/or answers; and more.  This plugin was built by pillaging the Quizzin plugin written by Binny V A, but please do not blame him for my ruining his plugin!
-Version: 3.0.5
+Version: 3.0.6
 Author: G. Michael Guy
 Author URI: http://gmichaelguy.com
 License: GPL2
@@ -11,7 +11,7 @@ Text Domain: mtouchquiz
 */
 ?>
 <?php
-/*  Copyright 2010  G. Michael Guy  (email : Michael (Put-AN-AT) gmichaelguy.com)
+/*  Copyright 2013  G. Michael Guy  (email : Michael (Put-AN-AT) gmichaelguy.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -32,7 +32,7 @@ Text Domain: mtouchquiz
  * Add a new menu page, visible for all users with template viewing level.
  */
  
-define( 'mtq_VERSION', '3.0.5' );
+define( 'mtq_VERSION', '3.0.6' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
 define( 'mtq_database_version','1.6.5.4');
@@ -59,7 +59,7 @@ function mtq_add_menu_links() {
 /// Initialize this plugin. Called by 'init' hook.
 add_action('init', 'mtq_init');
 function mtq_init() {
-	load_plugin_textdomain('mtouchquiz', 'wp-content/plugins/mtouch-quiz/lang/' );
+	load_plugin_textdomain('mtouchquiz', false, dirname(plugin_basename( __FILE__ )).'/lang/' );
 	add_action('admin_menu', 'mtq_menu');
 	$installed_db = get_option('mtouchquiz_db_version');
 	if ( $installed_db != mtq_database_version ) {
